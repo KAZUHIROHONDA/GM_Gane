@@ -39,3 +39,4 @@ void DamagePlayer(int damage);
 void DrawPlayerGauge();
 
 int GetPlayerHp(int no);
+void ResetPos(int no);

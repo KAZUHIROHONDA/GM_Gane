@@ -69,7 +69,11 @@ static tPlayer			g_playerAM[PLAYER_MAX];
 static tPlayer			g_playerLG[PLAYER_MAX];
 static int				g_nCameraType = E_CAMERA_VIEW_FIXED;		//カメラの種類
 
-static float			g_nCnt;//行動カウント
+
+static float			g_nCnt1;//行動カウント1コメ
+static float			g_nCnt2;//行動カウント2コメ
+static float			g_nCnt3;//行動カウント3コメ
+
 
 const tMessage testMessage[4] = {
 	{L"",MESSAGE_TYPE::E_TYPE_TIMER,60 },
@@ -93,7 +97,7 @@ HRESULT InitPlayer(void)
 	{
 		g_player[i].pos = XMFLOAT3(0.0f, 20.0f, -150.0f);
 		g_player[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		g_player[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+		g_player[i].scl = XMFLOAT3(5.0f, 5.0f, 5.0f);
 		g_player[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		//初期化
 		g_player[i].nPhase = 0;
@@ -104,7 +108,11 @@ HRESULT InitPlayer(void)
 
 		g_player[i].bCnt = 0;	
 
-		g_nCnt = 0.0f;				//
+		//g_nCnt = 0.0f;				//
+
+		g_nCnt1 = 0.0f;					//
+		g_nCnt2 = 0.0f;					//
+		g_nCnt3 = 0.0f;					//
 
 		g_player[i].nGauge = 0;
 		g_player[i].nStopTime = 0; //最初は動ける
@@ -112,7 +120,7 @@ HRESULT InitPlayer(void)
 		g_player[i].nShadowIdx = CreateShadow(g_player[i].pos, 20.0f);
 
 		//頭
-		g_playerHD[i].pos = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		g_playerHD[i].pos = XMFLOAT3(0.0f, 0.0f, -2.0f);
 		g_playerHD[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_playerHD[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_playerHD[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -289,22 +297,31 @@ void UpdatePlayer(void)
 			//}
 
 
-			////ジャンプ
+
+			//疑似攻撃行動ボタン
 			if (GetKeyPress(VK_X))
 			{
-				g_nCnt++;
-				if (g_nCnt <= 50)
+				g_nCnt1++;
+				g_nCnt2++;
+				g_playerHD[i].rot.z += 50;
+				if (g_nCnt1 <= 150)
+				{
+					g_player[i].pos.y++;
+
+				}
+				if (g_nCnt1 >= 150 && g_nCnt2 <= 250)
 				{
 					g_player[i].pos.z++;
+					g_player[i].pos.y--;
 
-					if (50 < g_nCnt <= 100)
-					{
-						g_player[i].pos.y++;
-					}
+					g_player[i].rot.x = -45;
 				}
-				
 				//g_player[i].vel.y += 10.0f;
 
+				if (g_nCnt1 >= 500 && g_nCnt2 >= 500)
+				{
+					ResetPos(i);
+				}
 			}
 			if (GetKeyTrigger(VK_H))
 			{
@@ -656,4 +673,17 @@ void DestroyPlayer(int no)
 
 	StartFade(SCENE_GAMEOVER);
 
+}
+void ResetPos(int no)
+{
+	if (no < 0 || no >= PLAYER_MAX)	return;
+
+	g_player[no].pos = XMFLOAT3(0.0f, 20.0f, -150.0f);
+	g_player[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	g_player[no].scl = XMFLOAT3(5.0f, 5.0f, 5.0f);
+	g_player[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	g_playerHD[no].pos = XMFLOAT3(0.0f, 0.0f, -2.0f);
+	g_playerHD[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	g_playerHD[no].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+	g_playerHD[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 }
