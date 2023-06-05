@@ -1,0 +1,4 @@
+﻿  player.cpp
+c:\users\matsu\desktop\向出データ\0418文字表示\dx11game\player.cpp(79): warning C4838: '__int64' から 'unsigned __int64' への変換には縮小変換が必要です
+c:\users\matsu\desktop\向出データ\0418文字表示\dx11game\player.cpp(300): warning C4804: '<=': 演算中の 'bool' 型の使用方法が安全ではありません
+  DX11Game.vcxproj -> C:\Users\matsu\Desktop\向出データ\0418文字表示\DX11Game\DX11GameD.exe
