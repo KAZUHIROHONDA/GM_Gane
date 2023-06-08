@@ -686,4 +686,7 @@ void ResetPos(int no)
 	g_playerHD[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	g_playerHD[no].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 	g_playerHD[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+
+	g_nCnt1=0;
+	g_nCnt2=0;
 }
