@@ -115,7 +115,7 @@ HRESULT InitPlayer(void)
 		g_nCnt2 = 0.0f;					//
 		g_nCnt3 = 0.0f;					//
 
-		g_player[i].nGauge = 0;
+		g_player[i].nGauge = g_player[i].nHP;
 		g_player[i].nStopTime = 0; //Å‰‚Í“®‚¯‚é
 
 		g_player[i].nShadowIdx = CreateShadow(g_player[i].pos, 20.0f);
@@ -474,7 +474,11 @@ void UpdatePlayer(void)
 
 			}
 
-	
+		//ƒQ[ƒW‚Ì“®‚«‚Ìˆ—
+			if (g_player[i].nGauge >= g_player[i].nHP)
+			{
+				g_player[i].nGauge--;
+			}
 
 		//d—Í
 		//g_player[i].vel.y += -0.98f;

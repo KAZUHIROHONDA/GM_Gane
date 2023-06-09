@@ -77,7 +77,7 @@ HRESULT InitEnemy(void)
 		g_enemy[i].nState = 0;		//Å‰‚Í’Êí
 		g_enemy[i].Tipe = 0;
 
-		g_enemy[i].nHP = 50;
+		g_enemy[i].nHP = 100;
 
 		g_enemy[i].nShadowIdx = -1;
 	}

@@ -16,7 +16,7 @@
 #include "sceneGame.h"
 #include "shadow.h"
 #include "bullet.h"
-
+#include "gauge.h"
 #include "wall.h"
 
 #include "enemy.h"
@@ -117,7 +117,7 @@ HRESULT InitSceneGame()
 	}
 
 
-
+	hr = InitGauge();
 	if (FAILED(hr))
 		return hr;
 	
@@ -166,6 +166,8 @@ void UninitSceneGame()
 	UninitBg();
 	//敵
 	UninitEnemy();
+
+	UninitGauge();
 
 	// tairyokuの終了処理
 	UninitPlayerhp();
@@ -227,8 +229,6 @@ void UpdateSceneGame()
 		UpdatePlayerhp();
 		UpdateEnemyhp();
 		
-		
-
 		//地面更新処理
 		UpdateWall();
 		//当たり判定
