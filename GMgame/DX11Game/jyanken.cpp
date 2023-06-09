@@ -36,24 +36,28 @@ static LPCWSTR c_aFileNameJyankenMenu[NUM_JYANKEN_MENU] =
 {
 	L"data/TEXTURE/gu.png",	// コンティニュー
 	L"data/TEXTURE/tyoki.png",
-	L"data/TEXTURE/pa.png",	
+	L"data/TEXTURE/pa.png",
 };
 
 static JYANKEN_MENU g_nJyankenMenu = JYANKEN_MENU_GU;	//	選択中のメニューNo
-
+static int te[5];
 
 int z, i, aite;
 int bef;
 int win;
+int j = 0;
+int n = 0;
 
-const tMessage testMessage[7] = {
+const tMessage testMessage[9] = {
 	{L"じゃんけん５回勝負！！",MESSAGE_TYPE::E_TYPE_ENTER,(long long int)&testMessage[1] },
-	{L"グーはV、チョキはB、パーはNを入力してね！",MESSAGE_TYPE::E_TYPE_ENTER},
-	{L"かち！",MESSAGE_TYPE::E_TYPE_ENTER},
-	{L"まけ！",MESSAGE_TYPE::E_TYPE_ENTER},
-	{L"あいこ！",MESSAGE_TYPE::E_TYPE_ENTER},
-	{L"2枚目",MESSAGE_TYPE::E_TYPE_ENTER,NULL},
-	{L"2枚目",MESSAGE_TYPE::E_TYPE_NORMAL,}
+	{L"かち！",MESSAGE_TYPE::E_TYPE_NORMAL},
+	{L"まけ！",MESSAGE_TYPE::E_TYPE_NORMAL},
+	{L"あいこ！",MESSAGE_TYPE::E_TYPE_NORMAL},
+	{L"１回目",MESSAGE_TYPE::E_TYPE_NORMAL},
+	{L"２回目",MESSAGE_TYPE::E_TYPE_NORMAL},
+	{L"３回目",MESSAGE_TYPE::E_TYPE_NORMAL},
+	{L"４回目",MESSAGE_TYPE::E_TYPE_NORMAL},
+	{L"５回目",MESSAGE_TYPE::E_TYPE_NORMAL},
 };
 
 HRESULT InitJyanken()
@@ -87,8 +91,6 @@ void UninitJyanken()
 
 void UpdateJyanken()
 {
-
-
 	//操作不能時間
 	if (nStopTime > 0)
 	{
@@ -151,11 +153,10 @@ void UpdateJyanken()
 
 	g_fCol = cosf(g_fCurve) * 0.2f + 0.8f;
 
-	//ポーズ中の項目決定
 
-	E_FADE fadeState = GetFade();
-	if (fadeState == E_FADE_NONE)
+	if (j <= 5)
 	{
+		SetMessage((tMessage*)&testMessage[j + 4]);
 		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
 		{
 			//選択中のものにより分岐
@@ -164,22 +165,42 @@ void UpdateJyanken()
 			{
 				//グー
 			case JYANKEN_MENU_GU:
-				Jyanken(0);
+				te[j] = 0;
+				j++;
+				//Jyanken(0);
 				break;
 				//チョキ
 			case JYANKEN_MENU_TYOKI:
-				Jyanken(1);
+				te[j] = 1;
+				j++;
+				//Jyanken(1);
 				break;
 				//パー
 			case JYANKEN_MENU_PA:
-				Jyanken(2);
+				te[j] = 2;
+				j++;
+				//Jyanken(2);
 				break;
 			}
 		}
 	}
 
-
-
+	if (j > 5)
+	{
+		if (n <= 4)
+		{
+			if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
+			{
+				Jyanken(te[n]);
+				n++;
+			}
+		}
+		else if (n > 4)
+		{
+			j = 0;
+			n = 0;
+		}
+	}
 }
 
 
@@ -218,6 +239,7 @@ void DrawJyanken()
 //じゃんけん
 void Jyanken(int no)
 {
+
 	i = no;
 
 	aite = rand() % 3;//相手
@@ -225,27 +247,24 @@ void Jyanken(int no)
 
 	if (aite == i)
 	{
-		SetMessage((tMessage*)&testMessage[4]);
+		SetMessage((tMessage*)&testMessage[3]);
 		//StartFade(SCENE_TITLE,180);
-		//printf("あいこ\nもう一度！\n\n>");
 		//z = z - 1;
 	}
 	//else if (i == 0)i = 3;
 	//if (aite < i)
 	else if ((i == 0 && aite == 1) || (i == 1 && aite == 2) || (i == 2 && aite == 0))
 	{
-		SetMessage((tMessage*)&testMessage[2]);
+		SetMessage((tMessage*)&testMessage[1]);
 		DamageEnemy(50);
 		//printf("勝ち\n\n");
 		//win++;
-		//StartSceneChange(SCENE_CLEAR);
 	}
 	else
 	{
-		SetMessage((tMessage*)&testMessage[3]);
+		SetMessage((tMessage*)&testMessage[2]);
 		DamagePlayer(50);
 		//printf("負け\n\n");
-		//StartSceneChange(SCENE_GAMEOVER);
 	}
 
 
@@ -275,6 +294,7 @@ void ResetJyankenMenu(void)
 	g_nJyankenMenu = JYANKEN_MENU_GU;
 	SetJyankenMenu();
 }
+
 
 
 
