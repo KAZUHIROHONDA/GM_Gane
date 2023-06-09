@@ -72,7 +72,7 @@ static int				g_nCameraType = E_CAMERA_VIEW_FIXED;		//カメラの種類
 
 static int			g_nCnt1;//行動カウント1コメ
 static int			g_nCnt2;//行動カウント2コメ
-static float			g_nCnt3;//行動カウント3コメ
+static int			g_nCnt3;//行動カウント3コメ
 static bool				g_atama = true;//false;
 
 
@@ -104,18 +104,18 @@ HRESULT InitPlayer(void)
 		g_player[i].nPhase = 0;
 		g_player[i].nState = 1;		//最初は通常
 
-		g_player[i].nHP = 100;
+		g_player[i].nHP = 1000;
 		g_player[i].nName = 0;
 
 		g_player[i].bCnt = 0;	
 
 		//g_nCnt = 0.0f;				//
 
-		g_nCnt1 = 0.0f;					//
-		g_nCnt2 = 0.0f;					//
-		g_nCnt3 = 0.0f;					//
+		g_nCnt1 = 0;					//
+		g_nCnt2 = 0;					//
+		g_nCnt3 = 0;					//
 
-		g_player[i].nGauge = g_player[i].nHP;
+		g_player[i].nGauge = g_player[i].nHP/10;
 		g_player[i].nStopTime = 0; //最初は動ける
 
 		g_player[i].nShadowIdx = CreateShadow(g_player[i].pos, 20.0f);
@@ -174,7 +174,7 @@ HRESULT InitPlayer(void)
 	hr = g_model[3].Load(pDevice, pDeviceContext,
 		MODEL_PLAYER3); if (FAILED(hr)) return hr;
 	
-	g_nCameraType = E_CAMERA_VIEW_BEHIND;
+	g_nCameraType = E_CAMERA_VIEW_FIXED;
 	
 	return hr;
 }
@@ -360,106 +360,13 @@ void UpdatePlayer(void)
 					g_playerHD[i].pos.z = -2.0f;
 				}
 				
-			}
-			if (g_nCnt3<= -20)
-			{
-				ResetPos(i);
-			}
-
-			/*if (GetKeyPress(VK_7))	//なんでできんねん
-			{
-				g_player[i].pos.z = -80;
-				g_nCnt3--;
-				if (g_nCnt3 <= 0)
+				if (g_nCnt3 <= -20)
 				{
-					g_playerHD[i].pos.z = -2.0f;
-					g_nCnt3 = 0;
-					g_atama = true;
+					ResetPos(i);
 				}
-				if (g_atama)
-				{
-					g_playerHD[i].pos.z -= 3;
-					g_atama = false;
-					//g_playerHD[i].pos.z = -2.0f;
-					
-				}
-				
-			}*/
+			}
 
 		}
-
-			if (GetKeyPress(VK_9))
-			{
-				g_nCnt1++;
-				g_nCnt2++;
-				g_player[i].pos.z = -80;
-				/*if(10 <= g_nCnt1 && g_nCnt1 <= 11)
-				{
-					g_playerHD[i].pos.z -= 3;
-				}
-				if (12 <= g_nCnt1 && g_nCnt1 <= 13)
-				{
-					g_playerHD[i].pos.z = 0;
-				}
-				if (14 <= g_nCnt1 && g_nCnt1 <= 15)
-				{
-					g_playerHD[i].pos.z -= 3;
-				}
-				if (16 <= g_nCnt1 && g_nCnt1 <= 17)
-				{
-					g_playerHD[i].pos.z = 0;
-				}
-				if (18 <= g_nCnt1 && g_nCnt1 <= 19)
-				{
-					g_playerHD[i].pos.z -= 3;
-				}
-				if (20 <= g_nCnt1 && g_nCnt1 <= 21)
-				{
-					g_playerHD[i].pos.z = 0;
-				}
-				if (22 <= g_nCnt1 && g_nCnt1 <= 23)
-				{
-					g_playerHD[i].pos.z -= 3;
-				}
-				if (24 <= g_nCnt1 && g_nCnt1 <= 25)
-				{
-					g_playerHD[i].pos.z == 0;
-				}
-				if (26 <= g_nCnt1 && g_nCnt1 <= 27)
-				{
-					g_playerHD[i].pos.z -= 3;
-				}
-				if (28 <= g_nCnt1 && g_nCnt1 <= 29)
-				{
-					g_playerHD[i].pos.z == 0;
-				}
-				if (30 <= g_nCnt1 && g_nCnt1 <= 31)
-				{
-					g_playerHD[i].pos.z -= 3;
-				}
-				if (32 <= g_nCnt1 && g_nCnt1 <= 33)
-				{
-					g_playerHD[i].pos.z == 0;
-				}
-				if (34 <= g_nCnt1 && g_nCnt1 <= 35)
-				{
-					g_playerHD[i].pos.z -= 3;
-				}
-				if (36 <= g_nCnt1 && g_nCnt1 <= 37)
-				{
-					g_playerHD[i].pos.z == 0;
-				}
-				if (38 <= g_nCnt1 && g_nCnt1 <= 39)
-				{
-					g_playerHD[i].pos.z -= 3;
-				}
-				if (40 <= g_nCnt1 && g_nCnt1 <= 41)
-				{
-					g_playerHD[i].pos.z == 0;
-				}*/
-			}
-
-
 			if (GetKeyTrigger(VK_H))
 			{
 				DamagePlayer(50);
@@ -475,7 +382,7 @@ void UpdatePlayer(void)
 			}
 
 		//ゲージの動きの処理
-			if (g_player[i].nGauge >= g_player[i].nHP)
+			if (g_player[i].nGauge>= g_player[i].nHP/10)
 			{
 				g_player[i].nGauge--;
 			}
@@ -684,7 +591,7 @@ void UpdatePlayer(void)
 	{
 	case E_CAMERA_VIEW_FIXED:
 		GetCamera()->SetTarget(1.0f, 1.0f, 0.0f);
-		GetCamera()->SetPos(0.0f, 500.0f, 0.0f);
+		GetCamera()->SetPos(350.0f, 250.0f, 0.0f);
 		break;
 	case E_CAMERA_VIEW_BIRD:
 		GetCamera()->SetTarget(g_player[0].pos);

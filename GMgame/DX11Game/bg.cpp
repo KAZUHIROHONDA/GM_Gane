@@ -12,7 +12,7 @@
 // マクロ定義
 //*****************************************************************************
 // テクスチャファイル名
-#define BG_TEXTURENAME	_T("data/texture/BG.jpg")
+#define BG_TEXTURENAME	_T("data/texture/aiueo.png")
 #define BG1_TEXTURENAME	_T("data/texture/setumei.jpg")
 
 #define BG_POS_X	(0)					//初期位置X

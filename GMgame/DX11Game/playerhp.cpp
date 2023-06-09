@@ -187,7 +187,7 @@ void DrawPlayerhp()
 		SetPolygonAlpha(1.0f);
 		DrawNumber(&pos,		// 座標
 			g_playerhp[i].nPlayerhp,	// 数値
-			3,					// 桁数
+			4,					// 桁数
 			NUMBER_SIZE_X, NUMBER_SIZE_Y);// サイズ
 	}
 
