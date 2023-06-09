@@ -351,7 +351,7 @@ void DrawSceneGame()
 	//•¶Žš•`‰æ
 	DrawMessage();
 
-	DrawJyanken();
+	//DrawJyanken();
 
 	DrawPlayerhp();
 	DrawEnemyhp();

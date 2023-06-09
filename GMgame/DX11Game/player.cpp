@@ -70,9 +70,10 @@ static tPlayer			g_playerLG[PLAYER_MAX];
 static int				g_nCameraType = E_CAMERA_VIEW_FIXED;		//カメラの種類
 
 
-static float			g_nCnt1;//行動カウント1コメ
-static float			g_nCnt2;//行動カウント2コメ
+static int			g_nCnt1;//行動カウント1コメ
+static int			g_nCnt2;//行動カウント2コメ
 static float			g_nCnt3;//行動カウント3コメ
+static bool				g_atama = true;//false;
 
 
 const tMessage testMessage[4] = {
@@ -97,7 +98,7 @@ HRESULT InitPlayer(void)
 	{
 		g_player[i].pos = XMFLOAT3(0.0f, 20.0f, -150.0f);
 		g_player[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		g_player[i].scl = XMFLOAT3(5.0f, 5.0f, 5.0f);
+		g_player[i].scl = XMFLOAT3(8.0f, 8.0f, 8.0f);
 		g_player[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		//初期化
 		g_player[i].nPhase = 0;
@@ -299,7 +300,7 @@ void UpdatePlayer(void)
 
 
 			//疑似攻撃行動ボタン
-			if (GetKeyPress(VK_X))
+			if (GetKeyPress(VK_8))
 			{
 				g_nCnt1++;
 				g_nCnt2++;
@@ -323,6 +324,142 @@ void UpdatePlayer(void)
 					ResetPos(i);
 				}
 			}
+			if (GetKeyPress(VK_6))
+			{
+				g_player[i].pos.z = -80;
+				g_nCnt1++;
+				if (g_nCnt1 >= 10 && g_nCnt1 <= 200 ) // ?はどこまで繰り返すかの数値
+
+				{
+
+					if ((g_nCnt1 - 10) / 2 % 2 == 0) g_playerHD[i].pos.z -= 3;
+
+					else g_playerHD[i].pos.z = -2.0f;
+
+				}
+			}
+			
+			g_nCnt3--;
+			if (GetKeyPress(VK_7))
+			{
+				g_player[i].pos.z = -80;
+				if (g_nCnt3 <= -2)
+				{
+					//g_playerHD[i].pos.z = -2.0f;
+					g_nCnt3 = 0;
+					g_atama = true;
+				}
+				if (g_atama)
+				{
+					g_playerHD[i].pos.z -= 6.0f;
+					g_atama = false;
+					//g_playerHD[i].pos.z = -2.0f;
+				}
+				if (g_nCnt3 == -1)
+				{
+					g_playerHD[i].pos.z = -2.0f;
+				}
+				
+			}
+			if (g_nCnt3<= -20)
+			{
+				ResetPos(i);
+			}
+
+			/*if (GetKeyPress(VK_7))	//なんでできんねん
+			{
+				g_player[i].pos.z = -80;
+				g_nCnt3--;
+				if (g_nCnt3 <= 0)
+				{
+					g_playerHD[i].pos.z = -2.0f;
+					g_nCnt3 = 0;
+					g_atama = true;
+				}
+				if (g_atama)
+				{
+					g_playerHD[i].pos.z -= 3;
+					g_atama = false;
+					//g_playerHD[i].pos.z = -2.0f;
+					
+				}
+				
+			}*/
+
+		}
+
+			if (GetKeyPress(VK_9))
+			{
+				g_nCnt1++;
+				g_nCnt2++;
+				g_player[i].pos.z = -80;
+				/*if(10 <= g_nCnt1 && g_nCnt1 <= 11)
+				{
+					g_playerHD[i].pos.z -= 3;
+				}
+				if (12 <= g_nCnt1 && g_nCnt1 <= 13)
+				{
+					g_playerHD[i].pos.z = 0;
+				}
+				if (14 <= g_nCnt1 && g_nCnt1 <= 15)
+				{
+					g_playerHD[i].pos.z -= 3;
+				}
+				if (16 <= g_nCnt1 && g_nCnt1 <= 17)
+				{
+					g_playerHD[i].pos.z = 0;
+				}
+				if (18 <= g_nCnt1 && g_nCnt1 <= 19)
+				{
+					g_playerHD[i].pos.z -= 3;
+				}
+				if (20 <= g_nCnt1 && g_nCnt1 <= 21)
+				{
+					g_playerHD[i].pos.z = 0;
+				}
+				if (22 <= g_nCnt1 && g_nCnt1 <= 23)
+				{
+					g_playerHD[i].pos.z -= 3;
+				}
+				if (24 <= g_nCnt1 && g_nCnt1 <= 25)
+				{
+					g_playerHD[i].pos.z == 0;
+				}
+				if (26 <= g_nCnt1 && g_nCnt1 <= 27)
+				{
+					g_playerHD[i].pos.z -= 3;
+				}
+				if (28 <= g_nCnt1 && g_nCnt1 <= 29)
+				{
+					g_playerHD[i].pos.z == 0;
+				}
+				if (30 <= g_nCnt1 && g_nCnt1 <= 31)
+				{
+					g_playerHD[i].pos.z -= 3;
+				}
+				if (32 <= g_nCnt1 && g_nCnt1 <= 33)
+				{
+					g_playerHD[i].pos.z == 0;
+				}
+				if (34 <= g_nCnt1 && g_nCnt1 <= 35)
+				{
+					g_playerHD[i].pos.z -= 3;
+				}
+				if (36 <= g_nCnt1 && g_nCnt1 <= 37)
+				{
+					g_playerHD[i].pos.z == 0;
+				}
+				if (38 <= g_nCnt1 && g_nCnt1 <= 39)
+				{
+					g_playerHD[i].pos.z -= 3;
+				}
+				if (40 <= g_nCnt1 && g_nCnt1 <= 41)
+				{
+					g_playerHD[i].pos.z == 0;
+				}*/
+			}
+
+
 			if (GetKeyTrigger(VK_H))
 			{
 				DamagePlayer(50);
@@ -337,7 +474,7 @@ void UpdatePlayer(void)
 
 			}
 
-		}
+	
 
 		//重力
 		//g_player[i].vel.y += -0.98f;
@@ -680,7 +817,7 @@ void ResetPos(int no)
 
 	g_player[no].pos = XMFLOAT3(0.0f, 20.0f, -150.0f);
 	g_player[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	g_player[no].scl = XMFLOAT3(5.0f, 5.0f, 5.0f);
+	g_player[no].scl = XMFLOAT3(8.0f, 8.0f, 8.0f);
 	g_player[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	g_playerHD[no].pos = XMFLOAT3(0.0f, 0.0f, -2.0f);
 	g_playerHD[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
