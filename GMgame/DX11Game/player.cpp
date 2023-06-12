@@ -73,6 +73,7 @@ static int				g_nCameraType = E_CAMERA_VIEW_FIXED;		//カメラの種類
 static int			g_nCnt1;//行動カウント1コメ
 static int			g_nCnt2;//行動カウント2コメ
 static int			g_nCnt3;//行動カウント3コメ
+static int			g_nCnt4;//行動カウント4コメ
 static bool				g_atama = true;//false;
 
 
@@ -358,6 +359,8 @@ void UpdatePlayer(void)
 				if (g_nCnt3 == -1)
 				{
 					g_playerHD[i].pos.z = -2.0f;
+					g_playerHD[i].pos.x = (rand() % 201 - 100) / 30.0f;
+					g_playerHD[i].pos.y = (rand() % 201 - 100) / 30.0f;
 				}
 				
 				if (g_nCnt3 <= -20)
@@ -380,6 +383,29 @@ void UpdatePlayer(void)
 				g_playerLG[i].rot.x += 5;
 
 			}
+			g_nCnt4++;
+			if (GetKeyPress(VK_0))//負けアニメーション
+			{
+				g_player[i].rot.z = 180;
+				if (g_nCnt4 >= 20)
+				{
+					g_playerHD[i].pos.z -= 0.05f;
+					g_playerHD[i].rot.z -= 1.0f;
+					g_playerHD[i].rot.y -= 1.0f;
+
+					g_playerAM[i].pos.x -= 0.05f;
+					g_playerAM[i].rot.z -= 1.0f;
+					g_playerAM[i].rot.y -= 1.0f;
+
+					g_playerLG[i].pos.z += 0.05f;
+					g_playerLG[i].rot.z -= 1.0f;
+					g_playerLG[i].rot.y -= 1.0f;
+				}
+
+			}
+
+
+
 
 		//ゲージの動きの処理
 			if (g_player[i].nGauge>= g_player[i].nHP/10)
