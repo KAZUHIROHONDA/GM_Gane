@@ -11,7 +11,7 @@
 #include "Texture.h"
 #include "input.h"	
 #include "player.h"
-#include "field.h"
+#include "field3D.h"
 #include "player.h"
 #include "sceneGame.h"
 #include "shadow.h"
@@ -122,7 +122,7 @@ HRESULT InitSceneGame()
 		return hr;
 	
 	//地面初期化処理
-	hr = InitField();
+	hr = InitField3D();
 	if (FAILED(hr))
 		return hr;
 
@@ -179,7 +179,7 @@ void UninitSceneGame()
 	UninitNumber();
 
 	//地面終了処理
-	UninitField();
+	UninitField3D();
 	//地面終了処理
 	UninitWall();
 	//プレイヤーの終了処理
@@ -222,7 +222,7 @@ void UpdateSceneGame()
 		UpdateBullet();
 		
 		//地面更新処理
-		UpdateField();
+		UpdateField3D();
 
 		UpdateJyanken();
 
@@ -315,7 +315,7 @@ void DrawSceneGame()
 	//敵
 	DrawEnemy();
 	//地面
-	DrawField();
+	DrawField3D();
 
 	//光源処理無効
 	GetLight()->SetDisable();

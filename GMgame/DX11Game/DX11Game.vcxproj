@@ -170,6 +170,7 @@
     <ClCompile Include="enter.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="field.cpp" />
+    <ClCompile Include="field3D.cpp" />
     <ClCompile Include="flame.cpp" />
     <ClCompile Include="gameover.cpp" />
     <ClCompile Include="gauge.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="enter.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="field.h" />
+    <ClInclude Include="field3D.h" />
     <ClInclude Include="flame.h" />
     <ClInclude Include="gameover.h" />
     <ClInclude Include="gauge.h" />
