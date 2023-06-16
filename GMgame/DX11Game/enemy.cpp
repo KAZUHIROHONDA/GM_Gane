@@ -68,7 +68,7 @@ HRESULT InitEnemy(void)
 	// 位置・回転・スケールの初期設定
 	for (int i = 0; i < ENEMY_MAX; i++)
 	{
-		g_enemy[i].pos = XMFLOAT3(0.0f, 0.0f, 20.0f);
+		g_enemy[i].pos = XMFLOAT3(0.0f, 0.0f, 200.0f);
 		g_enemy[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
 		g_enemy[i].scl = XMFLOAT3(3.0f,3.0f,3.0f);
 		g_enemy[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -130,23 +130,6 @@ void UpdateEnemy(void)
 	{
 		//未使用
 		if (g_enemy[i].nState == 0) continue;
-
-		//速度
-		g_enemy[i].pos.x += g_enemy[i].vel.x;
-		g_enemy[i].pos.y += g_enemy[i].vel.y;
-		g_enemy[i].pos.z += g_enemy[i].vel.z;
-
-		// モデルの動きを記述するならここ
-		switch (g_enemy[i].nPhase)
-		{
-		case 1:g_enemy[i].pos.y+= VALUE_MOVE;				//右へ
-			if (g_enemy[i].pos.y>= 15.0f) g_enemy[i].nPhase = -1;
-			break;
-
-		case -1:g_enemy[i].pos.y -= VALUE_MOVE;				//左へ
-			if (g_enemy[i].pos.y <= 5.0f) g_enemy[i].nPhase = +1;
-			break;
-		}
 
 		//画面外に行かない処理
 		XMFLOAT3 box = g_model[0].GetBBox();

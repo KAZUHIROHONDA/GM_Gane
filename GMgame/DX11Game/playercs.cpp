@@ -104,17 +104,14 @@ void Player::Draw(int x,int y)
 
 	status = "名前:" + Name;
 	g_directWrite->DrawString(status,XMFLOAT2(x, y),D2D1_DRAW_TEXT_OPTIONS_NONE);
-	oss << HP;
-	status = "体力:"+ oss.str();
-	g_directWrite->DrawString(status, XMFLOAT2(x, y + 50), D2D1_DRAW_TEXT_OPTIONS_NONE);
 	gu << GUat;
 	status = "グー:" + gu.str();
-	g_directWrite->DrawString(status, XMFLOAT2(x, y + 100), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	g_directWrite->DrawString(status, XMFLOAT2(x, y + 50), D2D1_DRAW_TEXT_OPTIONS_NONE);
 	tyo << TYOKIat;
 	status = "チョキ:" + tyo.str();
-	g_directWrite->DrawString(status, XMFLOAT2(x, y + 150), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	g_directWrite->DrawString(status, XMFLOAT2(x, y + 100), D2D1_DRAW_TEXT_OPTIONS_NONE);
 	pa << PAat;
 	status = "パー:" + pa.str();
-	g_directWrite->DrawString(status, XMFLOAT2(x, y + 200), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	g_directWrite->DrawString(status, XMFLOAT2(x, y + 150), D2D1_DRAW_TEXT_OPTIONS_NONE);
 
 }

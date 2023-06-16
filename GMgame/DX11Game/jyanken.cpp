@@ -14,11 +14,11 @@
 
 // マクロ定義
 #define	NUM_JYANKEN_MENU		(3)			// ポーズメニュー数
-#define	JYANKEN_MENU_WIDTH	(200.0f)	// ポーズメニュー幅
-#define	JYANKEN_MENU_HEIGHT	(200.0f)		// ポーズメニュー高さ
-#define	JYANKEN_MENU_INTERVAL	(200.0f)	// ポーズメニュー間隔
-#define	JYANKEN_MENU_POS_X	(0.0f)		// ポーズメニュー位置(X座標)
-#define	JYANKEN_MENU_POS_Y	(-50.0f)	// ポーズメニュー位置(Y座標)
+#define	JYANKEN_MENU_WIDTH	(100.0f)	// ポーズメニュー幅
+#define	JYANKEN_MENU_HEIGHT	(100.0f)		// ポーズメニュー高さ
+#define	JYANKEN_MENU_INTERVAL	(100.0f)	// ポーズメニュー間隔
+#define	JYANKEN_MENU_POS_X	(100.0f)		// ポーズメニュー位置(X座標)
+#define	JYANKEN_MENU_POS_Y	(-200.0f)	// ポーズメニュー位置(Y座標)
 #define	PLATE_WIDTH			(360.0f)	// プレートの幅
 #define	PLATE_HEIGHT		(340.0f)	// プレートの幅
 #define	PLATE_POS_X			(0.0f)		// プレートの位置(X座標)

@@ -97,7 +97,7 @@ HRESULT InitPlayer(void)
 	// 位置・回転・スケールの初期設定
 	for (int i = 0; i < PLAYER_MAX; i++)
 	{
-		g_player[i].pos = XMFLOAT3(0.0f, 20.0f, -150.0f);
+		g_player[i].pos = XMFLOAT3(0.0f, 20.0f, -200.0f);
 		g_player[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_player[i].scl = XMFLOAT3(8.0f, 8.0f, 8.0f);
 		g_player[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -221,83 +221,6 @@ void UpdatePlayer(void)
 		}
 		if (g_player[i].nStopTime == 0)
 		{
-			//ゲームパットで移動
-			if (GetJoyCountSimple() == 1)
-			{
-				float gx, gy, len2;
-				gx = (float)GetJoyX(0) / 0x08000; //-1.0~1.0
-				gy = (float)GetJoyY(0) / 0x08000; //に丸める
-
-				len2 = gx * gx + gy * gy;
-
-				if (len2 > 0.3f*0.3f)
-				{
-					//遊びを省く
-					float angle, len;
-					angle = atan2f(gy, gx);//角度
-					angle = XMConvertToDegrees(angle);
-
-					len = sqrtf(len2);
-
-					if (angle < -135 || angle > -45)
-						len *= 0.3f;
-					g_player[i].vel.x = SinDeg(g_player[i].rot.y + angle + 90)*len*VALUE_MOVE;
-					g_player[i].vel.z = CosDeg(g_player[i].rot.y + angle + 90)*len*VALUE_MOVE;
-
-				}
-			}
-
-			//回転
-			if (GetKeyPress(VK_Q) || GetJoyButton(0, 4))
-			{
-				g_player[i].rot.y -= VALUE_ROTATE;
-			}
-			else if (GetKeyPress(VK_E) || GetJoyButton(0, 5))
-			{
-				g_player[i].rot.y += VALUE_ROTATE;
-			}
-
-			//移動
-			//向いている方向に移動
-			if (GetKeyPress(VK_W))//前
-			{
-				g_player[i].vel.x = SinDeg(g_player[i].rot.y)*VALUE_MOVE;
-				g_player[i].vel.z = CosDeg(g_player[i].rot.y)*VALUE_MOVE;
-			}
-			if (GetKeyPress(VK_S))//
-			{
-				g_player[i].vel.x = -SinDeg(g_player[i].rot.y)*VALUE_MOVE / 2;
-				g_player[i].vel.z = -CosDeg(g_player[i].rot.y)*VALUE_MOVE / 2;
-			}
-			if (GetKeyPress(VK_D))//
-			{
-				g_player[i].vel.x = SinDeg(g_player[i].rot.y + 90)*VALUE_MOVE / 10;
-				g_player[i].vel.z = CosDeg(g_player[i].rot.y + 90)*VALUE_MOVE / 10;
-			}
-			if (GetKeyPress(VK_A))//
-			{
-				g_player[i].vel.x = SinDeg(g_player[i].rot.y - 90)*VALUE_MOVE / 2;
-				g_player[i].vel.z = CosDeg(g_player[i].rot.y - 90)*VALUE_MOVE / 2;
-			}
-
-			////カーソルで絶対的なxz方向に移動
-			//if (GetKeyPress(VK_UP))
-			//{
-			//	g_player[i].vel.z = VALUE_MOVE;
-			//}
-			//else if (GetKeyPress(VK_DOWN))
-			//{
-			//	g_player[i].vel.z = -VALUE_MOVE;
-			//}
-			//else if (GetKeyPress(VK_RIGHT))
-			//{
-			//	g_player[i].vel.x = VALUE_MOVE;
-			//}
-			//else if (GetKeyPress(VK_LEFT))
-			//{
-			//	g_player[i].vel.x = -VALUE_MOVE;
-			//}
-
 
 
 			//疑似攻撃行動ボタン
@@ -413,9 +336,6 @@ void UpdatePlayer(void)
 				g_player[i].nGauge--;
 			}
 
-		//重力
-		//g_player[i].vel.y += -0.98f;
-
 
 		//速度を座標に加算
 		g_player[i].pos.x += g_player[i].vel.x;
@@ -450,10 +370,6 @@ void UpdatePlayer(void)
 		{
 			g_player[i].vel.y = 0.0f;
 			g_player[i].pos.y = 0.0f;
-
-			//初期化(停止)
-			//g_player[i].vel.x = 0.0f;
-			//g_player[i].vel.z = 0.0f;
 			g_player[i].vel.x *= 0.9f;
 			g_player[i].vel.z *= 0.9f;
 		}
@@ -617,7 +533,7 @@ void UpdatePlayer(void)
 	{
 	case E_CAMERA_VIEW_FIXED:
 		GetCamera()->SetTarget(1.0f, 1.0f, 0.0f);
-		GetCamera()->SetPos(350.0f, 250.0f, 0.0f);
+		GetCamera()->SetPos(200.0f, 200.0f,-300.0f);
 		break;
 	case E_CAMERA_VIEW_BIRD:
 		GetCamera()->SetTarget(g_player[0].pos);

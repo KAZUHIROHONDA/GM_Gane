@@ -45,6 +45,8 @@ int			eCnt;			//敵を倒した
 int			sTime;			//行動不能時間カウント
 
 Player g_player;
+Player g_enemy;
+
 
 //=============================================================================
 //　初期化処理
@@ -61,6 +63,14 @@ HRESULT InitSceneGame()
 	g_player.SetPAat(15);
 	g_player.SetGUat(20);
 	g_player.SetTYOKIat(25);
+
+	//デバック
+	g_enemy.Init();
+	g_enemy.SetName("");
+	g_enemy.SetHP(10);
+	g_enemy.SetPAat(15);
+	g_enemy.SetGUat(20);
+	g_enemy.SetTYOKIat(25);
 
 	eCnt = 0;
 	sTime = 0;
@@ -151,7 +161,7 @@ HRESULT InitSceneGame()
 	g_bPause = false;
 	g_bClear = false;
 
-	SetEnemy(XMFLOAT3(0.0f, 100.0f, 0.0f),0);
+	SetEnemy(XMFLOAT3(0.0f, 70.0f, 200.0f),0);
 
 	//ステージの初期化
 	InitStage();
@@ -368,7 +378,7 @@ void DrawSceneGame()
 
 	DrawJyanken();
 
-	g_player.Draw(50,400);
+	g_player.Draw(50,450);
 
 	DrawPlayerhp();
 	DrawEnemyhp();
