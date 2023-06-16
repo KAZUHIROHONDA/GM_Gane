@@ -24,7 +24,7 @@
 #include "bg.h"
 #include "pause.h"
 #include "MessageManager.h"
-
+#include "playercs.h"
 #include "playerhp.h"
 #include "number.h"
 #include"enemyhp.h"
@@ -44,6 +44,7 @@ static bool g_bClear = false;
 int			eCnt;			//敵を倒した
 int			sTime;			//行動不能時間カウント
 
+Player g_player;
 
 //=============================================================================
 //　初期化処理
@@ -53,6 +54,14 @@ HRESULT InitSceneGame()
 	HRESULT hr = S_OK;
 	HWND hWnd = GetMainWnd();
 	
+	//デバック
+	g_player.Init();
+	g_player.SetName("カブトムシ");
+	g_player.SetHP(10);
+	g_player.SetPAat(15);
+	g_player.SetGUat(20);
+	g_player.SetTYOKIat(25);
+
 	eCnt = 0;
 	sTime = 0;
 
@@ -195,6 +204,9 @@ void UninitSceneGame()
 	UninitShadow();
 	//ポーズ
 	UninitPause();
+
+	//デバック用
+	g_player.Uninit();
 }
 
 //=============================================================================
@@ -212,6 +224,9 @@ void UpdateSceneGame()
 	}
 	else if(g_bPause == false && g_bClear == false)
 	{
+		//デバック
+		g_player.Update();
+
 		//背景
 		UpdateBg();
 		//プレイヤー
@@ -352,6 +367,8 @@ void DrawSceneGame()
 	DrawMessage();
 
 	DrawJyanken();
+
+	g_player.Draw();
 
 	DrawPlayerhp();
 	DrawEnemyhp();
