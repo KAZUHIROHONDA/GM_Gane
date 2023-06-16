@@ -37,5 +37,5 @@ public:
 	void    Init();
 	void	Uninit();
 	void	Update();
-	void	Draw();
+	void	Draw(int x,int y);
 };

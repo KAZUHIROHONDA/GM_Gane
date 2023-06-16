@@ -368,7 +368,7 @@ void DrawSceneGame()
 
 	DrawJyanken();
 
-	g_player.Draw();
+	g_player.Draw(50,400);
 
 	DrawPlayerhp();
 	DrawEnemyhp();
