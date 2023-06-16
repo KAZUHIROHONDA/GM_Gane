@@ -156,7 +156,11 @@
     <ClCompile Include="CSVLoader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="field3D.cpp">
+=======
+    <ClCompile Include="playercs.cpp">
+>>>>>>> feature/mukaide
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -299,7 +303,11 @@
     <ClInclude Include="CSVLoader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="field3D.h">
+=======
+    <ClInclude Include="playercs.h">
+>>>>>>> feature/mukaide
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

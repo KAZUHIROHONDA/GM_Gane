@@ -184,6 +184,7 @@
     <ClCompile Include="number.cpp" />
     <ClCompile Include="pause.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="playercs.cpp" />
     <ClCompile Include="playerhp.cpp" />
     <ClCompile Include="polygon.cpp" />
     <ClCompile Include="sceneClear.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="number.h" />
     <ClInclude Include="pause.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="playercs.h" />
     <ClInclude Include="playerhp.h" />
     <ClInclude Include="polygon.h" />
     <ClInclude Include="resource.h" />
