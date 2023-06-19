@@ -19,7 +19,6 @@
 #include "gauge.h"
 #include "Egauge.h"
 #include "wall.h"
-
 #include "enemy.h"
 #include "fade.h"
 #include "bg.h"
