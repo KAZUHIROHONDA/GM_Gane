@@ -85,7 +85,7 @@ HRESULT InitEnemy(void)
 	{
 		g_enemy[i].pos = XMFLOAT3(0.0f, 20.0f, 20.0f);
 		g_enemy[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
-		g_enemy[i].scl = XMFLOAT3(8.0f, 8.0f, 8.0f);
+		g_enemy[i].scl = XMFLOAT3(15.0f, 15.0f, 15.0f);
 		g_enemy[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		//èâä˙âª
 		g_enemy[i].nPhase = 0;

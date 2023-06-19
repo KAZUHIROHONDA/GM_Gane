@@ -74,6 +74,10 @@ static int			g_nCnt1;//行動カウント1コメ
 static int			g_nCnt2;//行動カウント2コメ
 static int			g_nCnt3;//行動カウント3コメ
 static int			g_nCnt4;//行動カウント4コメ
+static bool			g_action;
+static bool			g_action2;
+static bool			g_action3;
+
 static bool				g_atama = true;//false;
 
 
@@ -222,81 +226,76 @@ void UpdatePlayer(void)
 		}
 		if (g_player[i].nStopTime == 0)
 		{
-
-
-			//疑似攻撃行動ボタン
-			if (GetKeyPress(VK_8))
+			if(GetKeyTrigger(VK_8))
 			{
-				g_nCnt1++;
-				g_nCnt2++;
-				g_playerHD[i].rot.z += 50;
-				if (g_nCnt1 <= 150)
-				{
-					g_player[i].pos.y++;
-
-				}
-				if (g_nCnt1 >= 150 && g_nCnt2 <= 250)
-				{
-					g_player[i].pos.z++;
-					g_player[i].pos.y--;
-
-					g_player[i].rot.x = -45;
-				}
-				//g_player[i].vel.y += 10.0f;
-
-				if (g_nCnt1 >= 500 && g_nCnt2 >= 500)
-				{
-					ResetPos(i);
-				}
+				g_action = true;
 			}
-			if (GetKeyPress(VK_6))
+			Action(g_action);
+
+			if(GetKeyTrigger(VK_6))
 			{
-				g_player[i].pos.z = -80;
-				g_nCnt1++;
-				if (g_nCnt1 >= 10 && g_nCnt1 <= 200 ) // ?はどこまで繰り返すかの数値
-
-				{
-
-					if ((g_nCnt1 - 10) / 2 % 2 == 0) g_playerHD[i].pos.z -= 3;
-
-					else g_playerHD[i].pos.z = -2.0f;
-
-				}
+				g_action2 = true;
 			}
+			Action2(g_action2);
+			
+			Action3(g_action3);
+			//if (GetKeyPress(VK_6))
+			//{
+			//	g_player[i].pos.z = -80;
+			//	g_nCnt1++;
+			//	if (g_nCnt1 >= 1 && g_nCnt1 <= 200 ) // ?はどこまで繰り返すかの数値
+
+			//	{
+
+			//		if (g_nCnt1 / 2 % 2 == 0)
+			//		{
+			//			g_playerHD[i].pos.z -= 3;
+			//			g_playerHD[i].pos.x = (rand() % 201 - 100) / 30.0f;
+			//			g_playerHD[i].pos.y = (rand() % 201 - 100) / 30.0f;
+
+			//		}
+			//		else g_playerHD[i].pos.z = -2.0f;
+
+			//	}
+			//	if (g_nCnt1 >= 201)
+			//	{
+			//		ResetPos(i);
+			//	}
+			//}
 			
 			
-			if (GetKeyPress(VK_7))
-			{
-				g_nCnt3--;
-				g_player[i].pos.z = -80;
-				if(g_nCnt3 <= -20)
-				{
-					ResetPos(i);
-				}
-				if (g_nCnt3 <= -2)
-				{
-					//g_playerHD[i].pos.z = -2.0f;
-					g_nCnt3 = 0;
-					g_atama = true;
-				}
-				if (g_atama)
-				{
-					g_playerHD[i].pos.z -= 6.0f;
-					g_atama = false;
-					//g_playerHD[i].pos.z = -2.0f;
-				}
-				if (g_nCnt3 == -1)
-				{
-					g_playerHD[i].pos.z = -2.0f;
-					g_playerHD[i].pos.x = (rand() % 201 - 100) / 30.0f;
-					g_playerHD[i].pos.y = (rand() % 201 - 100) / 30.0f;
-				}
-				
-				if (g_nCnt3 <= -20)
-				{
-					ResetPos(i);
-				}
-			}
+			//if (GetKeyPress(VK_7))
+			//{
+			//	g_nCnt3--;
+			//	g_player[i].pos.z = -80;
+			//	if(g_nCnt3 <= -20)
+			//	{
+			//		ResetPos(i);
+			//	}
+			//	if (g_nCnt3 <= -2)
+			//	{
+			//		//g_playerHD[i].pos.z = -2.0f;
+			//		g_nCnt3 = 0;
+			//		g_atama = true;
+			//	}
+			//	if (g_atama)
+			//	{
+			//		g_playerHD[i].pos.z -= 6.0f;
+			//		g_atama = false;
+			//		//g_playerHD[i].pos.z = -2.0f;
+			//	}
+			//	if (g_nCnt3 == -1)
+			//	{
+			//		g_playerHD[i].pos.z = -2.0f;
+			//		g_playerHD[i].pos.x = (rand() % 201 - 100) / 30.0f;
+			//		g_playerHD[i].pos.y = (rand() % 201 - 100) / 30.0f;
+			//	}
+			//	
+			//	if (g_nCnt3 <= -20)
+			//	{
+			//		ResetPos(i);
+			//	}
+			//}
 
 		}
 			if (GetKeyTrigger(VK_H))
@@ -312,26 +311,27 @@ void UpdatePlayer(void)
 				g_playerLG[i].rot.x += 5;
 
 			}
-			g_nCnt4++;
-			if (GetKeyPress(VK_0))//負けアニメーション
-			{
-				g_player[i].rot.z = 180;
-				if (g_nCnt4 >= 20)
-				{
-					g_playerHD[i].pos.z -= 0.05f;
-					g_playerHD[i].rot.z -= 1.0f;
-					g_playerHD[i].rot.y -= 1.0f;
+			
+			//if (GetKeyPress(VK_0))//負けアニメーション
+			//{
+			//	g_nCnt4++;
+			//	g_player[i].rot.z = 180;
+			//	if (g_nCnt4 >= 20)
+			//	{
+			//		g_playerHD[i].pos.z -= 0.05f;
+			//		g_playerHD[i].rot.z -= 1.0f;
+			//		g_playerHD[i].rot.y -= 1.0f;
 
-					g_playerAM[i].pos.x -= 0.05f;
-					g_playerAM[i].rot.z -= 1.0f;
-					g_playerAM[i].rot.y -= 1.0f;
+			//		g_playerAM[i].pos.x -= 0.05f;
+			//		g_playerAM[i].rot.z -= 1.0f;
+			//		g_playerAM[i].rot.y -= 1.0f;
 
-					g_playerLG[i].pos.z += 0.05f;
-					g_playerLG[i].rot.z -= 1.0f;
-					g_playerLG[i].rot.y -= 1.0f;
-				}
+			//		g_playerLG[i].pos.z += 0.05f;
+			//		g_playerLG[i].rot.z -= 1.0f;
+			//		g_playerLG[i].rot.y -= 1.0f;
+			//	}
 
-			}
+			//}
 
 
 
@@ -667,6 +667,8 @@ void DestroyPlayer(int no)
 	ReleaseShadow(g_player[no].nShadowIdx);
 	g_player[no].nShadowIdx = -1;
 
+	g_action3 = true;
+
 	StartFade(SCENE_GAMEOVER);
 
 }
@@ -685,4 +687,92 @@ void ResetPos(int no)
 
 	g_nCnt1=0;
 	g_nCnt2=0;
+	g_nCnt3 = 0;
+	g_action = false;
+	g_action2 = false;
+}
+
+void Action(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_nCnt1++;
+			g_nCnt2++;
+			g_playerHD[i].rot.z += 50;
+			if (g_nCnt1 <= 150)
+			{
+				g_player[i].pos.y++;
+
+			}
+			if (g_nCnt1 >= 150 && g_nCnt2 <= 250)
+			{
+				g_player[i].pos.z++;
+				g_player[i].pos.y--;
+
+				g_player[i].rot.x = -45;
+			}
+			//g_player[i].vel.y += 10.0f;
+
+			if (g_nCnt1 >= 500 && g_nCnt2 >= 500)
+			{
+				ResetPos(i);
+			}
+		}
+	}
+}
+
+void Action2(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_player[i].pos.z = -80;
+			g_nCnt3++;
+			if (g_nCnt3 >= 1 && g_nCnt3 <= 200 ) // ?はどこまで繰り返すかの数値
+			{
+				if (g_nCnt3 / 2 % 2 == 0)
+				{
+					g_playerHD[i].pos.z -= 3;
+					g_playerHD[i].pos.x = (rand() % 201 - 100) / 30.0f;
+					g_playerHD[i].pos.y = (rand() % 201 - 100) / 30.0f;
+
+				}
+				else g_playerHD[i].pos.z = -1.0f;
+			}
+			if (g_nCnt3 >= 201)
+			{
+				ResetPos(i);
+			}
+		}
+	}
+
+}
+
+void Action3(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_nCnt4++;
+			g_player[i].rot.z = 180;
+			if (g_nCnt4 >= 20 && g_nCnt4 <= 200)
+			{
+				g_playerHD[i].pos.z -= 0.05f;
+				g_playerHD[i].rot.z -= 2.0f;
+				g_playerHD[i].rot.y -= 2.0f;
+
+				g_playerAM[i].pos.x -= 0.05f;
+				g_playerAM[i].rot.z -= 2.0f;
+				g_playerAM[i].rot.y -= 2.0f;
+
+				g_playerLG[i].pos.z += 0.05f;
+				g_playerLG[i].rot.z -= 2.0f;
+				g_playerLG[i].rot.y -= 2.0f;
+			}
+		}
+	}
 }
