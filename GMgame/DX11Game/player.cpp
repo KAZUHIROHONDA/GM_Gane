@@ -115,6 +115,7 @@ HRESULT InitPlayer(void)
 		g_nCnt1 = 0;					//
 		g_nCnt2 = 0;					//
 		g_nCnt3 = 0;					//
+		g_nCnt4 = 0;
 
 		g_player[i].nGauge = g_player[i].nHP/10;
 		g_player[i].nStopTime = 0; //ç≈èâÇÕìÆÇØÇÈ
@@ -263,10 +264,15 @@ void UpdatePlayer(void)
 				}
 			}
 			
-			g_nCnt3--;
+			
 			if (GetKeyPress(VK_7))
 			{
+				g_nCnt3--;
 				g_player[i].pos.z = -80;
+				if(g_nCnt3 <= -20)
+				{
+					ResetPos(i);
+				}
 				if (g_nCnt3 <= -2)
 				{
 					//g_playerHD[i].pos.z = -2.0f;

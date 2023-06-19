@@ -17,6 +17,7 @@
 #include "shadow.h"
 #include "bullet.h"
 #include "gauge.h"
+#include "Egauge.h"
 #include "wall.h"
 
 #include "enemy.h"
@@ -140,6 +141,10 @@ HRESULT InitSceneGame()
 	if (FAILED(hr))
 		return hr;
 	
+	hr = InitEGauge();
+	if (FAILED(hr))
+		return hr;
+
 	//地面初期化処理
 	hr = InitField3D();
 	if (FAILED(hr))
@@ -161,7 +166,7 @@ HRESULT InitSceneGame()
 	g_bPause = false;
 	g_bClear = false;
 
-	SetEnemy(XMFLOAT3(0.0f, 70.0f, 200.0f),0);
+	//SetEnemy(XMFLOAT3(0.0f, 70.0f, 200.0f),0);
 
 	//ステージの初期化
 	InitStage();
@@ -187,6 +192,8 @@ void UninitSceneGame()
 	UninitEnemy();
 
 	UninitGauge();
+
+	UninitEGauge();
 
 	// tairyokuの終了処理
 	UninitPlayerhp();
@@ -372,6 +379,8 @@ void DrawSceneGame()
 	DrawShadow();
 	//ゲージ
 	DrawPlayerGauge();
+
+	DrawEnemyEGauge();
 	//光源処理有効
 	GetLight()->SetEnable();
 

@@ -165,6 +165,7 @@
     <ClCompile Include="CSVLoader.cpp" />
     <ClCompile Include="debugproc.cpp" />
     <ClCompile Include="DirectWrite.cpp" />
+    <ClCompile Include="Egauge.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemyhp.cpp" />
     <ClCompile Include="enter.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="CSVLoader.h" />
     <ClInclude Include="debugproc.h" />
     <ClInclude Include="DirectWrite.h" />
+    <ClInclude Include="Egauge.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="enemyhp.h" />
     <ClInclude Include="enter.h" />

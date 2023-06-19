@@ -20,7 +20,7 @@ void UninitEnemy(void);
 void UpdateEnemy(void);
 void DrawEnemy(void);
 
-int SetEnemy(XMFLOAT3 pos,int no);
+//int SetEnemy(XMFLOAT3 pos,int no);
 
 bool IsEnemy(int no);
 void DestroyEnemy(int no);
@@ -30,3 +30,7 @@ XMFLOAT3 GetEnemySize(int no);
 void DamageEnemy(int damage);
 
 int GetEnemyHp(int no);
+
+void DrawEnemyEGauge();
+
+void ResetEPos(int no);
