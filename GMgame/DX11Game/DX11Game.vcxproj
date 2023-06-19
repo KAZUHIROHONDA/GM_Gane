@@ -184,6 +184,7 @@
     <ClCompile Include="Moji.cpp" />
     <ClCompile Include="number.cpp" />
     <ClCompile Include="pause.cpp" />
+    <ClCompile Include="phasecs.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playercs.cpp" />
     <ClCompile Include="playerhp.cpp" />
@@ -235,6 +236,7 @@
     <ClInclude Include="Moji.h" />
     <ClInclude Include="number.h" />
     <ClInclude Include="pause.h" />
+    <ClInclude Include="phasecs.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playercs.h" />
     <ClInclude Include="playerhp.h" />
