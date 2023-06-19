@@ -1,335 +1,118 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <FxCompile Include="Pixel.hlsl">
-      <Filter>ソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="Pixel2D.hlsl">
-      <Filter>ソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="Vertex.hlsl">
-      <Filter>ソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="Vertex2D.hlsl">
-      <Filter>ソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="AssimpPixel.hlsl">
-      <Filter>ソース ファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="AssimpVertex.hlsl">
-      <Filter>ソース ファイル</Filter>
-    </FxCompile>
+    <FxCompile Include="AssimpPixel.hlsl" />
+    <FxCompile Include="AssimpVertex.hlsl" />
+    <FxCompile Include="Pixel.hlsl" />
+    <FxCompile Include="Pixel2D.hlsl" />
+    <FxCompile Include="Vertex.hlsl" />
+    <FxCompile Include="Vertex2D.hlsl" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="debugproc.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="polygon.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="mesh.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="AssimpModel.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Light.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="field.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="stage.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="stage01.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="sceneGame.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="shadow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="bullet.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="wall.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="enemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="fade.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="sceneTitle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="bg.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="sceneGameover.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="gameover.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Title.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="enter.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="sceneClear.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="pause.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="select.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="gauge.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="select1.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="sceneSetumei.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="select 2.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="flame.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="selectstage.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="sceneSelect.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="sound.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Moji.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="playerhp.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="number.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="enemyhp.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="jyanken.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectWrite.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CSVLoader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="field3D.cpp">
-=======
-    <ClCompile Include="playercs.cpp">
->>>>>>> feature/mukaide
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
+    <ClCompile Include="AssimpModel.cpp" />
+    <ClCompile Include="bg.cpp" />
+    <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CSVLoader.cpp" />
+    <ClCompile Include="debugproc.cpp" />
+    <ClCompile Include="DirectWrite.cpp" />
+    <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="enemyhp.cpp" />
+    <ClCompile Include="enter.cpp" />
+    <ClCompile Include="fade.cpp" />
+    <ClCompile Include="field.cpp" />
+    <ClCompile Include="field3D.cpp" />
+    <ClCompile Include="flame.cpp" />
+    <ClCompile Include="gameover.cpp" />
+    <ClCompile Include="gauge.cpp" />
+    <ClCompile Include="input.cpp" />
+    <ClCompile Include="jyanken.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="mesh.cpp" />
+    <ClCompile Include="MessageManager.cpp" />
+    <ClCompile Include="Moji.cpp" />
+    <ClCompile Include="number.cpp" />
+    <ClCompile Include="pause.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="playercs.cpp" />
+    <ClCompile Include="playerhp.cpp" />
+    <ClCompile Include="polygon.cpp" />
+    <ClCompile Include="sceneClear.cpp" />
+    <ClCompile Include="sceneGame.cpp" />
+    <ClCompile Include="sceneGameover.cpp" />
+    <ClCompile Include="sceneSelect.cpp" />
+    <ClCompile Include="sceneSetumei.cpp" />
+    <ClCompile Include="sceneTitle.cpp" />
+    <ClCompile Include="select 2.cpp" />
+    <ClCompile Include="select.cpp" />
+    <ClCompile Include="select1.cpp" />
+    <ClCompile Include="selectstage.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="shadow.cpp" />
+    <ClCompile Include="sound.cpp" />
+    <ClCompile Include="stage.cpp" />
+    <ClCompile Include="stage01.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="wall.cpp" />
+    <ClCompile Include="Egauge.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="debugproc.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="polygon.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="mesh.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="AssimpModel.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Light.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="field.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="stage.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="sceneGame.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="shadow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="bullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="wall.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="enemy.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="fade.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="sceneTitle.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="bg.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="sceneGameover.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="gameover.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Title.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="enter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="sceneClear.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="pause.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="select.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="gauge.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="select1.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="sceneSetumei.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="box.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="select 2.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="flame.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="selectstage.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="sceneSelect.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="sound.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Moji.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="playerhp.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="number.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="enemyhp.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="jyanken.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectWrite.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CSVLoader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="field3D.h">
-=======
-    <ClInclude Include="playercs.h">
->>>>>>> feature/mukaide
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
+    <ClInclude Include="AssimpModel.h" />
+    <ClInclude Include="bg.h" />
+    <ClInclude Include="box.h" />
+    <ClInclude Include="bullet.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CSVLoader.h" />
+    <ClInclude Include="debugproc.h" />
+    <ClInclude Include="DirectWrite.h" />
+    <ClInclude Include="enemy.h" />
+    <ClInclude Include="enemyhp.h" />
+    <ClInclude Include="enter.h" />
+    <ClInclude Include="fade.h" />
+    <ClInclude Include="field.h" />
+    <ClInclude Include="field3D.h" />
+    <ClInclude Include="flame.h" />
+    <ClInclude Include="gameover.h" />
+    <ClInclude Include="gauge.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="jyanken.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="mesh.h" />
+    <ClInclude Include="MessageManager.h" />
+    <ClInclude Include="Moji.h" />
+    <ClInclude Include="number.h" />
+    <ClInclude Include="pause.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="playercs.h" />
+    <ClInclude Include="playerhp.h" />
+    <ClInclude Include="polygon.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="sceneClear.h" />
+    <ClInclude Include="sceneGame.h" />
+    <ClInclude Include="sceneGameover.h" />
+    <ClInclude Include="sceneSelect.h" />
+    <ClInclude Include="sceneSetumei.h" />
+    <ClInclude Include="sceneTitle.h" />
+    <ClInclude Include="select 2.h" />
+    <ClInclude Include="select.h" />
+    <ClInclude Include="select1.h" />
+    <ClInclude Include="selectstage.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="shadow.h" />
+    <ClInclude Include="sound.h" />
+    <ClInclude Include="stage.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Title.h" />
+    <ClInclude Include="wall.h" />
+    <ClInclude Include="Egauge.h" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{fd4ab488-3fcf-4ada-8187-66d0c9450a6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{e427dc81-32e6-4cca-b23c-3d2c234ca470}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{be97024f-e35f-4254-89ee-9793885357f6}</UniqueIdentifier>
-    </Filter>
+    <ResourceCompile Include="DX11Game.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\directx.ico">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="DX11Game.rc">
-      <Filter>リソース ファイル</Filter>
-    </ResourceCompile>
+    <Image Include="res\directx.ico" />
   </ItemGroup>
 </Project>
