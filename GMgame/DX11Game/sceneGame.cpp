@@ -66,7 +66,7 @@ HRESULT InitSceneGame()
 
 	//デバック
 	g_enemy.Init();
-	g_enemy.SetName("");
+	g_enemy.SetName("わに");
 	g_enemy.SetHP(10);
 	g_enemy.SetPAat(15);
 	g_enemy.SetGUat(20);
@@ -216,7 +216,8 @@ void UninitSceneGame()
 	UninitPause();
 
 	//デバック用
-	g_player.Uninit();
+	g_player.Uninit(); 
+	g_enemy.Uninit();
 }
 
 //=============================================================================
@@ -236,6 +237,7 @@ void UpdateSceneGame()
 	{
 		//デバック
 		g_player.Update();
+		g_enemy.Update();
 
 		//背景
 		UpdateBg();
@@ -379,6 +381,7 @@ void DrawSceneGame()
 	DrawJyanken();
 
 	g_player.Draw(50,450);
+	g_enemy.Draw(1000, 100);
 
 	DrawPlayerhp();
 	DrawEnemyhp();
