@@ -40,11 +40,10 @@ static LPCWSTR c_aFileNameJyankenMenu[NUM_JYANKEN_MENU] =
 };
 
 static JYANKEN_MENU g_nJyankenMenu = JYANKEN_MENU_GU;	//	選択中のメニューNo
-static int te[5];
+static int te[5] = {-1,-1,-1,-1,-1};
+static int result[4]; //勝ち数, 負け数, あいこ数, 連勝数
 
 int z, i, aite;
-int bef;
-int win;
 int j = 0;
 int n = 0;
 
@@ -64,8 +63,6 @@ HRESULT InitJyanken()
 {
 	ID3D11Device* pDevice = GetDevice();
 	HRESULT hr;
-	bef = 0;
-	win = 0;
 
 	SetMessage((tMessage*)&testMessage[0]);
 	for (int nCntJyankenMenu = 0; nCntJyankenMenu < NUM_JYANKEN_MENU; ++nCntJyankenMenu) {
@@ -91,56 +88,14 @@ void UninitJyanken()
 
 void UpdateJyanken()
 {
-	//操作不能時間
-	if (nStopTime > 0)
-	{
-		nStopTime--;
-	}
-	if (nStopTime == 0)
-	{
-		if (GetJoyCountSimple() == 1)
-		{
-			float gx, gy, len2;
-			gx = (float)GetJoyX(0) / 0x08000; //-1.0~1.0
-			gy = (float)GetJoyY(0) / 0x08000; //に丸める
 
-			len2 = gx * gx + gy * gy;
-
-			if (len2 > 0.3f*0.3f)
-			{
-				//遊びを省く
-				float angle, len;
-				angle = atan2f(gy, gx);//角度
-				angle = XMConvertToDegrees(angle);
-
-				len = sqrtf(len2);
-
-				if (angle < -135 || angle > -45)
-				{
-					len *= 0.3f;
-					g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + 1) % NUM_JYANKEN_MENU);
-					SetJyankenMenu();
-					nStopTime = 10;
-				}
-				if (angle < 135 || angle > 45)
-				{
-					len *= 0.3f;
-					g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + NUM_JYANKEN_MENU - 1) % NUM_JYANKEN_MENU);
-					SetJyankenMenu();
-					nStopTime = 10;
-				}
-
-
-			}
-		}
-	}
 
 	// 上下キーで各項目間の移動
-	if (GetKeyRepeat(VK_A) || GetKeyRepeat(VK_RIGHT)) {
+	if (GetKeyRepeat(VK_D) || GetKeyRepeat(VK_RIGHT)) {
 		g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + NUM_JYANKEN_MENU - 1) % NUM_JYANKEN_MENU);
 		SetJyankenMenu();
 	}
-	else if (GetKeyRepeat(VK_D) || GetKeyRepeat(VK_LEFT)) {
+	else if (GetKeyRepeat(VK_A) || GetKeyRepeat(VK_LEFT)) {
 		g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + 1) % NUM_JYANKEN_MENU);
 		SetJyankenMenu();
 	}
@@ -191,7 +146,7 @@ void UpdateJyanken()
 		{
 			if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
 			{
-				Jyanken(te[n]);
+				Jyanken(te[n], result);
 				n++;
 			}
 		}
@@ -199,6 +154,14 @@ void UpdateJyanken()
 		{
 			j = 0;
 			n = 0;
+			for (int r = 0; r < 4; r++)
+			{
+				result[r] = 0;
+			}
+			for (int p = 0; p < 5; p++)
+			{
+				te[p] = -1;
+			}
 		}
 	}
 }
@@ -234,12 +197,25 @@ void DrawJyanken()
 
 	SetPolygonColor(1.0f, 1.0f, 1.0f);
 
+	for (int k = 0; k < 5;k++)
+	{
+		if (te[k] != -1)
+		{
+			//ポリゴン情報設定
+			SetPolygonPos(-200 + 100*k, -100);			//座標
+			SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
+			SetPolygonTexture(g_pTextures[te[k]]);		//テクスチャ
+
+			//ポリゴンの描画処理
+			DrawPolygon(GetDeviceContext());
+		}
+	}
+
 }
 
 //じゃんけん
-void Jyanken(int no)
+void Jyanken(int no, int *cnt)
 {
-
 	i = no;
 
 	aite = rand() % 3;//相手
@@ -248,6 +224,7 @@ void Jyanken(int no)
 	if (aite == i)
 	{
 		SetMessage((tMessage*)&testMessage[3]);
+		cnt[2]++;	// あいこ
 		//StartFade(SCENE_TITLE,180);
 		//z = z - 1;
 	}
@@ -257,13 +234,20 @@ void Jyanken(int no)
 	{
 		SetMessage((tMessage*)&testMessage[1]);
 		DamageEnemy(50);
+		if (cnt[0] >= 0)
+			DamageEnemy(50 * cnt[0]);
+		cnt[0]++;	// 勝ち
+		cnt[3]++;	// 連勝
 		//printf("勝ち\n\n");
-		//win++;
 	}
 	else
 	{
 		SetMessage((tMessage*)&testMessage[2]);
 		DamagePlayer(50);
+		if (cnt[1] >= 0)
+			DamagePlayer(50 * cnt[1]);
+		cnt[1]++;	// まけ
+		cnt[3] = 0;	// 連勝リセット
 		//printf("負け\n\n");
 	}
 
