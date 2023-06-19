@@ -41,10 +41,9 @@ static LPCWSTR c_aFileNameJyankenMenu[NUM_JYANKEN_MENU] =
 
 static JYANKEN_MENU g_nJyankenMenu = JYANKEN_MENU_GU;	//	選択中のメニューNo
 static int te[5];
+static int result[4]; //勝ち数, 負け数, あいこ数, 連勝数
 
 int z, i, aite;
-int bef;
-int win;
 int j = 0;
 int n = 0;
 
@@ -64,8 +63,6 @@ HRESULT InitJyanken()
 {
 	ID3D11Device* pDevice = GetDevice();
 	HRESULT hr;
-	bef = 0;
-	win = 0;
 
 	SetMessage((tMessage*)&testMessage[0]);
 	for (int nCntJyankenMenu = 0; nCntJyankenMenu < NUM_JYANKEN_MENU; ++nCntJyankenMenu) {
@@ -191,7 +188,7 @@ void UpdateJyanken()
 		{
 			if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
 			{
-				Jyanken(te[n]);
+				Jyanken(te[n], result);
 				n++;
 			}
 		}
@@ -199,6 +196,10 @@ void UpdateJyanken()
 		{
 			j = 0;
 			n = 0;
+			for (int r = 0; r < 4; r++)
+			{
+				result[r] = 0;
+			}
 		}
 	}
 }
@@ -237,9 +238,8 @@ void DrawJyanken()
 }
 
 //じゃんけん
-void Jyanken(int no)
+void Jyanken(int no, int *cnt)
 {
-
 	i = no;
 
 	aite = rand() % 3;//相手
@@ -248,6 +248,7 @@ void Jyanken(int no)
 	if (aite == i)
 	{
 		SetMessage((tMessage*)&testMessage[3]);
+		cnt[2]++;	// あいこ
 		//StartFade(SCENE_TITLE,180);
 		//z = z - 1;
 	}
@@ -257,13 +258,20 @@ void Jyanken(int no)
 	{
 		SetMessage((tMessage*)&testMessage[1]);
 		DamageEnemy(50);
+		if (cnt[0] >= 0)
+			DamageEnemy(50 * cnt[0]);
+		cnt[0]++;	// 勝ち
+		cnt[3]++;	// 連勝
 		//printf("勝ち\n\n");
-		//win++;
 	}
 	else
 	{
 		SetMessage((tMessage*)&testMessage[2]);
 		DamagePlayer(50);
+		if (cnt[1] >= 0)
+			DamagePlayer(50 * cnt[1]);
+		cnt[1]++;	// まけ
+		cnt[3] = 0;	// 連勝リセット
 		//printf("負け\n\n");
 	}
 

@@ -15,7 +15,7 @@ void UninitJyanken();
 void UpdateJyanken();
 void DrawJyanken();
 
-void Jyanken(int no);
+void Jyanken(int no, int *cnt);
 
 void SetJyankenMenu(void);
 JYANKEN_MENU GetJyankenMenu(void);
