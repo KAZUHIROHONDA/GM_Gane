@@ -16,9 +16,9 @@
 #define TITLE_TEXTURENAME	_T("data/texture/KIMERA.png")
 
 #define TITLE_POS_X	(0)					//‰ŠúˆÊ’uX
-#define TITLE_POS_Y	(100)					//‰ŠúˆÊ’uY
+#define TITLE_POS_Y	(150)					//‰ŠúˆÊ’uY
 #define TITLE_SIZE_X	(800)		//‰¡•
-#define TITLE_SIZE_Y	(150)		//c•
+#define TITLE_SIZE_Y	(400)		//c•
 
 
 //*****************************************************************************
