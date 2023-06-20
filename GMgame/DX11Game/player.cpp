@@ -538,8 +538,8 @@ void UpdatePlayer(void)
 	switch (g_nCameraType)
 	{
 	case E_CAMERA_VIEW_FIXED:
-		GetCamera()->SetTarget(1.0f, 1.0f, 0.0f);
-		GetCamera()->SetPos(200.0f, 200.0f,-300.0f);
+		GetCamera()->SetTarget(1.0f, 1.0f, -100.0f);
+		GetCamera()->SetPos(150.0f, 150.0f,-250.0f);
 		break;
 	case E_CAMERA_VIEW_BIRD:
 		GetCamera()->SetTarget(g_player[0].pos);
