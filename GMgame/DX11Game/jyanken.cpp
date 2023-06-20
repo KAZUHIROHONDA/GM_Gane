@@ -4,9 +4,9 @@
 #include "input.h"
 #include "MessageManager.h"
 #include "jyanken.h"
-#include"fade.h"
-#include"player.h"
-#include"enemy.h"
+#include "fade.h"
+#include "player.h"
+#include "enemy.h"
 #include "sceneGame.h"
 
 #define gu 1-1
