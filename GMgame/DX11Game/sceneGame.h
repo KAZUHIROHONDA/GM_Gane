@@ -7,6 +7,7 @@
 #pragma once
 
 #include "main.h"
+#include "phasecs.h"
 
 //*****************************************************************************
 // プロトタイプ宣言
@@ -16,4 +17,4 @@ void	UninitSceneGame();
 void	UpdateSceneGame();
 void	DrawSceneGame();
 
-
+Phase* GetPhase();

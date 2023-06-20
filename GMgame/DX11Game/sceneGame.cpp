@@ -29,6 +29,7 @@
 #include "number.h"
 #include"enemyhp.h"
 #include"jyanken.h"
+#include "phasecs.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -46,6 +47,7 @@ int			sTime;			//行動不能時間カウント
 
 Player g_player;
 Player g_enemy;
+Phase  phase;
 
 
 //=============================================================================
@@ -71,6 +73,8 @@ HRESULT InitSceneGame()
 	g_enemy.SetPAat(15);
 	g_enemy.SetGUat(20);
 	g_enemy.SetTYOKIat(25);
+
+	phase.Init();
 
 	eCnt = 0;
 	sTime = 0;
@@ -224,6 +228,7 @@ void UninitSceneGame()
 	//デバック用
 	g_player.Uninit(); 
 	g_enemy.Uninit();
+	phase.Uninit();
 }
 
 //=============================================================================
@@ -244,6 +249,17 @@ void UpdateSceneGame()
 		//デバック
 		g_player.Update();
 		g_enemy.Update();
+		phase.Update();
+
+		if (GetKeyTrigger(VK_J))
+		{
+			phase.ChangePhase(JUDGEPHASE);
+		}
+		//if (GetKeyTrigger(VK_S))
+		//{
+		//	phase.ChangePhase(SETPHASE);
+		//}
+
 
 		//背景
 		UpdateBg();
@@ -257,7 +273,6 @@ void UpdateSceneGame()
 		//地面更新処理
 		UpdateField3D();
 
-		UpdateJyanken();
 
 		UpdatePlayerhp();
 		UpdateEnemyhp();
@@ -394,4 +409,9 @@ void DrawSceneGame()
 	DrawPlayerhp();
 	DrawEnemyhp();
 	
+}
+
+Phase* GetPhase()
+{
+	return &phase;
 }

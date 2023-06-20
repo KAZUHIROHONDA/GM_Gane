@@ -7,6 +7,7 @@
 #include"fade.h"
 #include"player.h"
 #include"enemy.h"
+#include "sceneGame.h"
 
 #define gu 1-1
 #define tyoki 2-1
@@ -86,10 +87,8 @@ void UninitJyanken()
 	}
 }
 
-void UpdateJyanken()
+void UpdateJyankenSet()
 {
-
-
 	// ã‰ºƒL[‚ÅŠe€–ÚŠÔ‚ÌˆÚ“®
 	if (GetKeyRepeat(VK_D) || GetKeyRepeat(VK_RIGHT)) {
 		g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + NUM_JYANKEN_MENU - 1) % NUM_JYANKEN_MENU);
@@ -140,7 +139,10 @@ void UpdateJyanken()
 		}
 	}
 
-	if (j > 5)
+}
+void UpdateJyankenJadge()
+{
+	if (j >= 5)
 	{
 		if (n <= 4)
 		{
@@ -162,6 +164,7 @@ void UpdateJyanken()
 			{
 				te[p] = -1;
 			}
+			GetPhase()->ChangePhase(SETPHASE);
 		}
 	}
 }

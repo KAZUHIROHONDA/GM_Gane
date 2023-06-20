@@ -16,12 +16,12 @@ void Phase::ChangePhase(PhaseSet state)
 
 void Phase::SetUpdate()
 {
-	//UpdateJyankenSet();
+	UpdateJyankenSet();
 }
 
 void Phase::JudgeUpdate()
 {
-	//UpdateJyankenJadge();
+	UpdateJyankenJadge();
 }
 
 void Phase::BattleUpdate()
