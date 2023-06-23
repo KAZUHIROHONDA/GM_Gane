@@ -205,12 +205,12 @@ void UpdateEnemy(void)
 		}
 
 
-		if (GetKeyPress(VK_7))
+		/*if (GetKeyPress(VK_7))
 		{
 			g_nCnt1++;
 			g_enemy[i].pos.z = 30;
 			g_enemy[i].rot.x = 30;
-		}
+		}*/
 
 
 

@@ -74,6 +74,10 @@ static int			g_nCnt1;//行動カウント1コメ
 static int			g_nCnt2;//行動カウント2コメ
 static int			g_nCnt3;//行動カウント3コメ
 static int			g_nCnt4;//行動カウント4コメ
+
+static int			g_nCntF;//
+
+
 static bool			g_action;
 static bool			g_action2;
 static bool			g_action3;
@@ -120,6 +124,11 @@ HRESULT InitPlayer(void)
 		g_nCnt2 = 0;					//
 		g_nCnt3 = 0;					//
 		g_nCnt4 = 0;
+		g_nCntF = 0;
+
+		g_action = false;
+		g_action2 = false;
+		g_action3 = false;
 
 		g_player[i].nGauge = g_player[i].nHP/10;
 		g_player[i].nStopTime = 0; //最初は動ける
@@ -237,8 +246,13 @@ void UpdatePlayer(void)
 				g_action2 = true;
 			}
 			Action2(g_action2);
-			
+
+			if(GetKeyTrigger(VK_7))
+			{
+				g_action3 = true;
+			}
 			Action3(g_action3);
+			//Action3(g_action3);
 			//if (GetKeyPress(VK_6))
 			//{
 			//	g_player[i].pos.z = -80;
@@ -657,21 +671,7 @@ void DamagePlayer(int damage)
 	}
 }
 
-void DestroyPlayer(int no)
-{
-	if (no < 0 || no >= PLAYER_MAX)	return;
 
-	g_player[no].nState = 0;
-
-	//影の開放
-	ReleaseShadow(g_player[no].nShadowIdx);
-	g_player[no].nShadowIdx = -1;
-
-	g_action3 = true;
-
-	StartFade(SCENE_GAMEOVER);
-
-}
 void ResetPos(int no)
 {
 	if (no < 0 || no >= PLAYER_MAX)	return;
@@ -775,4 +775,24 @@ void Action3(bool af)
 			}
 		}
 	}
+}
+
+
+void DestroyPlayer(int no)
+{
+	if (no < 0 || no >= PLAYER_MAX)	return;
+
+	//g_player[no].nState = 0;
+
+	//影の開放
+	ReleaseShadow(g_player[no].nShadowIdx);
+	g_player[no].nShadowIdx = -1;
+
+	g_nCntF++;
+	if (g_nCntF>=250)
+	{
+		StartFade(SCENE_GAMEOVER);
+	}
+
+	
 }
