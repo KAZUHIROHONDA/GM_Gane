@@ -22,7 +22,7 @@
 #define PLAYERHP_SIZE_X	(340)	// 横幅
 #define PLAYERHP_SIZE_Y	(80)	// 縦幅
 #define PLAYERHP_POS_X	(-SCREEN_WIDTH/2+PLAYERHP_SIZE_X/2)	// 初期位置X
-#define PLAYERHP_POS_Y	(-SCREEN_HEIGHT/2+PLAYERHP_SIZE_Y/2)	// 初期位置Y
+#define PLAYERHP_POS_Y	(SCREEN_HEIGHT/2-PLAYERHP_SIZE_Y/2)	// 初期位置Y
 
 #define PLAYERHP_FRAME_X	(1)	// アニメの横の数
 #define PLAYERHP_FRAME_Y	(1)	// アニメの縦の数

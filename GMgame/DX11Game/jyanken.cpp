@@ -18,7 +18,7 @@
 #define	JYANKEN_MENU_WIDTH	(100.0f)	// ポーズメニュー幅
 #define	JYANKEN_MENU_HEIGHT	(100.0f)		// ポーズメニュー高さ
 #define	JYANKEN_MENU_INTERVAL	(100.0f)	// ポーズメニュー間隔
-#define	JYANKEN_MENU_POS_X	(450.0f)		// ポーズメニュー位置(X座標)
+#define	JYANKEN_MENU_POS_X	(100.0f)		// ポーズメニュー位置(X座標)
 #define	JYANKEN_MENU_POS_Y	(-250.0f)	// ポーズメニュー位置(Y座標)
 #define	PLATE_WIDTH			(360.0f)	// プレートの幅
 #define	PLATE_HEIGHT		(340.0f)	// プレートの幅
@@ -45,10 +45,12 @@ static int te[5] = {-1,-1,-1,-1,-1};
 static int aite[5] = { -1,-1,-1,-1,-1 };
 static int result[4]; //勝ち数, 負け数, あいこ数, 連勝数
 
+bool jadge = false;
 int z, i;
 int j = 0;
-int n = 0;
+int n = -1;
 int f = 0;
+int Cnt = 0;
 
 const tMessage testMessage[9] = {
 	{L"じゃんけん５回勝負！！",MESSAGE_TYPE::E_TYPE_ENTER,(long long int)&testMessage[1] },
@@ -73,6 +75,10 @@ HRESULT InitJyanken()
 		hr = CreateTextureFromFile(pDevice,									// デバイスへのポインタ
 			c_aFileNameJyankenMenu[nCntJyankenMenu],	// ファイルの名前
 			&g_pTextures[nCntJyankenMenu]);			// 読み込むメモリー
+	}
+	for (int f = 0; f < 5; f++)
+	{
+		aite[f] = rand() % 3;//相手
 	}
 
 	g_nJyankenMenu = JYANKEN_MENU_GU;
@@ -125,24 +131,24 @@ void UpdateJyankenSet()
 			case JYANKEN_MENU_GU:
 				te[j] = 0;
 				j++;
-				aite[f] = rand() % 3;//相手
-				f++;
+				//aite[f] = rand() % 3;//相手
+				//f++;
 				//Jyanken(0);
 				break;
 				//チョキ
 			case JYANKEN_MENU_TYOKI:
 				te[j] = 1;
 				j++;
-				aite[f] = rand() % 3;//相手
-				f++;
+				//aite[f] = rand() % 3;//相手
+				//f++;
 				//Jyanken(1);
 				break;
 				//パー
 			case JYANKEN_MENU_PA:
 				te[j] = 2;
 				j++;
-				aite[f] = rand() % 3;//相手
-				f++;
+				//aite[f] = rand() % 3;//相手
+				//f++;
 				//Jyanken(2);
 				break;
 			}
@@ -152,17 +158,28 @@ void UpdateJyankenSet()
 }
 void UpdateJyankenJadge()
 {
+	if (Cnt > 0)
+	{
+		Cnt--;
+	}
+	else {
+		jadge = false;
+	}
+	
 	if (j >= 5)
 	{
-		if (n <= 4)
+		if (n <= 3)
 		{
 			if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
 			{
+				jadge = true;
+				//じゃんけんのジャッジの時間
+				Cnt = 30;
 				Jyanken(n, result);
 				n++;
 			}
 		}
-		else if (n > 4)
+		else if (n > 3)
 		{
 			j = 0;
 			n = 0;
@@ -176,13 +193,17 @@ void UpdateJyankenJadge()
 				te[p] = -1;
 				aite[p] = -1;
 			}
+			for (int f = 0; f < 5; f++)
+			{
+				aite[f] = rand() % 3;//相手
+			}
 			GetPhase()->ChangePhase(SETPHASE);
 		}
 	}
 }
 
 
-void DrawJyanken()
+void DrawJyankenSet()
 {
 	ID3D11DeviceContext* pDeviceContext = GetDeviceContext();
 
@@ -217,7 +238,7 @@ void DrawJyanken()
 		if (te[k] != -1)
 		{
 			//ポリゴン情報設定
-			SetPolygonPos(150 + 100*k, -150);			//座標
+			SetPolygonPos(-200 + 100*k, -150);			//座標
 			SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
 			SetPolygonTexture(g_pTextures[te[k]]);		//テクスチャ
 
@@ -227,7 +248,7 @@ void DrawJyanken()
 		if (aite[k] != -1)
 		{
 			//ポリゴン情報設定
-			SetPolygonPos(100 + 50 * k, 250);			//座標
+			SetPolygonPos(300 + 50 * k, -300);			//座標
 			SetPolygonSize(JYANKEN_MENU_WIDTH/2, JYANKEN_MENU_HEIGHT/2);		//大きさ
 			SetPolygonTexture(g_pTextures[aite[k]]);		//テクスチャ
 
@@ -237,6 +258,60 @@ void DrawJyanken()
 	}
 
 }
+void DrawJyankenJadge()
+{
+	ID3D11DeviceContext* pDeviceContext = GetDeviceContext();
+
+	if (jadge == true)
+	{
+		if (te[n] != -1)
+		{
+			//ポリゴン情報設定
+			SetPolygonPos(-100, 0);			//座標
+			SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
+			SetPolygonTexture(g_pTextures[te[n]]);		//テクスチャ
+
+			//ポリゴンの描画処理
+			DrawPolygon(GetDeviceContext());
+		}
+		if (aite[n] != -1)
+		{
+			//ポリゴン情報設定
+			SetPolygonPos(100, 0);			//座標
+			SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
+			SetPolygonTexture(g_pTextures[aite[n]]);		//テクスチャ
+
+			//ポリゴンの描画処理
+			DrawPolygon(GetDeviceContext());
+		}
+	}
+
+	for (int k = 0; k < 5; k++)
+	{
+		if (te[k] != -1)
+		{
+			//ポリゴン情報設定
+			SetPolygonPos(-400 + 50 * k, -300);			//座標
+			SetPolygonSize(JYANKEN_MENU_WIDTH/2, JYANKEN_MENU_HEIGHT/2);		//大きさ
+			SetPolygonTexture(g_pTextures[te[k]]);		//テクスチャ
+
+			//ポリゴンの描画処理
+			DrawPolygon(GetDeviceContext());
+		}
+		if (aite[k] != -1)
+		{
+			//ポリゴン情報設定
+			SetPolygonPos(200 + 50 * k, -300);			//座標
+			SetPolygonSize(JYANKEN_MENU_WIDTH / 2, JYANKEN_MENU_HEIGHT / 2);		//大きさ
+			SetPolygonTexture(g_pTextures[aite[k]]);		//テクスチャ
+
+			//ポリゴンの描画処理
+			DrawPolygon(GetDeviceContext());
+		}
+	}
+
+}
+
 
 //じゃんけん
 void Jyanken(int no, int *cnt)
