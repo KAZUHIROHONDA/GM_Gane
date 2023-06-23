@@ -34,3 +34,4 @@ int GetEnemyHp(int no);
 void DrawEnemyEGauge();
 
 void ResetEPos(int no);
+

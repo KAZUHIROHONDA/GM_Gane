@@ -40,3 +40,7 @@ void DrawPlayerGauge();
 
 int GetPlayerHp(int no);
 void ResetPos(int no);
+
+void Action(bool af);
+void Action2(bool af);
+void Action3(bool af);

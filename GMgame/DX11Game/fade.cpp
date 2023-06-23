@@ -109,6 +109,7 @@ void StartFade( E_TYPE_SCENE stateNext, int nFrame /*= 30*/ )
 	g_stateNext = stateNext;
 		// 0除算回避
 	g_nFrame = nFrame;
+	
 }
 
 // 現在フェード中ですか？
