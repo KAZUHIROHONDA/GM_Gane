@@ -42,11 +42,13 @@ static LPCWSTR c_aFileNameJyankenMenu[NUM_JYANKEN_MENU] =
 
 static JYANKEN_MENU g_nJyankenMenu = JYANKEN_MENU_GU;	//	選択中のメニューNo
 static int te[5] = {-1,-1,-1,-1,-1};
+static int aite[5] = { -1,-1,-1,-1,-1 };
 static int result[4]; //勝ち数, 負け数, あいこ数, 連勝数
 
-int z, i, aite;
+int z, i;
 int j = 0;
 int n = 0;
+int f = 0;
 
 const tMessage testMessage[9] = {
 	{L"じゃんけん５回勝負！！",MESSAGE_TYPE::E_TYPE_ENTER,(long long int)&testMessage[1] },
@@ -89,6 +91,8 @@ void UninitJyanken()
 
 void UpdateJyankenSet()
 {
+
+
 	// 上下キーで各項目間の移動
 	if (GetKeyRepeat(VK_D) || GetKeyRepeat(VK_RIGHT)) {
 		g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + NUM_JYANKEN_MENU - 1) % NUM_JYANKEN_MENU);
@@ -121,18 +125,24 @@ void UpdateJyankenSet()
 			case JYANKEN_MENU_GU:
 				te[j] = 0;
 				j++;
+				aite[f] = rand() % 3;//相手
+				f++;
 				//Jyanken(0);
 				break;
 				//チョキ
 			case JYANKEN_MENU_TYOKI:
 				te[j] = 1;
 				j++;
+				aite[f] = rand() % 3;//相手
+				f++;
 				//Jyanken(1);
 				break;
 				//パー
 			case JYANKEN_MENU_PA:
 				te[j] = 2;
 				j++;
+				aite[f] = rand() % 3;//相手
+				f++;
 				//Jyanken(2);
 				break;
 			}
@@ -148,7 +158,7 @@ void UpdateJyankenJadge()
 		{
 			if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
 			{
-				Jyanken(te[n], result);
+				Jyanken(n, result);
 				n++;
 			}
 		}
@@ -156,6 +166,7 @@ void UpdateJyankenJadge()
 		{
 			j = 0;
 			n = 0;
+			f = 0;
 			for (int r = 0; r < 4; r++)
 			{
 				result[r] = 0;
@@ -212,6 +223,16 @@ void DrawJyanken()
 			//ポリゴンの描画処理
 			DrawPolygon(GetDeviceContext());
 		}
+		if (aite[k] != -1)
+		{
+			//ポリゴン情報設定
+			SetPolygonPos(-200 + 100 * k, 200);			//座標
+			SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
+			SetPolygonTexture(g_pTextures[aite[k]]);		//テクスチャ
+
+			//ポリゴンの描画処理
+			DrawPolygon(GetDeviceContext());
+		}
 	}
 
 }
@@ -219,21 +240,15 @@ void DrawJyanken()
 //じゃんけん
 void Jyanken(int no, int *cnt)
 {
-	i = no;
 
-	aite = rand() % 3;//相手
-
-
-	if (aite == i)
+	if (aite[no] == te[no])
 	{
 		SetMessage((tMessage*)&testMessage[3]);
 		cnt[2]++;	// あいこ
 		//StartFade(SCENE_TITLE,180);
 		//z = z - 1;
 	}
-	//else if (i == 0)i = 3;
-	//if (aite < i)
-	else if ((i == 0 && aite == 1) || (i == 1 && aite == 2) || (i == 2 && aite == 0))
+	else if ((te[no] == 0 && aite[no] == 1) || (te[no] == 1 && aite[no] == 2) || (te[no] == 2 && aite[no] == 0))
 	{
 		SetMessage((tMessage*)&testMessage[1]);
 		DamageEnemy(50);
