@@ -27,6 +27,9 @@ public:
 	void   SetUpdate();
 	void   JudgeUpdate();
 	void   BattleUpdate();
+	void   SetDraw();
+	void   JudgeDraw();
+	void   BattleDraw();
 
 	void    Init();
 	void	Uninit();

@@ -1,6 +1,7 @@
 #include "phasecs.h"
 #include "jyanken.h"
 
+
 Phase::Phase()
 {
 }
@@ -26,7 +27,20 @@ void Phase::JudgeUpdate()
 
 void Phase::BattleUpdate()
 {
+}
 
+void Phase::SetDraw()
+{
+	DrawJyankenSet();
+}
+
+void Phase::JudgeDraw()
+{
+	DrawJyankenJadge();
+}
+
+void Phase::BattleDraw()
+{
 }
 
 void Phase::Init()
@@ -63,4 +77,24 @@ void Phase::Update()
 
 void Phase::Draw()
 {
+	switch (nowPhase)
+	{
+	case SETPHASE:
+	{
+		SetDraw();
+		break;
+	}
+	case JUDGEPHASE:
+	{
+		JudgeDraw();
+		break;
+	}
+	case BATTLEPHASE:
+	{
+		BattleDraw();
+		break;
+	}
+	default:
+		break;
+	}
 }

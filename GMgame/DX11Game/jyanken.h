@@ -14,7 +14,9 @@ HRESULT InitJyanken();
 void UninitJyanken();
 void UpdateJyankenSet();
 void UpdateJyankenJadge();
-void DrawJyanken();
+void DrawJyankenSet();
+void DrawJyankenJadge();
+
 
 void Jyanken(int no, int *cnt);
 

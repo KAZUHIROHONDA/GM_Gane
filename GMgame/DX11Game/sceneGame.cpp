@@ -401,10 +401,9 @@ void DrawSceneGame()
 	//•¶Žš•`‰æ
 	DrawMessage();
 
-	DrawJyanken();
-
-	g_player.Draw(50,450);
+	g_player.Draw(50,100);
 	g_enemy.Draw(1100, 100);
+	phase.Draw();
 
 	DrawPlayerhp();
 	DrawEnemyhp();
