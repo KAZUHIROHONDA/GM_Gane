@@ -18,8 +18,8 @@
 #define	JYANKEN_MENU_WIDTH	(100.0f)	// ポーズメニュー幅
 #define	JYANKEN_MENU_HEIGHT	(100.0f)		// ポーズメニュー高さ
 #define	JYANKEN_MENU_INTERVAL	(100.0f)	// ポーズメニュー間隔
-#define	JYANKEN_MENU_POS_X	(100.0f)		// ポーズメニュー位置(X座標)
-#define	JYANKEN_MENU_POS_Y	(-200.0f)	// ポーズメニュー位置(Y座標)
+#define	JYANKEN_MENU_POS_X	(450.0f)		// ポーズメニュー位置(X座標)
+#define	JYANKEN_MENU_POS_Y	(-250.0f)	// ポーズメニュー位置(Y座標)
 #define	PLATE_WIDTH			(360.0f)	// プレートの幅
 #define	PLATE_HEIGHT		(340.0f)	// プレートの幅
 #define	PLATE_POS_X			(0.0f)		// プレートの位置(X座標)
@@ -174,6 +174,7 @@ void UpdateJyankenJadge()
 			for (int p = 0; p < 5; p++)
 			{
 				te[p] = -1;
+				aite[p] = -1;
 			}
 			GetPhase()->ChangePhase(SETPHASE);
 		}
@@ -216,7 +217,7 @@ void DrawJyanken()
 		if (te[k] != -1)
 		{
 			//ポリゴン情報設定
-			SetPolygonPos(-200 + 100*k, -100);			//座標
+			SetPolygonPos(150 + 100*k, -150);			//座標
 			SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
 			SetPolygonTexture(g_pTextures[te[k]]);		//テクスチャ
 
@@ -226,8 +227,8 @@ void DrawJyanken()
 		if (aite[k] != -1)
 		{
 			//ポリゴン情報設定
-			SetPolygonPos(-200 + 100 * k, 200);			//座標
-			SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
+			SetPolygonPos(100 + 50 * k, 250);			//座標
+			SetPolygonSize(JYANKEN_MENU_WIDTH/2, JYANKEN_MENU_HEIGHT/2);		//大きさ
 			SetPolygonTexture(g_pTextures[aite[k]]);		//テクスチャ
 
 			//ポリゴンの描画処理

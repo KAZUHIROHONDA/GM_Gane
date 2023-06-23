@@ -22,7 +22,7 @@
 
 #define ENEMYHP_SIZE_X	(340)	// 横幅
 #define ENEMYHP_SIZE_Y	(80)	// 縦幅
-#define ENEMYHP_POS_X	(SCREEN_WIDTH/2-ENEMYHP_SIZE_X/2)	// 初期位置X
+#define ENEMYHP_POS_X	(SCREEN_WIDTH/2 - ENEMYHP_SIZE_X/2+100)	// 初期位置X
 #define ENEMYHP_POS_Y	(SCREEN_HEIGHT/2-ENEMYHP_SIZE_Y/2)	// 初期位置Y
 
 #define ENEMYHP_FRAME_X	(1)	// アニメの横の数
