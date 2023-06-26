@@ -14,6 +14,7 @@ HRESULT InitJyanken();
 void UninitJyanken();
 void UpdateJyankenSet();
 void UpdateJyankenJadge();
+void UpdateJyankenBattle();
 void DrawJyankenSet();
 void DrawJyankenJadge();
 
@@ -23,3 +24,5 @@ void Jyanken(int no, int *cnt);
 void SetJyankenMenu(void);
 JYANKEN_MENU GetJyankenMenu(void);
 void ResetJyankenMenu(void);
+
+void Cntadd();

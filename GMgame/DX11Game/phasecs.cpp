@@ -27,6 +27,7 @@ void Phase::JudgeUpdate()
 
 void Phase::BattleUpdate()
 {
+	UpdateJyankenBattle();
 }
 
 void Phase::SetDraw()
