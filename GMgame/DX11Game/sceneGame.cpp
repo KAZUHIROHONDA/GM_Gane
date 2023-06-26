@@ -254,6 +254,7 @@ void UpdateSceneGame()
 		if (GetKeyTrigger(VK_J))
 		{
 			phase.ChangePhase(JUDGEPHASE);
+			Cntadd();
 		}
 		//if (GetKeyTrigger(VK_S))
 		//{

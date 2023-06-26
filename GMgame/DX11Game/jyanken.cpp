@@ -48,9 +48,9 @@ static int result[4]; //勝ち数, 負け数, あいこ数, 連勝数
 bool jadge = false;
 int z, i;
 int j = 0;
-int n = -1;
+int n = 0;
 int f = 0;
-int Cnt = 0;
+int Cnt, Cnt1 = 0;
 
 const tMessage testMessage[9] = {
 	{L"じゃんけん５回勝負！！",MESSAGE_TYPE::E_TYPE_ENTER,(long long int)&testMessage[1] },
@@ -130,53 +130,56 @@ void UpdateJyankenSet()
 			case JYANKEN_MENU_GU:
 				te[j] = 0;
 				j++;
-				//aite[f] = rand() % 3;//相手
-				//f++;
-				//Jyanken(0);
 				break;
 				//チョキ
 			case JYANKEN_MENU_TYOKI:
 				te[j] = 1;
 				j++;
-				//aite[f] = rand() % 3;//相手
-				//f++;
-				//Jyanken(1);
 				break;
 				//パー
 			case JYANKEN_MENU_PA:
 				te[j] = 2;
 				j++;
-				//aite[f] = rand() % 3;//相手
-				//f++;
-				//Jyanken(2);
 				break;
 			}
 		}
 	}
 
 }
+
 void UpdateJyankenJadge()
 {
-	if (Cnt > 0)
+
+    Cnt--;
+	
+    if(Cnt < 0)
 	{
-		Cnt--;
-	}
-	else {
 		jadge = false;
+		Cnt1 = 200;
+		GetPhase()->ChangePhase(BATTLEPHASE);
+	}
+	if (Cnt == 30)
+	{
+		jadge = true;
 	}
 	
-	if (j >= 5)
+
+}
+
+void UpdateJyankenBattle()
+{
+	Cnt1--;
+	if (Cnt1 == 180)
+	{
+		Jyanken(n, result);
+	}
+	if (Cnt1 < 0)
 	{
 		if (n <= 3)
 		{
-			if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
-			{
-				jadge = true;
-				//じゃんけんのジャッジの時間
-				Cnt = 30;
-				Jyanken(n, result);
-				n++;
-			}
+			n++;
+			GetPhase()->ChangePhase(JUDGEPHASE);
+			Cnt = 60;
 		}
 		else if (n > 3)
 		{
@@ -199,6 +202,7 @@ void UpdateJyankenJadge()
 			GetPhase()->ChangePhase(SETPHASE);
 		}
 	}
+	
 }
 
 
@@ -257,6 +261,7 @@ void DrawJyankenSet()
 	}
 
 }
+
 void DrawJyankenJadge()
 {
 	ID3D11DeviceContext* pDeviceContext = GetDeviceContext();
@@ -326,12 +331,12 @@ void Jyanken(int no, int *cnt)
 	else if ((te[no] == 0 && aite[no] == 1) || (te[no] == 1 && aite[no] == 2) || (te[no] == 2 && aite[no] == 0))
 	{
 		SetMessage((tMessage*)&testMessage[1]);
-		Action2();
 		DamageEnemy(50);
 		if (cnt[0] >= 0)
 			DamageEnemy(50 * cnt[0]);
 		cnt[0]++;	// 勝ち
 		cnt[3]++;	// 連勝
+		Action2();
 		//printf("勝ち\n\n");
 	}
 	else
@@ -373,6 +378,8 @@ void ResetJyankenMenu(void)
 	SetJyankenMenu();
 }
 
-
-
+void Cntadd()
+{
+	Cnt = 60;
+}
 
