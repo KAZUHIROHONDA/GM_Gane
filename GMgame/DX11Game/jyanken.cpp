@@ -98,7 +98,6 @@ void UninitJyanken()
 void UpdateJyankenSet()
 {
 
-
 	// ã‰ºƒL[‚ÅŠe€–ÚŠÔ‚ÌˆÚ“®
 	if (GetKeyRepeat(VK_D) || GetKeyRepeat(VK_RIGHT)) {
 		g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + NUM_JYANKEN_MENU - 1) % NUM_JYANKEN_MENU);
@@ -118,7 +117,7 @@ void UpdateJyankenSet()
 	g_fCol = cosf(g_fCurve) * 0.2f + 0.8f;
 
 
-	if (j <= 5)
+	if (j < 5)
 	{
 		SetMessage((tMessage*)&testMessage[j + 4]);
 		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
@@ -327,6 +326,7 @@ void Jyanken(int no, int *cnt)
 	else if ((te[no] == 0 && aite[no] == 1) || (te[no] == 1 && aite[no] == 2) || (te[no] == 2 && aite[no] == 0))
 	{
 		SetMessage((tMessage*)&testMessage[1]);
+		Action2();
 		DamageEnemy(50);
 		if (cnt[0] >= 0)
 			DamageEnemy(50 * cnt[0]);
@@ -372,8 +372,6 @@ void ResetJyankenMenu(void)
 	g_nJyankenMenu = JYANKEN_MENU_GU;
 	SetJyankenMenu();
 }
-
-
 
 
 

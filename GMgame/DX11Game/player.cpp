@@ -252,64 +252,7 @@ void UpdatePlayer(void)
 				g_action3 = true;
 			}
 			Action3(g_action3);
-			//Action3(g_action3);
-			//if (GetKeyPress(VK_6))
-			//{
-			//	g_player[i].pos.z = -80;
-			//	g_nCnt1++;
-			//	if (g_nCnt1 >= 1 && g_nCnt1 <= 200 ) // ?はどこまで繰り返すかの数値
 
-			//	{
-
-			//		if (g_nCnt1 / 2 % 2 == 0)
-			//		{
-			//			g_playerHD[i].pos.z -= 3;
-			//			g_playerHD[i].pos.x = (rand() % 201 - 100) / 30.0f;
-			//			g_playerHD[i].pos.y = (rand() % 201 - 100) / 30.0f;
-
-			//		}
-			//		else g_playerHD[i].pos.z = -2.0f;
-
-			//	}
-			//	if (g_nCnt1 >= 201)
-			//	{
-			//		ResetPos(i);
-			//	}
-			//}
-			
-			
-			//if (GetKeyPress(VK_7))
-			//{
-			//	g_nCnt3--;
-			//	g_player[i].pos.z = -80;
-			//	if(g_nCnt3 <= -20)
-			//	{
-			//		ResetPos(i);
-			//	}
-			//	if (g_nCnt3 <= -2)
-			//	{
-			//		//g_playerHD[i].pos.z = -2.0f;
-			//		g_nCnt3 = 0;
-			//		g_atama = true;
-			//	}
-			//	if (g_atama)
-			//	{
-			//		g_playerHD[i].pos.z -= 6.0f;
-			//		g_atama = false;
-			//		//g_playerHD[i].pos.z = -2.0f;
-			//	}
-			//	if (g_nCnt3 == -1)
-			//	{
-			//		g_playerHD[i].pos.z = -2.0f;
-			//		g_playerHD[i].pos.x = (rand() % 201 - 100) / 30.0f;
-			//		g_playerHD[i].pos.y = (rand() % 201 - 100) / 30.0f;
-			//	}
-			//	
-			//	if (g_nCnt3 <= -20)
-			//	{
-			//		ResetPos(i);
-			//	}
-			//}
 
 		}
 			if (GetKeyTrigger(VK_H))
@@ -326,28 +269,6 @@ void UpdatePlayer(void)
 
 			}
 			
-			//if (GetKeyPress(VK_0))//負けアニメーション
-			//{
-			//	g_nCnt4++;
-			//	g_player[i].rot.z = 180;
-			//	if (g_nCnt4 >= 20)
-			//	{
-			//		g_playerHD[i].pos.z -= 0.05f;
-			//		g_playerHD[i].rot.z -= 1.0f;
-			//		g_playerHD[i].rot.y -= 1.0f;
-
-			//		g_playerAM[i].pos.x -= 0.05f;
-			//		g_playerAM[i].rot.z -= 1.0f;
-			//		g_playerAM[i].rot.y -= 1.0f;
-
-			//		g_playerLG[i].pos.z += 0.05f;
-			//		g_playerLG[i].rot.z -= 1.0f;
-			//		g_playerLG[i].rot.y -= 1.0f;
-			//	}
-
-			//}
-
-
 
 
 		//ゲージの動きの処理
@@ -398,28 +319,6 @@ void UpdatePlayer(void)
 		{
 			SetMessage((tMessage*)&testMessage[3]);
 		}
-
-		////パワーゲージ
-		//if (g_player[i].bCnt < 3)
-		//{
-		//	if (GetKeyPress(VK_Z) || GetJoyButton(0, 0))
-		//	{
-		//		//押しっぱなしでためる
-		//		g_player[i].nGauge++;
-		//		if (g_player[i].nGauge >= 100)
-		//			g_player[i].nGauge = 100;
-		//	}
-		//	else if (GetKeyRelease(VK_Z) || GetJoyRelease(0, 0))
-		//	{
-		//		g_player[i].bCnt++;
-		//		XMFLOAT3 pos = g_player[i].pos;
-		//		pos.y += 15.0f;	//補正
-		//		FireBullet(pos, XMFLOAT3(SinDeg(g_player[i].rot.y), 0.0f, CosDeg(g_player[i].rot.y)), g_player[i].nGauge / 5);
-		//		PlaySound(SOUND_LABEL_SE_SELECT);
-		//		g_player[i].nGauge = 0;
-		//	}
-		//}
-
 
 		XMMATRIX mtxWorld, mtxRot, mtxScl,
 			mtxTranslate;
@@ -664,10 +563,7 @@ void DamagePlayer(int damage)
 	{
 		g_player[0].nHP = 0;
 
-		DestroyPlayer(0);
-
-
-		//StartSceneChange(SCENE_GAMECLEAR);
+		g_action3 = true;
 	}
 }
 
@@ -722,6 +618,10 @@ void Action(bool af)
 		}
 	}
 }
+void Action()
+{
+	g_action = true;
+}
 
 void Action2(bool af)
 {
@@ -748,7 +648,10 @@ void Action2(bool af)
 			}
 		}
 	}
-
+}
+void Action2()
+{
+	g_action2 = true;
 }
 
 void Action3(bool af)
@@ -774,6 +677,9 @@ void Action3(bool af)
 				g_playerLG[i].rot.y -= 2.0f;
 			}
 		}
+		if(g_nCnt4 >= 200)
+		DestroyPlayer(0);
+
 	}
 }
 
