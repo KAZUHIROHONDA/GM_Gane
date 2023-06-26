@@ -105,7 +105,7 @@ HRESULT InitPlayer(void)
 	// 位置・回転・スケールの初期設定
 	for (int i = 0; i < PLAYER_MAX; i++)
 	{
-		g_player[i].pos = XMFLOAT3(0.0f, 20.0f, -200.0f);
+		g_player[i].pos = XMFLOAT3(0.0f, 20.0f, -100.0f);
 		g_player[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_player[i].scl = XMFLOAT3(8.0f, 8.0f, 8.0f);
 		g_player[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
