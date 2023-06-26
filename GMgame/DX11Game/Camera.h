@@ -3,6 +3,7 @@
 #include "main.h"
 
 #define CAMERA_DEBUG	//
+#define CAMERA_MAX (1)
 
 class CCamera
 {
@@ -22,6 +23,21 @@ private:
 
 	XMFLOAT3 m_vAngle;		// カメラの角度
 	float m_fLengthInterval;// カメラの視点と注視点の距離
+
+
+	int		g_nCnt1;
+	int		g_nCnt2;
+	int		g_nCnt3;
+	int		g_nCnt4;
+	int		g_nCnt5;
+	int		g_nCnt6;
+	
+	bool	g_move1;
+	bool	g_move2;
+	bool	g_move3;
+	bool	g_move4;
+	bool	g_move5;
+	bool	g_move6;
 
 public:
 	CCamera();
@@ -46,6 +62,15 @@ public:
 	DirectX::XMFLOAT4X4& GetProjMatrix() { return m_mtxProj; }
 	void UpdateMatrix();
 	DirectX::XMFLOAT3& GetAngle() { return m_vAngle; }
+
+	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	void CameraMove1(bool af);
+	void CameraMove2(bool af);
+	void CameraMove3(bool af);
+	void CameraMove4(bool af);
+	void CameraMove5(bool af);
+	void CameraMove6(bool af);
+
 };
 
 CCamera* GetCamera();

@@ -8,7 +8,7 @@
 #include "Texture.h"
 
 // マクロ定義
-#define GAUGE_TEXTURENAME	_T("data/texture/gauge000.png")
+#define GAUGE_TEXTURENAME	_T("data/texture/gauge001.png")
 #define GAUGE_SIZE_X	(256)	// サイズX
 #define GAUGE_SIZE_Y	(32)	// サイズY
 

@@ -17,7 +17,7 @@
 #define CAMERA_MOVE_SPEED	2.0f // 移動の速さ
 
 // グローバル変数
-static CCamera  g_camera;	// カメラの実体
+static CCamera  g_camera;	// カメラの実体 
 
 // コンストラクタ
 CCamera::CCamera()
@@ -45,6 +45,7 @@ void CCamera::Init()
 	CalcWorldMatrix();
 }
 
+//float dx = 0.0f, dy = 0.0f, dz = 0.0f;
 // ビュー/プロジェクション マトリックス更新
 void CCamera::Update()
 {
@@ -54,29 +55,31 @@ void CCamera::Update()
 	//カメラ移動
 	float dx = 0.0f, dy = 0.0f, dz = 0.0f;
 
-	if (GetKeyPress(VK_I))
+	if (GetKeyTrigger(VK_I))
 	{
-		//まえ
-		dx += CAMERA_MOVE_SPEED * SinDeg(m_vAngle.y);
-		dz += CAMERA_MOVE_SPEED * CosDeg(m_vAngle.y);
+		g_nCnt3 = 0;
+		g_move3 = true;
 	}
-	if (GetKeyPress(VK_K))
+	CCamera::CameraMove3(g_move3);
+
+	if (GetKeyTrigger(VK_K))
 	{
-		//後
-		dx += CAMERA_MOVE_SPEED * SinDeg(m_vAngle.y+180);
-		dz += CAMERA_MOVE_SPEED * CosDeg(m_vAngle.y+180);
+		g_nCnt4 = 0;
+		g_move4 = true;
 	}
-	if (GetKeyPress(VK_L))
+	CCamera::CameraMove4(g_move4);
+
+	if (GetKeyTrigger(VK_L))
 	{
 		//右
-		dx += CAMERA_MOVE_SPEED * SinDeg(m_vAngle.y + 90);
-		dz += CAMERA_MOVE_SPEED * CosDeg(m_vAngle.y + 90);
+		g_nCnt5 = 0;
+		g_move5 = true;
 	}
-	if (GetKeyPress(VK_J))
+	if (GetKeyTrigger(VK_J))
 	{
 		//左
-		dx += CAMERA_MOVE_SPEED * SinDeg(m_vAngle.y - 90);
-		dz += CAMERA_MOVE_SPEED * CosDeg(m_vAngle.y - 90);
+		g_nCnt6 = 0;
+		g_move6 = true;
 	}
 	if (GetKeyPress(VK_Y))
 	{
@@ -87,7 +90,21 @@ void CCamera::Update()
 		dy -= CAMERA_MOVE_SPEED;
 	}
 	//旋回
-	if (GetKeyPress(VK_U))
+	if (GetKeyTrigger(VK_U))
+	{
+		g_nCnt1 = 0;
+		g_move1 = true;
+	}
+	CCamera::CameraMove1(g_move1);
+
+	if (GetKeyTrigger(VK_O))
+	{
+		g_nCnt2 = 0;
+		g_move2 = true;
+	}
+	CCamera::CameraMove2(g_move2);
+
+	/*if (GetKeyPress(VK_U))
 	{
 		m_vAngle.y += 1.0f;
 
@@ -95,8 +112,8 @@ void CCamera::Update()
 			m_vAngle.y -= 360.0f;
 			m_vPos.x = m_vTarget.x - SinDeg(m_vAngle.y)*m_fLengthInterval;
 			m_vPos.z = m_vTarget.z - CosDeg(m_vAngle.y)*m_fLengthInterval;	
-	}
-	if (GetKeyPress(VK_O))
+	}*/
+	/*if (GetKeyPress(VK_O))
 	{
 		m_vAngle.y -= 1.0f;
 
@@ -105,7 +122,7 @@ void CCamera::Update()
 		m_vPos.x = m_vTarget.x - SinDeg(m_vAngle.y)*m_fLengthInterval;
 		m_vPos.z = m_vTarget.z - CosDeg(m_vAngle.y)*m_fLengthInterval;
 
-	}
+	}*/
 
 	//座標 += 速度
 	m_vPos.x += dx;
@@ -177,6 +194,8 @@ void CCamera::UpdateMatrix()
 		XMConvertToRadians(m_fFovY), m_fAspectRatio, m_fNearZ, m_fFarZ));
 }
 
+
+
 // ワールド マトリックス設定
 void CCamera::SetWorldMatrix(XMFLOAT4X4& mtxWorld)
 {
@@ -223,4 +242,129 @@ XMFLOAT4X4& CCamera::CalcWorldMatrix()
 CCamera * GetCamera()
 {
 	return &g_camera;
+}
+
+//:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+void CCamera::CameraMove1(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < CAMERA_MAX; i++)
+		{
+			g_nCnt1++;
+			if (g_nCnt1 <= 300)
+			{
+				m_vAngle.y += 0.3f;
+
+				if (m_vAngle.y >= 360.0f)
+					m_vAngle.y -= 360.0f;
+				m_vPos.x = m_vTarget.x - SinDeg(m_vAngle.y)*m_fLengthInterval;
+				m_vPos.z = m_vTarget.z - CosDeg(m_vAngle.y)*m_fLengthInterval;
+			}
+			
+		}
+		
+	}
+	//return;
+}
+
+void CCamera::CameraMove2(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < CAMERA_MAX; i++)
+		{
+			g_nCnt2++;
+			if (g_nCnt2 <= 300)
+			{
+				m_vAngle.y -= 0.3f;
+
+				if (m_vAngle.y < 0.0f)
+					m_vAngle.y += 360.0f;
+				m_vPos.x = m_vTarget.x - SinDeg(m_vAngle.y)*m_fLengthInterval;
+				m_vPos.z = m_vTarget.z - CosDeg(m_vAngle.y)*m_fLengthInterval;
+			}
+
+		}
+
+	}
+	//return;
+}
+
+
+
+void CCamera::CameraMove3(bool af)
+{
+
+	if (af)
+	{
+		for (int i = 0; i < CAMERA_MAX; i++)
+		{
+			g_nCnt3++;
+			if (g_nCnt3 <= 300)
+			{
+				m_vPos.x += CAMERA_MOVE_SPEED * SinDeg(m_vAngle.y);
+				m_vPos.z += CAMERA_MOVE_SPEED * CosDeg(m_vAngle.y);
+			}
+		}
+
+	}
+	//return;
+}
+
+void CCamera::CameraMove4(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < CAMERA_MAX; i++)
+		{
+			g_nCnt4++;
+			if (g_nCnt4 <= 300)
+			{
+				m_vPos.x += CAMERA_MOVE_SPEED * SinDeg(m_vAngle.y + 180);
+				m_vPos.z += CAMERA_MOVE_SPEED * CosDeg(m_vAngle.y + 180);
+			}
+		}
+
+	}
+	//return;
+}
+
+void CCamera::CameraMove5(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < CAMERA_MAX; i++)
+		{
+			g_nCnt5++;
+			if (g_nCnt5 <= 300)
+			{
+				m_vPos.x += CAMERA_MOVE_SPEED * SinDeg(m_vAngle.y + 90);
+				m_vPos.z += CAMERA_MOVE_SPEED * CosDeg(m_vAngle.y + 90);
+			}
+
+		}
+
+	}
+	//return;
+}
+
+void CCamera::CameraMove6(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < CAMERA_MAX; i++)
+		{
+			g_nCnt6++;
+			if (g_nCnt6 <= 300)
+			{
+				m_vPos.x += CAMERA_MOVE_SPEED * SinDeg(m_vAngle.y - 90);
+				m_vPos.z += CAMERA_MOVE_SPEED * CosDeg(m_vAngle.y - 90);
+			}
+
+		}
+
+	}
+	//return;
 }
