@@ -24,3 +24,4 @@ void DrawFade(void);
 
 void StartFade( E_TYPE_SCENE stateNext, int nFrame = 30 );	// フェード開始
 E_FADE GetFade();		// フェード中？
+void WaitTimer(int second);
