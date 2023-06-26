@@ -5,6 +5,7 @@
 //=============================================================================
 #include "fade.h"
 #include "polygon.h"	// ポリゴン使用
+#include <time.h>
 
 // マクロ定義
 #define FADE_POS_X		(0)		// 表示位置X
@@ -12,9 +13,9 @@
 #define FADE_SIZE_X		(SCREEN_WIDTH)	// サイズX
 #define FADE_SIZE_Y		(SCREEN_HEIGHT)	// サイズY
 
-#define FADE_RED		(1.0f)
-#define FADE_GREEN		(1.0f)
-#define FADE_BLUE		(1.0f)
+#define FADE_RED		(0.0f)
+#define FADE_GREEN		(0.0f)
+#define FADE_BLUE		(0.0f)
 
 // 構造体定義
 // プロトタイプ宣言
@@ -23,6 +24,7 @@ static float			g_fAlpha = 1.0f;	// 透明度
 static E_FADE			g_nFade = E_FADE_IN;	// フェードの状態
 static E_TYPE_SCENE		g_stateNext = SCENE_TITLE;	// フェード後の状態
 static int				g_nFrame = 30;	// フェードフレーム数
+int						second = 3;
 
 // 初期化処理
 HRESULT InitFade( void )
@@ -31,6 +33,7 @@ HRESULT InitFade( void )
 	g_nFade = E_FADE_IN;
 	g_stateNext = SCENE_TITLE;
 	g_nFrame = 30;
+	second = 3;
 
 	return S_OK;
 }
@@ -57,6 +60,7 @@ void UpdateFade( void )
 			g_nFade = E_FADE_IN;
 			//画面が隠れた所でシーンの変更
 			StartSceneChange(g_stateNext);
+			WaitTimer(second);
 		}
 
 		break;
@@ -118,3 +122,10 @@ E_FADE GetFade()
 	return g_nFade;
 }
 
+// 待機時間
+void WaitTimer(int second) 
+{
+	time_t now = second * CLOCKS_PER_SEC + clock();
+
+	while (now > clock());
+}
