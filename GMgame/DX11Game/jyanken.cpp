@@ -51,6 +51,8 @@ int j = 0;
 int n = 0;
 int f = 0;
 int Cnt, Cnt1 = 0;
+bool win = false;
+bool lose = false;
 
 const tMessage testMessage[9] = {
 	{L"じゃんけん５回勝負！！",MESSAGE_TYPE::E_TYPE_ENTER,(long long int)&testMessage[1] },
@@ -155,52 +157,74 @@ void UpdateJyankenJadge()
     if(Cnt < 0)
 	{
 		jadge = false;
-		Cnt1 = 200;
-		GetPhase()->ChangePhase(BATTLEPHASE);
+		Jyanken(n, result);
+		n++;
+		Cnt = 35;
 	}
 	if (Cnt == 30)
 	{
 		jadge = true;
 	}
 	
+	if (n > 4)
+	{
+		Cnt1 = 180;
+		GetPhase()->ChangePhase(BATTLEPHASE);
+	}
 
 }
 
 void UpdateJyankenBattle()
 {
+
 	Cnt1--;
-	if (Cnt1 == 180)
+
+	//勝ったとき
+	if (result[0] > result[1])
 	{
-		Jyanken(n, result);
+		Action2();
 	}
+	//負けた時
+	if (result[0] < result[1])
+	{
+
+	}
+
 	if (Cnt1 < 0)
 	{
-		if (n <= 3)
+		if (result[0] > result[1])
 		{
-			n++;
-			GetPhase()->ChangePhase(JUDGEPHASE);
-			Cnt = 60;
+			SetMessage((tMessage*)&testMessage[1]);
+			DamageEnemy(50);
+			if (result[0] >= 0)
+				DamageEnemy(50 * result[0]);
 		}
-		else if (n > 3)
+		if (result[0] < result[1])
 		{
-			j = 0;
-			n = 0;
-			f = 0;
-			for (int r = 0; r < 4; r++)
-			{
-				result[r] = 0;
-			}
-			for (int p = 0; p < 5; p++)
-			{
-				te[p] = -1;
-				aite[p] = -1;
-			}
-			for (int f = 0; f < 5; f++)
-			{
-				aite[f] = rand() % 3;//相手
-			}
-			GetPhase()->ChangePhase(SETPHASE);
+			SetMessage((tMessage*)&testMessage[2]);
+			DamagePlayer(50);
+			if (result[1] >= 0)
+				DamagePlayer(50 * result[1]);
 		}
+		j = 0;
+		n = 0;
+		f = 0;
+		for (int r = 0; r < 4; r++)
+		{
+			result[r] = 0;
+		}
+		for (int p = 0; p < 5; p++)
+		{
+			te[p] = -1;
+			aite[p] = -1;
+		}
+		for (int f = 0; f < 5; f++)
+		{
+			aite[f] = rand() % 3;//相手
+		}
+		win = false;
+		lose = false;
+		GetPhase()->ChangePhase(SETPHASE);
 	}
 	
 }
@@ -331,23 +355,16 @@ void Jyanken(int no, int *cnt)
 	else if ((te[no] == 0 && aite[no] == 1) || (te[no] == 1 && aite[no] == 2) || (te[no] == 2 && aite[no] == 0))
 	{
 		SetMessage((tMessage*)&testMessage[1]);
-		DamageEnemy(50);
-		if (cnt[0] >= 0)
-			DamageEnemy(50 * cnt[0]);
+		win = true;
 		cnt[0]++;	// 勝ち
 		cnt[3]++;	// 連勝
-		Action2();
-		//printf("勝ち\n\n");
 	}
 	else
 	{
 		SetMessage((tMessage*)&testMessage[2]);
-		DamagePlayer(50);
-		if (cnt[1] >= 0)
-			DamagePlayer(50 * cnt[1]);
+		lose = true;
 		cnt[1]++;	// まけ
 		cnt[3] = 0;	// 連勝リセット
-		//printf("負け\n\n");
 	}
 
 
