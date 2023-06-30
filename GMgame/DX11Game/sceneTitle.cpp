@@ -13,7 +13,6 @@
 #include "Title.h"
 #include "enter.h"
 #include "stage.h"
-#include "select1.h"
 #include "sceneClear.h"
 
 //*****************************************************************************
@@ -44,9 +43,6 @@ HRESULT InitSceneTitle()
 	//タイトル
 	InitTitle();
 
-	//選択
-	InitSelect1();
-
 	//ステージの初期化
 	SetStageNo(0);
 
@@ -65,8 +61,6 @@ void UninitSceneTitle()
 	//タイトル
 	UninitTitle();
 
-	//選択
-	UninitSelect1();
 }
 
 //=============================================================================
@@ -80,36 +74,15 @@ void UpdateSceneTitle()
 
 	//タイトル
 	UpdateTitle();
-	//選択
-	UpdateSelect1();
 
-	E_FADE fadeState = GetFade();
-	if (fadeState == E_FADE_NONE)
+
+	if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
 	{
-		if (GetKeyTrigger(VK_RETURN)|| GetJoyTrigger(0, 0))
-		{
-			//選択中のものにより分岐
-			SELECT1_MENU menu = GetSelect1Menu();
-			switch (menu)
-			{
-				//ゲームスタート
-			case SELECT1_MENU_CONTINUE:
-				StartFade(SCENE_GAME);
-				SetStageNo(0);
-				break;
-				//説明画面
-			case SELECT1_MENU_RETRY:
-				StartFade(SCENE_SETUMEI);
-				break;
-				//ステージセレクト
-			case SELECT1_MENU_QUIT:
-				StartFade(SCENE_SELECT);
-				break;
-			}
-		}
+
+		StartFade(SCENE_SELECT);
 	}
 
-	
+
 }
 
 //=============================================================================
@@ -131,8 +104,6 @@ void DrawSceneTitle()
 
 	//タイトル
 	DrawTitle();
-	//選択
-	DrawSelect1();
 
 	
 }

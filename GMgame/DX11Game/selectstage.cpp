@@ -13,12 +13,12 @@
 #include "sound.h"
 
 // マクロ定義
-#define	NUM_SELECT_STAGE		(9)			// ポーズメニュー数
-#define	SELECT_STAGE_WIDTH	(200.0f)	// ポーズメニュー幅
-#define	SELECT_STAGE_HEIGHT	(40.0f)		// ポーズメニュー高さ
-#define	SELECT_STAGE_INTERVAL	(200.0f)	// ポーズメニュー間隔
-#define	SELECT_STAGE_POS_X	(0.0f)		// ポーズメニュー位置(X座標)
-#define	SELECT_STAGE_POS_Y	(200.0f)	// ポーズメニュー位置(Y座標)
+#define	NUM_SELECT_STAGE		(2)			// ポーズメニュー数
+#define	SELECT_STAGE_WIDTH	(570.0f)	// ポーズメニュー幅
+#define	SELECT_STAGE_HEIGHT	(410.0f)		// ポーズメニュー高さ
+#define	SELECT_STAGE_INTERVAL	(500.0f)	// ポーズメニュー間隔
+#define	SELECT_STAGE_POS_X	(200.0f)		// ポーズメニュー位置(X座標)
+#define	SELECT_STAGE_POS_Y	(0.0f)	// ポーズメニュー位置(Y座標)
 #define	PLATE_WIDTH			(360.0f)	// プレートの幅
 #define	PLATE_HEIGHT		(340.0f)	// プレートの幅
 #define	PLATE_POS_X			(0.0f)		// プレートの位置(X座標)
@@ -36,15 +36,9 @@ static int   posx = -300;
 
 static LPCWSTR c_aFileNameSelectMenu[NUM_SELECT_STAGE] =
 {
-	L"data/TEXTURE/stage1.png",	// コンティニュー
-	L"data/TEXTURE/stage2.png",	// リトライ
-	L"data/TEXTURE/stage3.png",	// クイット
-	L"data/TEXTURE/stage4.png",
-	L"data/TEXTURE/stage5.png",
-	L"data/TEXTURE/stage6.png",
-	L"data/TEXTURE/stage7.png",
-	L"data/TEXTURE/stage8.png",
-	L"data/TEXTURE/stage9.png",
+	L"data/TEXTURE/sel1.png",	
+	L"data/TEXTURE/sel2.png",	
+
 };
 
 static SELECT_STAGE g_nSelectMenu = SELECT_STAGE_1;	//	選択中のメニューNo
@@ -122,24 +116,15 @@ void UpdateSelectStage( void )
 			}
 		}
 	}
-	
+
 	// 上下キーで各項目間の移動
-	if (GetKeyRepeat( VK_W ) || GetKeyRepeat( VK_UP )) {
-		g_nSelectMenu = (SELECT_STAGE)((g_nSelectMenu + NUM_SELECT_STAGE - 1) % NUM_SELECT_STAGE);
-		PlaySound(SOUND_LABEL_SE_SELECT);
-		SetSelectStageMenu();
-	} else if (GetKeyRepeat( VK_S ) || GetKeyRepeat( VK_DOWN )) {
-		g_nSelectMenu = (SELECT_STAGE)((g_nSelectMenu + 1) % NUM_SELECT_STAGE);
-		PlaySound(SOUND_LABEL_SE_SELECT);
-		SetSelectStageMenu();
-	}
-	else if (GetKeyRepeat(VK_A) || GetKeyRepeat(VK_LEFT)) {
-		g_nSelectMenu = (SELECT_STAGE)((g_nSelectMenu + NUM_SELECT_STAGE - 3)% NUM_SELECT_STAGE);
+	if (GetKeyRepeat(VK_A) || GetKeyRepeat(VK_LEFT)) {
+		g_nSelectMenu = (SELECT_STAGE)((g_nSelectMenu + NUM_SELECT_STAGE - 1)% NUM_SELECT_STAGE);
 		PlaySound(SOUND_LABEL_SE_SELECT);
 		SetSelectStageMenu();
 	}
 	else if (GetKeyRepeat(VK_D) || GetKeyRepeat(VK_RIGHT)) {
-		g_nSelectMenu = (SELECT_STAGE)((g_nSelectMenu + 3) % NUM_SELECT_STAGE);
+		g_nSelectMenu = (SELECT_STAGE)((g_nSelectMenu + 1) % NUM_SELECT_STAGE);
 		PlaySound(SOUND_LABEL_SE_SELECT);
 		SetSelectStageMenu();
 	}
@@ -156,21 +141,17 @@ void UpdateSelectStage( void )
 void DrawSelectStage( void )
 {
 	ID3D11DeviceContext* pDeviceContext = GetDeviceContext();
-
-	int nCnt = 0;
-	posx = -300;
+	posx = -250;
 	 
 	//ポーズメニューの表示
 	SetPolygonSize( SELECT_STAGE_WIDTH, SELECT_STAGE_HEIGHT );
-	for (int CntSelectMenu = 0; CntSelectMenu < 3; ++CntSelectMenu)
-	{
 
-		for (int nCntSelectMenu = 0; nCntSelectMenu < 3; ++nCntSelectMenu) 
+		for (int nCntSelectMenu = 0; nCntSelectMenu < 2; ++nCntSelectMenu) 
 		{
-			SetPolygonPos(posx, SELECT_STAGE_POS_Y - nCntSelectMenu * SELECT_STAGE_INTERVAL);
+			SetPolygonPos(posx + nCntSelectMenu * SELECT_STAGE_INTERVAL, SELECT_STAGE_POS_Y);
 
 			//選択されているメニューを目立たせる
-			if (nCntSelectMenu + CntSelectMenu * 3 == g_nSelectMenu)
+			if (nCntSelectMenu == g_nSelectMenu)
 			{
 				SetPolygonColor(1.0f, 1.0f, 1.0f);
 			}
@@ -180,15 +161,12 @@ void DrawSelectStage( void )
 			}
 
 			// テクスチャの設定
-			SetPolygonTexture(g_pTextures[nCnt]);
+			SetPolygonTexture(g_pTextures[nCntSelectMenu]);
 			// ポリゴンの描画
 			DrawPolygon(pDeviceContext);
-
-			nCnt++;
 		}
 
-		posx += 300;
-	}
+
 
 	SetPolygonColor( 1.0f, 1.0f, 1.0f );
 }

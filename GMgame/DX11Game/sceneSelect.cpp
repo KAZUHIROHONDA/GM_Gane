@@ -10,8 +10,6 @@
 #include "input.h"		
 #include "fade.h"
 #include "bg.h"
-#include "stage.h"
-#include "select1.h"
 #include "selectstage.h"
 
 
@@ -39,7 +37,14 @@ HRESULT InitSceneSelect()
 		MessageBox(hWnd, _T("背景初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
 		return hr;
 	}
-	
+
+	hr = InitSelectStage();
+	if (FAILED(hr))
+	{
+		MessageBox(hWnd, _T("セレクト画像初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
+		return hr;
+	}
+
 	return hr;
 }
 
@@ -51,6 +56,8 @@ void UninitSceneSelect()
 	//背景の終了処理
 	UninitBg();
 
+	//セレクトの終了処理
+	UninitSelectStage();
 }
 
 //=============================================================================
@@ -61,7 +68,33 @@ void UpdateSceneSelect()
 	//背景の更新処理
 	UpdateBg();
 
-	
+	//終了処理
+	UpdateSelectStage();
+
+	//ポーズ中の項目決定
+
+	E_FADE fadeState = GetFade();
+	if (fadeState == E_FADE_NONE)
+	{
+		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
+		{
+			//選択中のものにより分岐
+			SELECT_STAGE menu = GetSelectStageMenu();
+			switch (menu)
+			{
+				//ゲームに戻る
+			case SELECT_STAGE_1:
+				StartFade(SCENE_GAME);
+				break;
+				//リトライ
+			case SELECT_STAGE_2:
+				StartFade(SCENE_TITLE);
+				break;
+			}
+		}
+	}
+
+
 
 }
 
@@ -72,7 +105,7 @@ void DrawSceneSelect()
 {
 	SetZWrite(false);
 	//背景の描画処理
-	DrawBg();
+	DrawBg1();
 
 	// Zバッファ有効
 	SetZBuffer(true);
@@ -80,6 +113,7 @@ void DrawSceneSelect()
 	// Zバッファ無効
 	SetZBuffer(false);
 	SetBlendState(BS_ALPHABLEND);
-	
+
+	DrawSelectStage();
 
 }

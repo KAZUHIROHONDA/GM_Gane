@@ -71,7 +71,6 @@ HRESULT InitJyanken()
 	ID3D11Device* pDevice = GetDevice();
 	HRESULT hr;
 
-	SetMessage((tMessage*)&testMessage[0]);
 	for (int nCntJyankenMenu = 0; nCntJyankenMenu < NUM_JYANKEN_MENU; ++nCntJyankenMenu) {
 		// テクスチャの読み込み
 		hr = CreateTextureFromFile(pDevice,									// デバイスへのポインタ
@@ -121,7 +120,6 @@ void UpdateJyankenSet()
 
 	if (j < 5)
 	{
-		SetMessage((tMessage*)&testMessage[j + 4]);
 		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
 		{
 			//選択中のものにより分岐
@@ -347,21 +345,17 @@ void Jyanken(int no, int *cnt)
 
 	if (aite[no] == te[no])
 	{
-		SetMessage((tMessage*)&testMessage[3]);
 		cnt[2]++;	// あいこ
-		//StartFade(SCENE_TITLE,180);
 		//z = z - 1;
 	}
 	else if ((te[no] == 0 && aite[no] == 1) || (te[no] == 1 && aite[no] == 2) || (te[no] == 2 && aite[no] == 0))
 	{
-		SetMessage((tMessage*)&testMessage[1]);
 		win = true;
 		cnt[0]++;	// 勝ち
 		cnt[3]++;	// 連勝
 	}
 	else
 	{
-		SetMessage((tMessage*)&testMessage[2]);
 		lose = true;
 		cnt[1]++;	// まけ
 		cnt[3] = 0;	// 連勝リセット

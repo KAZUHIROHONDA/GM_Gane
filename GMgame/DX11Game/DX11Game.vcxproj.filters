@@ -46,7 +46,6 @@
     <ClCompile Include="sceneTitle.cpp" />
     <ClCompile Include="select 2.cpp" />
     <ClCompile Include="select.cpp" />
-    <ClCompile Include="select1.cpp" />
     <ClCompile Include="selectstage.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="shadow.cpp" />
@@ -99,7 +98,6 @@
     <ClInclude Include="sceneTitle.h" />
     <ClInclude Include="select 2.h" />
     <ClInclude Include="select.h" />
-    <ClInclude Include="select1.h" />
     <ClInclude Include="selectstage.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="shadow.h" />
