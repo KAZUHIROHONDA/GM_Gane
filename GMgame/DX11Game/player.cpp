@@ -452,7 +452,7 @@ void UpdatePlayer(void)
 	{
 	case E_CAMERA_VIEW_FIXED:
 		GetCamera()->SetTarget(1.0f, 1.0f, -1.0f);
-		GetCamera()->SetPos(150.0f, 150.0f,-250.0f);
+		GetCamera()->SetPos(150.0f, 150.0f,-150.0f);
 		break;
 	case E_CAMERA_VIEW_BIRD:
 		GetCamera()->SetTarget(g_player[0].pos);
