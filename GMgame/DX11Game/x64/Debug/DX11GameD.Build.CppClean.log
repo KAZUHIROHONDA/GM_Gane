@@ -20,7 +20,6 @@ c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\camera.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\bullet.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\bg.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\assimpmodel.obj
-c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\selectstage.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\select1.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\select.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\select 2.obj
@@ -34,6 +33,7 @@ c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\polygon.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\playerhp.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\playercs.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\player.obj
+c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\phasecs.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\pause.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\number.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\moji.obj
@@ -48,6 +48,7 @@ c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\stage.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\sound.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\shadow.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\shader.obj
+c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\selectstage.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\dx11gamed.lib
 c:\users\matsu\desktop\resouce\gmgame\dx11game\dx11gamed.exp
 c:\users\matsu\desktop\resouce\gmgame\dx11game\data\shader\assimppixel.cso
