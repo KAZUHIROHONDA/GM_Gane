@@ -25,6 +25,7 @@
 *.la
 *.a
 *.lib
+*.obj
 
 # Executables
 *.exe
@@ -66,3 +67,4 @@ GMgame/.vs/DX11Game/v15/Browse.VC.opendb
 Assimp/
 DirectXTex/
 .vs/
+.obj
