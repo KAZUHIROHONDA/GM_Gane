@@ -28,7 +28,7 @@
 
 #define ENEMY_RADIUS  (10.0f)
 
-#define ENEMY_EGAUGE_POS_X	(125.0f)
+#define ENEMY_EGAUGE_POS_X	(110.0f)
 #define ENEMY_EGAUGE_POS_Y	(300.0f)
 
 

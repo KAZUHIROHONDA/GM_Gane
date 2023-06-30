@@ -28,7 +28,7 @@
 #define VALUE_ROTATE	(1.0f)
 
 
-#define PLAYER_GAUGE_POS_X	(-125.0f)
+#define PLAYER_GAUGE_POS_X	(-113.0f)
 #define PLAYER_GAUGE_POS_Y	(300.0f)
 
 

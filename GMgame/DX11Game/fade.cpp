@@ -24,7 +24,7 @@ static float			g_fAlpha = 1.0f;	// 透明度
 static E_FADE			g_nFade = E_FADE_IN;	// フェードの状態
 static E_TYPE_SCENE		g_stateNext = SCENE_TITLE;	// フェード後の状態
 static int				g_nFrame = 30;	// フェードフレーム数
-int						second = 3;
+static int				g_nSecond = 3;	// フェードイン待ち
 
 // 初期化処理
 HRESULT InitFade( void )
@@ -33,7 +33,7 @@ HRESULT InitFade( void )
 	g_nFade = E_FADE_IN;
 	g_stateNext = SCENE_TITLE;
 	g_nFrame = 30;
-	second = 3;
+	g_nSecond = 3;
 
 	return S_OK;
 }
@@ -60,7 +60,7 @@ void UpdateFade( void )
 			g_nFade = E_FADE_IN;
 			//画面が隠れた所でシーンの変更
 			StartSceneChange(g_stateNext);
-			WaitTimer(second);
+			WaitTimer(g_nSecond);
 		}
 
 		break;
@@ -105,15 +105,16 @@ void DrawFade( void )
 
 // フェード開始
 // stateNext:
+// nSecond: フェードインが始まるまでの時間
 // nFrame:
-void StartFade( E_TYPE_SCENE stateNext, int nFrame /*= 30*/ )
+void StartFade(E_TYPE_SCENE stateNext, int nSecond /*= 3*/, int nFrame /*= 30*/)
 {
 	if( GetFade() != E_FADE_NONE ) return;
 	g_nFade = E_FADE_OUT;
 	g_stateNext = stateNext;
 		// 0除算回避
 	g_nFrame = nFrame;
-	
+	g_nSecond = nSecond;
 }
 
 // 現在フェード中ですか？

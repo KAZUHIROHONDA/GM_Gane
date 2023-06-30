@@ -8,13 +8,13 @@
 #include "Texture.h"
 
 // マクロ定義
-#define GAUGE_TEXTURENAME	_T("data/texture/gauge000.png")
-#define GAUGE_SIZE_X	(256)	// サイズX
-#define GAUGE_SIZE_Y	(32)	// サイズY
+#define GAUGE_TEXTURENAME	_T("data/texture/gauge_new_hanten.png")
+#define GAUGE_SIZE_X	(284)	// サイズX
+#define GAUGE_SIZE_Y	(45)	// サイズY
 
-#define GAUGE1_TEXTURENAME	_T("data/texture/gaugeframe.png")
-#define GAUGE1_SIZE_X	(256)	// サイズX
-#define GAUGE1_SIZE_Y	(32)	// サイズY
+#define GAUGE1_TEXTURENAME	_T("data/texture/frame_new_hanten.png")
+#define GAUGE1_SIZE_X	(300)	// サイズX
+#define GAUGE1_SIZE_Y	(50)	// サイズY
 
 // 構造体定義
 // プロトタイプ宣言
@@ -58,9 +58,20 @@ void DrawGauge(XMFLOAT2 pos, float percent)
 	SetBlendState(BS_ALPHABLEND);
 
 	//設定
+	SetPolygonTexture(g_pTexture1);
+	SetPolygonSize(GAUGE1_SIZE_X, GAUGE1_SIZE_Y);
+	SetPolygonPos(-252.0f, 300.0f);
+	SetPolygonUV(0.0f, 0.0f);
+
+	//描画
+	DrawPolygon(pDeviceContext);
+	//元に戻す
+	SetPolygonFrameSize(1.0f, 1.0f);
+
+	//設定
 	SetPolygonTexture(g_pTexture);
 	SetPolygonSize(GAUGE_SIZE_X * percent, GAUGE_SIZE_Y);
-	SetPolygonPos(pos.x - GAUGE_SIZE_X * percent / 2, pos.y);
+	SetPolygonPos(pos.x + GAUGE_SIZE_X * -percent / 2, pos.y);
 	SetPolygonUV(0.0f, 0.0f);
 	SetPolygonFrameSize(percent, 1.0f);
 
@@ -68,18 +79,6 @@ void DrawGauge(XMFLOAT2 pos, float percent)
 	DrawPolygon(pDeviceContext);
 	//元に戻す
 	SetPolygonFrameSize(1.0f,1.0f);
-	//設定
-	SetPolygonTexture(g_pTexture1);
-	SetPolygonSize(GAUGE1_SIZE_X , GAUGE1_SIZE_Y);
-	SetPolygonPos(-252.0f, 300.0f);
-	SetPolygonUV(0.0f, 0.0f);
-
-	
-	//描画
-	DrawPolygon(pDeviceContext);
-	//元に戻す
-	SetPolygonFrameSize(1.0f, 1.0f);
-
 }
 
 

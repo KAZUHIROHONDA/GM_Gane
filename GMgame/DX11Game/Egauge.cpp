@@ -8,13 +8,13 @@
 #include "Texture.h"
 
 // マクロ定義
-#define EGAUGE_TEXTURENAME	_T("data/texture/gauge001.png")
-#define EGAUGE_SIZE_X	(256)	// サイズX
-#define EGAUGE_SIZE_Y	(32)	// サイズY
-	    
-#define EGAUGE1_TEXTURENAME	_T("data/texture/gaugeframe.png") 
-#define EGAUGE1_SIZE_X	(256)	// サイズX
-#define EGAUGE1_SIZE_Y	(32)	// サイズY
+#define EGAUGE_TEXTURENAME	_T("data/texture/gauge_new.png")
+#define EGAUGE_SIZE_X	(284)	// サイズX
+#define EGAUGE_SIZE_Y	(45)	// サイズY
+
+#define EGAUGE1_TEXTURENAME	_T("data/texture/frame_new.png")
+#define EGAUGE1_SIZE_X	(300)	// サイズX
+#define EGAUGE1_SIZE_Y	(50)	// サイズY
 
 // 構造体定義
 // プロトタイプ宣言
@@ -58,6 +58,17 @@ void DrawEGauge(XMFLOAT2 pos, float percent)
 	SetBlendState(BS_ALPHABLEND);
 
 	//設定
+	SetPolygonTexture(g_pTexture1);
+	SetPolygonSize(EGAUGE1_SIZE_X, EGAUGE1_SIZE_Y);
+	SetPolygonPos(252.0f, 300.0f);
+	SetPolygonUV(0.0f, 0.0f);
+
+	//描画
+	DrawPolygon(pDeviceContext);
+	//元に戻す
+	SetPolygonFrameSize(1.0f, 1.0f);
+
+	//設定
 	SetPolygonTexture(g_pTexture);
 	SetPolygonSize(EGAUGE_SIZE_X * percent, EGAUGE_SIZE_Y);
 	SetPolygonPos(pos.x + EGAUGE_SIZE_X * percent / 2, pos.y);
@@ -68,18 +79,6 @@ void DrawEGauge(XMFLOAT2 pos, float percent)
 	DrawPolygon(pDeviceContext);
 	//元に戻す
 	SetPolygonFrameSize(1.0f,1.0f);
-	//設定
-	SetPolygonTexture(g_pTexture1);
-	SetPolygonSize(EGAUGE1_SIZE_X , EGAUGE1_SIZE_Y);
-	SetPolygonPos(252.0f, 300.0f);
-	SetPolygonUV(0.0f, 0.0f);
-
-	
-	//描画
-	DrawPolygon(pDeviceContext);
-	//元に戻す
-	SetPolygonFrameSize(1.0f, 1.0f);
-
 }
 
 
