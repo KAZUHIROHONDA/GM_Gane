@@ -218,12 +218,10 @@ void UninitPlayer(void)
 void UpdatePlayer(void)
 {
 	
-
 	// プレイヤーの動きを記述するならここ
 	for (int i = 0; i < PLAYER_MAX; i++)
 	{
 		
-
 		//未使用
 		if (g_player[i].nState == 0) continue;
 
@@ -269,14 +267,11 @@ void UpdatePlayer(void)
 
 			}
 			
-
-
 		//ゲージの動きの処理
 			if (g_player[i].nGauge>= g_player[i].nHP/10)
 			{
 				g_player[i].nGauge--;
 			}
-
 
 		//速度を座標に加算
 		g_player[i].pos.x += g_player[i].vel.x;
@@ -474,6 +469,163 @@ void UpdatePlayer(void)
 	}
 }
 
+void UpdateStart(void)
+{
+	// プレイヤーの動きを記述するならここ
+	for (int i = 0; i < PLAYER_MAX; i++)
+	{
+
+		//未使用
+		if (g_player[i].nState == 0) continue;
+
+
+		//操作不能時間
+		if (g_player[i].nStopTime > 0)
+		{
+			g_player[i].nStopTime--;
+		}
+
+			
+		//ゲージの動きの処理
+		if (g_player[i].nGauge >= g_player[i].nHP / 10)
+		{
+			g_player[i].nGauge--;
+		}
+
+		//速度を座標に加算
+		g_player[i].pos.x += g_player[i].vel.x;
+		g_player[i].pos.y += g_player[i].vel.y;
+		g_player[i].pos.z += g_player[i].vel.z;
+
+		//着地判定
+		if (g_player[i].pos.y <= 0.0f)
+		{
+			g_player[i].vel.y = 0.0f;
+			g_player[i].pos.y = 0.0f;
+			g_player[i].vel.x *= 0.9f;
+			g_player[i].vel.z *= 0.9f;
+		}
+
+		XMMATRIX mtxWorld, mtxRot, mtxScl,
+			mtxTranslate;
+
+		// ワールドマトリックスの初期化
+		mtxWorld = XMMatrixIdentity();
+
+		// スケールを反映
+		mtxScl = XMMatrixScaling(g_player[i].scl.x, g_player[i].scl.y, g_player[i].scl.z);
+		mtxWorld = XMMatrixMultiply(mtxWorld, mtxScl);
+
+
+
+		// 回転を反映
+		mtxRot = XMMatrixRotationRollPitchYaw(XMConvertToRadians(g_player[i].rot.x), XMConvertToRadians(g_player[i].rot.y + 180), XMConvertToRadians(g_player[i].rot.z));
+		mtxWorld = XMMatrixMultiply(mtxWorld, mtxRot);
+
+
+		// 移動を反映
+		mtxTranslate = XMMatrixTranslation(g_player[i].pos.x, g_player[i].pos.y, g_player[i].pos.z);
+		mtxWorld = XMMatrixMultiply(mtxWorld, mtxTranslate);
+
+
+		// ワールドマトリックス設定
+		XMStoreFloat4x4(&g_player[i].mtxWorld, mtxWorld);
+
+		//影の移動
+		MoveShadow(g_player[i].nShadowIdx, g_player[i].pos);
+
+
+		//************************************************:
+		//頭
+
+		XMMATRIX mtxWorldHD;
+		// ワールドマトリックスの初期化
+		mtxWorldHD = XMMatrixIdentity();
+		// スケールを反映
+		mtxScl = XMMatrixScaling(g_playerHD[i].scl.x, g_playerHD[i].scl.y, g_playerHD[i].scl.z);
+		mtxWorldHD = XMMatrixMultiply(mtxWorldHD, mtxScl);
+		// 回転を反映
+		mtxRot = XMMatrixRotationRollPitchYaw(
+			XMConvertToRadians(g_playerHD[i].rot.x),
+			XMConvertToRadians(g_playerHD[i].rot.y),//+180
+			XMConvertToRadians(g_playerHD[i].rot.z)
+		);
+		mtxWorldHD = XMMatrixMultiply(mtxWorldHD, mtxRot);
+
+		// 移動を反映
+		mtxTranslate = XMMatrixTranslation(g_playerHD[i].pos.x, g_playerHD[i].pos.y, g_playerHD[i].pos.z);
+
+		mtxWorldHD = XMMatrixMultiply(mtxWorldHD, mtxTranslate);
+
+		//親の行列を掛ける
+		mtxWorldHD = XMMatrixMultiply(mtxWorldHD, mtxWorld);
+
+		// ワールドマトリックス設定
+		XMStoreFloat4x4(&g_playerHD[i].mtxWorld, mtxWorldHD);
+
+
+		//************************************************:
+		//腕
+
+		XMMATRIX mtxWorldAM;
+		// ワールドマトリックスの初期化
+		mtxWorldAM = XMMatrixIdentity();
+		// スケールを反映
+		mtxScl = XMMatrixScaling(g_playerAM[i].scl.x, g_playerAM[i].scl.y, g_playerAM[i].scl.z);
+		mtxWorldAM = XMMatrixMultiply(mtxWorldAM, mtxScl);
+		// 回転を反映
+		mtxRot = XMMatrixRotationRollPitchYaw(
+			XMConvertToRadians(g_playerAM[i].rot.x),
+			XMConvertToRadians(g_playerAM[i].rot.y),//+180
+			XMConvertToRadians(g_playerAM[i].rot.z)
+		);
+		mtxWorldAM = XMMatrixMultiply(mtxWorldAM, mtxRot);
+
+		// 移動を反映
+		mtxTranslate = XMMatrixTranslation(g_playerAM[i].pos.x, g_playerAM[i].pos.y, g_playerAM[i].pos.z);
+
+		mtxWorldAM = XMMatrixMultiply(mtxWorldAM, mtxTranslate);
+
+		//親の行列を掛ける
+		mtxWorldAM = XMMatrixMultiply(mtxWorldAM, mtxWorld);
+
+		// ワールドマトリックス設定
+		XMStoreFloat4x4(&g_playerAM[i].mtxWorld, mtxWorldAM);
+
+		//************************************************:
+		//足
+
+		XMMATRIX mtxWorldLG;
+		// ワールドマトリックスの初期化
+		mtxWorldLG = XMMatrixIdentity();
+		// スケールを反映
+		mtxScl = XMMatrixScaling(g_playerLG[i].scl.x, g_playerLG[i].scl.y, g_playerLG[i].scl.z);
+		mtxWorldLG = XMMatrixMultiply(mtxWorldLG, mtxScl);
+		// 回転を反映
+		mtxRot = XMMatrixRotationRollPitchYaw(
+			XMConvertToRadians(g_playerLG[i].rot.x),
+			XMConvertToRadians(g_playerLG[i].rot.y),//+180
+			XMConvertToRadians(g_playerLG[i].rot.z)
+		);
+		mtxWorldLG = XMMatrixMultiply(mtxWorldLG, mtxRot);
+
+		// 移動を反映
+		mtxTranslate = XMMatrixTranslation(g_playerLG[i].pos.x, g_playerLG[i].pos.y, g_playerLG[i].pos.z);
+
+		mtxWorldLG = XMMatrixMultiply(mtxWorldLG, mtxTranslate);
+
+		//親の行列を掛ける
+		mtxWorldLG = XMMatrixMultiply(mtxWorldLG, mtxWorld);
+
+		// ワールドマトリックス設定
+		XMStoreFloat4x4(&g_playerLG[i].mtxWorld, mtxWorldLG);
+
+	}
+
+	GetCamera()->SetTarget(1.0f, 1.0f, -1.0f);
+	GetCamera()->SetPos(150.0f, 100.0f, 0.0f);
+}
+
 //=============================================================================
 // 描画処理
 //=============================================================================
@@ -529,15 +681,6 @@ XMFLOAT3 GetPlayerSize(int no)
 	return XMFLOAT3(box.x / 2 * g_player[no].scl.x, box.y / 2 * g_player[no].scl.y, box.z / 2 * g_player[no].scl.z);
 }
 
-//敵にあたった時の処理
-/*void DamagePlayer(int no, XMFLOAT3 vec)
-{
-	
-	if (no < 0 || no >= PLAYER_MAX) return;
-	g_player[no].vel = vec;
-	g_player[no].nStopTime = 4;
-
-}*/
 
 //球のパワーゲージ
 void DrawPlayerGauge()
@@ -572,7 +715,7 @@ void ResetPos(int no)
 {
 	if (no < 0 || no >= PLAYER_MAX)	return;
 
-	g_player[no].pos = XMFLOAT3(0.0f, 20.0f, -150.0f);
+	g_player[no].pos = XMFLOAT3(0.0f, 20.0f, -100.0f);
 	g_player[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	g_player[no].scl = XMFLOAT3(8.0f, 8.0f, 8.0f);
 	g_player[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);

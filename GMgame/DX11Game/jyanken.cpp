@@ -96,6 +96,11 @@ void UninitJyanken()
 	}
 }
 
+void UpdateJyankenStart()
+{
+
+}
+
 void UpdateJyankenSet()
 {
 
@@ -120,7 +125,7 @@ void UpdateJyankenSet()
 
 	if (j < 5)
 	{
-		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
+		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0) || GetMouseTrigger(0))
 		{
 			//‘I‘ð’†‚Ì‚à‚Ì‚É‚æ‚è•ªŠò
 			JYANKEN_MENU menu = GetJyankenMenu();
@@ -144,6 +149,8 @@ void UpdateJyankenSet()
 			}
 		}
 	}
+
+
 
 }
 
@@ -225,6 +232,11 @@ void UpdateJyankenBattle()
 		GetPhase()->ChangePhase(SETPHASE);
 	}
 	
+}
+
+void DrawJyankenStart()
+{
+
 }
 
 

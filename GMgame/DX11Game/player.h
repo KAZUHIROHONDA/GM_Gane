@@ -29,6 +29,7 @@ HRESULT InitPlayer(void);
 void UninitPlayer(void);
 void UpdatePlayer(void);
 void DrawPlayer(void);
+void UpdateStart(void);
 
 bool IsPlayer(int no);
 void DestroyPlayer(int no);

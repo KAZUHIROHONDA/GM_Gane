@@ -76,7 +76,7 @@ void UpdateSceneTitle()
 	UpdateTitle();
 
 
-	if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
+	if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0)|| GetMouseTrigger(0))
 	{
 
 		StartFade(SCENE_SELECT);

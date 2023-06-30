@@ -12,9 +12,11 @@ typedef enum {
 
 HRESULT InitJyanken();
 void UninitJyanken();
+void UpdateJyankenStart();
 void UpdateJyankenSet();
 void UpdateJyankenJadge();
 void UpdateJyankenBattle();
+void DrawJyankenStart();
 void DrawJyankenSet();
 void DrawJyankenJadge();
 

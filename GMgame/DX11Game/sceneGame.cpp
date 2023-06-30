@@ -264,8 +264,6 @@ void UpdateSceneGame()
 
 		//”wŒi
 		UpdateBg();
-		//ƒvƒŒƒCƒ„[
-		UpdatePlayer();
 		//“G
 		UpdateEnemy();
 		//‚½‚Ü

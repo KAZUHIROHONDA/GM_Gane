@@ -71,6 +71,16 @@ int Player::GetTYOKIat()
 	return TYOKIat;
 }
 
+void Player::SetHand(int *val)
+{
+
+}
+
+int Player::GetHand()
+{
+	return hand[20];
+}
+
 void Player::Init()
 {
 	FontData* fontData = new FontData();

@@ -16,6 +16,8 @@ private:
 	int  PAat;			//パーの攻撃力
 	int  GUat;			//グーの攻撃力
 	int  TYOKIat;		//チョキの攻撃力
+	int  hand[20];//5個にする
+
 	DirectWrite* g_directWrite;
 
 public:
@@ -33,6 +35,8 @@ public:
 	int		GetGUat();
 	void	SetTYOKIat(int val);
 	int		GetTYOKIat();
+	void	SetHand(int *val);
+	int		GetHand();
 
 	void    Init();
 	void	Uninit();
