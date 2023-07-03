@@ -25,3 +25,6 @@ void DrawSelectStage(void);
 void SetSelectStageMenu( void );
 SELECT_STAGE GetSelectStageMenu( void );
 void ResetSelectStageMenu( void );
+
+void SetSelectStageMenu1(void);
+void SetSelectStageMenu2(void);

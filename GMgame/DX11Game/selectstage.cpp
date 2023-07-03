@@ -11,6 +11,7 @@
 #include "Texture.h"// テクスチャ使用
 #include "input.h"
 #include "sound.h"
+#include "collision.h"
 
 // マクロ定義
 #define	NUM_SELECT_STAGE		(2)			// ポーズメニュー数
@@ -129,6 +130,23 @@ void UpdateSelectStage( void )
 		SetSelectStageMenu();
 	}
 
+	POINT temp = (*GetMousePosition());
+	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
+	//マウス
+	XMFLOAT2 pos1 = XMFLOAT2(SELECT_STAGE_POS_X, SELECT_STAGE_POS_Y);
+	XMFLOAT2 pos2 = XMFLOAT2(SELECT_STAGE_POS_X - 1 * SELECT_STAGE_INTERVAL, SELECT_STAGE_POS_Y);
+	XMFLOAT2 radius1 = XMFLOAT2(SELECT_STAGE_WIDTH / 2, SELECT_STAGE_HEIGHT / 2);
+	XMFLOAT2 mpos2 = mousePos;
+	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
+	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2))
+	{
+		SetSelectStageMenu1();
+	}
+	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2))
+	{
+		SetSelectStageMenu2();
+	}
+
 	// 枠の部分の色の変化(グラデーション)
 	g_fCurve += XM_PI * 0.01f;
 	if (g_fCurve > XM_PI) {
@@ -192,6 +210,18 @@ SELECT_STAGE GetSelectStageMenu( void )
 // ポーズメニューのリセット
 //=============================================================================
 void ResetSelectStageMenu( void )
+{
+	g_nSelectMenu = SELECT_STAGE_1;
+	SetSelectStageMenu();
+}
+
+void SetSelectStageMenu1(void)
+{
+	g_nSelectMenu = SELECT_STAGE_2;
+	SetSelectStageMenu();
+}
+
+void SetSelectStageMenu2(void)
 {
 	g_nSelectMenu = SELECT_STAGE_1;
 	SetSelectStageMenu();

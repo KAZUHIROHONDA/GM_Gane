@@ -76,7 +76,7 @@ void UpdateSceneSelect()
 	E_FADE fadeState = GetFade();
 	if (fadeState == E_FADE_NONE)
 	{
-		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
+		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0) || GetMouseTrigger(0))
 		{
 			//‘I‘ð’†‚Ì‚à‚Ì‚É‚æ‚è•ªŠò
 			SELECT_STAGE menu = GetSelectStageMenu();
