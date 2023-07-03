@@ -57,13 +57,20 @@ bool lose = false;
 
 //OKボタン
 #define OK_TEXTURENAME	_T("data/texture/button.png")
+#define HATENA_TEXTURENAME	_T("data/texture/1mdpi.png")
 		
 #define OK_POS_X	(300)					//初期位置X
 #define OK_POS_Y	(-250)					//初期位置Y
 #define OK_SIZE_X	(100)		//横幅
 #define OK_SIZE_Y	(100)		//縦幅
 
+#define HATENA_POS_X	(300)					//初期位置X
+#define HATENA_POS_Y	(-250)					//初期位置Y
+#define HATENA_SIZE_X	(100)		//横幅
+#define HATENA_SIZE_Y	(100)		//縦幅
+
 static ID3D11ShaderResourceView*	g_pTexture;				// テクスチャ
+static ID3D11ShaderResourceView*	g_pTexture1;				// テクスチャ
 static XMFLOAT3 g_Position;//位置
 static XMFLOAT2    g_Angle;   //角度
 static XMFLOAT3	g_Rot;
@@ -91,6 +98,9 @@ HRESULT InitJyanken()
 	// テクスチャ読み込み
 	hr = CreateTextureFromFile(GetDevice(), TITLE_TEXTURENAME, &g_pTexture);
 	if (FAILED(hr))return hr;
+	hr = CreateTextureFromFile(GetDevice(), HATENA_TEXTURENAME, &g_pTexture1);
+	if (FAILED(hr))return hr;
+
 
 	for (int nCntJyankenMenu = 0; nCntJyankenMenu < NUM_JYANKEN_MENU; ++nCntJyankenMenu) {
 		// テクスチャの読み込み
@@ -122,6 +132,7 @@ void UninitJyanken()
 	}
 	// テクスチャ開放
 	SAFE_RELEASE(g_pTexture);
+	SAFE_RELEASE(g_pTexture1);
 }
 
 void UpdateJyankenStart()
@@ -187,7 +198,6 @@ void UpdateJyankenSet()
 	}
 
 	g_fCol = cosf(g_fCurve) * 0.2f + 0.8f;
-
 
 	if (j < 5)
 	{
@@ -352,7 +362,7 @@ void DrawJyankenSet()
 			//ポリゴン情報設定
 			SetPolygonPos(300 + 50 * k, -300);			//座標
 			SetPolygonSize(JYANKEN_MENU_WIDTH/2, JYANKEN_MENU_HEIGHT/2);		//大きさ
-			SetPolygonTexture(g_pTextures[aite[k]]);		//テクスチャ
+			SetPolygonTexture(g_pTexture1);		//テクスチャ
 
 			//ポリゴンの描画処理
 			DrawPolygon(GetDeviceContext());
@@ -366,12 +376,12 @@ void DrawJyankenSet()
 		SetPolygonPos(g_Position.x, g_Position.y);			//座標
 		SetPolygonSize(OK_SIZE_X, OK_SIZE_Y);		//大きさ
 		SetPolygonAngle(g_Angle.y);				//角度
-		SetPolygonColor(1.0f, 1.0f, 1.0f);	//色(RGB)
 		SetPolygonAlpha(g_Alpha);				//α値(透明度)
 
 		SetPolygonUV(0.0f, 0.0f);			//0番のテクスチャ
 		SetPolygonFrameSize(1.0f, 1.0f);	//テクスチャ
 		SetPolygonTexture(g_pTexture);		//テクスチャ
+		SetPolygonColor(1.0f, 1.0f, 1.0f);	//色(RGB)
 
 		//ポリゴンの描画処理
 		DrawPolygon(GetDeviceContext());
