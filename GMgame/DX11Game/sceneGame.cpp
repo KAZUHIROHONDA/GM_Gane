@@ -251,11 +251,7 @@ void UpdateSceneGame()
 		g_enemy.Update();
 		phase.Update();
 
-		if (GetKeyTrigger(VK_J))
-		{
-			phase.ChangePhase(JUDGEPHASE);
-			Cntadd();
-		}
+
 		//if (GetKeyTrigger(VK_S))
 		//{
 		//	phase.ChangePhase(SETPHASE);

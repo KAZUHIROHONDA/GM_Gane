@@ -29,7 +29,7 @@
 static ID3D11ShaderResourceView*	g_pTextures[3] = { nullptr };
 
 // テクスチャファイル名
-#define TITLE_TEXTURENAME	_T("data/texture/Title.png")
+#define TITLE_TEXTURENAME	_T("data/texture/button.png")
 static float g_fCurve = 0.0f;
 static float g_fCol = 0.0f;
 static int	 nStopTime = 0;
@@ -55,6 +55,22 @@ int Cnt, Cnt1 = 0;
 bool win = false;
 bool lose = false;
 
+//OKボタン
+#define OK_TEXTURENAME	_T("data/texture/button.png")
+		
+#define OK_POS_X	(300)					//初期位置X
+#define OK_POS_Y	(-250)					//初期位置Y
+#define OK_SIZE_X	(100)		//横幅
+#define OK_SIZE_Y	(100)		//縦幅
+
+static ID3D11ShaderResourceView*	g_pTexture;				// テクスチャ
+static XMFLOAT3 g_Position;//位置
+static XMFLOAT2    g_Angle;   //角度
+static XMFLOAT3	g_Rot;
+static XMFLOAT2 g_Size;    //サイズ
+static XMFLOAT2 g_Scale;   //拡大率 
+static float	g_Alpha;   //透過
+
 const tMessage testMessage[9] = {
 	{L"じゃんけん５回勝負！！",MESSAGE_TYPE::E_TYPE_ENTER,(long long int)&testMessage[1] },
 	{L"かち！",MESSAGE_TYPE::E_TYPE_NORMAL},
@@ -72,6 +88,10 @@ HRESULT InitJyanken()
 	ID3D11Device* pDevice = GetDevice();
 	HRESULT hr;
 
+	// テクスチャ読み込み
+	hr = CreateTextureFromFile(GetDevice(), TITLE_TEXTURENAME, &g_pTexture);
+	if (FAILED(hr))return hr;
+
 	for (int nCntJyankenMenu = 0; nCntJyankenMenu < NUM_JYANKEN_MENU; ++nCntJyankenMenu) {
 		// テクスチャの読み込み
 		hr = CreateTextureFromFile(pDevice,									// デバイスへのポインタ
@@ -82,6 +102,11 @@ HRESULT InitJyanken()
 	{
 		aite[f] = rand() % 3;//相手
 	}
+
+	g_Position = XMFLOAT3(OK_POS_X, OK_POS_Y, 0.0f);
+	g_Alpha = 1.0f;
+	g_Scale = XMFLOAT2(1.0f, 1.0f);
+
 
 	g_nJyankenMenu = JYANKEN_MENU_GU;
 	g_fCurve = 0.0f;
@@ -95,6 +120,8 @@ void UninitJyanken()
 	for (int nCntJyankenMenu = 0; nCntJyankenMenu < NUM_JYANKEN_MENU; ++nCntJyankenMenu) {
 		SAFE_RELEASE(g_pTextures[nCntJyankenMenu]);
 	}
+	// テクスチャ開放
+	SAFE_RELEASE(g_pTexture);
 }
 
 void UpdateJyankenStart()
@@ -123,9 +150,9 @@ void UpdateJyankenSet()
 	XMFLOAT2 pos1 = XMFLOAT2(JYANKEN_MENU_POS_X, JYANKEN_MENU_POS_Y);
 	XMFLOAT2 pos2 = XMFLOAT2(JYANKEN_MENU_POS_X - 1 * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
 	XMFLOAT2 pos3 = XMFLOAT2(JYANKEN_MENU_POS_X - 2 * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
-	XMFLOAT2 radius1 = XMFLOAT2(JYANKEN_MENU_WIDTH/2, JYANKEN_MENU_HEIGHT/2);
+	XMFLOAT2 radius1 = XMFLOAT2(JYANKEN_MENU_WIDTH / 2, JYANKEN_MENU_HEIGHT / 2);
 	XMFLOAT2 mpos2 = mousePos;
-	XMFLOAT2 radius2 = XMFLOAT2(0.1,0.1);
+	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
 	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2))
 	{
 		SetJyankenMenuGU();
@@ -137,6 +164,20 @@ void UpdateJyankenSet()
 	else if (CollisionBB(&pos3, &radius1, &mpos2, &radius2))
 	{
 		SetJyankenMenuPA();
+	}
+
+	if (j >= 5)
+	{
+		XMFLOAT2 pos4 = XMFLOAT2(OK_POS_X, OK_POS_Y);
+		XMFLOAT2 radius3 = XMFLOAT2(OK_SIZE_X / 2, OK_SIZE_X / 2);
+		if (CollisionBB(&pos4, &radius3, &mpos2, &radius2))
+		{
+			if (GetMouseTrigger(0))
+			{
+				GetPhase()->ChangePhase(JUDGEPHASE);
+				Cntadd();
+			}
+		}
 	}
 
 	// 枠の部分の色の変化(グラデーション)
@@ -316,6 +357,24 @@ void DrawJyankenSet()
 			//ポリゴンの描画処理
 			DrawPolygon(GetDeviceContext());
 		}
+	}
+
+	if (j >= 5)
+	{
+		// タイトル描画
+	//ポリゴン情報設定
+		SetPolygonPos(g_Position.x, g_Position.y);			//座標
+		SetPolygonSize(OK_SIZE_X, OK_SIZE_Y);		//大きさ
+		SetPolygonAngle(g_Angle.y);				//角度
+		SetPolygonColor(1.0f, 1.0f, 1.0f);	//色(RGB)
+		SetPolygonAlpha(g_Alpha);				//α値(透明度)
+
+		SetPolygonUV(0.0f, 0.0f);			//0番のテクスチャ
+		SetPolygonFrameSize(1.0f, 1.0f);	//テクスチャ
+		SetPolygonTexture(g_pTexture);		//テクスチャ
+
+		//ポリゴンの描画処理
+		DrawPolygon(GetDeviceContext());
 	}
 
 }
