@@ -46,3 +46,5 @@ void Action();
 void Action2(bool af);
 void Action2();
 void Action3(bool af);
+
+void Action4(bool af);

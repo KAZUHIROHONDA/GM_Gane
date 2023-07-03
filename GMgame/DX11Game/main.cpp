@@ -410,6 +410,7 @@ HRESULT Init(HWND hWnd, BOOL bWindow)
 	hr = InitSound(hWnd);
 	if (FAILED(hr))return hr;
 	
+	
 	//フェードの初期化
 	hr = InitFade();
 	if (FAILED(hr))
@@ -421,6 +422,7 @@ HRESULT Init(HWND hWnd, BOOL bWindow)
 	//シーンの初期化
 	g_currentScene = SCENE_TITLE;
 	g_nextScene = g_currentScene;
+	PlaySound(SOUND_LABEL_BGM002);
 
 	//シーン毎に分岐して初期化する
 	switch (g_currentScene)

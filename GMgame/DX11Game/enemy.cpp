@@ -63,11 +63,15 @@ static tEnemy			g_enemyAM[ENEMY_MAX];
 static tEnemy			g_enemyLG[ENEMY_MAX];
 
 
-static int			g_nCnt1;//行動カウント1コメ
-static int			g_nCnt2;//行動カウント2コメ
-static int			g_nCnt3;//行動カウント3コメ
-static int			g_nCnt4;//行動カウント4コメ
+static int			g_nECnt1;//行動カウント1コメ
+static int			g_nECnt2;//行動カウント2コメ
+static int			g_nECnt3;//行動カウント3コメ
+static int			g_nECnt4;//行動カウント4コメ
 static bool				g_atama = true;//false;
+
+static bool			g_Eaction;
+static bool			g_Eaction2;
+static bool			g_Eaction3;
 
 int					bfCnt;
 
@@ -95,6 +99,15 @@ HRESULT InitEnemy(void)
 		g_enemy[i].nHP = 1000;
 		g_enemy[i].nEGauge = g_enemy[i].nHP / 10;
 		g_enemy[i].nShadowIdx = -1;
+
+		g_Eaction = false;
+		g_Eaction2 = false;
+		g_Eaction3 = false;
+
+		g_nECnt1 = 0;					//
+		g_nECnt2 = 0;					//
+		g_nECnt3 = 0;
+		g_nECnt4 = 0;
 
 
 		//頭
@@ -124,10 +137,7 @@ HRESULT InitEnemy(void)
 		g_enemyLG[i].nState = 1;	// puroぺらは最初から登場している
 		g_enemyLG[i].nShadowIdx = -1;
 
-		g_nCnt1 = 0;					//
-		g_nCnt2 = 0;					//
-		g_nCnt3 = 0;
-		g_nCnt4 = 0;
+		
 
 		g_enemy[i].nStopTime = 0; //最初は動ける
 
@@ -195,46 +205,55 @@ void UpdateEnemy(void)
 		//未使用
 		if (g_enemy[i].nState == 0) continue;
 
-		if (GetKeyPress(VK_Z))
-		{
-			//g_enemy[i].rot.y+=5;
-			g_enemyHD[i].rot.z += 5;
-			//g_enemyAM[i].rot.x += 5;
-			g_enemyLG[i].rot.x += 5;
 
+		//操作不能時間
+		if (g_enemy[i].nStopTime > 0)
+		{
+			g_enemy[i].nStopTime--;
 		}
-
-
-		/*if (GetKeyPress(VK_7))
+		if (g_enemy[i].nStopTime == 0)
 		{
-			g_nCnt1++;
-			g_enemy[i].pos.z = 30;
-			g_enemy[i].rot.x = 30;
-		}*/
-
-
-
-
-		g_nCnt4++;
-		if (GetKeyPress(VK_0))//負けアニメーション
-		{
-			g_enemy[i].rot.z = 180;
-			if (g_nCnt4 >= 20)
+			if (GetKeyTrigger(VK_8))
 			{
-				g_enemyHD[i].pos.z -= 0.05f;
-				g_enemyHD[i].rot.z -= 1.0f;
-				g_enemyHD[i].rot.y -= 1.0f;
-
-				g_enemyAM[i].pos.x -= 0.05f;
-				g_enemyAM[i].rot.z -= 1.0f;
-				g_enemyAM[i].rot.y -= 1.0f;
-
-				g_enemyLG[i].pos.z += 0.05f;
-				g_enemyLG[i].rot.z -= 1.0f;
-				g_enemyLG[i].rot.y -= 1.0f;
+				g_Eaction = true;
 			}
+			EAction(g_Eaction);
+
+			if (GetKeyTrigger(VK_6))
+			{
+				g_Eaction2 = true;
+			}
+			EAction2(g_Eaction2);
+
+			if (GetKeyTrigger(VK_7))
+			{
+				g_Eaction3 = true;
+			}
+			EAction3(g_Eaction3);
+
 
 		}
+		
+		//g_nECnt4++;
+		//if (GetKeyPress(VK_0))//負けアニメーション
+		//{
+		//	g_enemy[i].rot.z = 180;
+		//	if (g_nECnt4 >= 20)
+		//	{
+		//		g_enemyHD[i].pos.z -= 0.05f;
+		//		g_enemyHD[i].rot.z -= 1.0f;
+		//		g_enemyHD[i].rot.y -= 1.0f;
+
+		//		g_enemyAM[i].pos.x -= 0.05f;
+		//		g_enemyAM[i].rot.z -= 1.0f;
+		//		g_enemyAM[i].rot.y -= 1.0f;
+
+		//		g_enemyLG[i].pos.z += 0.05f;
+		//		g_enemyLG[i].rot.z -= 1.0f;
+		//		g_enemyLG[i].rot.y -= 1.0f;
+		//	}
+
+		//}
 
 
 
@@ -552,15 +571,113 @@ void ResetEPos(int no)
 {
 	if (no < 0 || no >= ENEMY_MAX)	return;
 
-	g_enemy[no].pos = XMFLOAT3(0.0f, 20.0f, 20.0f);
+	g_enemy[no].pos = XMFLOAT3(0.0f, 20.0f, 100.0f);
 	g_enemy[no].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
-	g_enemy[no].scl = XMFLOAT3(8.0f, 8.0f, 8.0f);
+	g_enemy[no].scl = XMFLOAT3(15.0f, 15.0f, 15.0f);
 	g_enemy[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	g_enemyHD[no].pos = XMFLOAT3(0.0f, 0.0f, -3.0f);
 	g_enemyHD[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	g_enemyHD[no].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 	g_enemyHD[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 
-	g_nCnt1 = 0;
-	g_nCnt2 = 0;
+	g_nECnt1 = 0;
+	g_nECnt2 = 0;
+	g_nECnt3 = 0;
+	g_Eaction = false;
+	g_Eaction2 = false;
+}
+
+void EAction(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_nECnt1++;
+			g_nECnt2++;
+			g_enemyHD[i].rot.z += 50;
+			if (g_nECnt1 <= 150)
+			{
+				g_enemy[i].pos.y++;
+
+			}
+			if (g_nECnt1 >= 150 && g_nECnt2 <= 250)
+			{
+				g_enemy[i].pos.z++;
+				g_enemy[i].pos.y--;
+
+				g_enemy[i].rot.x = -45;
+			}
+			//g_player[i].vel.y += 10.0f;
+
+			if (g_nECnt1 >= 500 && g_nECnt2 >= 500)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+void EAction()
+{
+	g_Eaction = true;
+}
+
+void EAction2(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_enemy[i].pos.z = +80;
+			g_nECnt3++;
+			if (g_nECnt3 >= 1 && g_nECnt3 <= 200) // ?はどこまで繰り返すかの数値
+			{
+				if (g_nECnt3 / 2 % 2 == 0)
+				{
+					g_enemyHD[i].pos.z -= 3;
+					g_enemyHD[i].pos.x = (rand() % 201 - 100) / 30.0f;
+					g_enemyHD[i].pos.y = (rand() % 201 - 100) / 30.0f;
+
+				}
+				else g_enemyHD[i].pos.z = -1.0f;
+			}
+			if (g_nECnt3 >= 201)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+void EAction2()
+{
+	g_Eaction2 = true;
+}
+
+void EAction3(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_nECnt4++;
+			g_enemy[i].rot.z = 180;
+			if (g_nECnt4 >= 20 && g_nECnt4 <= 200)
+			{
+				g_enemyHD[i].pos.z += 0.05f;
+				g_enemyHD[i].rot.z -= 2.0f;
+				g_enemyHD[i].rot.y -= 2.0f;
+
+				g_enemyAM[i].pos.x += 0.05f;
+				g_enemyAM[i].rot.z -= 2.0f;
+				g_enemyAM[i].rot.y -= 2.0f;
+
+				g_enemyLG[i].pos.z -= 0.05f;
+				g_enemyLG[i].rot.z -= 2.0f;
+				g_enemyLG[i].rot.y -= 2.0f;
+			}
+		}
+		if (g_nECnt4 >= 200)
+			DestroyEnemy(0);
+
+	}
 }
