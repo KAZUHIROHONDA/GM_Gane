@@ -258,7 +258,7 @@ void UpdateJyankenBattle()
 	//•‰‚¯‚½Žž
 	if (result[0] < result[1])
 	{
-
+		EAction();
 	}
 
 	if (Cnt1 < 0)
