@@ -11,11 +11,16 @@
 #include "fade.h"
 #include "bg.h"
 #include "selectstage.h"
-
+#include "player.h"
 
 //*****************************************************************************
 // É}ÉNÉçíËã`
 //*****************************************************************************
+#define MODEL_PLAYER		"data/model/kabuBody.obj"
+#define MODEL_PLAYER1		"data/model/kabu2.obj"
+#define MODEL_PLAYER2		"data/model/kabu3.obj"
+#define MODEL_PLAYER3		"data/model/kabu4.obj"
+
 
 
 //*****************************************************************************

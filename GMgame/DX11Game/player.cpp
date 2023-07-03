@@ -74,6 +74,7 @@ static int			g_nCnt1;//行動カウント1コメ
 static int			g_nCnt2;//行動カウント2コメ
 static int			g_nCnt3;//行動カウント3コメ
 static int			g_nCnt4;//行動カウント4コメ
+static int			g_nCnt5;//行動カウント4コメ
 
 static int			g_nCntF;//
 
@@ -81,6 +82,7 @@ static int			g_nCntF;//
 static bool			g_action;
 static bool			g_action2;
 static bool			g_action3;
+static bool			g_action4;
 
 static bool				g_atama = true;//false;
 
@@ -124,11 +126,13 @@ HRESULT InitPlayer(void)
 		g_nCnt2 = 0;					//
 		g_nCnt3 = 0;					//
 		g_nCnt4 = 0;
+		g_nCnt5 = 0;
 		g_nCntF = 0;
 
 		g_action = false;
 		g_action2 = false;
 		g_action3 = false;
+		g_action4 = false;
 
 		g_player[i].nGauge = g_player[i].nHP/10;
 		g_player[i].nStopTime = 0; //最初は動ける
@@ -241,6 +245,7 @@ void UpdatePlayer(void)
 
 			if(GetKeyTrigger(VK_6))
 			{
+				PlaySound(SOUND_LABEL_SE_PUNCH);
 				g_action2 = true;
 			}
 			Action2(g_action2);
@@ -250,6 +255,12 @@ void UpdatePlayer(void)
 				g_action3 = true;
 			}
 			Action3(g_action3);
+
+			if (GetKeyTrigger(VK_9))
+			{
+				g_action4 = true;
+			}
+			Action4(g_action4);
 
 
 		}
@@ -727,8 +738,12 @@ void ResetPos(int no)
 	g_nCnt1=0;
 	g_nCnt2=0;
 	g_nCnt3 = 0;
+	g_nCnt4 = 0;
+	g_nCnt5 = 0;
 	g_action = false;
 	g_action2 = false;
+	g_action3 = false;
+	g_action4 = false;
 }
 
 void Action(bool af)
@@ -770,10 +785,12 @@ void Action2(bool af)
 {
 	if (af)
 	{
+
 		for (int i = 0; i < PLAYER_MAX; i++)
 		{
 			g_player[i].pos.z = -80;
 			g_nCnt3++;
+			
 			if (g_nCnt3 >= 1 && g_nCnt3 <= 200 ) // ?はどこまで繰り返すかの数値
 			{
 				if (g_nCnt3 / 2 % 2 == 0)
@@ -826,6 +843,47 @@ void Action3(bool af)
 	}
 }
 
+
+void Action4(bool af)
+{
+	if (af)
+	{
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			
+			g_nCnt5++;
+			
+			if (g_nCnt5 >= 1 && g_nCnt5 <= 50)
+			{
+				
+				if (g_nCnt5 <= 20 && g_nCnt5 >= 10)
+				{
+					g_player[i].pos.z += 50;
+				}
+				if (g_nCnt5 >= 15)
+				{
+					g_player[i].rot.y = 80.0f;
+				}
+				if (g_nCnt5 >= 21)
+				{
+					g_player[i].rot.y = 0.0f;
+					g_player[i].rot.x -= 10.0f;
+					g_player[i].pos.z -= 5;
+					g_player[i].pos.y += 1;
+				}
+
+			}
+			/*if (g_nCnt5 >= 100)
+			{
+				ResetPos(i);
+			}*/
+			
+		}
+		
+	}
+	
+	
+}
 
 void DestroyPlayer(int no)
 {
