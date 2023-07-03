@@ -68,11 +68,10 @@ void DrawGauge(XMFLOAT2 pos, float percent)
 	//å≥Ç…ñﬂÇ∑
 	SetPolygonFrameSize(1.0f, 1.0f);
 
-	//ê›íË
 	SetPolygonTexture(g_pTexture);
 	SetPolygonSize(GAUGE_SIZE_X * percent, GAUGE_SIZE_Y);
-	SetPolygonPos(pos.x + GAUGE_SIZE_X * percent / 2, pos.y);
-	SetPolygonUV(0.0f, 0.0f);
+	SetPolygonPos(pos.x - GAUGE_SIZE_X * percent / 2, pos.y);
+	SetPolygonUV(1.0f - percent, 0.0f);
 	SetPolygonFrameSize(percent, 1.0f);
 
 	//ï`âÊ
