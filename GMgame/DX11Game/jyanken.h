@@ -26,5 +26,8 @@ void Jyanken(int no, int *cnt);
 void SetJyankenMenu(void);
 JYANKEN_MENU GetJyankenMenu(void);
 void ResetJyankenMenu(void);
+void SetJyankenMenuGU(void);
+void SetJyankenMenuTYOKI(void);
+void SetJyankenMenuPA(void);
 
 void Cntadd();

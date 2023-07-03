@@ -8,6 +8,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "sceneGame.h"
+#include "collision.h"
 
 #define gu 1-1
 #define tyoki 2-1
@@ -114,6 +115,30 @@ void UpdateJyankenSet()
 		SetJyankenMenu();
 	}
 
+	POINT temp = (*GetMousePosition());
+	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
+
+
+	//マウス
+	XMFLOAT2 pos1 = XMFLOAT2(JYANKEN_MENU_POS_X, JYANKEN_MENU_POS_Y);
+	XMFLOAT2 pos2 = XMFLOAT2(JYANKEN_MENU_POS_X - 1 * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
+	XMFLOAT2 pos3 = XMFLOAT2(JYANKEN_MENU_POS_X - 2 * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
+	XMFLOAT2 radius1 = XMFLOAT2(JYANKEN_MENU_WIDTH/2, JYANKEN_MENU_HEIGHT/2);
+	XMFLOAT2 mpos2 = mousePos;
+	XMFLOAT2 radius2 = XMFLOAT2(0.1,0.1);
+	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2))
+	{
+		SetJyankenMenuGU();
+	}
+	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2))
+	{
+		SetJyankenMenuTYOKI();
+	}
+	else if (CollisionBB(&pos3, &radius1, &mpos2, &radius2))
+	{
+		SetJyankenMenuPA();
+	}
+
 	// 枠の部分の色の変化(グラデーション)
 	g_fCurve += XM_PI * 0.01f;
 	if (g_fCurve > XM_PI) {
@@ -125,7 +150,7 @@ void UpdateJyankenSet()
 
 	if (j < 5)
 	{
-		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0) || GetMouseTrigger(0))
+		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0)|| GetMouseTrigger(0))
 		{
 			//選択中のものにより分岐
 			JYANKEN_MENU menu = GetJyankenMenu();
@@ -251,7 +276,6 @@ void DrawJyankenSet()
 		SetPolygonPos(JYANKEN_MENU_POS_X - nCntJyankenMenu * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
 
 
-
 		//選択されているメニューを目立たせる
 		if (nCntJyankenMenu == g_nJyankenMenu)
 		{
@@ -275,7 +299,7 @@ void DrawJyankenSet()
 		if (te[k] != -1)
 		{
 			//ポリゴン情報設定
-			SetPolygonPos(-200 + 100*k, -150);			//座標
+			SetPolygonPos(-200 + 100 * k, -150);			//座標
 			SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
 			SetPolygonTexture(g_pTextures[te[k]]);		//テクスチャ
 
@@ -400,6 +424,23 @@ void ResetJyankenMenu(void)
 	g_nJyankenMenu = JYANKEN_MENU_GU;
 	SetJyankenMenu();
 }
+
+void SetJyankenMenuGU(void)
+{
+	g_nJyankenMenu = JYANKEN_MENU_GU;
+	SetJyankenMenu();
+}
+void SetJyankenMenuTYOKI(void)
+{
+	g_nJyankenMenu = JYANKEN_MENU_TYOKI;
+	SetJyankenMenu();
+}
+void SetJyankenMenuPA(void)
+{
+	g_nJyankenMenu = JYANKEN_MENU_PA;
+	SetJyankenMenu();
+}
+
 
 void Cntadd()
 {

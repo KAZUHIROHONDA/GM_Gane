@@ -162,6 +162,7 @@
     <ClCompile Include="bg.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="collision.cpp" />
     <ClCompile Include="CSVLoader.cpp" />
     <ClCompile Include="debugproc.cpp" />
     <ClCompile Include="DirectWrite.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="box.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="collision.h" />
     <ClInclude Include="CSVLoader.h" />
     <ClInclude Include="debugproc.h" />
     <ClInclude Include="DirectWrite.h" />

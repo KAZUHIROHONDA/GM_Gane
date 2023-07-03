@@ -2,7 +2,6 @@
 // 当たり判定実装部分
 #include "collision.h"
 #include "bullet.h"
-#include "explosion.h"
 #include "Light.h"
 #include "enemy.h"
 #include "fade.h"
@@ -20,40 +19,6 @@ void Collision()
 {
 	int nCnt1, nCnt2;	//ループ用変数
 	
-
-	////プレイヤーと敵の当たり判定
-	for (nCnt1 = 0; nCnt1 < ENEMY_MAX; nCnt1++)
-	{
-		if (!IsEnemy(nCnt1)) continue;
-		for (nCnt2 = 0; nCnt2 < PLAYER_MAX; nCnt2++)
-		{
-			if (!IsPlayer(nCnt2)) continue;
-
-			XMFLOAT3 pos1 = GetEnemyPos(nCnt1);
-			float radius1 = GetEnemySize(nCnt1).x + 5;
-			float height1 = GetEnemySize(nCnt1).y + 10;
-			XMFLOAT3 pos2 = GetPlayerPos(nCnt2);
-			float radius2 = GetPlayerSize(nCnt2).x;
-			float height2 = GetPlayerSize(nCnt2).y;
-			if (CollisionBCy(&pos1, height1, radius1, &pos2, height2, radius2))
-			{
-				//ノックバック用のベクトルを計算
-				XMFLOAT3 vec;
-				vec.x = pos2.x - pos1.x;
-				vec.y = 0.0f;
-				vec.z = pos2.z - pos1.z;
-				float len = sqrtf(vec.x*vec.x + vec.z*vec.z);
-				vec.x /= len;	//単位ベクトル化
-				vec.z /= len;
-				vec.x *= 10.0f;	//ノックバック用速度
-				vec.z *= 10.0f;
-
-				DamagePlayer(nCnt2,vec);
-				GetLight()->SetDamageCounter(30);
-			}
-		}
-	}
-
 	//弾と敵の当たり判定
 	for (nCnt1 = 0; nCnt1 < ENEMY_MAX; nCnt1++)
 	{
@@ -72,7 +37,6 @@ void Collision()
 			}
 		}
 	}
-
 
 }
 
