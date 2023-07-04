@@ -14,6 +14,7 @@
 #include "sound.h"
 #include "MessageManager.h"
 #include"fade.h"
+#include"enemy.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -842,48 +843,124 @@ void Action3(bool af)
 
 	}
 }
-
-
-void Action4(bool af)
+void Action4(bool af) 
 {
 	if (af)
 	{
 		for (int i = 0; i < PLAYER_MAX; i++)
 		{
-			
 			g_nCnt5++;
-			
-			if (g_nCnt5 >= 1 && g_nCnt5 <= 50)
+			if (g_nCnt5 >= 1 && g_nCnt5 <= 2)
 			{
-				
-				if (g_nCnt5 <= 20 && g_nCnt5 >= 10)
-				{
-					g_player[i].pos.z += 50;
-				}
-				if (g_nCnt5 >= 15)
-				{
-					g_player[i].rot.y = 80.0f;
-				}
-				if (g_nCnt5 >= 21)
-				{
-					g_player[i].rot.y = 0.0f;
-					g_player[i].rot.x -= 10.0f;
-					g_player[i].pos.z -= 5;
-					g_player[i].pos.y += 1;
-				}
+				g_player[i].pos.z += 70;
+			}
+			if (g_nCnt5 >= 6 && g_nCnt5 <= 10)
+			{
+				g_player[i].rot.x = 70;
+			}
+			if (g_nCnt5 >= 15 && g_nCnt5 <= 20)
+			{
+				g_player[i].pos.y = 50;
+				g_player[i].rot.x = 0;
+				g_player[i].pos.z = 20;
+				g_player[i].pos.x = 80;
+								
 
 			}
-			/*if (g_nCnt5 >= 100)
+			if (g_nCnt5 >= 21 && g_nCnt5 <= 25)
+			{
+				XMFLOAT3 pPos = GetPlayerPos(0);
+				// 毎フレームプレイヤーを認識して追いかける
+				g_enemy[i].targetPos = pPos;
+				// 移動量の計算
+				XMFLOAT3 temp;	// 向き
+				temp.x = pPos.x - g_enemy[i].pos.x;
+				temp.y = pPos.y - g_enemy[i].pos.y;
+				temp.z = pPos.z - g_enemy[i].pos.z;
+				float len = sqrtf(temp.x*temp.x + temp.z*temp.z);
+
+
+
+				if (len > VALUE_MOVE)
+				{	// 一定距離以上なら移動
+					temp.x /= len;
+					temp.z /= len;	// 長さが１の向きだけの情報になる
+
+					
+					temp.x *= VALUE_MOVE;
+					temp.z *= VALUE_MOVE;
+					g_enemy[i].vel = XMFLOAT3(temp.x, 0.0f, temp.z);
+					g_enemy[i].rot.y = XMConvertToDegrees(
+						atan2f(temp.x, temp.z));// モデルの向き
+
+				}
+				/*g_player[i].rot.y = 315;
+				g_player[i].pos.x -= 50;
+				g_player[i].pos.z += 50;*/
+			}
+
+			if (g_nCnt5 >= 100)
 			{
 				ResetPos(i);
-			}*/
-			
+			}
 		}
-		
+
 	}
-	
-	
+		
 }
+
+//void Action4(bool af) 回転保存
+//{
+//	if (af)
+//	{
+//		for (int i = 0; i < PLAYER_MAX; i++)
+//		{
+//			
+//			g_nCnt5++;
+//			
+//			if (g_nCnt5 >= 1 && g_nCnt5 <= 100)
+//			{
+//				
+//				if (g_nCnt5 <= 19 && g_nCnt5 >= 10)
+//				{
+//					g_player[i].pos.z += 100;
+//				}
+//				if (g_nCnt5 <= 24 && g_nCnt5 >= 15)
+//				{
+//					
+//				}
+//				if (g_nCnt5 <= 54 && g_nCnt5 >= 25)
+//				{
+//					g_player[i].rot.y = 0.0f;
+//					g_player[i].rot.x -= 18.0f;
+//					g_player[i].pos.z -= 4;
+//					g_player[i].pos.y += 1;
+//				}
+//				if (g_nCnt5 <= 84 && g_nCnt5 >= 55)
+//				{
+//					//g_player[i].rot.y = 0.0f;
+//					g_player[i].rot.x -= 18.0f;
+//					g_player[i].pos.z -= 4;
+//					g_player[i].pos.y -= 1;
+//				}
+//				if (g_nCnt5 <= 110 && g_nCnt5 >= 90)
+//				{
+//
+//				}
+//
+//				
+//			}
+//			if (g_nCnt5 >= 200)
+//			{
+//				ResetPos(i);
+//			}
+//			
+//		}
+//		
+//	}
+//	
+//	
+//}
 
 void DestroyPlayer(int no)
 {
