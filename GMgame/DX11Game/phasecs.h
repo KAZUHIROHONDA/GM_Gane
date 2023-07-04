@@ -19,7 +19,6 @@ class Phase {
 private:
 
 	PhaseSet nowPhase;
-	int pCnt;
 
 public:
 	Phase();

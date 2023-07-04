@@ -19,13 +19,9 @@ void Phase::ChangePhase(PhaseSet state)
 
 void Phase::StartUpdate()
 {
-	pCnt--;
+	
 	UpdateJyankenStart();
 	UpdateStart();
-	if (pCnt < 0)
-	{
-		GetPhase()->ChangePhase(BATTLEPHASE);
-	}
 }
 
 void Phase::SetUpdate()
@@ -67,7 +63,6 @@ void Phase::BattleDraw()
 
 void Phase::Init()
 {
-	pCnt = 180;
 }
 
 void Phase::Uninit()

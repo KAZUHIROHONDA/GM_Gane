@@ -41,10 +41,13 @@ static LPCWSTR c_aFileNameJyankenMenu[NUM_JYANKEN_MENU] =
 	L"data/TEXTURE/pa.png",
 };
 
-static JYANKEN_MENU g_nJyankenMenu = JYANKEN_MENU_GU;	//	選択中のメニューNo
+static JYANKEN_MENU g_nJyankenMenu = JYANKEN_MENU_1;	//	選択中のメニューNo
 static int te[5] = {-1,-1,-1,-1,-1};
+static int selte[5] = { -1,-1,-1,-1,-1 };
 static int aite[5] = { -1,-1,-1,-1,-1 };
 static int result[4]; //勝ち数, 負け数, あいこ数, 連勝数
+static int Sette[20] = {1,1,1,1,1,2,2,2,2,2,0,0,0,0,0,1,2,0,1,2};//仮の手札
+static int Setaite[20] = { 1,1,1,1,1,1,1,1,1,1,1,1,2,0,2,0,2,0,2,0 };//仮の手札
 
 bool jadge = false;
 int z, i;
@@ -54,6 +57,12 @@ int f = 0;
 int Cnt, Cnt1 = 0;
 bool win = false;
 bool lose = false;
+int pCnt = 180;
+bool useflag1 = true;
+bool useflag2 = true;
+bool useflag3 = true;
+bool useflag4 = true;
+bool useflag5 = true;
 
 //OKボタン
 #define OK_TEXTURENAME	_T("data/texture/button.png")
@@ -108,17 +117,14 @@ HRESULT InitJyanken()
 			c_aFileNameJyankenMenu[nCntJyankenMenu],	// ファイルの名前
 			&g_pTextures[nCntJyankenMenu]);			// 読み込むメモリー
 	}
-	for (int f = 0; f < 5; f++)
-	{
-		aite[f] = rand() % 3;//相手
-	}
+
 
 	g_Position = XMFLOAT3(OK_POS_X, OK_POS_Y, 0.0f);
 	g_Alpha = 1.0f;
 	g_Scale = XMFLOAT2(1.0f, 1.0f);
 
 
-	g_nJyankenMenu = JYANKEN_MENU_GU;
+	g_nJyankenMenu = JYANKEN_MENU_1;
 	g_fCurve = 0.0f;
 
 	return hr;
@@ -137,7 +143,16 @@ void UninitJyanken()
 
 void UpdateJyankenStart()
 {
-
+	pCnt--;
+	if (pCnt < 0)
+	{
+		for (int f = 0; f < 5; f++)
+		{
+			aite[f] = Setaite[rand() % 20];//相手
+			selte[f] = Sette[rand() % 20];
+		}
+		GetPhase()->ChangePhase(BATTLEPHASE);
+	}
 }
 
 void UpdateJyankenSet()
@@ -161,20 +176,30 @@ void UpdateJyankenSet()
 	XMFLOAT2 pos1 = XMFLOAT2(JYANKEN_MENU_POS_X, JYANKEN_MENU_POS_Y);
 	XMFLOAT2 pos2 = XMFLOAT2(JYANKEN_MENU_POS_X - 1 * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
 	XMFLOAT2 pos3 = XMFLOAT2(JYANKEN_MENU_POS_X - 2 * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
+	XMFLOAT2 pos4 = XMFLOAT2(JYANKEN_MENU_POS_X - 3 * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
+	XMFLOAT2 pos5 = XMFLOAT2(JYANKEN_MENU_POS_X - 4 * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
 	XMFLOAT2 radius1 = XMFLOAT2(JYANKEN_MENU_WIDTH / 2, JYANKEN_MENU_HEIGHT / 2);
 	XMFLOAT2 mpos2 = mousePos;
 	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
-	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2))
+	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2)&& useflag1 == true)
 	{
-		SetJyankenMenuGU();
+		SetJyankenMenu1();
 	}
-	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2))
+	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2) && useflag2 == true)
 	{
-		SetJyankenMenuTYOKI();
+		SetJyankenMenu2();
 	}
-	else if (CollisionBB(&pos3, &radius1, &mpos2, &radius2))
+	else if (CollisionBB(&pos3, &radius1, &mpos2, &radius2) && useflag3 == true)
 	{
-		SetJyankenMenuPA();
+		SetJyankenMenu3();
+	}
+	else if (CollisionBB(&pos4, &radius1, &mpos2, &radius2) && useflag4 == true)
+	{
+		SetJyankenMenu4();
+	}
+	else if (CollisionBB(&pos5, &radius1, &mpos2, &radius2) && useflag5 == true)
+	{
+		SetJyankenMenu5();
 	}
 
 	if (j >= 5)
@@ -201,26 +226,45 @@ void UpdateJyankenSet()
 
 	if (j < 5)
 	{
-		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0)|| GetMouseTrigger(0))
+		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0) || GetMouseTrigger(0))
 		{
 			//選択中のものにより分岐
 			JYANKEN_MENU menu = GetJyankenMenu();
 			switch (menu)
 			{
 				//グー
-			case JYANKEN_MENU_GU:
-				te[j] = 0;
+			case JYANKEN_MENU_1:
+
+				te[j] = selte[0];
 				j++;
+				useflag1 = false;
 				break;
 				//チョキ
-			case JYANKEN_MENU_TYOKI:
-				te[j] = 1;
+			case JYANKEN_MENU_2:
+
+				te[j] = selte[1];
 				j++;
+				useflag2 = false;
 				break;
 				//パー
-			case JYANKEN_MENU_PA:
-				te[j] = 2;
+			case JYANKEN_MENU_3:
+
+				te[j] = selte[2];
 				j++;
+				useflag3 = false;
+				break;
+			case JYANKEN_MENU_4:
+
+				te[j] = selte[3];
+				j++;
+				useflag4 = false;
+				break;
+				//チョキ
+			case JYANKEN_MENU_5:
+
+				te[j] = selte[4];
+				j++;
+				useflag5 = false;
 				break;
 			}
 		}
@@ -290,6 +334,13 @@ void UpdateJyankenBattle()
 		j = 0;
 		n = 0;
 		f = 0;
+
+		 useflag1 = true;
+		 useflag2 = true;
+		 useflag3 = true;
+		 useflag4 = true;
+		 useflag5 = true;
+
 		for (int r = 0; r < 4; r++)
 		{
 			result[r] = 0;
@@ -297,11 +348,11 @@ void UpdateJyankenBattle()
 		for (int p = 0; p < 5; p++)
 		{
 			te[p] = -1;
-			aite[p] = -1;
 		}
 		for (int f = 0; f < 5; f++)
 		{
-			aite[f] = rand() % 3;//相手
+			aite[f] = Setaite[rand() % 20];//相手
+			selte[f] = Sette[rand() % 20];
 		}
 		win = false;
 		lose = false;
@@ -323,7 +374,7 @@ void DrawJyankenSet()
 
 	//ポーズメニューの表示
 	SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);
-	for (int nCntJyankenMenu = 0; nCntJyankenMenu < NUM_JYANKEN_MENU; ++nCntJyankenMenu) {
+	for (int nCntJyankenMenu = 0; nCntJyankenMenu < 5; ++nCntJyankenMenu) {
 		SetPolygonPos(JYANKEN_MENU_POS_X - nCntJyankenMenu * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
 
 
@@ -338,7 +389,7 @@ void DrawJyankenSet()
 		}
 
 		// テクスチャの設定
-		SetPolygonTexture(g_pTextures[nCntJyankenMenu]);
+		SetPolygonTexture(g_pTextures[selte[nCntJyankenMenu]]);
 		// ポリゴンの描画
 		DrawPolygon(pDeviceContext);
 	}
@@ -362,7 +413,7 @@ void DrawJyankenSet()
 			//ポリゴン情報設定
 			SetPolygonPos(300 + 50 * k, -300);			//座標
 			SetPolygonSize(JYANKEN_MENU_WIDTH/2, JYANKEN_MENU_HEIGHT/2);		//大きさ
-			SetPolygonTexture(g_pTexture1);		//テクスチャ
+			SetPolygonTexture(g_pTextures[aite[k]]);		//テクスチャ
 
 			//ポリゴンの描画処理
 			DrawPolygon(GetDeviceContext());
@@ -490,23 +541,33 @@ JYANKEN_MENU GetJyankenMenu(void)
 //=============================================================================
 void ResetJyankenMenu(void)
 {
-	g_nJyankenMenu = JYANKEN_MENU_GU;
+	g_nJyankenMenu = JYANKEN_MENU_1;
 	SetJyankenMenu();
 }
 
-void SetJyankenMenuGU(void)
+void SetJyankenMenu1(void)
 {
-	g_nJyankenMenu = JYANKEN_MENU_GU;
+	g_nJyankenMenu = JYANKEN_MENU_1;
 	SetJyankenMenu();
 }
-void SetJyankenMenuTYOKI(void)
+void SetJyankenMenu2(void)
 {
-	g_nJyankenMenu = JYANKEN_MENU_TYOKI;
+	g_nJyankenMenu = JYANKEN_MENU_2;
 	SetJyankenMenu();
 }
-void SetJyankenMenuPA(void)
+void SetJyankenMenu3(void)
 {
-	g_nJyankenMenu = JYANKEN_MENU_PA;
+	g_nJyankenMenu = JYANKEN_MENU_3;
+	SetJyankenMenu();
+}
+void SetJyankenMenu4(void)
+{
+	g_nJyankenMenu = JYANKEN_MENU_4;
+	SetJyankenMenu();
+}
+void SetJyankenMenu5(void)
+{
+	g_nJyankenMenu = JYANKEN_MENU_5;
 	SetJyankenMenu();
 }
 
