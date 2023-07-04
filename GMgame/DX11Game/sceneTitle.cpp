@@ -43,6 +43,8 @@ HRESULT InitSceneTitle()
 	//タイトル
 	InitTitle();
 
+	InitEnter();
+
 	//ステージの初期化
 	SetStageNo(0);
 
@@ -61,6 +63,8 @@ void UninitSceneTitle()
 	//タイトル
 	UninitTitle();
 
+	UninitEnter();
+
 }
 
 //=============================================================================
@@ -75,6 +79,7 @@ void UpdateSceneTitle()
 	//タイトル
 	UpdateTitle();
 
+	UpdateEnter();
 
 	if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0)|| GetMouseTrigger(0))
 	{
@@ -104,6 +109,6 @@ void DrawSceneTitle()
 
 	//タイトル
 	DrawTitle();
-
+	DrawEnter();
 	
 }

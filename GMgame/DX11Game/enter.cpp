@@ -14,12 +14,12 @@
 // マクロ定義
 //*****************************************************************************
 // テクスチャファイル名
-#define ENTER_TEXTURENAME	_T("data/texture/enter.PNG")
+#define ENTER_TEXTURENAME	_T("data/texture/select.png")
 
 #define ENTER_POS_X	(0)					//初期位置X
-#define ENTER_POS_Y	(-100)					//初期位置Y
-#define ENTER_SIZE_X	(200)		//横幅
-#define ENTER_SIZE_Y	(30)		//縦幅
+#define ENTER_POS_Y	(-200)					//初期位置Y
+#define ENTER_SIZE_X	(360)		//横幅
+#define ENTER_SIZE_Y	(80)		//縦幅
 
 #define ENTER_FRAME_X (1)			//アニメの横の数
 #define ENTER_FRAME_Y (1)			//アニメの縦の数
@@ -48,7 +48,7 @@ static float	g_Alpha;   //透過
 
 static int g_nAnimNo;		//表示情報No
 static int g_nCount;		//残りフレーム数
-
+static int g_nCnt;
 
 //=============================================================================
 // エンター表示の初期化処理
@@ -89,7 +89,17 @@ void UninitEnter()
 //=============================================================================
 void UpdateEnter()
 {
+	g_nCnt++;
 
+	if (g_Alpha > 0)
+	{
+		g_Alpha -= 0.01;
+	}
+	else if (g_Alpha < 0)
+	{
+		g_Alpha = 1.0;
+	}
+	
 
 	// アニメーション情報の更新
 	g_nCount--;		//残りカウントを減らす

@@ -3,6 +3,7 @@
 #include "player.h"
 #include "sceneGame.h"
 #include "AssimpModel.h"
+#include "VS.h"
 
 
 Phase::Phase()
@@ -23,6 +24,7 @@ void Phase::StartUpdate()
 	
 	UpdateJyankenStart();
 	UpdateStart();
+	UpdateVS();
 	// ƒJƒƒ‰XV
 	GetCamera()->Update();
 }
@@ -54,6 +56,7 @@ void Phase::BattleUpdate()
 void Phase::StartDraw()
 {
 	DrawJyankenStart();
+	DrawVS();
 }
 
 void Phase::SetDraw()
@@ -72,10 +75,12 @@ void Phase::BattleDraw()
 
 void Phase::Init()
 {
+	InitVS();
 }
 
 void Phase::Uninit()
 {
+	UninitVS();
 }
 
 void Phase::Update()

@@ -206,6 +206,7 @@
     <ClCompile Include="stage01.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="VS.cpp" />
     <ClCompile Include="wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +259,7 @@
     <ClInclude Include="stage.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="VS.h" />
     <ClInclude Include="wall.h" />
   </ItemGroup>
   <ItemGroup>

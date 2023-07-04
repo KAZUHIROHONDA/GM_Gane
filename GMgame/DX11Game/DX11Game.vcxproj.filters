@@ -58,6 +58,7 @@
     <ClCompile Include="Egauge.cpp" />
     <ClCompile Include="phasecs.cpp" />
     <ClCompile Include="collision.cpp" />
+    <ClCompile Include="VS.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssimpModel.h" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Egauge.h" />
     <ClInclude Include="phasecs.h" />
     <ClInclude Include="collision.h" />
+    <ClInclude Include="VS.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX11Game.rc" />

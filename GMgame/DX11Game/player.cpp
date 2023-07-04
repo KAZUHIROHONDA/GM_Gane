@@ -481,6 +481,7 @@ void UpdatePlayer(void)
 	}
 }
 
+
 void UpdateStart(void)
 {
 	// プレイヤーの動きを記述するならここ
@@ -871,12 +872,12 @@ void Action4(bool af)
 			{
 				XMFLOAT3 pPos = GetPlayerPos(0);
 				// 毎フレームプレイヤーを認識して追いかける
-				g_enemy[i].targetPos = pPos;
+				//g_enemy[i].targetPos = pPos;
 				// 移動量の計算
 				XMFLOAT3 temp;	// 向き
-				temp.x = pPos.x - g_enemy[i].pos.x;
-				temp.y = pPos.y - g_enemy[i].pos.y;
-				temp.z = pPos.z - g_enemy[i].pos.z;
+				//temp.x = pPos.x - g_enemy[i].pos.x;
+				//temp.y = pPos.y - g_enemy[i].pos.y;
+				//temp.z = pPos.z - g_enemy[i].pos.z;
 				float len = sqrtf(temp.x*temp.x + temp.z*temp.z);
 
 
@@ -889,9 +890,9 @@ void Action4(bool af)
 					
 					temp.x *= VALUE_MOVE;
 					temp.z *= VALUE_MOVE;
-					g_enemy[i].vel = XMFLOAT3(temp.x, 0.0f, temp.z);
-					g_enemy[i].rot.y = XMConvertToDegrees(
-						atan2f(temp.x, temp.z));// モデルの向き
+					//g_enemy[i].vel = XMFLOAT3(temp.x, 0.0f, temp.z);
+					//g_enemy[i].rot.y = XMConvertToDegrees(
+					//	atan2f(temp.x, temp.z));// モデルの向き
 
 				}
 				/*g_player[i].rot.y = 315;
@@ -977,6 +978,14 @@ void DestroyPlayer(int no)
 	{
 		StartFade(SCENE_GAMEOVER);
 	}
-
 	
+}
+
+void CameraDEBUG()
+{
+	g_nCameraType = E_CAMERA_VIEW_CAMERA_DEBUG;
+}
+void CameraFIXED()
+{
+	g_nCameraType = E_CAMERA_VIEW_FIXED;
 }

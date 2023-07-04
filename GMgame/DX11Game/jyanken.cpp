@@ -63,6 +63,8 @@ bool useflag2 = true;
 bool useflag3 = true;
 bool useflag4 = true;
 bool useflag5 = true;
+float  size = 100.0f;
+int nPhase = 1;
 
 //OKボタン
 #define OK_TEXTURENAME	_T("data/texture/button.png")
@@ -150,6 +152,7 @@ void UpdateJyankenStart()
 		{
 			aite[f] = Setaite[rand() % 20];//相手
 			selte[f] = Sette[rand() % 20];
+			CameraDEBUG();
 		}
 		GetPhase()->ChangePhase(BATTLEPHASE);
 	}
@@ -159,20 +162,30 @@ void UpdateJyankenSet()
 {
 
 	// 上下キーで各項目間の移動
-	if (GetKeyRepeat(VK_D) || GetKeyRepeat(VK_RIGHT)) {
-		g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + NUM_JYANKEN_MENU - 1) % NUM_JYANKEN_MENU);
-		SetJyankenMenu();
-	}
-	else if (GetKeyRepeat(VK_A) || GetKeyRepeat(VK_LEFT)) {
-		g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + 1) % NUM_JYANKEN_MENU);
-		SetJyankenMenu();
-	}
+	//if (GetKeyRepeat(VK_D) || GetKeyRepeat(VK_RIGHT)) {
+	//	g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + NUM_JYANKEN_MENU - 1) % NUM_JYANKEN_MENU);
+	//	SetJyankenMenu();
+	//}
+	//else if (GetKeyRepeat(VK_A) || GetKeyRepeat(VK_LEFT)) {
+	//	g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + 1) % NUM_JYANKEN_MENU);
+	//	SetJyankenMenu();
+	//}
 
-	POINT temp = (*GetMousePosition());
-	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
+	switch (nPhase)
+	{
+	case 1:	size += 0.1f;	//右へ
+		if (size > 120.0f) nPhase = -1;
+		break;
+
+	case -1:size -= 0.1f;				//左へ
+		if (size < 110) nPhase = +1;
+		break;
+	}
 
 
 	//マウス
+	POINT temp = (*GetMousePosition());
+	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
 	XMFLOAT2 pos1 = XMFLOAT2(JYANKEN_MENU_POS_X, JYANKEN_MENU_POS_Y);
 	XMFLOAT2 pos2 = XMFLOAT2(JYANKEN_MENU_POS_X - 1 * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
 	XMFLOAT2 pos3 = XMFLOAT2(JYANKEN_MENU_POS_X - 2 * JYANKEN_MENU_INTERVAL, JYANKEN_MENU_POS_Y);
@@ -212,6 +225,7 @@ void UpdateJyankenSet()
 			{
 				GetPhase()->ChangePhase(JUDGEPHASE);
 				Cntadd();
+				CameraFIXED();
 			}
 		}
 	}
@@ -224,6 +238,7 @@ void UpdateJyankenSet()
 
 	g_fCol = cosf(g_fCurve) * 0.2f + 0.8f;
 
+	//五個になるまで選べる
 	if (j < 5)
 	{
 		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0) || GetMouseTrigger(0))
@@ -238,6 +253,23 @@ void UpdateJyankenSet()
 				te[j] = selte[0];
 				j++;
 				useflag1 = false;
+				if (useflag2 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_2;
+				}
+				else if (useflag3 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_3;
+				}
+				else if (useflag4 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_4;
+				}
+				else if (useflag5 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_5;
+				}
+				SetJyankenMenu();
 				break;
 				//チョキ
 			case JYANKEN_MENU_2:
@@ -245,6 +277,23 @@ void UpdateJyankenSet()
 				te[j] = selte[1];
 				j++;
 				useflag2 = false;
+				if (useflag1 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_1;
+				}
+				else if (useflag3 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_3;
+				}
+				else if (useflag4 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_4;
+				}
+				else if (useflag5 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_5;
+				}
+				SetJyankenMenu();
 				break;
 				//パー
 			case JYANKEN_MENU_3:
@@ -252,12 +301,46 @@ void UpdateJyankenSet()
 				te[j] = selte[2];
 				j++;
 				useflag3 = false;
+				if (useflag2 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_2;
+				}
+				else if (useflag1 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_1;
+				}
+				else if (useflag4 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_4;
+				}
+				else if (useflag5 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_5;
+				}
+				SetJyankenMenu();
 				break;
 			case JYANKEN_MENU_4:
 
 				te[j] = selte[3];
 				j++;
 				useflag4 = false;
+				if (useflag2 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_2;
+				}
+				else if (useflag3 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_3;
+				}
+				else if (useflag1 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_1;
+				}
+				else if (useflag5 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_5;
+				}
+				SetJyankenMenu();
 				break;
 				//チョキ
 			case JYANKEN_MENU_5:
@@ -265,6 +348,23 @@ void UpdateJyankenSet()
 				te[j] = selte[4];
 				j++;
 				useflag5 = false;
+				if (useflag2 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_2;
+				}
+				else if (useflag3 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_3;
+				}
+				else if (useflag4 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_4;
+				}
+				else if (useflag1 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_1;
+				}
+				SetJyankenMenu();
 				break;
 			}
 		}
@@ -381,9 +481,32 @@ void DrawJyankenSet()
 		//選択されているメニューを目立たせる
 		if (nCntJyankenMenu == g_nJyankenMenu)
 		{
-			SetPolygonColor(1.0f, 1.0f, 1.0f);
+			SetPolygonSize(size, size);		//大きさ
 		}
 		else
+		{
+			SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);
+		}
+
+		SetPolygonColor(1.0f, 1.0f, 1.0f);
+
+		if (nCntJyankenMenu == 0 && useflag1 == false)
+		{
+			SetPolygonColor(0.3f, 0.3f, 0.3f);
+		}
+		if (nCntJyankenMenu == 1 && useflag2 == false)
+		{
+			SetPolygonColor(0.3f, 0.3f, 0.3f);
+		}
+		if (nCntJyankenMenu == 2 && useflag3 == false)
+		{
+			SetPolygonColor(0.3f, 0.3f, 0.3f);
+		}
+		if (nCntJyankenMenu == 3 && useflag4 == false)
+		{
+			SetPolygonColor(0.3f, 0.3f, 0.3f);
+		}
+		if (nCntJyankenMenu == 4 && useflag5 == false)
 		{
 			SetPolygonColor(0.3f, 0.3f, 0.3f);
 		}
@@ -395,6 +518,7 @@ void DrawJyankenSet()
 	}
 
 	SetPolygonColor(1.0f, 1.0f, 1.0f);
+	SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);
 
 	for (int k = 0; k < 5;k++)
 	{

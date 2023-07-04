@@ -24,8 +24,8 @@ private:
 	XMFLOAT3 m_vAngle;		// カメラの角度
 	float m_fLengthInterval;// カメラの視点と注視点の距離
 
-	int     aCnt = 180;
-	int     no = 0;
+	int     aCnt = 60;
+	int     no = 6;
 	int		g_nCnt1;
 	int		g_nCnt2;
 	int		g_nCnt3;

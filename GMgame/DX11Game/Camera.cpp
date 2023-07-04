@@ -195,8 +195,8 @@ void CCamera::UpdateSet()
 
 	if (aCnt <= 0)
 	{
-		no = rand() % 6;
-		aCnt = 180;
+		no = (rand()+5) % 6;
+		aCnt = 60;
 	}
 
 	switch (no)
@@ -207,6 +207,7 @@ void CCamera::UpdateSet()
 	case 3: {g_nCnt6 = 0;g_move6 = true; }break;
 	case 4: {g_nCnt1 = 0;g_move1 = true; }break;
 	case 5: {g_nCnt2 = 0;g_move2 = true; }break;
+	case 6: {}break;
 	}
 		if (GetKeyTrigger(VK_I))
 		{
