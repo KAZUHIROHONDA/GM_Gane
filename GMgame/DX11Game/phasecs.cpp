@@ -2,6 +2,7 @@
 #include "jyanken.h"
 #include "player.h"
 #include "sceneGame.h"
+#include "AssimpModel.h"
 
 
 Phase::Phase()
@@ -22,24 +23,32 @@ void Phase::StartUpdate()
 	
 	UpdateJyankenStart();
 	UpdateStart();
+	// カメラ更新
+	GetCamera()->Update();
 }
 
 void Phase::SetUpdate()
 {
 	UpdateJyankenSet();
 	UpdatePlayer();
+	// カメラ更新
+	GetCamera()->UpdateSet();
 }
 
 void Phase::JudgeUpdate()
 {
 	UpdateJyankenJadge();
 	UpdatePlayer();
+	// カメラ更新
+	GetCamera()->Update();
 }
 
 void Phase::BattleUpdate()
 {
 	UpdateJyankenBattle();
 	UpdatePlayer();
+	// カメラ更新
+	GetCamera()->Update();
 }
 
 void Phase::StartDraw()

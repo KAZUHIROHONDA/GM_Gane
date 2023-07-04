@@ -124,6 +124,7 @@ void CCamera::Update()
 
 	}*/
 
+
 	//座標 += 速度
 	m_vPos.x += dx;
 	m_vPos.y += dy;
@@ -184,6 +185,105 @@ void CCamera::Update()
 	// ビュー/プロジェクション マトリックス更新
 	UpdateMatrix();
 }
+
+void CCamera::UpdateSet()
+{
+	aCnt--;
+
+	//カメラ移動
+	float dx = 0.0f, dy = 0.0f, dz = 0.0f;
+
+	if (aCnt <= 0)
+	{
+		no = rand() % 6;
+		aCnt = 180;
+	}
+
+	switch (no)
+	{
+	case 0: {g_nCnt3 = 0; g_move3 = true; }break;
+	case 1: {g_nCnt4 = 0; g_move4 = true; }break;
+	case 2: {g_nCnt5 = 0;g_move5 = true; }break;
+	case 3: {g_nCnt6 = 0;g_move6 = true; }break;
+	case 4: {g_nCnt1 = 0;g_move1 = true; }break;
+	case 5: {g_nCnt2 = 0;g_move2 = true; }break;
+	}
+		if (GetKeyTrigger(VK_I))
+		{
+			g_nCnt3 = 0;
+			g_move3 = true;
+		}
+		CCamera::CameraMove3(g_move3);
+
+		if (GetKeyTrigger(VK_K))
+		{
+			g_nCnt4 = 0;
+			g_move4 = true;
+		}
+		CCamera::CameraMove4(g_move4);
+
+		if (GetKeyTrigger(VK_L))
+		{
+			//右
+			g_nCnt5 = 0;
+			g_move5 = true;
+		}
+		if (GetKeyTrigger(VK_J))
+		{
+			//左
+			g_nCnt6 = 0;
+			g_move6 = true;
+		}
+		if (GetKeyPress(VK_Y))
+		{
+			dy += CAMERA_MOVE_SPEED;
+		}
+		if (GetKeyPress(VK_N))
+		{
+			dy -= CAMERA_MOVE_SPEED;
+		}
+		//旋回
+		if (GetKeyTrigger(VK_U))
+		{
+			g_nCnt1 = 0;
+			g_move1 = true;
+		}
+		CCamera::CameraMove1(g_move1);
+
+		if (GetKeyTrigger(VK_O))
+		{
+			g_nCnt2 = 0;
+			g_move2 = true;
+		}
+		CCamera::CameraMove2(g_move2);
+	
+
+	//座標 += 速度
+	m_vPos.x += dx;
+	m_vPos.y += dy;
+	m_vPos.z += dz;
+
+	//注視点移動
+	dx = dy = dz = 0.0f;
+
+
+	m_vTarget.x += dx;
+	m_vTarget.y += dy;
+	m_vTarget.z += dz;
+
+	//リセット
+	if (GetKeyTrigger(VK_SPACE))
+	{
+		m_vPos = XMFLOAT3(POS_X_CAM, POS_Y_CAM, POS_Z_CAM);
+		m_vTarget = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		m_vAngle = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	}
+
+
+	// ビュー/プロジェクション マトリックス更新
+	UpdateMatrix();
+}
+
 
 // ビュー/プロジェクション マトリックス更新
 void CCamera::UpdateMatrix()
@@ -248,7 +348,7 @@ CCamera * GetCamera()
 
 void CCamera::CameraMove1(bool af)
 {
-	if (af)
+	if (af == true)
 	{
 		for (int i = 0; i < CAMERA_MAX; i++)
 		{
@@ -271,7 +371,7 @@ void CCamera::CameraMove1(bool af)
 
 void CCamera::CameraMove2(bool af)
 {
-	if (af)
+	if (af == true)
 	{
 		for (int i = 0; i < CAMERA_MAX; i++)
 		{
@@ -297,7 +397,7 @@ void CCamera::CameraMove2(bool af)
 void CCamera::CameraMove3(bool af)
 {
 
-	if (af)
+	if (af == true)
 	{
 		for (int i = 0; i < CAMERA_MAX; i++)
 		{
@@ -315,7 +415,7 @@ void CCamera::CameraMove3(bool af)
 
 void CCamera::CameraMove4(bool af)
 {
-	if (af)
+	if (af == true)
 	{
 		for (int i = 0; i < CAMERA_MAX; i++)
 		{
@@ -333,7 +433,7 @@ void CCamera::CameraMove4(bool af)
 
 void CCamera::CameraMove5(bool af)
 {
-	if (af)
+	if (af == true)
 	{
 		for (int i = 0; i < CAMERA_MAX; i++)
 		{
@@ -352,7 +452,7 @@ void CCamera::CameraMove5(bool af)
 
 void CCamera::CameraMove6(bool af)
 {
-	if (af)
+	if (af == true)
 	{
 		for (int i = 0; i < CAMERA_MAX; i++)
 		{
