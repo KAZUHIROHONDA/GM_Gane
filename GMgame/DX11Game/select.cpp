@@ -11,6 +11,7 @@
 #include "Texture.h"// テクスチャ使用
 #include "input.h"
 #include "sound.h"
+#include "collision.h"
 
 // マクロ定義
 #define	NUM_SELECT_MENU		(3)			// ポーズメニュー数
@@ -115,6 +116,28 @@ void UpdateSelect( void )
 			}
 		}
 	}
+
+	//マウス
+	POINT temp = (*GetMousePosition());
+	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
+	XMFLOAT2 pos1 = XMFLOAT2(SELECT_MENU_POS_X, SELECT_MENU_POS_Y);
+	XMFLOAT2 pos2 = XMFLOAT2(SELECT_MENU_POS_X, SELECT_MENU_POS_Y - 1 * SELECT_MENU_INTERVAL);
+	XMFLOAT2 pos3 = XMFLOAT2(SELECT_MENU_POS_X, SELECT_MENU_POS_Y - 2 * SELECT_MENU_INTERVAL);
+	XMFLOAT2 radius1 = XMFLOAT2(SELECT_MENU_WIDTH / 2, SELECT_MENU_HEIGHT / 2);
+	XMFLOAT2 mpos2 = mousePos;
+	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
+	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2))
+	{
+		ResetSelectMenu();
+	}
+	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2))
+	{
+		ResetSelectMenu1();
+	}
+	else if (CollisionBB(&pos3, &radius1, &mpos2, &radius2))
+	{
+		ResetSelectMenu2();
+	}
 	
 	// 上下キーで各項目間の移動
 	if (GetKeyRepeat( VK_W ) || GetKeyRepeat( VK_UP )) {
@@ -192,3 +215,14 @@ void ResetSelectMenu( void )
 	g_nSelectMenu = SELECT_MENU_CONTINUE;
 	SetSelectMenu();
 }
+void ResetSelectMenu1(void)
+{
+	g_nSelectMenu = SELECT_MENU_RETRY;
+	SetSelectMenu();
+}
+void ResetSelectMenu2(void)
+{
+	g_nSelectMenu = SELECT_MENU_QUIT;
+	SetSelectMenu();
+}
+

@@ -13,7 +13,7 @@
 #include "fade.h"
 #include "sceneGameover.h"
 #include "sceneSelect.h"
-#include"select.h"
+#include "select.h"
 #include "player.h"
 
 //*****************************************************************************
@@ -105,7 +105,7 @@ void UpdateSceneClear()
 	E_FADE fadeState = GetFade();
 	if (fadeState == E_FADE_NONE)
 	{
-		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
+		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0)|| GetMouseTrigger(0))
 		{
 			//‘I‘ð’†‚Ì‚à‚Ì‚É‚æ‚è•ªŠò
 			SELECT_MENU menu = GetSelectMenu();

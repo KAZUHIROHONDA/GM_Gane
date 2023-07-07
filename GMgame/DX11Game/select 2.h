@@ -24,3 +24,4 @@ void DrawSelect2(void);
 void SetSelect2Menu( void );
 SELECT2_MENU GetSelect2Menu( void );
 void ResetSelect2Menu( void );
+void ResetSelect2Menu1(void);
