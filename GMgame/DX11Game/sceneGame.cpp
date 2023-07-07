@@ -288,7 +288,7 @@ void UpdateSceneGame()
 	}
 
 	//ポーズのオンオフ
-	if (GetKeyTrigger(VK_P)|| GetJoyTrigger(0,1))
+	if (GetKeyTrigger(VK_P)|| GetJoyTrigger(0,1)|| GetMouseTrigger(2))
 	{
 		//フェード中は反応しない用にする
 		E_FADE fadeState = GetFade();
@@ -312,7 +312,7 @@ void UpdateSceneGame()
 		E_FADE fadeState = GetFade();
 		if (fadeState == E_FADE_NONE)
 		{
-			if (GetKeyTrigger(VK_RETURN)|| GetJoyTrigger(0, 0))
+			if (GetKeyTrigger(VK_RETURN)|| GetJoyTrigger(0, 0)|| GetMouseTrigger(0))
 			{
 				//選択中のものにより分岐
 				PAUSE_MENU menu = GetPauseMenu();
@@ -370,11 +370,7 @@ void DrawSceneGame()
 	// Zバッファ無効
 	SetZBuffer(false);
 	SetBlendState(BS_ALPHABLEND);
-	//ポーズ画面
-	if (true == g_bPause)
-	{
-		DrawPause();
-	}
+
 
 	//光源処理無効
 	GetLight()->SetDisable();
@@ -403,6 +399,11 @@ void DrawSceneGame()
 	DrawPlayerhp();
 	DrawEnemyhp();
 	
+	//ポーズ画面
+	if (true == g_bPause)
+	{
+		DrawPause();
+	}
 }
 
 Phase* GetPhase()

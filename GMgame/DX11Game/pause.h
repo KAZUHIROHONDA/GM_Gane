@@ -25,3 +25,5 @@ void DrawPause(void);
 void SetPauseMenu( void );
 PAUSE_MENU GetPauseMenu( void );
 void ResetPauseMenu( void );
+void ResetPause1(void);
+void ResetPause2(void);

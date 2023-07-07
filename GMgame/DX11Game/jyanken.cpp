@@ -382,12 +382,14 @@ void UpdateJyankenJadge()
     if(Cnt < 0)
 	{
 		jadge = false;
-		Jyanken(n, result);
+		win = false;
+		lose = false;
 		n++;
 		Cnt = 35;
 	}
 	if (Cnt == 30)
 	{
+		Jyanken(n, result);
 		jadge = true;
 	}
 	
@@ -574,9 +576,15 @@ void DrawJyankenJadge()
 		{
 			//ポリゴン情報設定
 			SetPolygonPos(-100, 0);			//座標
-			SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
 			SetPolygonTexture(g_pTextures[te[n]]);		//テクスチャ
-
+			if (win == true)
+			{
+				SetPolygonSize(JYANKEN_MENU_WIDTH*2, JYANKEN_MENU_HEIGHT*2);		//大きさ
+			}
+			else
+			{
+				SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
+			}
 			//ポリゴンの描画処理
 			DrawPolygon(GetDeviceContext());
 		}
@@ -584,9 +592,15 @@ void DrawJyankenJadge()
 		{
 			//ポリゴン情報設定
 			SetPolygonPos(100, 0);			//座標
-			SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
 			SetPolygonTexture(g_pTextures[aite[n]]);		//テクスチャ
-
+			if (lose == true)
+			{
+				SetPolygonSize(JYANKEN_MENU_WIDTH * 2, JYANKEN_MENU_HEIGHT * 2);		//大きさ
+			}
+			else
+			{
+				SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);		//大きさ
+			}
 			//ポリゴンの描画処理
 			DrawPolygon(GetDeviceContext());
 		}
@@ -623,16 +637,17 @@ void DrawJyankenJadge()
 void Jyanken(int no, int *cnt)
 {
 
-	if (aite[no] == te[no])
-	{
-		cnt[2]++;	// あいこ
-		//z = z - 1;
-	}
-	else if ((te[no] == 0 && aite[no] == 1) || (te[no] == 1 && aite[no] == 2) || (te[no] == 2 && aite[no] == 0))
+
+	if ((te[no] == 0 && aite[no] == 1) || (te[no] == 1 && aite[no] == 2) || (te[no] == 2 && aite[no] == 0))
 	{
 		win = true;
 		cnt[0]++;	// 勝ち
 		cnt[3]++;	// 連勝
+	}
+	else if (aite[no] == te[no])
+	{
+		cnt[2]++;	// あいこ
+		//z = z - 1;
 	}
 	else
 	{
