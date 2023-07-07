@@ -10,6 +10,7 @@
 #include "polygon.h"	// ポリゴン使用
 #include "Texture.h"// テクスチャ使用
 #include "input.h"
+#include "collision.h"
 
 // マクロ定義
 #define	NUM_PAUSE_MENU		(3)			// ポーズメニュー数
@@ -34,9 +35,9 @@ static int	 nStopTime = 0;
 
 static LPCWSTR c_aFileNamePauseMenu[NUM_PAUSE_MENU] =
 {
-	L"data/TEXTURE/pause000.png",	// コンティニュー
-	L"data/TEXTURE/select001.png",	// リトライ
-	L"data/TEXTURE/select002.png",	// クイット
+	L"data/TEXTURE/pause0.png",	// コンティニュー
+	L"data/TEXTURE/pause1.png",	// リトライ
+	L"data/TEXTURE/pause2.png",	// クイット
 };
 
 static PAUSE_MENU g_nSelectMenu = PAUSE_MENU_CONTINUE;	//	選択中のメニューNo
@@ -113,6 +114,29 @@ void UpdatePause( void )
 		}
 	}
 
+	//マウス
+	POINT temp = (*GetMousePosition());
+	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
+	XMFLOAT2 pos1 = XMFLOAT2(PAUSE_MENU_POS_X, PAUSE_MENU_POS_Y);
+	XMFLOAT2 pos2 = XMFLOAT2(PAUSE_MENU_POS_X , PAUSE_MENU_POS_Y - 1 * PAUSE_MENU_INTERVAL);
+	XMFLOAT2 pos3 = XMFLOAT2(PAUSE_MENU_POS_X, PAUSE_MENU_POS_Y - 2 * PAUSE_MENU_INTERVAL);
+	XMFLOAT2 radius1 = XMFLOAT2(PAUSE_MENU_WIDTH / 2, PAUSE_MENU_HEIGHT / 2);
+	XMFLOAT2 mpos2 = mousePos;
+	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
+	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2))
+	{
+		ResetPauseMenu();
+	}
+	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2))
+	{
+		ResetPause1();
+	}
+	else if (CollisionBB(&pos3, &radius1, &mpos2, &radius2))
+	{
+		ResetPause2();
+	}
+
+
 	// 上下キーで各項目間の移動
 	if (GetKeyRepeat( VK_W ) || GetKeyRepeat( VK_UP )) {
 		g_nSelectMenu = (PAUSE_MENU)((g_nSelectMenu + NUM_PAUSE_MENU - 1) % NUM_PAUSE_MENU);
@@ -122,6 +146,8 @@ void UpdatePause( void )
 		SetPauseMenu();
 	}
 
+
+
 	// 枠の部分の色の変化(グラデーション)
 	g_fCurve += XM_PI * 0.01f;
 	if (g_fCurve > XM_PI) {
@@ -129,13 +155,29 @@ void UpdatePause( void )
 	}
 
 	g_fCol = cosf( g_fCurve ) * 0.2f + 0.8f;
+
+
 }
 
 void DrawPause( void )
 {
 	ID3D11DeviceContext* pDeviceContext = GetDeviceContext();
 
-	
+	// タイトル描画
+   //ポリゴン情報設定
+	SetPolygonPos(0,0);			//座標
+	SetPolygonSize(SCREEN_WIDTH, SCREEN_HEIGHT);		//大きさ
+	SetPolygonColor(1.0f, 1.0f, 1.0f);	//色(RGB)
+	SetPolygonAlpha(0.5f);				//α値(透明度)
+
+	SetPolygonUV(0.0f, 0.0f);			//0番のテクスチャ
+	SetPolygonFrameSize(1.0f, 1.0f);	//テクスチャ
+	SetPolygonTexture(NULL);		//テクスチャ
+
+	//ポリゴンの描画処理
+	DrawPolygon(GetDeviceContext());
+	SetPolygonAlpha(1.0f);				//α値(透明度)
+
 	//ポーズメニューの表示
 	SetPolygonSize( PAUSE_MENU_WIDTH, PAUSE_MENU_HEIGHT );
 	for (int nCntPauseMenu = 0; nCntPauseMenu < NUM_PAUSE_MENU; ++nCntPauseMenu) {
@@ -182,5 +224,16 @@ PAUSE_MENU GetPauseMenu( void )
 void ResetPauseMenu( void )
 {
 	g_nSelectMenu = PAUSE_MENU_CONTINUE;
+	SetPauseMenu();
+}
+
+void ResetPause1(void)
+{
+	g_nSelectMenu = PAUSE_MENU_RETRY;
+	SetPauseMenu();
+}
+void ResetPause2(void)
+{
+	g_nSelectMenu = PAUSE_MENU_QUIT;
 	SetPauseMenu();
 }
