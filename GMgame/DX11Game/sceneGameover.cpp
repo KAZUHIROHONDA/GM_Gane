@@ -14,13 +14,13 @@
 #include "fade.h"
 #include "gameover.h"
 #include "select 2.h"
-
+#include "player.h"
 
 
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define SAMPLE_TEXTURENAME	_T("data/texture/GO.jpg")
+#define SAMPLE_TEXTURENAME	_T("data/texture/GO1.jpg")
 
 
 #define SAMPLE_POS_X	(0)	// 初期位置X
@@ -57,6 +57,15 @@ HRESULT InitSceneGameover()
 		MessageBox(hWnd, _T("背景初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
 		return hr;
 	}
+
+	//プレイヤーの初期化処理
+	hr = InitPlayer();
+	if (FAILED(hr))
+	{
+		MessageBox(hWnd, _T("プレイヤー初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
+		return hr;
+	}
+
 	//serectの初期化処理
 	hr = InitSelect2();
 	if (FAILED(hr))
@@ -78,8 +87,11 @@ void UninitSceneGameover()
 	SAFE_RELEASE(g_pTexture);
 	//背景の終了処理
 	UninitBg();
+	//プレイヤーの終了処理
+	UninitPlayer();
 	//背景の終了処理
 	UninitSelect2();
+
 }
 
 //=============================================================================
@@ -90,6 +102,8 @@ void UpdateSceneGameover()
 	//ゲームオーバーテクスチャ
 	UpdateGameover();
 	UpdateSelect2();
+	//プレイヤー
+	UpdatePlayer();
 
 	E_FADE fadeState = GetFade();
 	if (fadeState == E_FADE_NONE)
@@ -131,14 +145,17 @@ void DrawSceneGameover()
 	SetPolygonFrameSize(1.0f, 1.0f);	// テクスチャの横幅,縦幅
 	SetPolygonTexture(g_pTexture);		//
 
-
+	
 	 //ポリゴンの描画処理
 	DrawPolygon(GetDeviceContext());
-	// Zバッファ有効
-	SetZBuffer(true);
-
 	//背景の描画処理
 	DrawBg();
+	// Zバッファ有効
+	SetZBuffer(true);
+	
+	//プレイヤー
+	DrawPlayer();
+
 
 	// Zバッファ無効
 	SetZBuffer(false);
