@@ -18,6 +18,7 @@
 #include "sceneSetumei.h"
 #include "sceneSelect.h"
 #include "sound.h"
+#include "sceneChimera.h"
 
 
 //-------- ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒŠƒ“ƒN
@@ -433,6 +434,7 @@ HRESULT Init(HWND hWnd, BOOL bWindow)
 	case(SCENE_CLEAR):InitSceneClear(); break;
 	case(SCENE_SETUMEI):InitSceneSetumei(); break;
 	case(SCENE_SELECT):InitSceneSelect(); break;
+	case(SCENE_CHIMERA):InitSceneChimera(); break;
 	default:break;
 	}
 
@@ -465,6 +467,7 @@ void Uninit(void)
 	case(SCENE_CLEAR):UninitSceneClear(); break;
 	case(SCENE_SETUMEI):UninitSceneSetumei(); break;
 	case(SCENE_SELECT):UninitSceneSelect(); break;
+	case(SCENE_CHIMERA):UninitSceneChimera(); break;
 	default:break;
 	}	
 
@@ -550,6 +553,7 @@ void Update(void)
 	case(SCENE_CLEAR):UpdateSceneClear(); break;
 	case(SCENE_SETUMEI):UpdateSceneSetumei(); break;
 	case(SCENE_SELECT):UpdateSceneSelect(); break;
+	case(SCENE_CHIMERA):UpdateSceneChimera(); break;
 	default:break;
 	}
 
@@ -583,6 +587,7 @@ void Draw(void)
 	case(SCENE_CLEAR):DrawSceneClear(); break;
 	case(SCENE_SETUMEI):DrawSceneSetumei(); break;
 	case(SCENE_SELECT):DrawSceneSelect(); break;
+	case(SCENE_CHIMERA):DrawSceneChimera(); break;
 	default:break;
 	}
 
@@ -671,6 +676,8 @@ void StartSceneChange(E_TYPE_SCENE next)
 		break;
 	case SCENE_SELECT:UninitSceneSelect();
 		break;
+	case SCENE_CHIMERA:UninitSceneChimera();
+		break;
 	default:
 		break;
 	}
@@ -690,6 +697,8 @@ void StartSceneChange(E_TYPE_SCENE next)
 	case SCENE_SETUMEI:InitSceneSetumei();
 		break;
 	case SCENE_SELECT:InitSceneSelect();
+		break;
+	case SCENE_CHIMERA:InitSceneChimera();
 		break;
 	default:
 		break;
