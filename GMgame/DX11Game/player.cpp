@@ -50,6 +50,9 @@ typedef struct _tPlayer
 
 	int             nHP;
 
+	XMFLOAT3	basePos;	//基本位置
+	XMFLOAT3	targetPos;	//目標位置
+
 	int				bCnt;			//弾の数
 	int				nGauge;			//パワーゲージ
 	int				nStopTime;		//操作不能時間
@@ -868,39 +871,41 @@ void Action4(bool af)
 								
 
 			}
-			if (g_nCnt5 >= 21 && g_nCnt5 <= 25)
+			if (g_nCnt5 >= 21 && g_nCnt5 <= 90)
 			{
-				XMFLOAT3 pPos = GetPlayerPos(0);
+				XMFLOAT3 pPos = GetEnemyPos(0);
 				// 毎フレームプレイヤーを認識して追いかける
-				//g_enemy[i].targetPos = pPos;
+				//g_player[i].targetPos = pPos;
 				// 移動量の計算
 				XMFLOAT3 temp;	// 向き
-				//temp.x = pPos.x - g_enemy[i].pos.x;
-				//temp.y = pPos.y - g_enemy[i].pos.y;
-				//temp.z = pPos.z - g_enemy[i].pos.z;
+				temp.x = pPos.x - g_player[i].pos.x;
+				temp.y = pPos.y - g_player[i].pos.y;
+				temp.z = pPos.z - g_player[i].pos.z;
 				float len = sqrtf(temp.x*temp.x + temp.z*temp.z);
-
-
-
-				if (len > VALUE_MOVE)
-				{	// 一定距離以上なら移動
+				if ( g_nCnt5 >= 21 && g_nCnt5 <= 90  )
+				{	
 					temp.x /= len;
 					temp.z /= len;	// 長さが１の向きだけの情報になる
 
-					
-					temp.x *= VALUE_MOVE;
-					temp.z *= VALUE_MOVE;
-					//g_enemy[i].vel = XMFLOAT3(temp.x, 0.0f, temp.z);
-					//g_enemy[i].rot.y = XMConvertToDegrees(
-					//	atan2f(temp.x, temp.z));// モデルの向き
+					temp.x *= VALUE_MOVE*4;
+					temp.z *= VALUE_MOVE*4;
+					g_player[i].vel = XMFLOAT3(temp.x, 0.0f, temp.z);
+					g_player[i].rot.y = XMConvertToDegrees(
+						atan2f(temp.x, temp.z));// モデルの向き
 
+					/*g_player[i].pos.z = rand();
+					g_player[i].pos.x = rand();*/
+					
 				}
-				/*g_player[i].rot.y = 315;
-				g_player[i].pos.x -= 50;
-				g_player[i].pos.z += 50;*/
+				
+			}
+			
+
+			else {	// 一定距離以内は停止
+				g_player[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 			}
 
-			if (g_nCnt5 >= 100)
+			if (g_nCnt5 >= 200)
 			{
 				ResetPos(i);
 			}
