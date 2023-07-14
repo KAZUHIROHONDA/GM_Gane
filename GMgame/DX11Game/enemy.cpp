@@ -17,7 +17,7 @@
 //*****************************************************************************
 // ƒ}ƒNƒ’è‹`
 //*****************************************************************************
-#define MODEL_ENEMY		"data/model/wani2.obj"
+#define MODEL_ENEMY		"data/model/pandaAM.fbx"
 #define MODEL_ENEMY1	"data/model/wani1.obj"
 #define MODEL_ENEMY2	"data/model/wani3.obj"
 #define MODEL_ENEMY3	"data/model/wani4.obj"
@@ -90,6 +90,7 @@ HRESULT InitEnemy(void)
 		g_enemy[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
 		g_enemy[i].scl = XMFLOAT3(15.0f, 15.0f, 15.0f);
 		g_enemy[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+
 		//‰Šú‰»
 		g_enemy[i].nPhase = 0;
 		g_enemy[i].nState = 1;		//Å‰‚Í’Êí
@@ -109,7 +110,7 @@ HRESULT InitEnemy(void)
 		g_nECnt4 = 0;
 
 
-		//“ª
+		//“ª wani
 		g_enemyHD[i].pos = XMFLOAT3(0.0f, 0.0f, -3.0f);
 		g_enemyHD[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyHD[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
@@ -118,7 +119,16 @@ HRESULT InitEnemy(void)
 		g_enemyHD[i].nState = 1;	// puro‚Ø‚ç‚ÍÅ‰‚©‚ç“oê‚µ‚Ä‚¢‚é
 		g_enemyHD[i].nShadowIdx = -1;
 
-		//˜r
+		//panda
+		//g_enemyHD[i].pos = XMFLOAT3(0.0f, 0.0f, -1.0f);
+		//g_enemyHD[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		//g_enemyHD[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+		//g_enemyHD[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		//g_enemyHD[i].nPhase = 0;
+		//g_enemyHD[i].nState = 1;	// puro‚Ø‚ç‚ÍÅ‰‚©‚ç“oê‚µ‚Ä‚¢‚é
+		//g_enemyHD[i].nShadowIdx = -1;
+
+		////˜r-0.8f
 		g_enemyAM[i].pos = XMFLOAT3(0.0f, -0.8f, -1.0f);
 		g_enemyAM[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyAM[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
@@ -126,6 +136,15 @@ HRESULT InitEnemy(void)
 		g_enemyAM[i].nPhase = 0;
 		g_enemyAM[i].nState = 1;	// puro‚Ø‚ç‚ÍÅ‰‚©‚ç“oê‚µ‚Ä‚¢‚é
 		g_enemyAM[i].nShadowIdx = -1;
+
+		//˜r
+		//g_enemyAM[i].pos = XMFLOAT3(0.0f, -0.3f, -0.7f);
+		//g_enemyAM[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		//g_enemyAM[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+		//g_enemyAM[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		//g_enemyAM[i].nPhase = 0;
+		//g_enemyAM[i].nState = 1;	// puro‚Ø‚ç‚ÍÅ‰‚©‚ç“oê‚µ‚Ä‚¢‚é
+		//g_enemyAM[i].nShadowIdx = -1;
 
 		//‘«
 		g_enemyLG[i].pos = XMFLOAT3(0.0f, -0.8f, 0.0f);
@@ -135,6 +154,15 @@ HRESULT InitEnemy(void)
 		g_enemyLG[i].nPhase = 0;
 		g_enemyLG[i].nState = 1;	// puro‚Ø‚ç‚ÍÅ‰‚©‚ç“oê‚µ‚Ä‚¢‚é
 		g_enemyLG[i].nShadowIdx = -1;
+
+		////‘«
+		//g_enemyLG[i].pos = XMFLOAT3(0.0f, -0.3f, 0.5f);
+		//g_enemyLG[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		//g_enemyLG[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+		//g_enemyLG[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		//g_enemyLG[i].nPhase = 0;
+		//g_enemyLG[i].nState = 1;	// puro‚Ø‚ç‚ÍÅ‰‚©‚ç“oê‚µ‚Ä‚¢‚é
+		//g_enemyLG[i].nShadowIdx = -1;
 
 		
 
@@ -602,7 +630,7 @@ void EAction(bool af)
 			}
 			if (g_nECnt1 >= 150 && g_nECnt2 <= 250)
 			{
-				g_enemy[i].pos.z++;
+				g_enemy[i].pos.z--;
 				g_enemy[i].pos.y--;
 
 				g_enemy[i].rot.x = -45;
