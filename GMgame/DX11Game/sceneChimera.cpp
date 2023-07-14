@@ -12,12 +12,17 @@
 #include "collision.h"
 #include "fade.h"
 #include "chimeracs.h"
+#include "pchimera.h"
+#include "Light.h"
+#include "Camera.h"
+#include "partsmenu.h"
+
 
 
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define SAMPLE_TEXTURENAME	_T("data/texture/GO1.jpg")
+#define SAMPLE_TEXTURENAME	_T("data/texture/bg2.png")
 
 
 #define SAMPLE_POS_X	(0)	// 初期位置X
@@ -46,7 +51,27 @@ HRESULT InitSceneChimera()
 	//HRESULT hr = S_OK;
 	HWND hWnd = GetMainWnd();
 
-	
+
+	//プレイヤーの初期化処理
+	hr = InitPChimera();
+	if (FAILED(hr))
+	{
+		MessageBox(hWnd, _T("プレイヤー初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
+		return hr;
+	}
+
+	hr = InitParts();
+	if (FAILED(hr))
+	{
+		MessageBox(hWnd, _T("プレイヤー初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
+		return hr;
+	}
+
+	InitBg();
+
+	// カメラ更新
+	GetCamera()->Init();
+
 	player.Init();
 
 	return hr;
@@ -57,10 +82,12 @@ HRESULT InitSceneChimera()
 //=============================================================================
 void UninitSceneChimera()
 {
-	// テクスチャ開放
-	SAFE_RELEASE(g_pTexture);
-	//背景の終了処理
+	UninitParts();
+
+	UninitPChimera();
+
 	UninitBg();
+
 	player.Uninit();
 }
 
@@ -69,7 +96,14 @@ void UninitSceneChimera()
 //=============================================================================
 void UpdateSceneChimera()
 {
-	
+	// カメラ更新
+	GetCamera()->Update();
+
+	UpdatePChimera();
+
+
+	UpdateBg();
+
 	player.Update();
 	
 }
@@ -80,17 +114,41 @@ void UpdateSceneChimera()
 void DrawSceneChimera()
 {
 
-	//サンプル画像描画
-		SetPolygonPos(g_Position.x, g_Position.y);	// 座標
-	SetPolygonSize(SAMPLE_SIZE_X, SAMPLE_SIZE_Y);	// 大きさ
-	SetPolygonAngle(0.0f);				// 角度
-	SetPolygonColor(1.0f, 1.0f, 1.0f);	// 色(RGB)
-	SetPolygonAlpha(1.0f);				// α値(透明度)
+	//半透明オブジェクト(3Dの中でも後ろにかく)
+	SetZWrite(true);
 
-	SetPolygonUV(0.0f, 0.0f);			// 0番のテクスチャ座標
-	SetPolygonFrameSize(1.0f, 1.0f);	// テクスチャの横幅,縦幅
-	SetPolygonTexture(g_pTexture);		//
+	//背景
+	//DrawBg();
+
+	// Zバッファ有効
+	SetZBuffer(true);
+
+	//プレイヤー
+	DrawPChimera();
+
+	//光源処理無効
+	GetLight()->SetDisable();
+	
+	//光源処理有効
+	GetLight()->SetEnable();
+
+	// Zバッファ無効
+	SetZBuffer(false);
+	SetBlendState(BS_ALPHABLEND);
+
+
+	//光源処理無効
+	GetLight()->SetDisable();
+	//半透明オブジェクト(3Dの中でも後ろにかく)
+	//ビルボード弾びょうが
+	SetZWrite(false);
+	
+
+	//光源処理有効
+	GetLight()->SetEnable();
+
 
 	player.Draw();
+
 
 }

@@ -93,7 +93,7 @@ void UpdateSceneSelect()
 				break;
 				//ƒŠƒgƒ‰ƒC
 			case SELECT_STAGE_2:
-				StartFade(SCENE_TITLE);
+				StartFade(SCENE_CHIMERA);
 				break;
 			}
 		}

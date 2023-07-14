@@ -7,7 +7,6 @@
 #include "AssimpModel.h"
 #include "enemy.h"
 #include "main.h"
-
 #include "shadow.h"		//‰e‚ð‚Â‚¯‚é‚É‚Í“ü‚ê‚é
 #include "flame.h"
 #include "bullet.h"

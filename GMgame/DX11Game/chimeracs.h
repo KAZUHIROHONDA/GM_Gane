@@ -18,7 +18,7 @@ enum ChimeraSet
 class Chimera {
 private:
 
-	ChimeraSet nowChimera;
+	ChimeraSet nowChimera = HEAD;
 
 public:
 	Chimera();

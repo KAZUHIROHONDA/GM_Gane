@@ -2,7 +2,7 @@
 #pragma once
 #include "main.h"
 
-//#define CAMERA_DEBUG	//
+#define CAMERA_DEBUG	//
 #define CAMERA_MAX (1)
 
 class CCamera

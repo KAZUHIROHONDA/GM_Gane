@@ -3,6 +3,7 @@
 #include "player.h"
 #include "sceneGame.h"
 #include "AssimpModel.h"
+#include "partsmenu.h"
 
 
 Chimera::Chimera()
@@ -20,6 +21,7 @@ void Chimera::ChangeChimera(ChimeraSet state)
 
 void Chimera::headUpdate()
 {
+	UpdateParts();
 }
 
 void Chimera::foreUpdate()
@@ -40,6 +42,7 @@ void Chimera::foreDraw()
 
 void Chimera::headDraw()
 {
+	DrawParts();
 }
 
 void Chimera::bodyDraw()

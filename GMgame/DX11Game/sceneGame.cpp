@@ -252,12 +252,6 @@ void UpdateSceneGame()
 		phase.Update();
 
 
-		//if (GetKeyTrigger(VK_S))
-		//{
-		//	phase.ChangePhase(SETPHASE);
-		//}
-
-
 		//背景
 		UpdateBg();
 		//敵
@@ -281,10 +275,6 @@ void UpdateSceneGame()
 		//ステージ
 		UpdateStage();
 
-		//if (GetKeyTrigger(VK_RETURN))
-		//{
-		//	StartSceneChange(SCENE_CLEAR);
-		//}
 	}
 
 	//ポーズのオンオフ
