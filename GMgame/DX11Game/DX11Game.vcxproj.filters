@@ -64,6 +64,11 @@
     <ClCompile Include="pchimera.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="partsmenu.cpp" />
+    <ClCompile Include="tab.cpp" />
+    <ClCompile Include="Bpartsmenu.cpp" />
+    <ClCompile Include="tex.cpp" />
+    <ClCompile Include="Mpartsmenu.cpp" />
+    <ClCompile Include="Upartsmenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssimpModel.h" />
@@ -122,6 +127,11 @@
     <ClInclude Include="pchimera.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="partsmenu.h" />
+    <ClInclude Include="tab.h" />
+    <ClInclude Include="Bpartsmenu.h" />
+    <ClInclude Include="tex.h" />
+    <ClInclude Include="Mpartsmenu.h" />
+    <ClInclude Include="Upartsmenu.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX11Game.rc" />

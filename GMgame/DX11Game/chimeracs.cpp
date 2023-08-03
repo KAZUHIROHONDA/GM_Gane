@@ -4,6 +4,9 @@
 #include "sceneGame.h"
 #include "AssimpModel.h"
 #include "partsmenu.h"
+#include "Bpartsmenu.h"
+#include "Mpartsmenu.h"
+#include "Upartsmenu.h"
 
 
 Chimera::Chimera()
@@ -26,18 +29,22 @@ void Chimera::headUpdate()
 
 void Chimera::foreUpdate()
 {
+	UpdateMParts();
 }
 
 void Chimera::bodyUpdate()
 {
+	UpdateBParts();
 }
 
 void Chimera::hideUpdate()
 {
+	UpdateUParts();
 }
 
 void Chimera::foreDraw()
 {
+	DrawMParts();
 }
 
 void Chimera::headDraw()
@@ -47,22 +54,30 @@ void Chimera::headDraw()
 
 void Chimera::bodyDraw()
 {
+	DrawBParts();
 }
 
 void Chimera::hideDraw()
 {
+	DrawUParts();
 }
 
 
 
 void Chimera::Init()
 {
-
+	InitParts();
+	InitBParts();
+	InitMParts();
+	InitUParts();
 }
 
 void Chimera::Uninit()
 {
-
+	UninitParts();
+	UninitBParts();
+	UninitMParts();
+	UninitUParts();
 }
 
 void Chimera::Update()

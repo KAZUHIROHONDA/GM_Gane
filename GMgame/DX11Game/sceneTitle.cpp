@@ -24,6 +24,9 @@
 // グローバル変数
 //*****************************************************************************
 
+Player g_player;
+Player g_enemy;
+
 //=============================================================================
 // タイトル表示の初期化処理
 //=============================================================================
@@ -39,6 +42,16 @@ HRESULT InitSceneTitle()
 		MessageBox(hWnd, _T("背景初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
 		return hr;
 	}
+
+	g_player.Init();
+
+	//デバック
+	g_enemy.Init();
+	g_enemy.SetName("わに");
+	g_enemy.SetHP(10);
+	g_enemy.SetPAat(15);
+	g_enemy.SetGUat(20);
+	g_enemy.SetTYOKIat(25);
 
 	//タイトル
 	InitTitle();
@@ -65,6 +78,9 @@ void UninitSceneTitle()
 
 	UninitEnter();
 
+	g_player.Uninit();
+	g_enemy.Uninit();
+
 }
 
 //=============================================================================
@@ -78,6 +94,9 @@ void UpdateSceneTitle()
 
 	//タイトル
 	UpdateTitle();
+
+	g_player.Update();
+	g_enemy.Update();
 
 	UpdateEnter();
 
@@ -111,4 +130,14 @@ void DrawSceneTitle()
 	DrawTitle();
 	DrawEnter();
 	
+}
+
+Player* GetPlayer()
+{
+	return &g_player;
+}
+
+Player* GetEnemy()
+{
+	return &g_enemy;
 }

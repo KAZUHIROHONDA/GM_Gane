@@ -17,7 +17,7 @@
 //*****************************************************************************
 // É}ÉNÉçíËã`
 //*****************************************************************************
-#define MODEL_ENEMY		"data/model/pandaAM.fbx"
+#define MODEL_ENEMY		"data/model/wani2.obj"
 #define MODEL_ENEMY1	"data/model/wani1.obj"
 #define MODEL_ENEMY2	"data/model/wani3.obj"
 #define MODEL_ENEMY3	"data/model/wani4.obj"

@@ -7,6 +7,7 @@
 #pragma once
 
 #include "main.h"
+#include "playercs.h"
 
 // ポーズメニュー
 typedef enum {
@@ -26,3 +27,4 @@ PARTS_MENU GetPartsMenu(void);
 void ResetPartsMenu(void);
 void ResetPartsMenu1(void);
 
+Player* PartsGet();

@@ -135,7 +135,7 @@ void DrawSceneGameover()
 {
 
 	//サンプル画像描画
-		SetPolygonPos(g_Position.x, g_Position.y);	// 座標
+	SetPolygonPos(g_Position.x, g_Position.y);	// 座標
 	SetPolygonSize(SAMPLE_SIZE_X, SAMPLE_SIZE_Y);	// 大きさ
 	SetPolygonAngle(0.0f);				// 角度
 	SetPolygonColor(1.0f, 1.0f, 1.0f);	// 色(RGB)

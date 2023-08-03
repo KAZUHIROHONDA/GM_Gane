@@ -15,6 +15,7 @@
 #include "MessageManager.h"
 #include"fade.h"
 #include"enemy.h"
+#include "model.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -186,16 +187,16 @@ HRESULT InitPlayer(void)
 
 	// モデルデータの読み込み
 	hr = g_model[0].Load(pDevice, pDeviceContext,
-		MODEL_PLAYER); if (FAILED(hr)) return hr;
+		GetBody()); if (FAILED(hr)) return hr;
 
 	hr = g_model[1].Load(pDevice, pDeviceContext,
-		MODEL_PLAYER1); if (FAILED(hr)) return hr;
+		GetHead()); if (FAILED(hr)) return hr;
 
 	hr = g_model[2].Load(pDevice, pDeviceContext,
-		MODEL_PLAYER2); if (FAILED(hr)) return hr;
+		GetMae()); if (FAILED(hr)) return hr;
 
 	hr = g_model[3].Load(pDevice, pDeviceContext,
-		MODEL_PLAYER3); if (FAILED(hr)) return hr;
+		GetBack()); if (FAILED(hr)) return hr;
 	
 	g_nCameraType = E_CAMERA_VIEW_FIXED;
 	

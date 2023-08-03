@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="AssimpModel.cpp" />
     <ClCompile Include="bg.cpp" />
+    <ClCompile Include="Bpartsmenu.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="chimeracs.cpp" />
@@ -185,6 +186,7 @@
     <ClCompile Include="MessageManager.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="Moji.cpp" />
+    <ClCompile Include="Mpartsmenu.cpp" />
     <ClCompile Include="number.cpp" />
     <ClCompile Include="partsmenu.cpp" />
     <ClCompile Include="pause.cpp" />
@@ -209,8 +211,11 @@
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="stage01.cpp" />
+    <ClCompile Include="tab.cpp" />
+    <ClCompile Include="tex.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="Upartsmenu.cpp" />
     <ClCompile Include="VS.cpp" />
     <ClCompile Include="wall.cpp" />
   </ItemGroup>
@@ -218,6 +223,7 @@
     <ClInclude Include="AssimpModel.h" />
     <ClInclude Include="bg.h" />
     <ClInclude Include="box.h" />
+    <ClInclude Include="Bpartsmenu.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="chimeracs.h" />
@@ -243,6 +249,7 @@
     <ClInclude Include="MessageManager.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="Moji.h" />
+    <ClInclude Include="Mpartsmenu.h" />
     <ClInclude Include="number.h" />
     <ClInclude Include="partsmenu.h" />
     <ClInclude Include="pause.h" />
@@ -267,8 +274,11 @@
     <ClInclude Include="shadow.h" />
     <ClInclude Include="sound.h" />
     <ClInclude Include="stage.h" />
+    <ClInclude Include="tab.h" />
+    <ClInclude Include="tex.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="Upartsmenu.h" />
     <ClInclude Include="VS.h" />
     <ClInclude Include="wall.h" />
   </ItemGroup>

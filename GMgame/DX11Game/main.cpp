@@ -423,7 +423,7 @@ HRESULT Init(HWND hWnd, BOOL bWindow)
 	//シーンの初期化
 	g_currentScene = SCENE_TITLE;
 	g_nextScene = g_currentScene;
-	PlaySound(SOUND_LABEL_BGM002);
+	//PlaySound(SOUND_LABEL_BGM002);
 
 	//シーン毎に分岐して初期化する
 	switch (g_currentScene)
@@ -571,7 +571,7 @@ void Draw(void)
 	g_pDeviceContext->ClearDepthStencilView(g_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 	// Zバッファ有効
-	SetZBuffer(true);
+	//SetZBuffer(true);
 
 
 	// 奥の2Dに描画するものはここ

@@ -197,22 +197,138 @@ void UpdateJyankenSet()
 	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2)&& useflag1 == true)
 	{
 		SetJyankenMenu1();
+		if (GetMouseTrigger(0))
+		{
+			te[j] = selte[0];
+			j++;
+			useflag1 = false;
+			if (useflag2 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_2;
+			}
+			else if (useflag3 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_3;
+			}
+			else if (useflag4 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_4;
+			}
+			else if (useflag5 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_5;
+			}
+			SetJyankenMenu();
+		}
 	}
 	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2) && useflag2 == true)
 	{
 		SetJyankenMenu2();
+		if (GetMouseTrigger(0))
+		{
+			te[j] = selte[1];
+			j++;
+			useflag2 = false;
+			if (useflag1 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_1;
+			}
+			else if (useflag3 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_3;
+			}
+			else if (useflag4 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_4;
+			}
+			else if (useflag5 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_5;
+			}
+			SetJyankenMenu();
+		}
 	}
 	else if (CollisionBB(&pos3, &radius1, &mpos2, &radius2) && useflag3 == true)
 	{
 		SetJyankenMenu3();
+		if (GetMouseTrigger(0))
+		{
+			te[j] = selte[2];
+			j++;
+			useflag3 = false;
+			if (useflag2 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_2;
+			}
+			else if (useflag1 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_1;
+			}
+			else if (useflag4 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_4;
+			}
+			else if (useflag5 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_5;
+			}
+			SetJyankenMenu();
+		}
 	}
 	else if (CollisionBB(&pos4, &radius1, &mpos2, &radius2) && useflag4 == true)
 	{
 		SetJyankenMenu4();
+		if (GetMouseTrigger(0))
+		{
+			te[j] = selte[3];
+			j++;
+			useflag4 = false;
+			if (useflag2 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_2;
+			}
+			else if (useflag3 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_3;
+			}
+			else if (useflag1 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_1;
+			}
+			else if (useflag5 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_5;
+			}
+			SetJyankenMenu();
+		}
 	}
 	else if (CollisionBB(&pos5, &radius1, &mpos2, &radius2) && useflag5 == true)
 	{
+
 		SetJyankenMenu5();
+		if (GetMouseTrigger(0))
+		{
+			te[j] = selte[4];
+			j++;
+			useflag5 = false;
+			if (useflag2 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_2;
+			}
+			else if (useflag3 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_3;
+			}
+			else if (useflag4 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_4;
+			}
+			else if (useflag1 != false)
+			{
+				g_nJyankenMenu = JYANKEN_MENU_1;
+			}
+			SetJyankenMenu();
+		}
 	}
 
 	if (j >= 5)
@@ -241,7 +357,7 @@ void UpdateJyankenSet()
 	//ŒÜŒÂ‚É‚È‚é‚Ü‚Å‘I‚×‚é
 	if (j < 5)
 	{
-		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0) || GetMouseTrigger(0))
+		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
 		{
 			//‘I‘ð’†‚Ì‚à‚Ì‚É‚æ‚è•ªŠò
 			JYANKEN_MENU menu = GetJyankenMenu();

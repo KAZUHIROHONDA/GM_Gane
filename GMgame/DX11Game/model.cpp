@@ -1,12 +1,12 @@
 //=============================================================================
 //
-// プレイヤー処理 [model.cpp]
-// Author : HIROHIKO HAMAYA
+// モデル [model.cpp]
 //
 //=============================================================================
 #include "AssimpModel.h"
 #include "model.h"
 #include "main.h"
+#include "playercs.h"
 
 
 std::string modelhead = MODEL_KABU;

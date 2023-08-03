@@ -15,14 +15,21 @@
 #include "pchimera.h"
 #include "Light.h"
 #include "Camera.h"
+#include "tab.h"
+#include "tex.h"
+#include "playercs.h"
+#include "sceneTitle.h"
+#include "Bpartsmenu.h"
+#include "Mpartsmenu.h"
 #include "partsmenu.h"
+#include "Upartsmenu.h"
 
 
 
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define SAMPLE_TEXTURENAME	_T("data/texture/bg2.png")
+#define SAMPLE_TEXTURENAME	_T("data/texture/tex.png")
 
 
 #define SAMPLE_POS_X	(0)	// 初期位置X
@@ -60,19 +67,21 @@ HRESULT InitSceneChimera()
 		return hr;
 	}
 
-	hr = InitParts();
-	if (FAILED(hr))
-	{
-		MessageBox(hWnd, _T("プレイヤー初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
-		return hr;
-	}
-
 	InitBg();
+
+	InitTab();
+
+	InitTex();
 
 	// カメラ更新
 	GetCamera()->Init();
 
 	player.Init();
+
+	GetPlayer()->SetHP(BPartsGet()->GetHP());
+	GetPlayer()->SetGUat(BPartsGet()->GetGUat() + MPartsGet()->GetGUat() + UPartsGet()->GetGUat() + PartsGet()->GetGUat());
+	GetPlayer()->SetPAat(BPartsGet()->GetPAat() + MPartsGet()->GetPAat() + UPartsGet()->GetPAat() + PartsGet()->GetPAat());
+	GetPlayer()->SetTYOKIat(BPartsGet()->GetTYOKIat() + MPartsGet()->GetTYOKIat() + UPartsGet()->GetTYOKIat() + PartsGet()->GetTYOKIat());
 
 	return hr;
 }
@@ -82,11 +91,14 @@ HRESULT InitSceneChimera()
 //=============================================================================
 void UninitSceneChimera()
 {
-	UninitParts();
 
 	UninitPChimera();
 
 	UninitBg();
+
+	UninitTab();
+
+	UninitTex();
 
 	player.Uninit();
 }
@@ -101,10 +113,23 @@ void UpdateSceneChimera()
 
 	UpdatePChimera();
 
-
 	UpdateBg();
 
 	player.Update();
+
+	UpdateTab();
+
+	UpdateTex();
+
+	GetPlayer()->SetHP(BPartsGet()->GetHP());
+	GetPlayer()->SetGUat(BPartsGet()->GetGUat() + MPartsGet()->GetGUat() + UPartsGet()->GetGUat() + PartsGet()->GetGUat());
+	GetPlayer()->SetPAat(BPartsGet()->GetPAat() + MPartsGet()->GetPAat() + UPartsGet()->GetPAat() + PartsGet()->GetPAat());
+	GetPlayer()->SetTYOKIat(BPartsGet()->GetTYOKIat() + MPartsGet()->GetTYOKIat() + UPartsGet()->GetTYOKIat() + PartsGet()->GetTYOKIat());
+
+	if (GetMouseTrigger(1))
+	{
+		StartFade(SCENE_SELECT);
+	}
 	
 }
 
@@ -114,11 +139,16 @@ void UpdateSceneChimera()
 void DrawSceneChimera()
 {
 
+	// Zバッファ無効
+	SetZBuffer(false);
+	SetBlendState(BS_ALPHABLEND);
 	//半透明オブジェクト(3Dの中でも後ろにかく)
-	SetZWrite(true);
+	//SetZWrite(true);
 
 	//背景
-	//DrawBg();
+	DrawBg1();
+
+	DrawTex();
 
 	// Zバッファ有効
 	SetZBuffer(true);
@@ -142,13 +172,19 @@ void DrawSceneChimera()
 	//半透明オブジェクト(3Dの中でも後ろにかく)
 	//ビルボード弾びょうが
 	SetZWrite(false);
-	
 
 	//光源処理有効
 	GetLight()->SetEnable();
 
+	DrawTab();
 
 	player.Draw();
 
+	GetPlayer()->Draw(50, 100);
 
+}
+
+Chimera* Get()
+{
+	return &player;
 }

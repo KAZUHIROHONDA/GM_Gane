@@ -10,6 +10,7 @@
 #include "input.h"
 #include "shadow.h"		//影をつけるには入れる
 #include "model.h"
+#include "sceneGame.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -58,6 +59,9 @@ static int				g_nCameraType = E_CAMERA_VIEW_FIXED;		//カメラの種類
 static bool				g_atama = true;//false;
 
 float CheckCollisionRay(XMVECTOR pos, float fRadius);
+
+
+
 
 //=============================================================================
 // 初期化処理
@@ -132,6 +136,7 @@ HRESULT InitPChimera(void)
 		XMStoreFloat4x4(&playermodelLG[i].mtxWorld, mtxWorld);
 
 	}
+
 
 	// モデルデータの読み込み
 	hr = g_model[0].Load(pDevice, pDeviceContext,

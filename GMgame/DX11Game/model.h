@@ -15,8 +15,8 @@
 #define MODEL_wani2		"data/model/wani3.obj"
 #define MODEL_wani3		"data/model/wani4.obj"
 
-//モデルデータ追加
 
+//モデルデータ追加
 void	SetHead(std::string val);
 std::string	GetHead();
 void	SetBody(std::string val);
@@ -25,3 +25,4 @@ void	SetMae(std::string val);
 std::string	GetMae();
 void	SetBack(std::string val);
 std::string	GetBack();
+

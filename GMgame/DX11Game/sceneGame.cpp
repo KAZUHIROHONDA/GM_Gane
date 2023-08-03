@@ -30,6 +30,7 @@
 #include"enemyhp.h"
 #include"jyanken.h"
 #include "phasecs.h"
+#include "sceneTitle.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -45,8 +46,7 @@ static bool g_bClear = false;
 int			eCnt;			//敵を倒した
 int			sTime;			//行動不能時間カウント
 
-Player g_player;
-Player g_enemy;
+
 Phase  phase;
 
 
@@ -58,21 +58,6 @@ HRESULT InitSceneGame()
 	HRESULT hr = S_OK;
 	HWND hWnd = GetMainWnd();
 	
-	//デバック
-	g_player.Init();
-	g_player.SetName("カブトムシ");
-	g_player.SetHP(10);
-	g_player.SetPAat(15);
-	g_player.SetGUat(20);
-	g_player.SetTYOKIat(25);
-
-	//デバック
-	g_enemy.Init();
-	g_enemy.SetName("わに");
-	g_enemy.SetHP(10);
-	g_enemy.SetPAat(15);
-	g_enemy.SetGUat(20);
-	g_enemy.SetTYOKIat(25);
 
 	phase.Init();
 
@@ -226,8 +211,7 @@ void UninitSceneGame()
 	UninitPause();
 
 	//デバック用
-	g_player.Uninit(); 
-	g_enemy.Uninit();
+
 	phase.Uninit();
 }
 
@@ -247,8 +231,6 @@ void UpdateSceneGame()
 	else if(g_bPause == false && g_bClear == false)
 	{
 		//デバック
-		g_player.Update();
-		g_enemy.Update();
 		phase.Update();
 
 
@@ -382,8 +364,8 @@ void DrawSceneGame()
 	//文字描画
 	DrawMessage();
 
-	g_player.Draw(50,100);
-	g_enemy.Draw(1100, 100);
+	GetPlayer()->Draw(50,100);
+	GetPlayer()->Draw(1100, 100);
 	phase.Draw();
 
 	DrawPlayerhp();
@@ -400,3 +382,5 @@ Phase* GetPhase()
 {
 	return &phase;
 }
+
+

@@ -1,12 +1,12 @@
 //=============================================================================
 //
-// プレイヤー処理 [partsmenu.cpp]
+// プレイヤー処理 [Upartsmenu.cpp]
 // Author : HIROHIKO HAMAYA
 //
 //=============================================================================
 #include <stdarg.h>
 #include <string.h>
-#include "partsmenu.h"
+#include "Upartsmenu.h"
 #include "polygon.h"	// ポリゴン使用
 #include "Texture.h"// テクスチャ使用
 #include "input.h"
@@ -17,12 +17,12 @@
 #include "playercs.h"
 
 // マクロ定義
-#define	NUM_PARTS_MENU		(2)			// ポーズメニュー数
-#define	PARTS_MENU_WIDTH	(200.0f)	// ポーズメニュー幅
-#define	PARTS_MENU_HEIGHT	(200.0f)		// ポーズメニュー高さ
-#define	PARTS_MENU_INTERVAL	(300.0f)	// ポーズメニュー間隔
-#define	PARTS_MENU_POS_X	(200.0f)		// ポーズメニュー位置(X座標)
-#define	PARTS_MENU_POS_Y	(200.0f)	// ポーズメニュー位置(Y座標)
+#define	NUM_UPARTS_MENU		(2)			// ポーズメニュー数
+#define	UPARTS_MENU_WIDTH	(200.0f)	// ポーズメニュー幅
+#define	UPARTS_MENU_HEIGHT	(200.0f)		// ポーズメニュー高さ
+#define	UPARTS_MENU_INTERVAL	(300.0f)	// ポーズメニュー間隔
+#define	UPARTS_MENU_POS_X	(200.0f)		// ポーズメニュー位置(X座標)
+#define	UPARTS_MENU_POS_Y	(200.0f)	// ポーズメニュー位置(Y座標)
 #define	PLATE_WIDTH			(360.0f)	// プレートの幅
 #define	PLATE_HEIGHT		(340.0f)	// プレートの幅
 #define	PLATE_POS_X			(0.0f)		// プレートの位置(X座標)
@@ -37,44 +37,44 @@ static float g_fCurve = 0.0f;
 static float g_fCol = 0.0f;
 static int	 nStopTime = 0;
 
-static LPCWSTR c_aFileNamePartsMenu[NUM_PARTS_MENU] =
+static LPCWSTR c_aFileNameUPartsMenu[NUM_UPARTS_MENU] =
 {
-	L"data/TEXTURE/kabu.png",	// コンティニュー
-	L"data/TEXTURE/wani.png",	// リトライ
+	L"data/TEXTURE/kabu3.png",	// コンティニュー
+	L"data/TEXTURE/wani3.png",	// リトライ
 };
 
-static PARTS_MENU g_nPartsMenu = PARTS_MENU_KABU;	//	選択中のメニューNo
+static UPARTS_MENU g_nUPartsMenu = UPARTS_MENU_KABU;	//	選択中のメニューNo
 
-Player Parts;
+Player UParts;
 
 // 初期化処理
-HRESULT InitParts(void)
+HRESULT InitUParts(void)
 {
 	ID3D11Device* pDevice = GetDevice();
 	HRESULT hr;
 
-	for (int nCntPartsMenu = 0; nCntPartsMenu < NUM_PARTS_MENU; ++nCntPartsMenu) {
+	for (int nCntUPartsMenu = 0; nCntUPartsMenu < NUM_UPARTS_MENU; ++nCntUPartsMenu) {
 		// テクスチャの読み込み
 		hr = CreateTextureFromFile(pDevice,									// デバイスへのポインタ
-			c_aFileNamePartsMenu[nCntPartsMenu],	// ファイルの名前
-			&g_pTextures[nCntPartsMenu]);			// 読み込むメモリー
+			c_aFileNameUPartsMenu[nCntUPartsMenu],	// ファイルの名前
+			&g_pTextures[nCntUPartsMenu]);			// 読み込むメモリー
 	}
 
-	g_nPartsMenu = PARTS_MENU_KABU;
+	g_nUPartsMenu = UPARTS_MENU_KABU;
 	g_fCurve = 0.0f;
 
 	return hr;
 }
 
-void UninitParts(void)
+void UninitUParts(void)
 {
 	// テクスチャの開放
-	for (int nCntPartsMenu = 0; nCntPartsMenu < NUM_PARTS_MENU; ++nCntPartsMenu) {
-		SAFE_RELEASE(g_pTextures[nCntPartsMenu]);
+	for (int nCntUPartsMenu = 0; nCntUPartsMenu < NUM_UPARTS_MENU; ++nCntUPartsMenu) {
+		SAFE_RELEASE(g_pTextures[nCntUPartsMenu]);
 	}
 }
 
-void UpdateParts(void)
+void UpdateUParts(void)
 {
 
 	//操作不能時間
@@ -104,15 +104,15 @@ void UpdateParts(void)
 				if (angle < -135 || angle > -45)
 				{
 					len *= 0.3f;
-					g_nPartsMenu = (PARTS_MENU)((g_nPartsMenu + 1) % NUM_PARTS_MENU);
-					SetPartsMenu();
+					g_nUPartsMenu = (UPARTS_MENU)((g_nUPartsMenu + 1) % NUM_UPARTS_MENU);
+					SetUPartsMenu();
 					nStopTime = 10;
 				}
 				if (angle < 135 || angle > 45)
 				{
 					len *= 0.3f;
-					g_nPartsMenu = (PARTS_MENU)((g_nPartsMenu + NUM_PARTS_MENU - 1) % NUM_PARTS_MENU);
-					SetPartsMenu();
+					g_nUPartsMenu = (UPARTS_MENU)((g_nUPartsMenu + NUM_UPARTS_MENU - 1) % NUM_UPARTS_MENU);
+					SetUPartsMenu();
 					nStopTime = 10;
 				}
 
@@ -124,34 +124,34 @@ void UpdateParts(void)
 	//マウス
 	POINT temp = (*GetMousePosition());
 	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
-	XMFLOAT2 pos1 = XMFLOAT2(PARTS_MENU_POS_X, PARTS_MENU_POS_Y);
-	XMFLOAT2 pos2 = XMFLOAT2(PARTS_MENU_POS_X + 1 * PARTS_MENU_INTERVAL, PARTS_MENU_POS_Y );
-	XMFLOAT2 radius1 = XMFLOAT2(PARTS_MENU_WIDTH / 2, PARTS_MENU_HEIGHT / 2);
+	XMFLOAT2 pos1 = XMFLOAT2(UPARTS_MENU_POS_X, UPARTS_MENU_POS_Y);
+	XMFLOAT2 pos2 = XMFLOAT2(UPARTS_MENU_POS_X + 1 * UPARTS_MENU_INTERVAL, UPARTS_MENU_POS_Y );
+	XMFLOAT2 radius1 = XMFLOAT2(UPARTS_MENU_WIDTH / 2, UPARTS_MENU_HEIGHT / 2);
 	XMFLOAT2 mpos2 = mousePos;
 	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
 	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2))
 	{
-		ResetPartsMenu();
+		ResetUPartsMenu();
 		if (GetMouseTrigger(0))
 		{
-			SetHead(MODEL_KABU);
-			Parts.SetHP(10);
-			Parts.SetPAat(10);
-			Parts.SetGUat(10);
-			Parts.SetTYOKIat(10);
+			SetBack(MODEL_KABU3);
+			UParts.SetHP(10);
+			UParts.SetPAat(15);
+			UParts.SetGUat(20);
+			UParts.SetTYOKIat(25);
 			InitPChimera();
 		}
 	}
 	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2))
 	{
-		ResetPartsMenu1();
+		ResetUPartsMenu1();
 		if (GetMouseTrigger(0))
 		{
-			SetHead(MODEL_wani);
-			Parts.SetHP(15);
-			Parts.SetPAat(15);
-			Parts.SetGUat(15);
-			Parts.SetTYOKIat(15);
+			SetBack(MODEL_wani3);
+			UParts.SetHP(10);
+			UParts.SetPAat(15);
+			UParts.SetGUat(20);
+			UParts.SetTYOKIat(25);
 			InitPChimera();
 		}
 	}
@@ -159,12 +159,12 @@ void UpdateParts(void)
 
 	// 上下キーで各項目間の移動
 	if (GetKeyRepeat(VK_W) || GetKeyRepeat(VK_UP)) {
-		g_nPartsMenu = (PARTS_MENU)((g_nPartsMenu + NUM_PARTS_MENU - 1) % NUM_PARTS_MENU);
-		SetPartsMenu();
+		g_nUPartsMenu = (UPARTS_MENU)((g_nUPartsMenu + NUM_UPARTS_MENU - 1) % NUM_UPARTS_MENU);
+		SetUPartsMenu();
 	}
 	else if (GetKeyRepeat(VK_S) || GetKeyRepeat(VK_DOWN)) {
-		g_nPartsMenu = (PARTS_MENU)((g_nPartsMenu + 1) % NUM_PARTS_MENU);
-		SetPartsMenu();
+		g_nUPartsMenu = (UPARTS_MENU)((g_nUPartsMenu + 1) % NUM_UPARTS_MENU);
+		SetUPartsMenu();
 	}
 
 	// 枠の部分の色の変化(グラデーション)
@@ -176,20 +176,20 @@ void UpdateParts(void)
 	g_fCol = cosf(g_fCurve) * 0.2f + 0.8f;
 }
 
-void DrawParts(void)
+void DrawUParts(void)
 {
 	ID3D11DeviceContext* pDeviceContext = GetDeviceContext();
 
 
 	//ポーズメニューの表示
-	SetPolygonSize(PARTS_MENU_WIDTH, PARTS_MENU_HEIGHT);
-	for (int nCntPartsMenu = 0; nCntPartsMenu < NUM_PARTS_MENU; ++nCntPartsMenu) {
-		SetPolygonPos(PARTS_MENU_POS_X + nCntPartsMenu * PARTS_MENU_INTERVAL, PARTS_MENU_POS_Y );
+	SetPolygonSize(UPARTS_MENU_WIDTH, UPARTS_MENU_HEIGHT);
+	for (int nCntUPartsMenu = 0; nCntUPartsMenu < NUM_UPARTS_MENU; ++nCntUPartsMenu) {
+		SetPolygonPos(UPARTS_MENU_POS_X + nCntUPartsMenu * UPARTS_MENU_INTERVAL, UPARTS_MENU_POS_Y );
 
 
 
 		//選択されているメニューを目立たせる
-		//if (nCntPartsMenu == g_nPartsMenu)
+		//if (nCntUPartsMenu == g_nUPartsMenu)
 		//{
 		//	SetPolygonColor(1.0f, 1.0f, 1.0f);
 		//}
@@ -199,7 +199,7 @@ void DrawParts(void)
 		//}
 
 		// テクスチャの設定
-		SetPolygonTexture(g_pTextures[nCntPartsMenu]);
+		SetPolygonTexture(g_pTextures[nCntUPartsMenu]);
 		// ポリゴンの描画
 		DrawPolygon(pDeviceContext);
 	}
@@ -211,7 +211,7 @@ void DrawParts(void)
 //=============================================================================
 // ポーズメニューの設定
 //=============================================================================
-void SetPartsMenu(void)
+void SetUPartsMenu(void)
 {
 	g_fCurve = 0.0f;
 }
@@ -219,31 +219,32 @@ void SetPartsMenu(void)
 //=============================================================================
 // ポーズメニューの取得
 //=============================================================================
-PARTS_MENU GetPartsMenu(void)
+UPARTS_MENU GetUPartsMenu(void)
 {
-	return g_nPartsMenu;
+	return g_nUPartsMenu;
 }
 
 //=============================================================================
 // ポーズメニューのリセット
 //=============================================================================
-void ResetPartsMenu(void)
+void ResetUPartsMenu(void)
 {
-	g_nPartsMenu = PARTS_MENU_KABU;
-	SetPartsMenu();
+	g_nUPartsMenu = UPARTS_MENU_KABU;
+	SetUPartsMenu();
 }
-void ResetPartsMenu1(void)
+void ResetUPartsMenu1(void)
 {
-	g_nPartsMenu = PARTS_MENU_WANI;
-	SetPartsMenu();
+	g_nUPartsMenu = UPARTS_MENU_WANI;
+	SetUPartsMenu();
 }
-void ResetPartsMenu2(void)
+void ResetUPartsMenu2(void)
 {
-	//g_nPartsMenu = PARTS_MENU_QUIT;
-	//SetPartsMenu();
+	//g_nUPartsMenu = UPARTS_MENU_QUIT;
+	//SetUPartsMenu();
 }
 
-Player* PartsGet()
+Player* UPartsGet()
 {
-	return &Parts;
+	return &UParts;
 }
+

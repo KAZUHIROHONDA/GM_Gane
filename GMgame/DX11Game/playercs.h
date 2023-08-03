@@ -1,6 +1,6 @@
 //=============================================================================
 //
-// プレイヤー処理 [playercs.h]
+// プレイヤのステータス [playercs.h]
 //
 //=============================================================================
 #pragma once
@@ -12,11 +12,11 @@ class Player {
 private:
 	std::string partsName;	//パーツの名前
 	std::string Name;		//名前
-	int	 HP;			//体力
-	int  PAat;			//パーの攻撃力
-	int  GUat;			//グーの攻撃力
-	int  TYOKIat;		//チョキの攻撃力
-	int  hand[20];//5個にする
+	int	 HP;				//体力
+	int  PAat;				//パーの攻撃力
+	int  GUat;				//グーの攻撃力
+	int  TYOKIat;			//チョキの攻撃力
+	int  hand[20];			//5個にする
 
 	DirectWrite* g_directWrite;
 

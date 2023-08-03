@@ -1,24 +1,22 @@
 //=============================================================================
 //
-// タイトルシーン [sceanTitle.h]
-// Author : KATOU TAKUYA
+// 背景表示処理 [tex.h]
+// Author : HIROHIKO HAMAYA
 //
 //=============================================================================
 #pragma once
 
 #include "main.h"
-#include "playercs.h"
 
 //*****************************************************************************
 // プロトタイプ宣言
 //*****************************************************************************
-HRESULT InitSceneTitle();
-void	UninitSceneTitle();
-void	UpdateSceneTitle();
-void	DrawSceneTitle();
+HRESULT InitTex();
+void	UninitTex();
+void	UpdateTex();
+void	DrawTex();
+void    DrawTex1();
 
-Player* GetPlayer();
-Player* GetEnemy();
 
 
 
