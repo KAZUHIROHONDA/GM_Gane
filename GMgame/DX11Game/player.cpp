@@ -16,6 +16,7 @@
 #include"fade.h"
 #include"enemy.h"
 #include "model.h"
+#include "sceneTitle.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -49,7 +50,6 @@ typedef struct _tPlayer
 
 	char			nName;			//
 
-	int             nHP;
 
 	XMFLOAT3	basePos;	//基本位置
 	XMFLOAT3	targetPos;	//目標位置
@@ -120,8 +120,7 @@ HRESULT InitPlayer(void)
 		g_player[i].nPhase = 0;
 		g_player[i].nState = 1;		//最初は通常
 
-		g_player[i].nHP = 1000;
-		g_player[i].nName = 0;
+	    g_player[i].nName = 0;
 
 		g_player[i].bCnt = 0;	
 
@@ -139,7 +138,7 @@ HRESULT InitPlayer(void)
 		g_action3 = false;
 		g_action4 = false;
 
-		g_player[i].nGauge = g_player[i].nHP/10;
+		g_player[i].nGauge = GetPlayer()->GetHP();
 		g_player[i].nStopTime = 0; //最初は動ける
 
 		g_player[i].nShadowIdx = CreateShadow(g_player[i].pos, 20.0f);
@@ -284,7 +283,7 @@ void UpdatePlayer(void)
 			}
 			
 		//ゲージの動きの処理
-			if (g_player[i].nGauge>= g_player[i].nHP/10)
+			if (g_player[i].nGauge>= GetPlayer()->GetHP())
 			{
 				g_player[i].nGauge--;
 			}
@@ -504,7 +503,7 @@ void UpdateStart(void)
 
 			
 		//ゲージの動きの処理
-		if (g_player[i].nGauge >= g_player[i].nHP / 10)
+		if (g_player[i].nGauge >= GetPlayer()->GetHP())
 		{
 			g_player[i].nGauge--;
 		}
@@ -711,20 +710,24 @@ int GetPlayerHp(int no)
 {
 	if (no < 0 || no >= PLAYER_MAX)	return(0);
 
-	return g_player[no].nHP;
+	return GetPlayer()->GetHP();
 
 
 }
 void DamagePlayer(int damage)
 {
 	
-	g_player[0].nHP -= damage;
-	if (g_player[0].nHP <= 0)
+	int HP = GetPlayer()->GetHP();
+
+	HP -= damage;
+	if (HP <= 0)
 	{
-		g_player[0].nHP = 0;
+		HP = 0;
 
 		g_action3 = true;
 	}
+
+	GetPlayer()->SetHP(HP);
 }
 
 
