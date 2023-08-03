@@ -42,4 +42,5 @@ public:
 	void	Uninit();
 	void	Update();
 	void	Draw(int x,int y);
+	void	DrawChimera(int x, int y);
 };

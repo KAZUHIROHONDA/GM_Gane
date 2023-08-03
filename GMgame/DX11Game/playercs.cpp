@@ -125,3 +125,29 @@ void Player::Draw(int x,int y)
 	g_directWrite->DrawString(status, XMFLOAT2(x, y + 150), D2D1_DRAW_TEXT_OPTIONS_NONE);
 
 }
+
+void Player::DrawChimera(int x, int y)
+{
+	std::string status;
+	std::ostringstream oss;
+	std::ostringstream hp;
+	std::ostringstream gu;
+	std::ostringstream tyo;
+	std::ostringstream pa;
+
+	status = "名前:" + Name;
+	g_directWrite->DrawString(status, XMFLOAT2(x, y), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	hp << HP;
+	status = "体力:" + hp.str();
+	g_directWrite->DrawString(status, XMFLOAT2(x, y + 50), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	gu << GUat;
+	status = "グー:" + gu.str();
+	g_directWrite->DrawString(status, XMFLOAT2(x, y + 100), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	tyo << TYOKIat;
+	status = "チョキ:" + tyo.str();
+	g_directWrite->DrawString(status, XMFLOAT2(x, y + 150), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	pa << PAat;
+	status = "パー:" + pa.str();
+	g_directWrite->DrawString(status, XMFLOAT2(x, y + 200), D2D1_DRAW_TEXT_OPTIONS_NONE);
+
+}

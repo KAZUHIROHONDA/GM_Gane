@@ -365,7 +365,7 @@ void DrawSceneGame()
 	DrawMessage();
 
 	GetPlayer()->Draw(50,100);
-	GetPlayer()->Draw(1100, 100);
+	GetEnemy()->Draw(1100, 100);
 	phase.Draw();
 
 	DrawPlayerhp();

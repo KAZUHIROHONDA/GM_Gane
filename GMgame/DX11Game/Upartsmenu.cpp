@@ -60,6 +60,11 @@ HRESULT InitUParts(void)
 			&g_pTextures[nCntUPartsMenu]);			// 読み込むメモリー
 	}
 
+	UParts.SetHP(10);
+	UParts.SetPAat(15);
+	UParts.SetGUat(20);
+	UParts.SetTYOKIat(25);
+
 	g_nUPartsMenu = UPARTS_MENU_KABU;
 	g_fCurve = 0.0f;
 
@@ -185,18 +190,6 @@ void DrawUParts(void)
 	SetPolygonSize(UPARTS_MENU_WIDTH, UPARTS_MENU_HEIGHT);
 	for (int nCntUPartsMenu = 0; nCntUPartsMenu < NUM_UPARTS_MENU; ++nCntUPartsMenu) {
 		SetPolygonPos(UPARTS_MENU_POS_X + nCntUPartsMenu * UPARTS_MENU_INTERVAL, UPARTS_MENU_POS_Y );
-
-
-
-		//選択されているメニューを目立たせる
-		//if (nCntUPartsMenu == g_nUPartsMenu)
-		//{
-		//	SetPolygonColor(1.0f, 1.0f, 1.0f);
-		//}
-		//else
-		//{
-		//	SetPolygonColor(0.3f, 0.3f, 0.3f);
-		//}
 
 		// テクスチャの設定
 		SetPolygonTexture(g_pTextures[nCntUPartsMenu]);

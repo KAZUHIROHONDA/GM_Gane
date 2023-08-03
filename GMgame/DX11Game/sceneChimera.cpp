@@ -180,7 +180,7 @@ void DrawSceneChimera()
 
 	player.Draw();
 
-	GetPlayer()->Draw(50, 100);
+	GetPlayer()->DrawChimera(50,50);
 
 }
 

@@ -60,6 +60,11 @@ HRESULT InitBParts(void)
 			&g_pTextures[nCntBPartsMenu]);			// 読み込むメモリー
 	}
 
+	GetPlayer()->SetName("カブトムシ");
+	BParts.SetHP(10);
+	BParts.SetPAat(10);
+	BParts.SetGUat(10);
+	BParts.SetTYOKIat(10);
 
 	g_nBPartsMenu = BPARTS_MENU_KABU;
 	g_fCurve = 0.0f;

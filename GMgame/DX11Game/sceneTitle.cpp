@@ -44,6 +44,11 @@ HRESULT InitSceneTitle()
 	}
 
 	g_player.Init();
+	g_player.SetName("カブトムシ");
+	g_player.SetHP(100);
+	g_player.SetPAat(60);
+	g_player.SetGUat(70);
+	g_player.SetTYOKIat(50);
 
 	//デバック
 	g_enemy.Init();
