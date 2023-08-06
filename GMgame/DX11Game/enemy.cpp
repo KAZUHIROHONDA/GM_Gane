@@ -18,10 +18,10 @@
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define MODEL_ENEMY		"data/model/pandaAM.fbx"
-#define MODEL_ENEMY1	"data/model/wani1.obj"
-#define MODEL_ENEMY2	"data/model/wani3.obj"
-#define MODEL_ENEMY3	"data/model/wani4.obj"
+#define MODEL_ENEMY		"data/model/waniBD2.obj"//"data/model/pandaBD.obj"
+#define MODEL_ENEMY1	 "data/model/wani1.obj"//"data/model/pandaHD.obj"
+#define MODEL_ENEMY2	"data/model/waniAM.obj"//"data/model/pandaAM.obj"
+#define MODEL_ENEMY3	"data/model/waniAM.obj"//"data/model/pandaAM.obj"
 
 #define VALUE_MOVE		(0.1f)		
 #define VALUE_ROTATE	(2.0f)
@@ -87,7 +87,7 @@ HRESULT InitEnemy(void)
 	// 位置・回転・スケールの初期設定
 	for (int i = 0; i < ENEMY_MAX; i++)
 	{
-		g_enemy[i].pos = XMFLOAT3(0.0f, 20.0f,100.0f);
+		g_enemy[i].pos = XMFLOAT3(0.0f, 20.0f,100.0f);//z100
 		g_enemy[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
 		g_enemy[i].scl = XMFLOAT3(15.0f, 15.0f, 15.0f);
 		g_enemy[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -112,7 +112,7 @@ HRESULT InitEnemy(void)
 
 
 		//頭 wani
-		g_enemyHD[i].pos = XMFLOAT3(0.0f, 0.0f, -3.0f);
+		g_enemyHD[i].pos = XMFLOAT3(0.0f, 0.0f, 0.0f);//z-3
 		g_enemyHD[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyHD[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_enemyHD[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -130,7 +130,7 @@ HRESULT InitEnemy(void)
 		//g_enemyHD[i].nShadowIdx = -1;
 
 		////腕-0.8f
-		g_enemyAM[i].pos = XMFLOAT3(0.0f, -0.8f, -1.0f);
+		g_enemyAM[i].pos = XMFLOAT3(0.0f, -0.3f, 0.0f);//-0.8,-1
 		g_enemyAM[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyAM[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_enemyAM[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
