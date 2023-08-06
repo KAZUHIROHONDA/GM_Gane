@@ -17,17 +17,12 @@
 //*****************************************************************************
 // É}ÉNÉçíËã`
 //*****************************************************************************
-<<<<<<< HEAD
-#define MODEL_ENEMY		"data/model/wani2.obj"
-#define MODEL_ENEMY1	"data/model/wani1.obj"
-#define MODEL_ENEMY2	"data/model/wani3.obj"
-#define MODEL_ENEMY3	"data/model/wani4.obj"
-=======
+//=======
 #define MODEL_ENEMY		"data/model/waniBD2.obj"//"data/model/pandaBD.obj"
 #define MODEL_ENEMY1	 "data/model/wani1.obj"//"data/model/pandaHD.obj"
 #define MODEL_ENEMY2	"data/model/waniAM.obj"//"data/model/pandaAM.obj"
 #define MODEL_ENEMY3	"data/model/waniAM.obj"//"data/model/pandaAM.obj"
->>>>>>> feature/matsui2
+//>>>>>>> feature/matsui2
 
 #define VALUE_MOVE		(0.1f)		
 #define VALUE_ROTATE	(2.0f)

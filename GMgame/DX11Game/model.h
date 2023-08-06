@@ -7,8 +7,8 @@
 
 #define MODEL_KABU		"data/model/kabu2.obj"//‚ ‚½‚Ü
 #define MODEL_KABU1		"data/model/kabuBody.obj"
-#define MODEL_KABU2		"data/model/kabu3.obj"//‘O‘«
-#define MODEL_KABU3		"data/model/kabu4.obj"//Œã‚ë
+#define MODEL_KABU2		"data/model/kabuAM.obj"//‘O‘«
+#define MODEL_KABU3		"data/model/kabuLG.obj"//Œã‚ë
 
 #define MODEL_wani		"data/model/wani1.obj"
 #define MODEL_wani1		"data/model/wani2.obj"

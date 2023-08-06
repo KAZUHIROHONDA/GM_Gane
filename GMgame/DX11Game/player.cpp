@@ -23,8 +23,8 @@
 //*****************************************************************************
 #define MODEL_PLAYER		"data/model/kabuBody.obj"
 #define MODEL_PLAYER1		"data/model/kabu2.obj"
-#define MODEL_PLAYER2		"data/model/kabu3.obj"
-#define MODEL_PLAYER3		"data/model/kabu4.obj"
+#define MODEL_PLAYER2		"data/model/kabuAM.obj"
+#define MODEL_PLAYER3		"data/model/kabuLG.obj"
 
 
 #define VALUE_MOVE		(3.0f)		
