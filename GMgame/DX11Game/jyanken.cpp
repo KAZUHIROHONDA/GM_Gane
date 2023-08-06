@@ -124,8 +124,23 @@ HRESULT InitJyanken()
 	g_Position = XMFLOAT3(OK_POS_X, OK_POS_Y, 0.0f);
 	g_Alpha = 1.0f;
 	g_Scale = XMFLOAT2(1.0f, 1.0f);
-
-
+    jadge = false;
+	j = 0;
+	n = 0;
+	f = 0;
+	Cnt, Cnt1 = 0;
+	win = false;
+	lose = false;
+	pCnt = 180;
+	useflag1 = true;
+	useflag2 = true;
+	useflag3 = true;
+	useflag4 = true;
+	useflag5 = true;
+	size = 100.0f;
+	nPhase = 1;
+	pCnt = 180;
+	GetPhase()->ChangePhase(STARTPHASE);
 	g_nJyankenMenu = JYANKEN_MENU_1;
 	g_fCurve = 0.0f;
 
@@ -173,11 +188,11 @@ void UpdateJyankenSet()
 
 	switch (nPhase)
 	{
-	case 1:	size += 0.1f;	//âEÇ÷
+	case 1:	size += 0.1f;	
 		if (size > 120.0f) nPhase = -1;
 		break;
 
-	case -1:size -= 0.1f;				//ç∂Ç÷
+	case -1:size -= 0.1f;				
 		if (size < 110) nPhase = +1;
 		break;
 	}
