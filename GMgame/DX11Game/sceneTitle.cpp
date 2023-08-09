@@ -45,7 +45,7 @@ HRESULT InitSceneTitle()
 
 	g_player.Init();
 	g_player.SetName("カブトムシ");
-	g_player.SetHP(100);
+	g_player.SetHP(300);
 	g_player.SetPAat(60);
 	g_player.SetGUat(70);
 	g_player.SetTYOKIat(50);
@@ -53,7 +53,7 @@ HRESULT InitSceneTitle()
 	//デバック
 	g_enemy.Init();
 	g_enemy.SetName("わに");
-	g_enemy.SetHP(10);
+	g_enemy.SetHP(50);
 	g_enemy.SetPAat(15);
 	g_enemy.SetGUat(20);
 	g_enemy.SetTYOKIat(25);

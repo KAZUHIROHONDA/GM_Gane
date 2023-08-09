@@ -14,6 +14,7 @@
 #include"enemyhp.h"
 #include"fade.h"
 #include "Egauge.h"
+#include "sceneTitle.h"
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
@@ -68,7 +69,7 @@ static int			g_nECnt1;//行動カウント1コメ
 static int			g_nECnt2;//行動カウント2コメ
 static int			g_nECnt3;//行動カウント3コメ
 static int			g_nECnt4;//行動カウント4コメ
-static bool				g_atama = true;//false;
+static bool			g_atama = true;//false;
 
 static bool			g_Eaction;
 static bool			g_Eaction2;
@@ -98,18 +99,11 @@ HRESULT InitEnemy(void)
 		g_enemy[i].nState = 1;		//最初は通常
 		g_enemy[i].Tipe = 0;
 
-		g_enemy[i].nHP = 1000;
-		g_enemy[i].nEGauge = g_enemy[i].nHP / 10;
+		g_enemy[i].nHP = GetEnemy()->GetHP();
+		g_enemy[i].nEGauge = 100;
 		g_enemy[i].nShadowIdx = -1;
 
-		g_Eaction = false;
-		g_Eaction2 = false;
-		g_Eaction3 = false;
-
-		g_nECnt1 = 0;					//
-		g_nECnt2 = 0;					//
-		g_nECnt3 = 0;
-		g_nECnt4 = 0;
+		
 
 
 		//頭 wani
@@ -174,6 +168,14 @@ HRESULT InitEnemy(void)
 	}
 	
 	bfCnt = 0;
+	g_Eaction = false;
+	g_Eaction2 = false;
+	g_Eaction3 = false;
+
+	g_nECnt1 = 0;					//
+	g_nECnt2 = 0;					//
+	g_nECnt3 = 0;
+	g_nECnt4 = 0;
 
 	// ワールドマトリックスの初期化
 	XMMATRIX mtxWorld;
@@ -214,7 +216,10 @@ void UninitEnemy(void)
 	for (int i = 0; i < ENEMY_MAX; i++)
 	{
 		ReleaseShadow(g_enemy[i].nShadowIdx);
+		ResetEPos(i);
 	}
+
+
 
 	// モデルの解放
 	g_model[0].Release();
@@ -288,7 +293,7 @@ void UpdateEnemy(void)
 
 
 		//ゲージの動きの処理
-		if (g_enemy[i].nEGauge >= g_enemy[i].nHP / 10)
+		if (g_enemy[i].nEGauge >= (GetEnemy()->GetHP() * 100 / g_enemy[i].nHP))
 		{
 			g_enemy[i].nEGauge--;
 		}
@@ -564,16 +569,17 @@ int GetEnemyHp(int no)
 void DamageEnemy(int damage)
 {
 
-	g_enemy[0].nHP -= damage;
-	if (g_enemy[0].nHP <= 0)
+	int HP = GetPlayer()->GetHP();
+
+	HP -= damage;
+	if (HP <= 0)
 	{
-		g_enemy[0].nHP = 0;
+		HP = 0;
 
 		DestroyEnemy(0);
-
-
-		//StartSceneChange(SCENE_GAMECLEAR);
 	}
+
+	GetEnemy()->SetHP(HP);
 }
 
 void DestroyEnemy(int no)

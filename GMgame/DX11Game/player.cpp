@@ -49,7 +49,7 @@ typedef struct _tPlayer
 	int				nState;			//状態(0:未使用　1:通常)
 
 	char			nName;			//
-
+	int				nHP;
 
 	XMFLOAT3	basePos;	//基本位置
 	XMFLOAT3	targetPos;	//目標位置
@@ -138,7 +138,8 @@ HRESULT InitPlayer(void)
 		g_action3 = false;
 		g_action4 = false;
 
-		g_player[i].nGauge = GetPlayer()->GetHP();
+		g_player[i].nHP = GetPlayer()->GetHP();
+		g_player[i].nGauge = 100;
 		g_player[i].nStopTime = 0; //最初は動ける
 
 		g_player[i].nShadowIdx = CreateShadow(g_player[i].pos, 20.0f);
@@ -283,7 +284,7 @@ void UpdatePlayer(void)
 			}
 			
 		//ゲージの動きの処理
-			if (g_player[i].nGauge>= GetPlayer()->GetHP())
+			if (g_player[i].nGauge>= (GetPlayer()->GetHP() * 100 / g_player[i].nHP))
 			{
 				g_player[i].nGauge--;
 			}
@@ -503,7 +504,7 @@ void UpdateStart(void)
 
 			
 		//ゲージの動きの処理
-		if (g_player[i].nGauge >= GetPlayer()->GetHP())
+		if (g_player[i].nGauge >= (GetPlayer()->GetHP()* 100 /g_player[i].nHP))
 		{
 			g_player[i].nGauge--;
 		}
@@ -714,6 +715,7 @@ int GetPlayerHp(int no)
 
 
 }
+
 void DamagePlayer(int damage)
 {
 	

@@ -9,6 +9,7 @@
 #include "Texture.h"
 #include "number.h"	// 数字描画に必要
 #include"player.h"
+#include "sceneTitle.h"
 #ifdef _DEBUG
 #include "debugproc.h"
 #endif
@@ -140,7 +141,7 @@ void UpdatePlayerhp()
 		// 出ていないスコアは何もしない
 		if (g_playerhp[i].bUse == false) continue;
 
-		g_playerhp[i].nPlayerhp = GetPlayerHp(i);
+		g_playerhp[i].nPlayerhp = GetPlayer()->GetHP();
 
 	}
 }
