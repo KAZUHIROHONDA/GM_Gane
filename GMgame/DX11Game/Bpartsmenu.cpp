@@ -17,12 +17,12 @@
 #include "sceneTitle.h"
 
 // マクロ定義
-#define	NUM_BPARTS_MENU		(2)			// ポーズメニュー数
+#define	NUM_BPARTS_MENU		(4)			// ポーズメニュー数
 #define	BPARTS_MENU_WIDTH	(200.0f)	// ポーズメニュー幅
 #define	BPARTS_MENU_HEIGHT	(200.0f)		// ポーズメニュー高さ
 #define	BPARTS_MENU_INTERVAL	(300.0f)	// ポーズメニュー間隔
 #define	BPARTS_MENU_POS_X	(200.0f)		// ポーズメニュー位置(X座標)
-#define	BPARTS_MENU_POS_Y	(200.0f)	// ポーズメニュー位置(Y座標)
+#define	BPARTS_MENU_POS_Y	(250.0f)	// ポーズメニュー位置(Y座標)
 #define	PLATE_WIDTH			(360.0f)	// プレートの幅
 #define	PLATE_HEIGHT		(340.0f)	// プレートの幅
 #define	PLATE_POS_X			(0.0f)		// プレートの位置(X座標)
@@ -31,7 +31,7 @@
 // 構造体定義
 // プロトタイプ宣言
 // グローバル変数
-static ID3D11ShaderResourceView*	g_pTextures[3] = { nullptr };	// テクスチャへのポインタ
+static ID3D11ShaderResourceView*	g_pTextures[4] = { nullptr };	// テクスチャへのポインタ
 
 static float g_fCurve = 0.0f;
 static float g_fCol = 0.0f;
@@ -40,6 +40,8 @@ static int	 nStopTime = 0;
 static LPCWSTR c_aFileNameBPartsMenu[NUM_BPARTS_MENU] =
 {
 	L"data/TEXTURE/kabu1.png",	// コンティニュー
+	L"data/TEXTURE/wani1.png",	// リトライ
+	L"data/TEXTURE/wani1.png",	// リトライ
 	L"data/TEXTURE/wani1.png",	// リトライ
 };
 
@@ -132,6 +134,7 @@ void UpdateBParts(void)
 	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
 	XMFLOAT2 pos1 = XMFLOAT2(BPARTS_MENU_POS_X, BPARTS_MENU_POS_Y);
 	XMFLOAT2 pos2 = XMFLOAT2(BPARTS_MENU_POS_X + 1 * BPARTS_MENU_INTERVAL, BPARTS_MENU_POS_Y );
+	XMFLOAT2 pos3 = XMFLOAT2(BPARTS_MENU_POS_X , BPARTS_MENU_POS_Y - 1 * 250);
 	XMFLOAT2 radius1 = XMFLOAT2(BPARTS_MENU_WIDTH / 2, BPARTS_MENU_HEIGHT / 2);
 	XMFLOAT2 mpos2 = mousePos;
 	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
@@ -163,6 +166,20 @@ void UpdateBParts(void)
 			InitPChimera();
 		}
 	}
+	else if (CollisionBB(&pos3, &radius1, &mpos2, &radius2))
+	{
+		ResetBPartsMenu2();
+		if (GetMouseTrigger(0))
+		{
+			SetBody(MODEL_wani1);
+			GetPlayer()->SetName("パンダ");
+			BParts.SetHP(50);
+			BParts.SetPAat(50);
+			BParts.SetGUat(50);
+			BParts.SetTYOKIat(50);
+			InitPChimera();
+		}
+	}
 
 
 	// 上下キーで各項目間の移動
@@ -188,28 +205,21 @@ void DrawBParts(void)
 {
 	ID3D11DeviceContext* pDeviceContext = GetDeviceContext();
 
+	int nCnt = 0;
 
 	//ポーズメニューの表示
 	SetPolygonSize(BPARTS_MENU_WIDTH, BPARTS_MENU_HEIGHT);
-	for (int nCntBPartsMenu = 0; nCntBPartsMenu < NUM_BPARTS_MENU; ++nCntBPartsMenu) {
-		SetPolygonPos(BPARTS_MENU_POS_X + nCntBPartsMenu * BPARTS_MENU_INTERVAL, BPARTS_MENU_POS_Y );
+	for (int nCntBPartsMenu = 0; nCntBPartsMenu < 2; ++nCntBPartsMenu) {
+		
+		for (int nCntBPartsMenu1 = 0; nCntBPartsMenu1 < 2; ++nCntBPartsMenu1) {
+			SetPolygonPos(BPARTS_MENU_POS_X + nCntBPartsMenu1 * BPARTS_MENU_INTERVAL, BPARTS_MENU_POS_Y - nCntBPartsMenu * 250);
 
-
-
-		//選択されているメニューを目立たせる
-		//if (nCntBPartsMenu == g_nBPartsMenu)
-		//{
-		//	SetPolygonColor(1.0f, 1.0f, 1.0f);
-		//}
-		//else
-		//{
-		//	SetPolygonColor(0.3f, 0.3f, 0.3f);
-		//}
-
-		// テクスチャの設定
-		SetPolygonTexture(g_pTextures[nCntBPartsMenu]);
-		// ポリゴンの描画
-		DrawPolygon(pDeviceContext);
+			// テクスチャの設定
+			SetPolygonTexture(g_pTextures[nCnt]);
+			// ポリゴンの描画
+			DrawPolygon(pDeviceContext);
+			nCnt++;
+		}
 	}
 
 	SetPolygonColor(1.0f, 1.0f, 1.0f);
@@ -245,15 +255,14 @@ void ResetBPartsMenu1(void)
 	g_nBPartsMenu = BPARTS_MENU_WANI;
 	SetBPartsMenu();
 }
+void ResetBPartsMenu2(void)
+{
+	g_nBPartsMenu = BPARTS_MENU_PANDA;
+	SetBPartsMenu();
+}
 
 Player* BPartsGet()
 {
 	return &BParts;
-}
-
-void ResetBPartsMenu2(void)
-{
-	//g_nBPartsMenu = BPARTS_MENU_QUIT;
-	//SetBPartsMenu();
 }
 

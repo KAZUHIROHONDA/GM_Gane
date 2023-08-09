@@ -10,6 +10,7 @@
 #include "Texture.h"
 #include "number.h"	// 数字描画に必要
 #include"player.h"
+#include "sceneTitle.h"
 #ifdef _DEBUG
 #include "debugproc.h"
 #endif
@@ -141,7 +142,7 @@ void UpdateEnemyhp()
 		// 出ていないスコアは何もしない
 		if (g_enemyhp[i].bUse == false) continue;
 
-		g_enemyhp[i].nEnemyhp = GetEnemyHp(i);
+		g_enemyhp[i].nEnemyhp = GetEnemy()->GetHP();
 
 	}
 }

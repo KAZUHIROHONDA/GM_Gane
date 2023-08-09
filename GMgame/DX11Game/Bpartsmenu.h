@@ -13,6 +13,8 @@
 typedef enum {
 	BPARTS_MENU_KABU = 0,	// コンティニュー
 	BPARTS_MENU_WANI,			// リトライ
+	BPARTS_MENU_PANDA,
+	BPARTS_MENU_TORI,
 	BPARTS_MENU_MAX
 } BPARTS_MENU;
 
@@ -26,6 +28,7 @@ void SetBPartsMenu(void);
 BPARTS_MENU GetBPartsMenu(void);
 void ResetBPartsMenu(void);
 void ResetBPartsMenu1(void);
+void ResetBPartsMenu2(void);
 
 Player* BPartsGet();
 
