@@ -13,6 +13,8 @@
 typedef enum {
 	UPARTS_MENU_KABU = 0,	// コンティニュー
 	UPARTS_MENU_WANI,			// リトライ
+	UPARTS_MENU_PANDA,
+	UPARTS_MENU_TORI,
 	UPARTS_MENU_MAX
 } UPARTS_MENU;
 

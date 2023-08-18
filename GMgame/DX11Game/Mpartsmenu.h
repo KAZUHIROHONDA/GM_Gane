@@ -11,8 +11,10 @@
 
 // ポーズメニュー
 typedef enum {
-	MPARTS_MENU_KABU = 0,	// コンティニュー
-	MPARTS_MENU_WANI,			// リトライ
+	MPARTS_MENU_KABU = 0,	
+	MPARTS_MENU_WANI,		
+	MPARTS_MENU_PANDA,
+	MPARTS_MENU_TORI,
 	MPARTS_MENU_MAX
 } MPARTS_MENU;
 

@@ -17,7 +17,7 @@
 #include "playercs.h"
 
 // マクロ定義
-#define	NUM_UPARTS_MENU		(2)			// ポーズメニュー数
+#define	NUM_UPARTS_MENU		(4)			// ポーズメニュー数
 #define	UPARTS_MENU_WIDTH	(200.0f)	// ポーズメニュー幅
 #define	UPARTS_MENU_HEIGHT	(200.0f)		// ポーズメニュー高さ
 #define	UPARTS_MENU_INTERVAL	(300.0f)	// ポーズメニュー間隔
@@ -31,7 +31,7 @@
 // 構造体定義
 // プロトタイプ宣言
 // グローバル変数
-static ID3D11ShaderResourceView*	g_pTextures[3] = { nullptr };	// テクスチャへのポインタ
+static ID3D11ShaderResourceView*	g_pTextures[5] = { nullptr };	// テクスチャへのポインタ
 
 static float g_fCurve = 0.0f;
 static float g_fCol = 0.0f;
@@ -40,6 +40,8 @@ static int	 nStopTime = 0;
 static LPCWSTR c_aFileNameUPartsMenu[NUM_UPARTS_MENU] =
 {
 	L"data/TEXTURE/kabu3.png",	// コンティニュー
+	L"data/TEXTURE/wani3.png",	// リトライ
+	L"data/TEXTURE/panda3.png",	// リトライ
 	L"data/TEXTURE/wani3.png",	// リトライ
 };
 
@@ -131,12 +133,13 @@ void UpdateUParts(void)
 	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
 	XMFLOAT2 pos1 = XMFLOAT2(UPARTS_MENU_POS_X, UPARTS_MENU_POS_Y);
 	XMFLOAT2 pos2 = XMFLOAT2(UPARTS_MENU_POS_X + 1 * UPARTS_MENU_INTERVAL, UPARTS_MENU_POS_Y );
+	XMFLOAT2 pos3 = XMFLOAT2(UPARTS_MENU_POS_X, UPARTS_MENU_POS_Y - 1 * 250);
+	XMFLOAT2 pos4 = XMFLOAT2(UPARTS_MENU_POS_X + 1 * 250, UPARTS_MENU_POS_Y - 1 * 250);
 	XMFLOAT2 radius1 = XMFLOAT2(UPARTS_MENU_WIDTH / 2, UPARTS_MENU_HEIGHT / 2);
 	XMFLOAT2 mpos2 = mousePos;
 	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
 	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2))
 	{
-		ResetUPartsMenu();
 		if (GetMouseTrigger(0))
 		{
 			SetBack(MODEL_KABU3);
@@ -149,7 +152,6 @@ void UpdateUParts(void)
 	}
 	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2))
 	{
-		ResetUPartsMenu1();
 		if (GetMouseTrigger(0))
 		{
 			SetBack(MODEL_wani3);
@@ -157,6 +159,32 @@ void UpdateUParts(void)
 			UParts.SetPAat(15);
 			UParts.SetGUat(20);
 			UParts.SetTYOKIat(25);
+			InitPChimera();
+		}
+	}
+	else if (CollisionBB(&pos3, &radius1, &mpos2, &radius2))
+	{
+
+		if (GetMouseTrigger(0))
+		{
+			SetBack(MODEL_PANDA3);
+			UParts.SetHP(50);
+			UParts.SetPAat(50);
+			UParts.SetGUat(50);
+			UParts.SetTYOKIat(50);
+			InitPChimera();
+		}
+	}
+	else if (CollisionBB(&pos4, &radius1, &mpos2, &radius2))
+	{
+
+		if (GetMouseTrigger(0))
+		{
+			SetBack(MODEL_TORI3);
+			UParts.SetHP(50);
+			UParts.SetPAat(50);
+			UParts.SetGUat(50);
+			UParts.SetTYOKIat(50);
 			InitPChimera();
 		}
 	}
@@ -185,16 +213,21 @@ void DrawUParts(void)
 {
 	ID3D11DeviceContext* pDeviceContext = GetDeviceContext();
 
+	int nCnt = 0;
 
 	//ポーズメニューの表示
 	SetPolygonSize(UPARTS_MENU_WIDTH, UPARTS_MENU_HEIGHT);
-	for (int nCntUPartsMenu = 0; nCntUPartsMenu < NUM_UPARTS_MENU; ++nCntUPartsMenu) {
-		SetPolygonPos(UPARTS_MENU_POS_X + nCntUPartsMenu * UPARTS_MENU_INTERVAL, UPARTS_MENU_POS_Y );
+	for (int nCntBPartsMenu = 0; nCntBPartsMenu < 2; ++nCntBPartsMenu) {
 
-		// テクスチャの設定
-		SetPolygonTexture(g_pTextures[nCntUPartsMenu]);
-		// ポリゴンの描画
-		DrawPolygon(pDeviceContext);
+		for (int nCntBPartsMenu1 = 0; nCntBPartsMenu1 < 2; ++nCntBPartsMenu1) {
+			SetPolygonPos(UPARTS_MENU_POS_X + nCntBPartsMenu1 * UPARTS_MENU_INTERVAL, UPARTS_MENU_POS_Y - nCntBPartsMenu * 250);
+
+			// テクスチャの設定
+			SetPolygonTexture(g_pTextures[nCnt]);
+			// ポリゴンの描画
+			DrawPolygon(pDeviceContext);
+			nCnt++;
+		}
 	}
 
 	SetPolygonColor(1.0f, 1.0f, 1.0f);

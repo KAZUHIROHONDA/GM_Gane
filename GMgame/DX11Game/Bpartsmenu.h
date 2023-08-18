@@ -29,6 +29,7 @@ BPARTS_MENU GetBPartsMenu(void);
 void ResetBPartsMenu(void);
 void ResetBPartsMenu1(void);
 void ResetBPartsMenu2(void);
+void ResetBPartsMenu3(void);
 
 Player* BPartsGet();
 

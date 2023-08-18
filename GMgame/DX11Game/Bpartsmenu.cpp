@@ -31,7 +31,7 @@
 // 構造体定義
 // プロトタイプ宣言
 // グローバル変数
-static ID3D11ShaderResourceView*	g_pTextures[4] = { nullptr };	// テクスチャへのポインタ
+static ID3D11ShaderResourceView*	g_pTextures[5] = { nullptr };	// テクスチャへのポインタ
 
 static float g_fCurve = 0.0f;
 static float g_fCol = 0.0f;
@@ -41,7 +41,7 @@ static LPCWSTR c_aFileNameBPartsMenu[NUM_BPARTS_MENU] =
 {
 	L"data/TEXTURE/kabu1.png",	// コンティニュー
 	L"data/TEXTURE/wani1.png",	// リトライ
-	L"data/TEXTURE/wani1.png",	// リトライ
+	L"data/TEXTURE/panda1.png",	// リトライ
 	L"data/TEXTURE/wani1.png",	// リトライ
 };
 
@@ -135,6 +135,7 @@ void UpdateBParts(void)
 	XMFLOAT2 pos1 = XMFLOAT2(BPARTS_MENU_POS_X, BPARTS_MENU_POS_Y);
 	XMFLOAT2 pos2 = XMFLOAT2(BPARTS_MENU_POS_X + 1 * BPARTS_MENU_INTERVAL, BPARTS_MENU_POS_Y );
 	XMFLOAT2 pos3 = XMFLOAT2(BPARTS_MENU_POS_X , BPARTS_MENU_POS_Y - 1 * 250);
+	XMFLOAT2 pos4 = XMFLOAT2(BPARTS_MENU_POS_X + 1 * 250, BPARTS_MENU_POS_Y - 1 * 250);
 	XMFLOAT2 radius1 = XMFLOAT2(BPARTS_MENU_WIDTH / 2, BPARTS_MENU_HEIGHT / 2);
 	XMFLOAT2 mpos2 = mousePos;
 	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
@@ -171,8 +172,22 @@ void UpdateBParts(void)
 		ResetBPartsMenu2();
 		if (GetMouseTrigger(0))
 		{
-			SetBody(MODEL_wani1);
+			SetBody(MODEL_PANDA1);
 			GetPlayer()->SetName("パンダ");
+			BParts.SetHP(50);
+			BParts.SetPAat(50);
+			BParts.SetGUat(50);
+			BParts.SetTYOKIat(50);
+			InitPChimera();
+		}
+	}
+	else if (CollisionBB(&pos4, &radius1, &mpos2, &radius2))
+	{
+		ResetBPartsMenu2();
+		if (GetMouseTrigger(0))
+		{
+			SetBody(MODEL_TORI1);
+			GetPlayer()->SetName("トリ");
 			BParts.SetHP(50);
 			BParts.SetPAat(50);
 			BParts.SetGUat(50);
@@ -256,6 +271,11 @@ void ResetBPartsMenu1(void)
 	SetBPartsMenu();
 }
 void ResetBPartsMenu2(void)
+{
+	g_nBPartsMenu = BPARTS_MENU_PANDA;
+	SetBPartsMenu();
+}
+void ResetBPartsMenu3(void)
 {
 	g_nBPartsMenu = BPARTS_MENU_PANDA;
 	SetBPartsMenu();

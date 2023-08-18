@@ -16,14 +16,14 @@
 #define MODEL_wani3		"data/model/wani4.obj"
 
 #define MODEL_PANDA		"data/model/pandaHD.obj"
-#define MODEL_PANDA1	"data/model/pandaBD.fbx"
-#define MODEL_PANDA2	"data/model/pandaAM.fbx"
+#define MODEL_PANDA1	"data/model/pandaBD.obj"
+#define MODEL_PANDA2	"data/model/pandaAM.obj"
 #define MODEL_PANDA3	"data/model/pandaLG.obj"
 
-#define MODEL_TORI		"data/model/pandaHD.obj"
-#define MODEL_TORI1		"data/model/pandaBD.fbx"
-#define MODEL_TORI2		"data/model/pandaAM.fbx"
-#define MODEL_TORI3		"data/model/pandaLG.obj"
+#define MODEL_TORI		"data/model/toriatama.obj"
+#define MODEL_TORI1		"data/model/torikarada.obj"
+#define MODEL_TORI2		"data/model/toriude.obj"
+#define MODEL_TORI3		"data/model/toriasi.obj"
 
 
 //モデルデータ追加
