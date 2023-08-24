@@ -490,7 +490,7 @@ XMFLOAT3 GetEnemySize(int no)
 }
 
 // ìGÇÃèoåª
-/*int SetEnemy(XMFLOAT3 pos,int no)
+int SetEnemy(XMFLOAT3 pos)
 {
 	tEnemy* pEnemy = g_enemy;
 	for (int i = 0; i < ENEMY_MAX; ++i, ++pEnemy)
@@ -498,54 +498,10 @@ XMFLOAT3 GetEnemySize(int no)
 		if (pEnemy->nState > 0) continue;
 
 		pEnemy->pos = pos;
-		switch (no)
-		{  
-		case 0:
-		{
-			g_enemy[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
-			g_enemy[i].Tipe = 0;
-		} break;
-		case 1:
-		{
-			g_enemy[i].vel = XMFLOAT3(-VALUE_MOVE, 0.0f, 0.0f);
-			g_enemy[i].Tipe = 1;
-		} break;
-		case 2: 
-		{
-			g_enemy[i].vel = XMFLOAT3(VALUE_MOVE,  0.0f, 0.0f);
-			g_enemy[i].Tipe = 1; 
-		} break;
-		case 3: 
-		{
-			g_enemy[i].vel = XMFLOAT3(VALUE_MOVE*5, 0.0f, 0.0f);
-			g_enemy[i].Tipe = 2; 
-		} break;
-		case 4:
-		{
-			g_enemy[i].vel = XMFLOAT3(-VALUE_MOVE*5, 0.0f, 0.0f);
-			g_enemy[i].Tipe = 2;
-		} break;
-		case 5:
-		{
-			g_enemy[i].vel = XMFLOAT3( 0.0f, 0.0f, -VALUE_MOVE*5);
-			g_enemy[i].Tipe = 2;
-		} break;
-		case 6:
-		{
-			g_enemy[i].vel = XMFLOAT3( 0.0f, 0.0f, VALUE_MOVE*5);
-			g_enemy[i].Tipe = 2;
-		} break;
-		case 7:
-		{
-			g_enemy[i].vel = XMFLOAT3(-VALUE_MOVE * 5, 0.0f, -VALUE_MOVE * 5);
-			g_enemy[i].Tipe = 2;
-		} break;
-		case 8:
-		{
-			g_enemy[i].vel = XMFLOAT3(VALUE_MOVE * 5, 0.0f, VALUE_MOVE * 5);
-			g_enemy[i].Tipe = 2;
-		} break;
-		}
+
+		g_enemy[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		g_enemy[i].Tipe = 0;
+
 		pEnemy->nState = 1;	// èoåª
 		pEnemy->nShadowIdx =
 			CreateShadow(pEnemy->pos, ENEMY_RADIUS);
@@ -554,7 +510,7 @@ XMFLOAT3 GetEnemySize(int no)
 	}
 
 	return -1;	// å©Ç¬Ç©ÇÁÇ»Ç©Ç¡ÇΩ
-}*/
+}
 
 
 int GetEnemyHp(int no)
