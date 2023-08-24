@@ -9,6 +9,7 @@
 #include "enemy.h"
 #include "sceneGame.h"
 #include "collision.h"
+#include "sceneTitle.h"
 
 #define gu 1-1
 #define tyoki 2-1
@@ -46,8 +47,8 @@ static int te[5] = {-1,-1,-1,-1,-1};
 static int selte[5] = { -1,-1,-1,-1,-1 };
 static int aite[5] = { -1,-1,-1,-1,-1 };
 static int result[4]; //Ÿ‚¿”, •‰‚¯”, ‚ ‚¢‚±”, ˜AŸ”
-static int Sette[20] = {1,1,1,1,1,2,2,2,2,2,0,0,0,0,0,1,2,0,1,2};//‰¼‚ÌèD
-static int Setaite[20] = { 1,1,1,1,1,1,1,1,1,1,1,1,2,0,2,0,2,0,2,0 };//‰¼‚ÌèD
+static int Sette[20] = { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};//‰¼‚ÌèD
+static int Setaite[20] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };//‰¼‚ÌèD
 
 bool jadge = false;
 int z, i;
@@ -65,6 +66,7 @@ bool useflag4 = true;
 bool useflag5 = true;
 float  size = 100.0f;
 int nPhase = 1;
+int PAT, EAT = 0;
 
 //OKƒ{ƒ^ƒ“
 #define OK_TEXTURENAME	_T("data/texture/button.png")
@@ -552,17 +554,17 @@ void UpdateJyankenBattle()
 	{
 		if (result[0] > result[1])
 		{
-			SetMessage((tMessage*)&testMessage[1]);
-			DamageEnemy(50);
-			if (result[0] >= 0)
-				DamageEnemy(50 * result[0]);
+			
+			DamageEnemy(PAT);
+			//if (result[0] >= 0)
+			//	DamageEnemy(50 * result[0]);
 		}
 		if (result[0] < result[1])
 		{
-			SetMessage((tMessage*)&testMessage[2]);
-			DamagePlayer(50);
-			if (result[1] >= 0)
-				DamagePlayer(50 * result[1]);
+			
+			DamagePlayer(EAT);
+			//if (result[1] >= 0)
+			//	DamagePlayer(50 * result[1]);
 		}
 		j = 0;
 		n = 0;
@@ -774,6 +776,15 @@ void Jyanken(int no, int *cnt)
 		win = true;
 		cnt[0]++;	// Ÿ‚¿
 		cnt[3]++;	// ˜AŸ
+		switch (te[no])
+		{
+		case 0: { PAT += GetPlayer()->GetGUat(); break; }
+		case 1: { PAT += GetPlayer()->GetTYOKIat(); break; }
+		case 2: { PAT += GetPlayer()->GetPAat(); break; }
+		default:
+			break;
+		}
+
 	}
 	else if (aite[no] == te[no])
 	{
@@ -785,6 +796,14 @@ void Jyanken(int no, int *cnt)
 		lose = true;
 		cnt[1]++;	// ‚Ü‚¯
 		cnt[3] = 0;	// ˜AŸƒŠƒZƒbƒg
+		switch (aite[no])
+		{
+		case 0: { EAT += GetEnemy()->GetGUat(); break; }
+		case 1: { EAT += GetEnemy()->GetTYOKIat(); break; }
+		case 2: { EAT += GetEnemy()->GetPAat(); break; }
+		default:
+			break;
+		}
 	}
 
 

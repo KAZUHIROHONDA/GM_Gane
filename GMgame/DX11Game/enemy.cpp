@@ -15,6 +15,8 @@
 #include"fade.h"
 #include "Egauge.h"
 #include "sceneTitle.h"
+#include "sceneGame.h"
+
 //*****************************************************************************
 // ƒ}ƒNƒ’è‹`
 //*****************************************************************************
@@ -525,7 +527,7 @@ int GetEnemyHp(int no)
 void DamageEnemy(int damage)
 {
 
-	int HP = GetPlayer()->GetHP();
+	int HP = GetEnemy()->GetHP();
 
 	HP -= damage;
 	if (HP <= 0)
@@ -548,7 +550,7 @@ void DestroyEnemy(int no)
 	ReleaseShadow(g_enemy[no].nShadowIdx);
 	g_enemy[no].nShadowIdx = -1;
 
-	StartFade(SCENE_CLEAR);
+	Clearflag();
 
 }
 void DrawEnemyEGauge()

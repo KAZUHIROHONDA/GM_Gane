@@ -18,7 +18,7 @@ void	UninitSceneGame();
 void	UpdateSceneGame();
 void	DrawSceneGame();
 
-
+void Clearflag();
 
 Phase* GetPhase();
 

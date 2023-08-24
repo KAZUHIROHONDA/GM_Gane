@@ -38,6 +38,7 @@ XMFLOAT3 GetPlayerSize(int no);
 
 void DamagePlayer(int damage);
 void DrawPlayerGauge();
+void UpdateClear(void);
 
 int GetPlayerHp(int no);
 void ResetPos(int no);

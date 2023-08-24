@@ -31,6 +31,8 @@
 #include"jyanken.h"
 #include "phasecs.h"
 #include "sceneTitle.h"
+#include "select.h"
+#include "gameover.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -124,6 +126,13 @@ HRESULT InitSceneGame()
 		return hr;
 	}
 
+	//serectの初期化処理
+	hr = InitSelect();
+	if (FAILED(hr))
+	{
+		MessageBox(hWnd, _T("serect初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
+		return hr;
+	}
 
 	hr = InitGauge();
 	if (FAILED(hr))
@@ -162,6 +171,7 @@ HRESULT InitSceneGame()
 	//文字初期化処理
 	InitMessage();
 
+	InitGameover();
 
 	return hr;
 }
@@ -209,6 +219,10 @@ void UninitSceneGame()
 	UninitShadow();
 	//ポーズ
 	UninitPause();
+	//セレクト
+	UninitSelect();
+
+	UninitGameover();
 
 	//デバック用
 
@@ -220,19 +234,57 @@ void UninitSceneGame()
 //=============================================================================
 void UpdateSceneGame()
 {
+	if (GetKeyTrigger(VK_RETURN))
+	{
+		g_bClear = true;
+	}
 	if (g_bPause == true)
 	{	//ポーズ更新
 		UpdatePause();
+		UpdateGameover();
 	}
 	if (g_bClear == true)
 	{
-		UpdateBullet();
+		GetCamera()->Update();
+		UpdateClear();
+
+		UpdateSelect();
+
+		E_FADE fadeState = GetFade();
+		if (fadeState == E_FADE_NONE)
+		{
+			if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0) || GetMouseTrigger(0))
+			{
+				//選択中のものにより分岐
+				SELECT_MENU menu = GetSelectMenu();
+				switch (menu)
+				{
+				case SELECT_MENU_CONTINUE:
+					StartFade(SCENE_GAME);
+					//PlaySound(SOUND_LABEL_SE_DECIDE);
+					//sCnt++;
+					//SetStageNo(sCnt);
+					//sNO();
+					break;
+					//リトライ
+				case SELECT_MENU_RETRY:
+					StartFade(SCENE_SELECT);
+					//PlaySound(SOUND_LABEL_SE_DECIDE);
+					break;
+					//終了(タイトルへ)
+				case SELECT_MENU_QUIT:
+					StartFade(SCENE_TITLE);
+					//PlaySound(SOUND_LABEL_SE_DECIDE);
+					//sCnt = 0;
+					break;
+				}
+			}
+		}
 	}
 	else if(g_bPause == false && g_bClear == false)
 	{
 		//デバック
 		phase.Update();
-
 
 		//背景
 		UpdateBg();
@@ -327,6 +379,7 @@ void DrawSceneGame()
 	SetZBuffer(true);
 	//プレイヤー
 	DrawPlayer();
+
 	//敵
 	DrawEnemy();
 	//地面
@@ -346,36 +399,46 @@ void DrawSceneGame()
 
 	//光源処理無効
 	GetLight()->SetDisable();
-	//半透明オブジェクト(3Dの中でも後ろにかく)
+	if (g_bClear == true)
+	{
+		DrawSelect();
+		DrawGameover();
+		//DrawGameclear();
+	}
 	//ビルボード弾びょうが
 	SetZWrite(false);	
 	//弾
 	DrawBullet();
-	//爆発
-	//DrawExplosion();
-	DrawShadow();
-	//ゲージ
-	DrawPlayerGauge();
 
-	DrawEnemyEGauge();
+	DrawShadow();
+
+	if (g_bClear == false)
+	{//ゲージ
+		DrawPlayerGauge();
+
+		DrawEnemyEGauge();
+	}
+
 	//光源処理有効
 	GetLight()->SetEnable();
 
-	//文字描画
-	DrawMessage();
+	if (g_bClear == false)
+	{
+		GetPlayer()->Draw(50, 100);
+		GetEnemy()->Draw(1100, 100);
+		phase.Draw();
 
-	GetPlayer()->Draw(50,100);
-	GetEnemy()->Draw(1100, 100);
-	phase.Draw();
+		DrawPlayerhp();
+		DrawEnemyhp();
+	}
 
-	DrawPlayerhp();
-	DrawEnemyhp();
-	
 	//ポーズ画面
 	if (true == g_bPause)
 	{
 		DrawPause();
 	}
+
+
 }
 
 Phase* GetPhase()
@@ -383,4 +446,7 @@ Phase* GetPhase()
 	return &phase;
 }
 
-
+void Clearflag()
+{
+	g_bClear = true;
+}

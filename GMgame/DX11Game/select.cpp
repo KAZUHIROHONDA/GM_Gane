@@ -15,11 +15,11 @@
 
 // マクロ定義
 #define	NUM_SELECT_MENU		(3)			// ポーズメニュー数
-#define	SELECT_MENU_WIDTH	(200.0f)	// ポーズメニュー幅
-#define	SELECT_MENU_HEIGHT	(40.0f)		// ポーズメニュー高さ
-#define	SELECT_MENU_INTERVAL	(50.0f)	// ポーズメニュー間隔
-#define	SELECT_MENU_POS_X	(0.0f)		// ポーズメニュー位置(X座標)
-#define	SELECT_MENU_POS_Y	(-50.0f)	// ポーズメニュー位置(Y座標)
+#define	SELECT_MENU_WIDTH	(250.0f)	// ポーズメニュー幅
+#define	SELECT_MENU_HEIGHT	(60.0f)		// ポーズメニュー高さ
+#define	SELECT_MENU_INTERVAL	(250.0f)	// ポーズメニュー間隔
+#define	SELECT_MENU_POS_X	(-250.0f)		// ポーズメニュー位置(X座標)
+#define	SELECT_MENU_POS_Y	(-250.0f)	// ポーズメニュー位置(Y座標)
 #define	PLATE_WIDTH			(360.0f)	// プレートの幅
 #define	PLATE_HEIGHT		(340.0f)	// プレートの幅
 #define	PLATE_POS_X			(0.0f)		// プレートの位置(X座標)
@@ -121,8 +121,8 @@ void UpdateSelect( void )
 	POINT temp = (*GetMousePosition());
 	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
 	XMFLOAT2 pos1 = XMFLOAT2(SELECT_MENU_POS_X, SELECT_MENU_POS_Y);
-	XMFLOAT2 pos2 = XMFLOAT2(SELECT_MENU_POS_X, SELECT_MENU_POS_Y - 1 * SELECT_MENU_INTERVAL);
-	XMFLOAT2 pos3 = XMFLOAT2(SELECT_MENU_POS_X, SELECT_MENU_POS_Y - 2 * SELECT_MENU_INTERVAL);
+	XMFLOAT2 pos2 = XMFLOAT2(SELECT_MENU_POS_X + 1 * SELECT_MENU_INTERVAL, SELECT_MENU_POS_Y);
+	XMFLOAT2 pos3 = XMFLOAT2(SELECT_MENU_POS_X + 2 * SELECT_MENU_INTERVAL, SELECT_MENU_POS_Y);
 	XMFLOAT2 radius1 = XMFLOAT2(SELECT_MENU_WIDTH / 2, SELECT_MENU_HEIGHT / 2);
 	XMFLOAT2 mpos2 = mousePos;
 	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
@@ -167,9 +167,7 @@ void DrawSelect( void )
 	//ポーズメニューの表示
 	SetPolygonSize( SELECT_MENU_WIDTH, SELECT_MENU_HEIGHT );
 	for (int nCntSelectMenu = 0; nCntSelectMenu < NUM_SELECT_MENU; ++nCntSelectMenu) {
-		SetPolygonPos( SELECT_MENU_POS_X, SELECT_MENU_POS_Y - nCntSelectMenu * SELECT_MENU_INTERVAL );
-
-
+		SetPolygonPos( SELECT_MENU_POS_X + nCntSelectMenu * SELECT_MENU_INTERVAL, SELECT_MENU_POS_Y);
 
 		//選択されているメニューを目立たせる
 		if (nCntSelectMenu == g_nSelectMenu)

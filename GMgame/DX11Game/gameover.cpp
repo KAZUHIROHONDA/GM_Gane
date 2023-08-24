@@ -15,16 +15,16 @@
 //*****************************************************************************
 // テクスチャファイル名
 #define GAMEOVER_TEXTURENAME	_T("data/texture/Gameover.png")
-#define GAMECLEAR_TEXTURENAME	_T("data/texture/Gameclear.png")
+#define GAMECLEAR_TEXTURENAME	_T("data/texture/Gameclear0.png")
 
 
 #define GAMEOVER_POS_X	(0)					//初期位置X
 #define GAMEOVER_POS_Y	(100)					//初期位置Y
-#define GAMEOVER_SIZE_X	(1000)		//横幅
+#define GAMEOVER_SIZE_X	(200)		//横幅
 #define GAMEOVER_SIZE_Y	(200)		//縦幅
 
 #define GAMECLEAR_POS_X	(0)	
-#define GAMECLEAR_POS_Y	(50)
+#define GAMECLEAR_POS_Y	(100)
 #define GAMECLEAR_SIZE_X	(600)
 #define GAMECLEAR_SIZE_Y	(120)
 
@@ -108,7 +108,7 @@ void DrawGameclear()
 {
 	// サンプル描画
 	//ポリゴン情報設定
-	SetPolygonPos(g_Position.x, 200);			//座標
+	SetPolygonPos(g_Position.x, g_Position.y);			//座標
 	SetPolygonSize(GAMEOVER_SIZE_X, GAMEOVER_SIZE_Y);		//大きさ
 	SetPolygonAngle(0.0f);				//角度
 	SetPolygonColor(1.0f, 1.0f, 1.0f);	//色(RGB)
