@@ -169,7 +169,7 @@ void UpdateMParts(void)
 
 		if (GetMouseTrigger(0))
 		{
-			SetMae(MODEL_PANDA3);
+			SetMae(MODEL_PANDA2);
 			MParts.SetHP(50);
 			MParts.SetPAat(50);
 			MParts.SetGUat(50);
@@ -182,7 +182,7 @@ void UpdateMParts(void)
 
 		if (GetMouseTrigger(0))
 		{
-			SetMae(MODEL_TORI3);
+			SetMae(MODEL_TORI2);
 			MParts.SetHP(50);
 			MParts.SetPAat(50);
 			MParts.SetGUat(50);

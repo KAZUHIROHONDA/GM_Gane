@@ -23,7 +23,7 @@
 #define MODEL_TORI		"data/model/toriatama.obj"
 #define MODEL_TORI1		"data/model/torikarada.obj"
 #define MODEL_TORI2		"data/model/toriude.obj"
-#define MODEL_TORI3		"data/model/toriasi.obj"
+#define MODEL_TORI3		"data/model/toriasi.fbx"
 
 
 //モデルデータ追加

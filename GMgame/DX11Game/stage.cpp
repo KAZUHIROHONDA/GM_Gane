@@ -47,7 +47,7 @@ void UpdateStage()
 		case	E_OBJECT_ENEMY01:
 		{
 			const tStage& temp = stage[g_nStageNo][g_nStageIdx];
-			//SetEnemy(temp.pos, XMFLOAT3(SinDeg(temp.nData), 0.0f, CosDeg(temp.nData)),0);
+			SetEnemy(temp.pos);
 		}
 		break;
 	
