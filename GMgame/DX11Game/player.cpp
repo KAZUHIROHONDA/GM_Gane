@@ -1132,7 +1132,7 @@ void DestroyPlayer(int no)
 	g_nCntF++;
 	if (g_nCntF>=250)
 	{
-		Clearflag();
+		Overflag();
 	}
 	
 }

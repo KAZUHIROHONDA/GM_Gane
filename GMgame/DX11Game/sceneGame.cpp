@@ -44,7 +44,7 @@
 //*****************************************************************************
 static bool g_bPause = false;	//tureでポーズ中
 static bool g_bClear = false;
-
+static bool g_bOver = false;
 int			eCnt;			//敵を倒した
 int			sTime;			//行動不能時間カウント
 
@@ -402,8 +402,15 @@ void DrawSceneGame()
 	if (g_bClear == true)
 	{
 		DrawSelect();
-		DrawGameover();
-		//DrawGameclear();
+		if (g_bOver == true)
+		{
+			DrawGameover();
+		}
+		else
+		{
+			DrawGameclear();
+		}
+		
 	}
 	//ビルボード弾びょうが
 	SetZWrite(false);	
@@ -449,4 +456,9 @@ Phase* GetPhase()
 void Clearflag()
 {
 	g_bClear = true;
+}
+void Overflag()
+{
+	g_bClear = true;
+	g_bOver = true;
 }
