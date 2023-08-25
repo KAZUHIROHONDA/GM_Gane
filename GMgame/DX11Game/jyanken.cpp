@@ -591,6 +591,8 @@ void UpdateJyankenBattle()
 		}
 		win = false;
 		lose = false;
+		PAT = 0;
+		EAT = 0;
 		GetPhase()->ChangePhase(SETPHASE);
 	}
 	

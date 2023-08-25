@@ -148,6 +148,8 @@ void UpdateParts(void)
 			Parts.SetPAat(10);
 			Parts.SetGUat(10);
 			Parts.SetTYOKIat(10);
+			//手札、0グー,1チョキ,2パー
+
 			InitPChimera();
 		}
 	}
@@ -160,6 +162,8 @@ void UpdateParts(void)
 			Parts.SetPAat(15);
 			Parts.SetGUat(15);
 			Parts.SetTYOKIat(15);
+			//手札、0グー,1チョキ,2パー
+
 			InitPChimera();
 		}
 	}
@@ -173,6 +177,8 @@ void UpdateParts(void)
 			Parts.SetPAat(50);
 			Parts.SetGUat(50);
 			Parts.SetTYOKIat(50);
+			//手札、0グー,1チョキ,2パー
+
 			InitPChimera();
 		}
 	}
@@ -186,6 +192,8 @@ void UpdateParts(void)
 			Parts.SetPAat(50);
 			Parts.SetGUat(50);
 			Parts.SetTYOKIat(50);
+			//手札、0グー,1チョキ,2パー
+
 			InitPChimera();
 		}
 	}

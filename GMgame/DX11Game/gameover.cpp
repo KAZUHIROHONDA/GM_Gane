@@ -19,12 +19,12 @@
 
 
 #define GAMEOVER_POS_X	(0)					//‰ŠúˆÊ’uX
-#define GAMEOVER_POS_Y	(100)					//‰ŠúˆÊ’uY
+#define GAMEOVER_POS_Y	(200)					//‰ŠúˆÊ’uY
 #define GAMEOVER_SIZE_X	(200)		//‰¡•
 #define GAMEOVER_SIZE_Y	(200)		//c•
 
 #define GAMECLEAR_POS_X	(0)	
-#define GAMECLEAR_POS_Y	(100)
+#define GAMECLEAR_POS_Y	(200)
 #define GAMECLEAR_SIZE_X	(600)
 #define GAMECLEAR_SIZE_Y	(120)
 

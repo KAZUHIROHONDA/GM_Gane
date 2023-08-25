@@ -125,6 +125,7 @@ void UpdateSceneChimera()
 	GetPlayer()->SetGUat(BPartsGet()->GetGUat() + MPartsGet()->GetGUat() + UPartsGet()->GetGUat() + PartsGet()->GetGUat());
 	GetPlayer()->SetPAat(BPartsGet()->GetPAat() + MPartsGet()->GetPAat() + UPartsGet()->GetPAat() + PartsGet()->GetPAat());
 	GetPlayer()->SetTYOKIat(BPartsGet()->GetTYOKIat() + MPartsGet()->GetTYOKIat() + UPartsGet()->GetTYOKIat() + PartsGet()->GetTYOKIat());
+	GetPlayer()->SetHand
 
 	if (GetMouseTrigger(1))
 	{

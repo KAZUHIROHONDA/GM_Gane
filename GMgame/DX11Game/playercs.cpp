@@ -73,7 +73,7 @@ int Player::GetTYOKIat()
 
 void Player::SetHand(int *val)
 {
-
+	
 }
 
 int Player::GetHand()

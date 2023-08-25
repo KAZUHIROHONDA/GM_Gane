@@ -150,6 +150,8 @@ void UpdateBParts(void)
 			BParts.SetPAat(10);
 			BParts.SetGUat(10);
 			BParts.SetTYOKIat(10);
+			//手札、0グー,1チョキ,2パー
+
 		    InitPChimera();
 		}
 	}
@@ -164,6 +166,8 @@ void UpdateBParts(void)
 			BParts.SetPAat(20);
 			BParts.SetGUat(20);
 			BParts.SetTYOKIat(20);
+			//手札、0グー,1チョキ,2パー
+
 			InitPChimera();
 		}
 	}
@@ -178,6 +182,8 @@ void UpdateBParts(void)
 			BParts.SetPAat(50);
 			BParts.SetGUat(50);
 			BParts.SetTYOKIat(50);
+			//手札、0グー,1チョキ,2パー
+	
 			InitPChimera();
 		}
 	}
@@ -192,6 +198,8 @@ void UpdateBParts(void)
 			BParts.SetPAat(50);
 			BParts.SetGUat(50);
 			BParts.SetTYOKIat(50);
+			//手札、0グー,1チョキ,2パー
+	
 			InitPChimera();
 		}
 	}
