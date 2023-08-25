@@ -67,6 +67,7 @@ bool useflag5 = true;
 float  size = 100.0f;
 int nPhase = 1;
 int PAT, EAT = 0;
+int Ac = 0;
 
 //OKƒ{ƒ^ƒ“
 #define OK_TEXTURENAME	_T("data/texture/button.png")
@@ -146,6 +147,12 @@ HRESULT InitJyanken()
 	g_nJyankenMenu = JYANKEN_MENU_1;
 	g_fCurve = 0.0f;
 
+	for (int i = 0; i < 20; i++)
+	{
+		Sette[i] = GetPlayer()->GetHand(i);
+		Setaite[i] = GetEnemy()->GetHand(i);
+	}
+	
 	return hr;
 }
 
@@ -503,8 +510,6 @@ void UpdateJyankenSet()
 		}
 	}
 
-
-
 }
 
 void UpdateJyankenJadge()
@@ -542,12 +547,28 @@ void UpdateJyankenBattle()
 	//Ÿ‚Á‚½‚Æ‚«
 	if (result[0] > result[1])
 	{
-		Action2();
+		Ac = rand() % 2;
+		switch (Ac)
+		{
+		case 0: {Action(); break; }
+		case 1: {Action2(); break; }	
+		default:
+			break;
+		}
+
 	}
 	//•‰‚¯‚½Žž
 	if (result[0] < result[1])
 	{
-		EAction();
+		Ac = rand() % 2;
+		switch (Ac)
+		{
+		case 0: {EAction();; break; }
+		case 1: {EAction2(); break; }
+		default:
+			break;
+		}
+
 	}
 
 	if (Cnt1 < 0)

@@ -12,14 +12,13 @@
 #include "bg.h"
 #include "selectstage.h"
 #include "player.h"
+#include "Camera.h"
+#include "pchimera.h"
+#include "Light.h"
 
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define MODEL_PLAYER		"data/model/kabuBody.obj"
-#define MODEL_PLAYER1		"data/model/kabu2.obj"
-#define MODEL_PLAYER2		"data/model/kabu3.obj"
-#define MODEL_PLAYER3		"data/model/kabu4.obj"
 
 
 
@@ -50,6 +49,17 @@ HRESULT InitSceneSelect()
 		return hr;
 	}
 
+	//プレイヤーの初期化処理
+	hr = InitPChimera();
+	if (FAILED(hr))
+	{
+		MessageBox(hWnd, _T("プレイヤー初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
+		return hr;
+	}
+
+	// カメラ更新
+	GetCamera()->Init();
+
 	return hr;
 }
 
@@ -63,6 +73,8 @@ void UninitSceneSelect()
 
 	//セレクトの終了処理
 	UninitSelectStage();
+
+	UninitPChimera();
 }
 
 //=============================================================================
@@ -75,6 +87,11 @@ void UpdateSceneSelect()
 
 	//終了処理
 	UpdateSelectStage();
+
+	// カメラ更新
+	GetCamera()->Update();
+
+	UpdatePChimera();
 
 	//ポーズ中の項目決定
 
@@ -108,17 +125,45 @@ void UpdateSceneSelect()
 //=============================================================================
 void DrawSceneSelect()
 {
-	SetZWrite(false);
-	//背景の描画処理
+
+	// Zバッファ無効
+	SetZBuffer(false);
+	SetBlendState(BS_ALPHABLEND);
+	//半透明オブジェクト(3Dの中でも後ろにかく)
+	//SetZWrite(true);
+
+	//背景
 	DrawBg1();
+
+	DrawSelectStage();
 
 	// Zバッファ有効
 	SetZBuffer(true);
+
+	//プレイヤー
+	DrawPChimera();
+
+	//光源処理無効
+	GetLight()->SetDisable();
+
+	//光源処理有効
+	GetLight()->SetEnable();
 
 	// Zバッファ無効
 	SetZBuffer(false);
 	SetBlendState(BS_ALPHABLEND);
 
-	DrawSelectStage();
+
+	//光源処理無効
+	GetLight()->SetDisable();
+	//半透明オブジェクト(3Dの中でも後ろにかく)
+	//ビルボード弾びょうが
+	SetZWrite(false);
+
+	//光源処理有効
+	GetLight()->SetEnable();
+
+
+
 
 }

@@ -534,7 +534,7 @@ void DamageEnemy(int damage)
 	{
 		HP = 0;
 
-		DestroyEnemy(0);
+		g_Eaction3 = true;
 	}
 
 	GetEnemy()->SetHP(HP);

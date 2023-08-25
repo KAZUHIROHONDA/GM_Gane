@@ -1,6 +1,6 @@
 //=============================================================================
 //
-// プレイヤー処理 [player.cpp]
+// プレイヤー処理 [pchimera.cpp]
 // Author : HIROHIKO HAMAYA
 //
 //=============================================================================
@@ -54,13 +54,13 @@ static tPChimera			playermodel[PCHIMERA_MAX];	//プレイヤー
 static tPChimera			playermodelHD[PCHIMERA_MAX];
 static tPChimera			playermodelAM[PCHIMERA_MAX];
 static tPChimera			playermodelLG[PCHIMERA_MAX];
-static int				g_nCameraType = E_CAMERA_VIEW_FIXED;		//カメラの種類
+static int				g_nCameraType = CAMERA_VIEW_FIXED;		//カメラの種類
 
 static bool				g_atama = true;//false;
 
 float CheckCollisionRay(XMVECTOR pos, float fRadius);
 
-
+bool sflag = false;
 
 
 //=============================================================================
@@ -151,7 +151,9 @@ HRESULT InitPChimera(void)
 	hr = g_model[3].Load(pDevice, pDeviceContext,
 		GetBack()); if (FAILED(hr)) return hr;
 	
-	g_nCameraType = E_CAMERA_VIEW_FIXED;
+	g_nCameraType = CAMERA_VIEW_FIXED;
+
+	sflag = true;
 	
 	return hr;
 }
@@ -200,16 +202,20 @@ void UpdatePChimera(void)
 		playermodel[i].pos.y += playermodel[i].vel.y;
 		playermodel[i].pos.z += playermodel[i].vel.z;
 
-
-
-		//着地判定
-		if (playermodel[i].pos.y <= 0.0f)
+		if (sflag == true)
 		{
-			playermodel[i].vel.y = 0.0f;
-			playermodel[i].pos.y = 0.0f;
-			playermodel[i].vel.x *= 0.9f;
-			playermodel[i].vel.z *= 0.9f;
+			playermodel[i].pos = XMFLOAT3(0.0f, -50.0f, 0.0f);
+			g_nCameraType = CAMERA_VIEW_BIRD;
 		}
+
+		////着地判定
+		//if (playermodel[i].pos.y <= 0.0f)
+		//{
+		//	playermodel[i].vel.y = 0.0f;
+		//	playermodel[i].pos.y = 0.0f;
+		//	playermodel[i].vel.x *= 0.9f;
+		//	playermodel[i].vel.z *= 0.9f;
+		//}
 
 		// 3D座標に変換して当たり判定を取る
 		float hitLength;
@@ -347,40 +353,40 @@ void UpdatePChimera(void)
 	}
 #ifdef CAMERA_DEBUG
 	if (GetKeyTrigger(VK_1))
-		g_nCameraType = E_CAMERA_VIEW_FIXED;
+		g_nCameraType = CAMERA_VIEW_FIXED;
 	if (GetKeyTrigger(VK_2))
-		g_nCameraType = E_CAMERA_VIEW_BIRD;
+		g_nCameraType = CAMERA_VIEW_BIRD;
 	if (GetKeyTrigger(VK_3))
-		g_nCameraType = E_CAMERA_VIEW_BEHIND;
+		g_nCameraType = CAMERA_VIEW_BEHIND;
 	if (GetKeyTrigger(VK_4))
-		g_nCameraType = E_CAMERA_VIEW_FPS;
+		g_nCameraType = CAMERA_VIEW_FPS;
 	if (GetKeyTrigger(VK_5))
-		g_nCameraType = E_CAMERA_VIEW_CAMERA_DEBUG;
+		g_nCameraType = CAMERA_VIEW_CAMERA_DEBUG;
 #endif
 
 	switch (g_nCameraType)
 	{
-	case E_CAMERA_VIEW_FIXED:
+	case CAMERA_VIEW_FIXED:
 		GetCamera()->SetTarget(1.0f, 1.0f, -1.0f);
 		GetCamera()->SetPos(180.0f, 40.0f, -1.0f);
 		break;
-	case E_CAMERA_VIEW_BIRD:
-		GetCamera()->SetTarget(playermodel[0].pos);
-		GetCamera()->SetPos(playermodel[0].pos.x + 0.0f, playermodel[0].pos.y + 100.0f, playermodel[0].pos.z - 200.0f);
+	case CAMERA_VIEW_BIRD:
+		GetCamera()->SetTarget(1.0f, 1.0f, -1.0f);
+		GetCamera()->SetPos(180.0f, 0.0f, 50.0f);
 		break;
-	case E_CAMERA_VIEW_BEHIND:
+	case CAMERA_VIEW_BEHIND:
 		GetCamera()->SetTarget(playermodel[0].pos.x + SinDeg(playermodel[0].rot.y)*100.0f, playermodel[0].pos.y + 15.0f, playermodel[0].pos.z + CosDeg(playermodel[0].rot.y)*100.0f);
 		GetCamera()->SetPos(playermodel[0].pos.x - SinDeg(playermodel[0].rot.y)*40.0f, playermodel[0].pos.y + 20.0f, playermodel[0].pos.z - CosDeg(playermodel[0].rot.y)*40.0f);
 		break;						
-	case E_CAMERA_VIEW_FPS:
+	case CAMERA_VIEW_FPS:
 		GetCamera()->SetTarget(playermodel[0].pos.x + SinDeg(playermodel[0].rot.y)*100.0f, playermodel[0].pos.y + 10.0f, playermodel[0].pos.z + CosDeg(playermodel[0].rot.y)*100.0f);
 		GetCamera()->SetPos(playermodel[0].pos.x + SinDeg(playermodel[0].rot.y)*10.0f, playermodel[0].pos.y + 20.0f, playermodel[0].pos.z + CosDeg(playermodel[0].rot.y)*10.0f);
 		break;
-	case E_CAMERA_VIEW_DIAGONAL:
+	case CAMERA_VIEW_DIAGONAL:
 		GetCamera()->SetTarget(0.0f, 0.0f, 0.0f);
 		GetCamera()->SetPos(0.0f, 100.0f, -200.0f);
 		break;
-	case E_CAMERA_VIEW_CAMERA_DEBUG:break;
+	case CAMERA_VIEW_CAMERA_DEBUG:break;
 	}
 }
 
@@ -483,4 +489,9 @@ float CheckCollisionRay(XMVECTOR pos, float fRadius)
 
 	//当たらなかったので
 	return 9999.9f; //最大値
+}
+
+void Sflag()
+{
+	sflag = false;
 }

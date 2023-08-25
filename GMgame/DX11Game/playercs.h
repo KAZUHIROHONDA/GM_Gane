@@ -35,8 +35,8 @@ public:
 	int		GetGUat();
 	void	SetTYOKIat(int val);
 	int		GetTYOKIat();
-	void	SetHand(int *val);
-	int		GetHand();
+	void	SetHand(int no, int val);
+	int		GetHand(int no);
 
 	void    Init();
 	void	Uninit();

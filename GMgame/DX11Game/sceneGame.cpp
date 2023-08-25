@@ -243,7 +243,7 @@ void UpdateSceneGame()
 		UpdatePause();
 		UpdateGameover();
 	}
-	if (g_bClear == true)
+	if (g_bClear == true || g_bOver == true)
 	{
 		GetCamera()->Update();
 		UpdateClear();
@@ -349,10 +349,12 @@ void UpdateSceneGame()
 					//リトライ
 				case PAUSE_MENU_RETRY:
 					StartFade(SCENE_GAME);
+					GetPhase()->ChangePhase(STARTPHASE);
 					break;
 					//終了(タイトルへ)
 				case PAUSE_MENU_QUIT:
 					StartFade(SCENE_TITLE);
+					GetPhase()->ChangePhase(STARTPHASE);
 					break;
 				}
 			}

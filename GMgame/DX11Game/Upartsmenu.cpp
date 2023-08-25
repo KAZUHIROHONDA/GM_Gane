@@ -15,6 +15,7 @@
 #include "model.h"
 #include "pchimera.h"
 #include "playercs.h"
+#include "sceneTitle.h"
 
 // マクロ定義
 #define	NUM_UPARTS_MENU		(4)			// ポーズメニュー数
@@ -148,6 +149,11 @@ void UpdateUParts(void)
 			UParts.SetGUat(20);
 			UParts.SetTYOKIat(25);
 			//手札、0グー,1チョキ,2パー
+			GetPlayer()->SetHand(10, 1);
+			GetPlayer()->SetHand(11, 1);
+			GetPlayer()->SetHand(12, 1);
+			GetPlayer()->SetHand(13, 1);
+			GetPlayer()->SetHand(14, 1);
 
 			InitPChimera();
 		}
@@ -162,6 +168,11 @@ void UpdateUParts(void)
 			UParts.SetGUat(20);
 			UParts.SetTYOKIat(25);
 			//手札、0グー,1チョキ,2パー
+			GetPlayer()->SetHand(10, 0);
+			GetPlayer()->SetHand(11, 0);
+			GetPlayer()->SetHand(12, 0);
+			GetPlayer()->SetHand(13, 0);
+			GetPlayer()->SetHand(14, 0);
 
 			InitPChimera();
 		}
@@ -177,6 +188,11 @@ void UpdateUParts(void)
 			UParts.SetGUat(50);
 			UParts.SetTYOKIat(50);
 			//手札、0グー,1チョキ,2パー
+			GetPlayer()->SetHand(10, 1);
+			GetPlayer()->SetHand(11, 1);
+			GetPlayer()->SetHand(12, 1);
+			GetPlayer()->SetHand(13, 1);
+			GetPlayer()->SetHand(14, 1);
 
 			InitPChimera();
 		}
@@ -192,6 +208,11 @@ void UpdateUParts(void)
 			UParts.SetGUat(50);
 			UParts.SetTYOKIat(50);
 			//手札、0グー,1チョキ,2パー
+			GetPlayer()->SetHand(10, 2);
+			GetPlayer()->SetHand(11, 2);
+			GetPlayer()->SetHand(12, 2);
+			GetPlayer()->SetHand(13, 2);
+			GetPlayer()->SetHand(14, 2);
 
 			InitPChimera();
 		}

@@ -73,6 +73,8 @@ HRESULT InitSceneChimera()
 
 	InitTex();
 
+	Sflag();
+
 	// ƒJƒƒ‰XV
 	GetCamera()->Init();
 
@@ -125,7 +127,8 @@ void UpdateSceneChimera()
 	GetPlayer()->SetGUat(BPartsGet()->GetGUat() + MPartsGet()->GetGUat() + UPartsGet()->GetGUat() + PartsGet()->GetGUat());
 	GetPlayer()->SetPAat(BPartsGet()->GetPAat() + MPartsGet()->GetPAat() + UPartsGet()->GetPAat() + PartsGet()->GetPAat());
 	GetPlayer()->SetTYOKIat(BPartsGet()->GetTYOKIat() + MPartsGet()->GetTYOKIat() + UPartsGet()->GetTYOKIat() + PartsGet()->GetTYOKIat());
-	GetPlayer()->SetHand
+
+	Sflag();
 
 	if (GetMouseTrigger(1))
 	{

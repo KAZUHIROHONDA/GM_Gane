@@ -49,6 +49,16 @@ HRESULT InitSceneTitle()
 	g_player.SetPAat(60);
 	g_player.SetGUat(70);
 	g_player.SetTYOKIat(50);
+	g_player.SetHand(0, 1);g_player.SetHand(1, 1);
+	g_player.SetHand(2, 1);g_player.SetHand(3, 1);
+	g_player.SetHand(4, 1);g_player.SetHand(5, 1);
+	g_player.SetHand(6, 1);g_player.SetHand(7, 1);
+	g_player.SetHand(8, 1);g_player.SetHand(9, 1); 
+	g_player.SetHand(10, 1);g_player.SetHand(11, 1);
+	g_player.SetHand(12, 1); g_player.SetHand(13, 1);
+	g_player.SetHand(14, 1); g_player.SetHand(15, 1);
+	g_player.SetHand(16, 1); g_player.SetHand(17, 1);
+	g_player.SetHand(18, 1); g_player.SetHand(19, 1);
 
 	//デバック
 	g_enemy.Init();
@@ -57,6 +67,17 @@ HRESULT InitSceneTitle()
 	g_enemy.SetPAat(15);
 	g_enemy.SetGUat(20);
 	g_enemy.SetTYOKIat(25);
+	g_enemy.SetHand(0, 1); g_enemy.SetHand(1, 1);
+	g_enemy.SetHand(2, 1); g_enemy.SetHand(3, 1);
+	g_enemy.SetHand(4, 1); g_enemy.SetHand(5, 1);
+	g_enemy.SetHand(6, 1); g_enemy.SetHand(7, 1);
+	g_enemy.SetHand(8, 1); g_enemy.SetHand(9, 1);
+	g_enemy.SetHand(10, 1);g_enemy.SetHand(11, 1);
+	g_enemy.SetHand(12, 1);g_enemy.SetHand(13, 1);
+	g_enemy.SetHand(14, 1);g_enemy.SetHand(15, 1);
+	g_enemy.SetHand(16, 1);g_enemy.SetHand(17, 1);
+	g_enemy.SetHand(18, 1);g_enemy.SetHand(19, 1);
+
 
 	//タイトル
 	InitTitle();

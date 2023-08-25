@@ -71,14 +71,14 @@ int Player::GetTYOKIat()
 	return TYOKIat;
 }
 
-void Player::SetHand(int *val)
+void Player::SetHand(int no,int val)
 {
-	
+	hand[no] = val;
 }
 
-int Player::GetHand()
+int Player::GetHand(int no)
 {
-	return hand[20];
+	return hand[no];
 }
 
 void Player::Init()

@@ -149,6 +149,11 @@ void UpdateMParts(void)
 			MParts.SetGUat(20);
 			MParts.SetTYOKIat(25);
 			//手札、0グー,1チョキ,2パー
+			GetPlayer()->SetHand(15, 2);
+			GetPlayer()->SetHand(16, 2);
+			GetPlayer()->SetHand(17, 2);
+			GetPlayer()->SetHand(18, 2);
+			GetPlayer()->SetHand(19, 2);
 
 			InitPChimera();
 		}
@@ -164,6 +169,11 @@ void UpdateMParts(void)
 			MParts.SetGUat(40);
 			MParts.SetTYOKIat(55);
 			//手札、0グー,1チョキ,2パー
+			GetPlayer()->SetHand(15, 0);
+			GetPlayer()->SetHand(16, 0);
+			GetPlayer()->SetHand(17, 0);
+			GetPlayer()->SetHand(18, 0);
+			GetPlayer()->SetHand(19, 0);
 
 			InitPChimera();
 		}
@@ -179,6 +189,11 @@ void UpdateMParts(void)
 			MParts.SetGUat(50);
 			MParts.SetTYOKIat(50);
 			//手札、0グー,1チョキ,2パー
+			GetPlayer()->SetHand(15, 1);
+			GetPlayer()->SetHand(16, 1);
+			GetPlayer()->SetHand(17, 1);
+			GetPlayer()->SetHand(18, 1);
+			GetPlayer()->SetHand(19, 1);
 
 			InitPChimera();
 		}
@@ -194,6 +209,11 @@ void UpdateMParts(void)
 			MParts.SetGUat(50);
 			MParts.SetTYOKIat(50);
 			//手札、0グー,1チョキ,2パー
+			GetPlayer()->SetHand(15, 2);
+			GetPlayer()->SetHand(16, 2);
+			GetPlayer()->SetHand(17, 2);
+			GetPlayer()->SetHand(18, 2);
+			GetPlayer()->SetHand(19, 2);
 
 			InitPChimera();
 		}
