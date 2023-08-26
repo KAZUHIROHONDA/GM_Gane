@@ -12,6 +12,7 @@
 #include "input.h"
 #include "sound.h"
 #include "collision.h"
+#include "fade.h"
 
 // マクロ定義
 #define	NUM_SELECT_STAGE		(2)			// ポーズメニュー数
@@ -141,11 +142,15 @@ void UpdateSelectStage( void )
 	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2))
 	{
 		SetSelectStageMenu1();
+
 	}
 	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2))
 	{
 		SetSelectStageMenu2();
+
 	}
+
+
 
 	// 枠の部分の色の変化(グラデーション)
 	g_fCurve += XM_PI * 0.01f;

@@ -62,7 +62,6 @@ float CheckCollisionRay(XMVECTOR pos, float fRadius);
 
 bool sflag = false;
 
-
 //=============================================================================
 // 初期化処理
 //=============================================================================
@@ -208,8 +207,8 @@ void UpdatePChimera(void)
 			g_nCameraType = CAMERA_VIEW_BIRD;
 		}
 
-		////着地判定
-		//if (playermodel[i].pos.y <= 0.0f)
+		//着地判定
+		//if (playermodel[i].pos.y <= -50.0f)
 		//{
 		//	playermodel[i].vel.y = 0.0f;
 		//	playermodel[i].pos.y = 0.0f;
@@ -228,6 +227,7 @@ void UpdatePChimera(void)
 			if (GetMouseTrigger(0))
 			{
 				//アクション入れたい
+
 			}
 		}
 		else
