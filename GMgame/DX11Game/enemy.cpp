@@ -642,7 +642,7 @@ void UpdateSelectEnemy(void)
 		}
 		else
 		{
-			g_enemy[i].rot = XMFLOAT3(0.0f, 90.0f, 0.0f);
+			g_enemy[i].rot = XMFLOAT3(0, 90, 0);
 		}
 
 		XMMATRIX mtxWorld, mtxRot, mtxScl,
@@ -831,7 +831,7 @@ XMFLOAT3 GetEnemySize(int no)
 }
 
 // 敵の出現
-int SetEnemy(XMFLOAT3 pos)
+int SetEnemy(XMFLOAT3 pos, XMFLOAT3 rot)
 {
 	tEnemy* pEnemy = g_enemy;
 	for (int i = 0; i < ENEMY_MAX; ++i, ++pEnemy)
@@ -846,7 +846,7 @@ int SetEnemy(XMFLOAT3 pos)
 		pEnemy->nState = 1;	// 出現
 		pEnemy->nShadowIdx =
 			CreateShadow(pEnemy->pos, ENEMY_RADIUS);
-		//pEnemy->rot.y = XMConvertToDegrees(atan2f(dir.x, dir.z));//モデルの向き
+		pEnemy->rot = rot;//モデルの向き
 		return i;	// 番号を返す
 	}
 

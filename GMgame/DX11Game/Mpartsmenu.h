@@ -32,3 +32,5 @@ void ResetMPartsMenu(void);
 void ResetMPartsMenu1(void);
 
 Player* MPartsGet();
+
+int MCharaNo();

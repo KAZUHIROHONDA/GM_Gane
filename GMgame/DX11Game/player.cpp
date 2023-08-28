@@ -18,6 +18,9 @@
 #include "model.h"
 #include "sceneTitle.h"
 #include "sceneGame.h"
+#include "partsmenu.h"
+#include "Upartsmenu.h"
+#include "Mpartsmenu.h"
 
 //*****************************************************************************
 // ƒ}ƒNƒ’è‹`
@@ -117,7 +120,7 @@ HRESULT InitPlayer(void)
 	{
 		g_player[i].pos = XMFLOAT3(0.0f, 25.0f, -100.0f);
 		g_player[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		g_player[i].scl = XMFLOAT3(7.0f, 7.0f, 7.0f);
+		g_player[i].scl = GetPlayer()->Getscl();
 		g_player[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		//‰Šú‰»
 		g_player[i].nPhase = 0;
@@ -150,7 +153,7 @@ HRESULT InitPlayer(void)
 		g_player[i].nShadowIdx = CreateShadow(g_player[i].pos, 20.0f);
 
 		//“ª
-		g_playerHD[i].pos = XMFLOAT3(0.0f, 1.0f, -0.3f);//(0.0f, 0.0f, -2.0f);
+		g_playerHD[i].pos = PartsGet()->Getpos();;//(0.0f, 0.0f, -2.0f);
 		g_playerHD[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_playerHD[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_playerHD[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -159,7 +162,7 @@ HRESULT InitPlayer(void)
 		g_playerHD[i].nShadowIdx = -1;
 
 		//˜r
-		g_playerAM[i].pos = XMFLOAT3(0.0f, 0.0f, 0.5f);//(0.0f, -0.8f, -1.0f);
+		g_playerAM[i].pos = MPartsGet()->Getpos();//(0.0f, -0.8f, -1.0f);
 		g_playerAM[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_playerAM[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_playerAM[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -168,7 +171,7 @@ HRESULT InitPlayer(void)
 		g_playerAM[i].nShadowIdx = -1;
 
 		//‘«
-		g_playerLG[i].pos = XMFLOAT3(0.0f, -1.0f, 0.0f);// (0.0f, -0.8f, 0.0f);
+		g_playerLG[i].pos = UPartsGet()->Getpos();// (0.0f, -0.8f, 0.0f);
 		g_playerLG[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_playerLG[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_playerLG[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);

@@ -11,6 +11,10 @@
 #include "shadow.h"		//影をつけるには入れる
 #include "model.h"
 #include "sceneGame.h"
+#include "sceneTitle.h"
+#include "partsmenu.h"
+#include "Upartsmenu.h"
+#include "Mpartsmenu.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -76,7 +80,7 @@ HRESULT InitPChimera(void)
 	{
 		playermodel[i].pos = XMFLOAT3(0.0f, 0.0f, -60.0f);
 		playermodel[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
-		playermodel[i].scl = XMFLOAT3(8.0f, 8.0f, 8.0f);
+		playermodel[i].scl = GetPlayer()->Getscl();
 		playermodel[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		//初期化
 		playermodel[i].nPhase = 0;
@@ -96,31 +100,37 @@ HRESULT InitPChimera(void)
 		playermodel[i].nShadowIdx = CreateShadow(playermodel[i].pos, 20.0f);
 
 		//頭
-		playermodelHD[i].pos = XMFLOAT3(0.0f, 0.0f, -2.0f);
+		playermodelHD[i].pos = PartsGet()->Getpos();
 		playermodelHD[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		playermodelHD[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+		playermodelHD[i].scl = PartsGet()->Getscl();
 		playermodelHD[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		playermodelHD[i].nPhase = 0;
 		playermodelHD[i].nState = 1;	// puroぺらは最初から登場している
 		playermodelHD[i].nShadowIdx = -1;
 
 		//腕
-		playermodelAM[i].pos = XMFLOAT3(0.0f, -0.8f, -1.0f);
+		playermodelAM[i].pos = MPartsGet()->Getpos();
 		playermodelAM[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		playermodelAM[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+		playermodelAM[i].scl = MPartsGet()->Getscl();
 		playermodelAM[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		playermodelAM[i].nPhase = 0;
 		playermodelAM[i].nState = 1;	// puroぺらは最初から登場している
 		playermodelAM[i].nShadowIdx = -1;
 
 		//足
-		playermodelLG[i].pos = XMFLOAT3(0.0f, -0.8f, 0.0f);
+		playermodelLG[i].pos = UPartsGet()->Getpos();
 		playermodelLG[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		playermodelLG[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+		playermodelLG[i].scl = UPartsGet()->Getscl();
 		playermodelLG[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		playermodelLG[i].nPhase = 0;
 		playermodelLG[i].nState = 1;	// puroぺらは最初から登場している
 		playermodelLG[i].nShadowIdx = -1;
+
+		if (sflag == true)
+		{
+			playermodel[i].rot = XMFLOAT3(0.0f, 100.0f, 0.0f);
+			g_nCameraType = CAMERA_VIEW_BIRD;
+		}
 	}
 
 	// ワールドマトリックスの初期化
@@ -135,6 +145,7 @@ HRESULT InitPChimera(void)
 		XMStoreFloat4x4(&playermodelLG[i].mtxWorld, mtxWorld);
 
 	}
+
 
 
 	// モデルデータの読み込み
@@ -203,7 +214,7 @@ void UpdatePChimera(void)
 
 		if (sflag == true)
 		{
-			playermodel[i].pos = XMFLOAT3(0.0f, -50.0f, 0.0f);
+			playermodel[i].pos = XMFLOAT3(50.0f, -50.0f, 0.0f);
 			g_nCameraType = CAMERA_VIEW_BIRD;
 		}
 
@@ -232,7 +243,7 @@ void UpdatePChimera(void)
 		}
 		else
 		{
-			playermodel[i].rot = XMFLOAT3(0.0f, 90.0f, 0.0f);
+			playermodel[i].rot = XMFLOAT3(0.0f, 100.0f, 0.0f);
 		}
 
 
@@ -372,7 +383,7 @@ void UpdatePChimera(void)
 		break;
 	case CAMERA_VIEW_BIRD:
 		GetCamera()->SetTarget(1.0f, 1.0f, -1.0f);
-		GetCamera()->SetPos(180.0f, 0.0f, 50.0f);
+		GetCamera()->SetPos(250.0f, 100.0f, 0.0f);
 		break;
 	case CAMERA_VIEW_BEHIND:
 		GetCamera()->SetTarget(playermodel[0].pos.x + SinDeg(playermodel[0].rot.y)*100.0f, playermodel[0].pos.y + 15.0f, playermodel[0].pos.z + CosDeg(playermodel[0].rot.y)*100.0f);

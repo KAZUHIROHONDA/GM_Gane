@@ -17,6 +17,8 @@ private:
 	int  GUat;				//グーの攻撃力
 	int  TYOKIat;			//チョキの攻撃力
 	int  hand[20];			//5個にする
+	XMFLOAT3 pos;			//位置
+	XMFLOAT3 scl;			//サイズ
 
 	DirectWrite* g_directWrite;
 
@@ -37,6 +39,10 @@ public:
 	int		GetTYOKIat();
 	void	SetHand(int no, int val);
 	int		GetHand(int no);
+	void Setpos(XMFLOAT3 val);
+	XMFLOAT3 Getpos();
+	void Setscl(XMFLOAT3 val);
+	XMFLOAT3 Getscl();
 
 	void    Init();
 	void	Uninit();

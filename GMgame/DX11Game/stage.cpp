@@ -47,7 +47,6 @@ void UpdateStage()
 		case	E_OBJECT_ENEMY01:
 		{
 			const tStage& temp = stage[g_nStageNo][g_nStageIdx];
-			SetEnemy(temp.pos);
 		}
 		break;
 	

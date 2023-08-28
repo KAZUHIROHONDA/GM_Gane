@@ -81,6 +81,26 @@ int Player::GetHand(int no)
 	return hand[no];
 }
 
+void Player::Setpos(XMFLOAT3 val)
+{
+	pos = val;
+}
+
+XMFLOAT3 Player::Getpos()
+{
+	return pos;
+}
+
+void Player::Setscl(XMFLOAT3 val)
+{
+	scl = val;
+}
+
+XMFLOAT3 Player::Getscl()
+{
+	return scl;
+}
+
 void Player::Init()
 {
 	FontData* fontData = new FontData();

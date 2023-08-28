@@ -37,6 +37,7 @@ static ID3D11ShaderResourceView*	g_pTextures[7] = { nullptr };	// テクスチャへの
 static float g_fCurve = 0.0f;
 static float g_fCol = 0.0f;
 static int	 nStopTime = 0;
+static int	 charano = 0;
 
 static LPCWSTR c_aFileNameUPartsMenu[NUM_UPARTS_MENU] =
 {
@@ -72,6 +73,7 @@ HRESULT InitUParts(void)
 
 	g_nUPartsMenu = UPARTS_MENU_KABU;
 	g_fCurve = 0.0f;
+    charano = 0;
 
 	return hr;
 }
@@ -158,6 +160,7 @@ void UpdateUParts(void)
 			GetPlayer()->SetHand(12, 1);
 			GetPlayer()->SetHand(13, 1);
 			GetPlayer()->SetHand(14, 1);
+			charano = 0;
 
 			InitPChimera();
 		}
@@ -177,6 +180,7 @@ void UpdateUParts(void)
 			GetPlayer()->SetHand(12, 0);
 			GetPlayer()->SetHand(13, 0);
 			GetPlayer()->SetHand(14, 0);
+			charano = 1;
 
 			InitPChimera();
 		}
@@ -197,6 +201,7 @@ void UpdateUParts(void)
 			GetPlayer()->SetHand(12, 1);
 			GetPlayer()->SetHand(13, 1);
 			GetPlayer()->SetHand(14, 1);
+			charano = 2;
 
 			InitPChimera();
 		}
@@ -217,6 +222,7 @@ void UpdateUParts(void)
 			GetPlayer()->SetHand(12, 2);
 			GetPlayer()->SetHand(13, 2);
 			GetPlayer()->SetHand(14, 2);
+			charano = 3;
 
 			InitPChimera();
 		}
@@ -237,6 +243,7 @@ void UpdateUParts(void)
 			GetPlayer()->SetHand(12, 2);
 			GetPlayer()->SetHand(13, 2);
 			GetPlayer()->SetHand(14, 2);
+			charano = 4;
 
 			InitPChimera();
 		}
@@ -257,6 +264,7 @@ void UpdateUParts(void)
 			GetPlayer()->SetHand(12, 2);
 			GetPlayer()->SetHand(13, 2);
 			GetPlayer()->SetHand(14, 2);
+			charano = 5;
 
 			InitPChimera();
 		}
@@ -347,3 +355,7 @@ Player* UPartsGet()
 	return &UParts;
 }
 
+int UCharaNo()
+{
+	return charano;
+}

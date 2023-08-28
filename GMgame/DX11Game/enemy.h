@@ -23,7 +23,7 @@ void UpdateSelectEnemy(void);
 void DrawEnemy(void);
 float ECheckCollisionRay(XMVECTOR pos, float fRadius);
 
-int SetEnemy(XMFLOAT3 pos);
+int SetEnemy(XMFLOAT3 pos, XMFLOAT3 rot);
 
 bool IsEnemy(int no);
 void DestroyEnemy(int no);

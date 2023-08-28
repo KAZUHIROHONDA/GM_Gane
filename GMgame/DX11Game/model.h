@@ -11,9 +11,9 @@
 #define MODEL_KABU3		"data/model/kabuLG.obj"//Œã‚ë
 
 #define MODEL_wani		"data/model/wani1.obj"
-#define MODEL_wani1		"data/model/wani2.obj"
-#define MODEL_wani2		"data/model/wani3.obj"
-#define MODEL_wani3		"data/model/wani4.obj"
+#define MODEL_wani1		"data/model/waniBD2.obj" 
+#define MODEL_wani2		"data/model/waniAM.obj" 
+#define MODEL_wani3		"data/model/waniAM.obj" 
 
 #define MODEL_PANDA		"data/model/pandaHD.obj"
 #define MODEL_PANDA1	"data/model/pandaBD.obj"

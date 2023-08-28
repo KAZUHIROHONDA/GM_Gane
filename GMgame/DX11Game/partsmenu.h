@@ -31,3 +31,4 @@ PARTS_MENU GetPartsMenu(void);
 void ResetPartsMenu(void);
 
 Player* PartsGet();
+int CharaNo();
