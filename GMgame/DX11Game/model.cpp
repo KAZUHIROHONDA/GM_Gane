@@ -9,10 +9,10 @@
 #include "playercs.h"
 
 
-std::string modelhead = MODEL_KABU;
-std::string modelbody = MODEL_KABU1;
-std::string modelmae = MODEL_KABU2;
-std::string modelusiro = MODEL_KABU3;
+std::string modelhead =  MODEL_TORI;
+std::string modelbody = MODEL_TORI1;
+std::string modelmae = MODEL_TORI2;
+std::string modelusiro = MODEL_TORI3;
 
 void SetHead(std::string val)
 {

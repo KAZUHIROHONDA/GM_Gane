@@ -7,12 +7,16 @@ c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\field3d.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\field.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\fade.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\enter.obj
+c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\enemyhp.obj
+c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\enemy.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\egauge.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\directwrite.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\debugproc.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\csvloader.obj
+c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\collision.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\chimeracs.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\camera.obj
+c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\bullet.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\bpartsmenu.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\bg.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\assimpmodel.obj
@@ -21,6 +25,7 @@ c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\scenechimera.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\polygon.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\playerhp.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\playercs.obj
+c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\player.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\phasecs.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\pchimera.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\pause.obj
@@ -33,6 +38,7 @@ c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\messagemanager.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\mesh.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\main.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\light.obj
+c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\jyanken.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\input.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\wall.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\vs.obj
@@ -42,6 +48,7 @@ c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\texture.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\tex.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\tab.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\stage01.obj
+c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\stage.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\sound.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\shadow.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\shader.obj
@@ -52,14 +59,7 @@ c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\scenetitle.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\scenesetumei.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\sceneselect.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\scenegameover.obj
-c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\stage.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\scenegame.obj
-c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\player.obj
-c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\jyanken.obj
-c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\enemyhp.obj
-c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\enemy.obj
-c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\collision.obj
-c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\bullet.obj
 c:\users\matsu\desktop\resouce\gmgame\dx11game\dx11gamed.lib
 c:\users\matsu\desktop\resouce\gmgame\dx11game\dx11gamed.exp
 c:\users\matsu\desktop\resouce\gmgame\dx11game\data\shader\assimppixel.cso
@@ -68,8 +68,8 @@ c:\users\matsu\desktop\resouce\gmgame\dx11game\data\shader\pixel.cso
 c:\users\matsu\desktop\resouce\gmgame\dx11game\data\shader\pixel2d.cso
 c:\users\matsu\desktop\resouce\gmgame\dx11game\data\shader\vertex.cso
 c:\users\matsu\desktop\resouce\gmgame\dx11game\data\shader\vertex2d.cso
-c:\users\matsu\desktop\resouce\gmgame\dx11game\dx11gamed.exe
 c:\users\matsu\desktop\resouce\gmgame\dx11game\dx11gamed.ilk
+c:\users\matsu\desktop\resouce\gmgame\dx11game\dx11gamed.exe
 c:\users\matsu\desktop\resouce\gmgame\dx11game\dx11gamed.pdb
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\dx11game.res
 c:\users\matsu\desktop\resouce\gmgame\dx11game\x64\debug\dx11game.tlog\cl.command.1.tlog
