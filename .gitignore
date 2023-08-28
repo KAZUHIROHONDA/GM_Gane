@@ -31,6 +31,7 @@
 *.exe
 *.out
 *.app
+*.obj
 GMgame/DX11Game/DX11GameD.pdb
 GMgame/DX11Game/DX11GameD.ilk
 GMgame/.vs/DX11Game/v15/ipch/AutoPCH/d41f16f73f863dfe/DEBUGPROC.ipch
