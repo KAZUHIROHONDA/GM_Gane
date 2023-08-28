@@ -81,6 +81,7 @@ static int			g_nCnt2;//行動カウント2コメ
 static int			g_nCnt3;//行動カウント3コメ
 static int			g_nCnt4;//行動カウント4コメ
 static int			g_nCnt5;//行動カウント4コメ
+static int			g_nCnt11;//行動カウント4コメ
 
 static int			g_nCntF;//
 
@@ -89,6 +90,7 @@ static bool			g_action;
 static bool			g_action2;
 static bool			g_action3;
 static bool			g_action4;
+static bool			g_action10;
 
 static bool				g_atama = true;//false;
 
@@ -133,11 +135,13 @@ HRESULT InitPlayer(void)
 		g_nCnt4 = 0;
 		g_nCnt5 = 0;
 		g_nCntF = 0;
+		g_nCnt11 = 0;
 
 		g_action = false;
 		g_action2 = false;
 		g_action3 = false;
 		g_action4 = false;
+		g_action10 = false;
 
 		g_player[i].nHP = GetPlayer()->GetHP();
 		g_player[i].nGauge = 100;
@@ -267,6 +271,12 @@ void UpdatePlayer(void)
 				g_action4 = true;
 			}
 			Action4(g_action4);
+
+			if (GetKeyTrigger(VK_5))
+			{
+				g_action10 = true;
+			}
+			Action10(g_action10);
 
 
 		}
@@ -447,18 +457,18 @@ void UpdatePlayer(void)
 		XMStoreFloat4x4(&g_playerLG[i].mtxWorld, mtxWorldLG);
 
 	}
-#ifdef CAMERA_DEBUG
-	if (GetKeyTrigger(VK_1))
-		g_nCameraType = E_CAMERA_VIEW_FIXED;
-	if (GetKeyTrigger(VK_2))
-		g_nCameraType = E_CAMERA_VIEW_BIRD;
-	if (GetKeyTrigger(VK_3))
-		g_nCameraType = E_CAMERA_VIEW_BEHIND;
-	if (GetKeyTrigger(VK_4))
-		g_nCameraType = E_CAMERA_VIEW_FPS;
-	if (GetKeyTrigger(VK_5))
-		g_nCameraType = E_CAMERA_VIEW_CAMERA_DEBUG;
-#endif
+//#ifdef CAMERA_DEBUG
+//	if (GetKeyTrigger(VK_1))
+//		g_nCameraType = E_CAMERA_VIEW_FIXED;
+//	if (GetKeyTrigger(VK_2))
+//		g_nCameraType = E_CAMERA_VIEW_BIRD;
+//	if (GetKeyTrigger(VK_3))
+//		g_nCameraType = E_CAMERA_VIEW_BEHIND;
+//	if (GetKeyTrigger(VK_4))
+//		g_nCameraType = E_CAMERA_VIEW_FPS;
+//	if (GetKeyTrigger(VK_5))
+//		g_nCameraType = E_CAMERA_VIEW_CAMERA_DEBUG;
+//#endif
 
 	switch (g_nCameraType)
 	{
@@ -896,10 +906,12 @@ void ResetPos(int no)
 	g_nCnt3 = 0;
 	g_nCnt4 = 0;
 	g_nCnt5 = 0;
+	g_nCnt11 = 0;
 	g_action = false;
 	g_action2 = false;
 	g_action3 = false;
 	g_action4 = false;
+	g_action10 = false;
 }
 
 void Action(bool af)
@@ -998,127 +1010,165 @@ void Action3(bool af)
 
 	}
 }
-void Action4(bool af) 
+//void Action4(bool af) 
+//{
+//	if (af)
+//	{
+//		for (int i = 0; i < PLAYER_MAX; i++)
+//		{
+//			g_nCnt5++;
+//			if (g_nCnt5 >= 1 && g_nCnt5 <= 2)
+//			{
+//				g_player[i].pos.z += 70;
+//			}
+//			if (g_nCnt5 >= 6 && g_nCnt5 <= 10)
+//			{
+//				g_player[i].rot.x = 70;
+//			}
+//			if (g_nCnt5 >= 15 && g_nCnt5 <= 20)
+//			{
+//				g_player[i].pos.y = 50;
+//				g_player[i].rot.x = 0;
+//				g_player[i].pos.z = 20;
+//				g_player[i].pos.x = 80;
+//								
+//
+//			}
+//			if (g_nCnt5 >= 21 && g_nCnt5 <= 90)
+//			{
+//				XMFLOAT3 pPos = GetEnemyPos(0);
+//				// 毎フレームプレイヤーを認識して追いかける
+//				//g_player[i].targetPos = pPos;
+//				// 移動量の計算
+//				XMFLOAT3 temp;	// 向き
+//				temp.x = pPos.x - g_player[i].pos.x;
+//				temp.y = pPos.y - g_player[i].pos.y;
+//				temp.z = pPos.z - g_player[i].pos.z;
+//				float len = sqrtf(temp.x*temp.x + temp.z*temp.z);
+//				if ( g_nCnt5 >= 21 && g_nCnt5 <= 90  )
+//				{	
+//					temp.x /= len;
+//					temp.z /= len;	// 長さが１の向きだけの情報になる
+//
+//					temp.x *= VALUE_MOVE*4;
+//					temp.z *= VALUE_MOVE*4;
+//					g_player[i].vel = XMFLOAT3(temp.x, 0.0f, temp.z);
+//					g_player[i].rot.y = XMConvertToDegrees(
+//						atan2f(temp.x, temp.z));// モデルの向き
+//
+//					/*g_player[i].pos.z = rand();
+//					g_player[i].pos.x = rand();*/
+//					
+//				}
+//				
+//			}
+//			
+//
+//			else {	// 一定距離以内は停止
+//				g_player[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+//			}
+//
+//			if (g_nCnt5 >= 200)
+//			{
+//				ResetPos(i);
+//			}
+//		}
+//
+//	}
+//		
+//}
+
+void Action4(bool af) //打ち上げドリル攻撃
 {
 	if (af)
 	{
 		for (int i = 0; i < PLAYER_MAX; i++)
 		{
+			
 			g_nCnt5++;
-			if (g_nCnt5 >= 1 && g_nCnt5 <= 2)
+			
+			if (g_nCnt5 >= 1 && g_nCnt5 <= 349)
 			{
-				g_player[i].pos.z += 70;
-			}
-			if (g_nCnt5 >= 6 && g_nCnt5 <= 10)
-			{
-				g_player[i].rot.x = 70;
-			}
-			if (g_nCnt5 >= 15 && g_nCnt5 <= 20)
-			{
-				g_player[i].pos.y = 50;
-				g_player[i].rot.x = 0;
-				g_player[i].pos.z = 20;
-				g_player[i].pos.x = 80;
-								
-
-			}
-			if (g_nCnt5 >= 21 && g_nCnt5 <= 90)
-			{
-				XMFLOAT3 pPos = GetEnemyPos(0);
-				// 毎フレームプレイヤーを認識して追いかける
-				//g_player[i].targetPos = pPos;
-				// 移動量の計算
-				XMFLOAT3 temp;	// 向き
-				temp.x = pPos.x - g_player[i].pos.x;
-				temp.y = pPos.y - g_player[i].pos.y;
-				temp.z = pPos.z - g_player[i].pos.z;
-				float len = sqrtf(temp.x*temp.x + temp.z*temp.z);
-				if ( g_nCnt5 >= 21 && g_nCnt5 <= 90  )
-				{	
-					temp.x /= len;
-					temp.z /= len;	// 長さが１の向きだけの情報になる
-
-					temp.x *= VALUE_MOVE*4;
-					temp.z *= VALUE_MOVE*4;
-					g_player[i].vel = XMFLOAT3(temp.x, 0.0f, temp.z);
-					g_player[i].rot.y = XMConvertToDegrees(
-						atan2f(temp.x, temp.z));// モデルの向き
-
-					/*g_player[i].pos.z = rand();
-					g_player[i].pos.x = rand();*/
+				
+				if (g_nCnt5 <= 12 && g_nCnt5 >= 10)
+				{
+					g_player[i].pos.z += 50;
+				}
+				if (g_nCnt5 <= 24 && g_nCnt5 >= 16)
+				{
+					g_playerHD[i].rot.x = 35.0f;
+				}
+				if (g_nCnt5 <= 54 && g_nCnt5 >= 25)//上り
+				{
+					g_playerHD[i].rot.x = 0.0f;
+					g_player[i].rot.y = 0.0f;
+					g_player[i].rot.x -= 18.0f;
+					g_player[i].pos.z -= 4;
+					g_player[i].pos.y += 1;
+				}
+				if (g_nCnt5 <=84  && g_nCnt5 >= 55)//下り
+				{
+					//g_player[i].rot.y = 0.0f;
+					g_player[i].rot.x -= 18.0f;
+					g_player[i].pos.z -= 4;
+					g_player[i].pos.y -= 1;
+				}
+				if (g_nCnt5 <= 100 && g_nCnt5 >= 90)
+				{
+					g_playerHD[i].rot.z += 100.0f;
+				}
+				if (g_nCnt5 <= 199 && g_nCnt5 >= 101)
+				{
+					g_playerHD[i].rot.z += 200.0f;
+					g_player[i].rot.z -= 100.0f;
+				}
+				if (g_nCnt5 <= 340 && g_nCnt5 >= 200)
+				{
+					g_playerHD[i].rot.z += 200.0f;
+					g_player[i].rot.z -= 100.0f;
+					g_player[i].pos.z += 20;
 					
 				}
 				
 			}
-			
-
-			else {	// 一定距離以内は停止
-				g_player[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+			if (g_nCnt5 >= 380)
+			{
+				ResetPos(i);
 			}
+			
+		}
+		
+	}
+	
+	
+}
 
-			if (g_nCnt5 >= 200)
+void Action10(bool af)//竜巻　ダメージ
+{
+	if (af)
+	{
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_nCnt11++;
+			if (g_nCnt11 >= 390 && g_nCnt11 <= 600)
+			{
+				g_player[i].pos.y += 0.7f;
+				g_player[i].rot.y--;
+				g_player[i].rot.x--;
+				g_player[i].rot.z++;
+			}
+			if (g_nCnt11 >= 601 && g_nCnt11 <= 800)
+			{
+				g_player[i].pos.y -= 0.73f;
+			}
+			if(g_nCnt11 >= 801)
 			{
 				ResetPos(i);
 			}
 		}
 
 	}
-		
 }
-
-//void Action4(bool af) 回転保存
-//{
-//	if (af)
-//	{
-//		for (int i = 0; i < PLAYER_MAX; i++)
-//		{
-//			
-//			g_nCnt5++;
-//			
-//			if (g_nCnt5 >= 1 && g_nCnt5 <= 100)
-//			{
-//				
-//				if (g_nCnt5 <= 19 && g_nCnt5 >= 10)
-//				{
-//					g_player[i].pos.z += 100;
-//				}
-//				if (g_nCnt5 <= 24 && g_nCnt5 >= 15)
-//				{
-//					
-//				}
-//				if (g_nCnt5 <= 54 && g_nCnt5 >= 25)
-//				{
-//					g_player[i].rot.y = 0.0f;
-//					g_player[i].rot.x -= 18.0f;
-//					g_player[i].pos.z -= 4;
-//					g_player[i].pos.y += 1;
-//				}
-//				if (g_nCnt5 <= 84 && g_nCnt5 >= 55)
-//				{
-//					//g_player[i].rot.y = 0.0f;
-//					g_player[i].rot.x -= 18.0f;
-//					g_player[i].pos.z -= 4;
-//					g_player[i].pos.y -= 1;
-//				}
-//				if (g_nCnt5 <= 110 && g_nCnt5 >= 90)
-//				{
-//
-//				}
-//
-//				
-//			}
-//			if (g_nCnt5 >= 200)
-//			{
-//				ResetPos(i);
-//			}
-//			
-//		}
-//		
-//	}
-//	
-//	
-//}
-
 void DestroyPlayer(int no)
 {
 	if (no < 0 || no >= PLAYER_MAX)	return;

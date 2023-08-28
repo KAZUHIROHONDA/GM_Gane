@@ -50,6 +50,8 @@ void Action2();
 void Action3(bool af);
 
 void Action4(bool af);
+void Action10(bool af);
+
 
 void CameraFIXED();
 void CameraDEBUG();

@@ -21,10 +21,17 @@
 // マクロ定義
 //*****************************************************************************
 //=======
+<<<<<<< HEAD
 #define MODEL_ENEMY		"data/model/pandaBD.obj"
 #define MODEL_ENEMY1	"data/model/pandaHD.obj"
 #define MODEL_ENEMY2	"data/model/pandaAM.obj"
 #define MODEL_ENEMY3	"data/model/pandaAM.obj"
+=======
+#define MODEL_ENEMY		"data/model/waniBD2.obj"//"data/model/butaBD.obj"
+#define MODEL_ENEMY1	 "data/model/wani1.obj" //"data/model/butaHD.obj"
+#define MODEL_ENEMY2	"data/model/waniAM.obj" //"data/model/butaAM.obj"
+#define MODEL_ENEMY3	"data/model/waniAM.obj" //"data/model/butaLG.obj"
+>>>>>>> feature/matsui2
 //>>>>>>> feature/matsui2
 
 #define VALUE_MOVE		(0.1f)		
@@ -71,11 +78,32 @@ static int			g_nECnt1;//行動カウント1コメ
 static int			g_nECnt2;//行動カウント2コメ
 static int			g_nECnt3;//行動カウント3コメ
 static int			g_nECnt4;//行動カウント4コメ
+<<<<<<< HEAD
 static bool			g_atama = true;//false;
+=======
+static int			g_nECnt5;//行動カウント5コメ
+static int			g_nECnt6;//行動カウント6コメ
+static int			g_nECnt7;//行動カウント6コメ
+static int			g_nECnt8;//行動カウント6コメ
+static int			g_nECnt9;//行動カウント6コメ
+static int			g_nECnt10;//行動カウント6コメ
+static int			g_nECnt11;//行動カウント6コメ
+static int			g_nECnt12;//行動カウント6コメ
+static bool				g_atama = true;//false;
+>>>>>>> feature/matsui2
 
 static bool			g_Eaction;
 static bool			g_Eaction2;
 static bool			g_Eaction3;
+static bool			g_Eaction4;
+static bool			g_Eaction5;
+static bool			g_Eaction6;
+static bool			g_Eaction7;
+static bool			g_Eaction8;
+static bool			g_Eaction9;
+static bool			g_Eaction10;
+static bool			g_Eaction11;
+
 
 int					bfCnt;
 
@@ -105,11 +133,38 @@ HRESULT InitEnemy(void)
 		g_enemy[i].nEGauge = 100;
 		g_enemy[i].nShadowIdx = -1;
 
+<<<<<<< HEAD
 		
+=======
+		g_Eaction = false;
+		g_Eaction2 = false;
+		g_Eaction3 = false;
+		g_Eaction4 = false;
+		g_Eaction5 = false;
+		g_Eaction6 = false;
+		g_Eaction7 = false;
+		g_Eaction8 = false;
+		g_Eaction9 = false;
+		g_Eaction10 = false;
+		g_Eaction11 = false;
+
+		g_nECnt1 = 0;					//
+		g_nECnt2 = 0;					//
+		g_nECnt3 = 0;
+		g_nECnt4 = 0;
+		g_nECnt5 = 0;
+		g_nECnt6 = 0;
+		g_nECnt7 = 0;
+		g_nECnt8 = 0;
+		g_nECnt9 = 0;
+		g_nECnt10 = 0;
+		g_nECnt11 = 0;
+		g_nECnt12 = 0;
+>>>>>>> feature/matsui2
 
 
 		//頭 wani
-		g_enemyHD[i].pos = XMFLOAT3(0.0f, 0.0f, 0.0f);//z-3
+		g_enemyHD[i].pos = XMFLOAT3(0.0f, 0.0f, -1.0f);//z-3
 		g_enemyHD[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyHD[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_enemyHD[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -127,7 +182,7 @@ HRESULT InitEnemy(void)
 		//g_enemyHD[i].nShadowIdx = -1;
 
 		////腕-0.8f
-		g_enemyAM[i].pos = XMFLOAT3(0.0f, -0.3f, 0.0f);//-0.8,-1
+		g_enemyAM[i].pos = XMFLOAT3(0.0f, -0.5f, 0.0f);//-0.8,-1
 		g_enemyAM[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyAM[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_enemyAM[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -145,7 +200,7 @@ HRESULT InitEnemy(void)
 		//g_enemyAM[i].nShadowIdx = -1;
 
 		//足
-		g_enemyLG[i].pos = XMFLOAT3(0.0f, -0.8f, 0.0f);
+		g_enemyLG[i].pos = XMFLOAT3(0.0f, -0.5f, 1.5f);
 		g_enemyLG[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyLG[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_enemyLG[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -267,6 +322,55 @@ void UpdateEnemy(void)
 			}
 			EAction3(g_Eaction3);
 
+			if (GetKeyTrigger(VK_9))
+			{
+				g_Eaction4 = true;
+			}
+			EAction4(g_Eaction4);
+
+
+			if (GetKeyTrigger(VK_0))
+			{
+				g_Eaction5 = true;
+			}
+			EAction5(g_Eaction5);
+
+			if (GetKeyTrigger(VK_1))
+			{
+				g_Eaction6 = true;
+			}
+			EAction6(g_Eaction6);
+
+			if (GetKeyTrigger(VK_2))
+			{
+				g_Eaction7 = true;
+			}
+			EAction7(g_Eaction7);
+
+			if (GetKeyTrigger(VK_3))
+			{
+				g_Eaction8 = true;
+			}
+			EAction8(g_Eaction8);
+
+			if (GetKeyTrigger(VK_4))
+			{
+				g_Eaction9 = true;
+			}
+			EAction9(g_Eaction9);
+
+			if (GetKeyTrigger(VK_5))
+			{
+				g_Eaction10 = true;
+			}
+			EAction10(g_Eaction10);
+
+
+			if (GetKeyTrigger(VK_M))
+			{
+				g_Eaction11 = true;
+			}
+			EAction11(g_Eaction11);
 
 		}
 		
@@ -568,19 +672,49 @@ void ResetEPos(int no)
 	g_enemy[no].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
 	g_enemy[no].scl = XMFLOAT3(15.0f, 15.0f, 15.0f);
 	g_enemy[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	g_enemyHD[no].pos = XMFLOAT3(0.0f, 0.0f, -3.0f);
+
+	g_enemyHD[no].pos = XMFLOAT3(0.0f, 0.0f, -1.0f);
 	g_enemyHD[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	g_enemyHD[no].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 	g_enemyHD[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 
+	g_enemyAM[no].pos = XMFLOAT3(0.0f, -0.5f, 0.0f);///-0.8,-1
+	g_enemyAM[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	g_enemyAM[no].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+	g_enemyAM[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+
+	g_enemyLG[no].pos = XMFLOAT3(0.0f, -0.5f, 1.5f);
+	g_enemyLG[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	g_enemyLG[no].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+	g_enemyLG[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+
 	g_nECnt1 = 0;
 	g_nECnt2 = 0;
 	g_nECnt3 = 0;
+	g_nECnt4 = 0;
+	g_nECnt5 = 0;
+	g_nECnt6 = 0;
+	g_nECnt7 = 0;
+	g_nECnt8 = 0;
+	g_nECnt9 = 0;
+	g_nECnt10 = 0;
+	g_nECnt11 = 0;
+	g_nECnt12 = 0;
+
 	g_Eaction = false;
 	g_Eaction2 = false;
+	g_Eaction3 = false;
+	g_Eaction4 = false;
+	g_Eaction5 = false;
+	g_Eaction6 = false;
+	g_Eaction7 = false;
+	g_Eaction8 = false;
+	g_Eaction9 = false;
+	g_Eaction10 = false;
+	g_Eaction11 = false;
 }
 
-void EAction(bool af)
+void EAction(bool af)//落下ドリル
 {
 	if (af)
 	{
@@ -615,7 +749,7 @@ void EAction()
 	g_Eaction = true;
 }
 
-void EAction2(bool af)
+void EAction2(bool af)//百裂拳
 {
 	if (af)
 	{
@@ -646,7 +780,7 @@ void EAction2()
 	g_Eaction2 = true;
 }
 
-void EAction3(bool af)
+void EAction3(bool af)//死亡
 {
 	if (af)
 	{
@@ -672,5 +806,346 @@ void EAction3(bool af)
 		if (g_nECnt4 >= 200)
 			DestroyEnemy(0);
 
+	}
+}
+
+void EAction4(bool af) //打ち上がるモーション
+{
+	if (af)
+	{
+		
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_nECnt5++;
+
+			if (g_nECnt5 >= 16 && g_nECnt5 <= 109)
+			{
+				g_enemy[i].pos.y++;
+				g_enemy[i].rot.x++;
+			}
+			if (g_nECnt5 >= 110 && g_nECnt5 <=200 )
+			{
+				g_enemy[i].pos.y--;
+				g_enemy[i].rot.x++;
+			}
+			if (g_nECnt5 >= 220 && g_nECnt5 <= 379)
+			{
+				g_enemy[i].pos.z++;
+				g_enemy[i].rot.x++;
+				g_enemy[i].rot.y++;
+				g_enemy[i].rot.z++;
+			}
+			
+			if (g_nECnt5 >= 380)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+void EAction5(bool af) //分解攻撃　最後BDは大爆発
+{
+	if (af)
+	{
+
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_nECnt6++;
+
+			if (g_nECnt6 >= 0 && g_nECnt6 <= 50)
+			{
+				g_enemyHD[i].pos.y += 0.1f;
+				g_enemyHD[i].rot.x += 20.0f;
+				g_enemyHD[i].rot.y -= 20.0f;
+				g_enemyHD[i].rot.z += 20.0f;
+
+				g_enemyAM[i].pos.y += 0.1f;
+				g_enemyAM[i].rot.x += 20.0f;
+				g_enemyAM[i].rot.y += 20.0f;
+				g_enemyAM[i].rot.z -= 20.0f;
+
+				g_enemyLG[i].pos.y += 0.1f;
+				g_enemyLG[i].rot.x -= 20.0f;
+				g_enemyLG[i].rot.y += 20.0f;
+				g_enemyLG[i].rot.z += 20.0f;
+			}
+
+			if (g_nECnt6 >= 65 && g_nECnt6 <= 75)
+			{
+				g_enemyHD[i].pos.z -= 7.0f;
+				g_enemyHD[i].pos.y -= 2.0f;
+			}
+			if (g_nECnt6 >= 85 && g_nECnt6 <= 95)
+			{
+				g_enemyAM[i].pos.z -= 7.0f;
+				g_enemyAM[i].pos.y -= 2.0f;
+			}
+			if (g_nECnt6 >= 105 && g_nECnt6 <= 115)
+			{
+				g_enemyLG[i].pos.z -= 7.0f;
+				g_enemyLG[i].pos.y -= 2.0f;
+			}
+
+			if (g_nECnt6 >= 130 && g_nECnt6 <= 165)
+			{
+				g_enemy[i].pos.z -= 1.5f;
+				g_enemy[i].pos.y += 1.5f;
+				g_enemy[i].rot.x -= 7.0f;
+			}
+			if (g_nECnt6 >= 165 && g_nECnt6 <= 170)
+			{
+				g_enemy[i].pos.z -= 1.5f;
+				g_enemy[i].rot.x -= 7.0f;
+				
+			}
+			if (g_nECnt6 >= 170 && g_nECnt6 <= 205)
+			{
+				g_enemy[i].pos.z -= 1.5f;
+				g_enemy[i].pos.y -= 1.5f;
+				g_enemy[i].rot.x -= 7.0f;
+			}
+			if (g_nECnt6 >= 235 && g_nECnt6 <= 400)
+			{
+				if (g_nECnt6 / 2 % 2 == 0)
+				{
+					g_enemy[i].pos.x = 1.0f;
+				}
+				else g_enemy[i].pos.x = -1.0f;
+			}
+			//爆発
+
+
+			if (g_nECnt6 >= 500)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+
+void EAction6(bool af)//二回勝利 転がり攻撃
+{
+	if (af)
+	{
+
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_nECnt7++;
+			if (g_nECnt7 >= 0 && g_nECnt7 <= 100)
+			{
+				g_enemy[i].pos.z -= 3.0f;
+				g_enemy[i].rot.x -= 50.0f;
+			}
+
+			if (g_nECnt7 >= 200)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+void EAction7(bool af)//二回勝利後ろ足蹴り攻撃
+{
+	if (af)
+	{
+
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_nECnt8++;
+			if (g_nECnt8 >= 0 && g_nECnt8 <= 50)
+			{
+				g_enemy[i].pos.z = -20.0f;
+			}
+
+			if(g_nECnt8 >= 50 && g_nECnt8 <= 60)
+			{
+				g_enemy[i].rot.y = 0.0f;
+			}
+
+			if (g_nECnt8 >= 70 && g_nECnt8 <= 80)
+			{
+				g_enemyLG[i].rot.x = -90.0f;
+				g_enemy[i].rot.x = -3.0f;
+			}
+
+			if (g_nECnt8 >= 83 && g_nECnt8 <= 90)
+			{
+				g_enemyLG[i].pos.z++;
+			}
+
+			if (g_nECnt8 >= 200)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+void EAction8(bool af)//二回勝利 ボディプレス
+{
+	if (af)
+	{
+
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_nECnt9++;
+			if (g_nECnt9 >= 0 && g_nECnt9 <= 50)
+			{
+				g_enemy[i].pos.y += 3.0f;
+				g_enemy[i].pos.z -= 4.0f;
+				g_enemy[i].rot.x -= 7.0f;
+			}
+			if (g_nECnt9 >= 51 && g_nECnt9 <= 60)
+			{
+				g_enemy[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
+			}
+
+			if (g_nECnt9 >= 60 && g_nECnt9 <= 88)
+			{
+				g_enemy[i].pos.y -= 5.0f;
+			}
+			
+			if (g_nECnt9 >= 200)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+
+void EAction9(bool af)//　1回勝利体当たり攻撃
+{
+	if (af)
+	{
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_nECnt10++;
+			if (g_nECnt10 >= 0 && g_nECnt10 <= 50)
+			{
+				g_enemy[i].pos.z = -40.0f;
+			}
+			if (g_nECnt10 >= 51 && g_nECnt10 <= 70)
+			{
+				g_enemy[i].pos.z += 1.0f;
+				g_enemy[i].rot.y = 135.0f;
+			}
+			if (g_nECnt10 >= 71 && g_nECnt10 <= 80)
+			{
+				g_enemy[i].pos.z = -95.0f;
+			}
+			if (g_nECnt10 >= 81 && g_nECnt10 <= 82)
+			{
+				g_enemy[i].pos.z += 25.0f;
+			}
+			if (g_nECnt10 >= 200)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+void EAction10(bool af)//　竜巻旋風脚　風
+{
+	if (af)
+	{
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_nECnt11++;
+			if (g_nECnt11 >= 0 && g_nECnt11 <= 50)
+			{
+				g_enemy[i].pos.y += 5.0f;
+				g_enemy[i].rot.x -= 8.0f;
+			}
+
+			if (g_nECnt11 >= 51 && g_nECnt11 <= 103)
+			{
+				g_enemy[i].pos.y -= 5.0f;
+				g_enemy[i].rot.x -= 8.0f;
+			}
+			if (g_nECnt11 >= 110 && g_nECnt11 <= 200)
+			{
+				g_enemy[i].rot.x = -90.0f;
+				g_enemy[i].rot.y += 50;
+			}
+			if (g_nECnt11 >= 200 && g_nECnt11 <= 240)
+			{
+				g_enemy[i].pos.z--;
+				g_enemy[i].pos.x--;
+				g_enemy[i].rot.y += 50;
+			}
+			if (g_nECnt11 >= 240 && g_nECnt11 <= 330)
+			{
+				g_enemy[i].pos.z--;
+				g_enemy[i].pos.x++;
+				g_enemy[i].rot.y += 50;
+			}
+			if (g_nECnt11 >= 330 && g_nECnt11 <= 380)
+			{
+				g_enemy[i].pos.z--;
+				g_enemy[i].pos.x--;
+				g_enemy[i].rot.y += 50;
+			}
+			if (g_nECnt11 >= 380 && g_nECnt11 <= 600)
+			{
+				g_enemy[i].pos.y += 0.5f;
+				g_enemy[i].rot.y += 50;
+			}
+
+
+			if (g_nECnt11 >= 600)
+			{
+				ResetEPos(i);
+			}
+
+		}
+	}
+}
+void EAction11(bool af)//　気円斬　風
+{
+	if (af)
+	{
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_nECnt12++;
+			if (g_nECnt12 >= 0 && g_nECnt12 <= 50)
+			{
+				g_enemy[i].rot.y -= 100;
+			}
+			if (g_nECnt12 >= 50 && g_nECnt12 <= 70)
+			{
+				g_enemy[i].rot.y -= 100;
+				g_enemy[i].pos.y += 0.4f;
+				
+			}
+			if (g_nECnt12 >= 70 && g_nECnt12 <=200)
+			{
+				g_enemy[i].rot.y -= 100;
+				g_enemy[i].pos.z-=0.8f;
+				g_enemy[i].pos.x--;
+				g_enemy[i].pos.y += 0.4f;
+			}
+			if(g_nECnt12 >= 200 && g_nECnt12 <= 280)
+			{
+				g_enemy[i].rot.y -= 100;
+				g_enemy[i].pos.z-=0.8f;
+				g_enemy[i].pos.x++;
+				g_enemy[i].pos.y -= 0.7f;
+			}
+			if (g_nECnt12 >= 280 && g_nECnt12 <= 500)
+			{
+				g_enemy[i].rot.y -= 100;
+			}
+			
+
+			if (g_nECnt12 >= 600)
+			{
+				ResetEPos(i);
+			}
+		}
 	}
 }
