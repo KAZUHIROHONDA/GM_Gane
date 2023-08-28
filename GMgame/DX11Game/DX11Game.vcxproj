@@ -196,6 +196,7 @@
     <ClCompile Include="playercs.cpp" />
     <ClCompile Include="playerhp.cpp" />
     <ClCompile Include="polygon.cpp" />
+    <ClCompile Include="sceneBaSelect.cpp" />
     <ClCompile Include="sceneChimera.cpp" />
     <ClCompile Include="sceneClear.cpp" />
     <ClCompile Include="sceneGame.cpp" />
@@ -260,6 +261,7 @@
     <ClInclude Include="playerhp.h" />
     <ClInclude Include="polygon.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="sceneBaSelect.h" />
     <ClInclude Include="sceneChimera.h" />
     <ClInclude Include="sceneClear.h" />
     <ClInclude Include="sceneGame.h" />

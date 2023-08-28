@@ -1,10 +1,10 @@
 //=============================================================================
 //
-// タイトルシーン[sceneSelect.cpp]
+// タイトルシーン[sceneBaSelect.cpp]
 // Author : TAKUYA KATOU
 //
 //=============================================================================
-#include "sceneSelect.h"
+#include "sceneBaSelect.h"
 #include "polygon.h"
 #include "Texture.h"
 #include "input.h"		
@@ -15,6 +15,7 @@
 #include "Camera.h"
 #include "pchimera.h"
 #include "Light.h"
+#include "enemy.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -29,7 +30,7 @@
 //=============================================================================
 // タイトル表示の初期化処理
 //=============================================================================
-HRESULT InitSceneSelect()
+HRESULT InitSceneBaSelect()
 {
 	HRESULT hr = S_OK;
 	HWND hWnd = GetMainWnd();
@@ -57,6 +58,18 @@ HRESULT InitSceneSelect()
 		return hr;
 	}
 
+	//敵の初期化処理
+	hr = InitSelectEnemy();
+	if (FAILED(hr))
+	{
+		MessageBox(hWnd, _T("プレイヤー初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
+		return hr;
+	}
+	
+	SetEnemy(XMFLOAT3(-50, -5, -100));
+	SetEnemy(XMFLOAT3(-50, -5, 0));
+	SetEnemy(XMFLOAT3(-50, -5, 100));
+
 	// カメラ更新
 	GetCamera()->Init();
 
@@ -66,7 +79,7 @@ HRESULT InitSceneSelect()
 //=============================================================================
 // タイトル表示の終了処理
 //=============================================================================
-void UninitSceneSelect()
+void UninitSceneBaSelect()
 {
 	//背景の終了処理
 	UninitBg();
@@ -75,12 +88,14 @@ void UninitSceneSelect()
 	UninitSelectStage();
 
 	UninitPChimera();
+
+	UninitEnemy();
 }
 
 //=============================================================================
 // タイトル表示の更新処理
 //=============================================================================
-void UpdateSceneSelect()
+void UpdateSceneBaSelect()
 {
 	//背景の更新処理
 	UpdateBg();
@@ -93,29 +108,7 @@ void UpdateSceneSelect()
 
 	UpdatePChimera();
 
-	//ポーズ中の項目決定
-
-	E_FADE fadeState = GetFade();
-	if (fadeState == E_FADE_NONE)
-	{
-		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0)||GetMouseTrigger(0))
-		{
-			//選択中のものにより分岐
-			SELECT_STAGE menu = GetSelectStageMenu();
-			switch (menu)
-			{
-				//ゲームに戻る
-			case SELECT_STAGE_1:
-				StartFade(SCENE_BASELECT);
-				break;
-				//リトライ
-			case SELECT_STAGE_2:
-				StartFade(SCENE_CHIMERA);
-				break;
-			}
-		}
-	}
-
+	UpdateSelectEnemy();
 
 
 }
@@ -123,7 +116,7 @@ void UpdateSceneSelect()
 //=============================================================================
 // タイトル表示処理
 //=============================================================================
-void DrawSceneSelect()
+void DrawSceneBaSelect()
 {
 
 	// Zバッファ無効
@@ -135,35 +128,12 @@ void DrawSceneSelect()
 	//背景
 	DrawBg1();
 
-	DrawSelectStage();
-
 	// Zバッファ有効
 	SetZBuffer(true);
 
 	//プレイヤー
 	DrawPChimera();
-
-	//光源処理無効
-	GetLight()->SetDisable();
-
-	//光源処理有効
-	GetLight()->SetEnable();
-
-	// Zバッファ無効
-	SetZBuffer(false);
-	SetBlendState(BS_ALPHABLEND);
-
-
-	//光源処理無効
-	GetLight()->SetDisable();
-	//半透明オブジェクト(3Dの中でも後ろにかく)
-	//ビルボード弾びょうが
-	SetZWrite(false);
-
-	//光源処理有効
-	GetLight()->SetEnable();
-
-
+	DrawEnemy();
 
 
 }

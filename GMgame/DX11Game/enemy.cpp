@@ -16,6 +16,7 @@
 #include "Egauge.h"
 #include "sceneTitle.h"
 #include "sceneGame.h"
+#include "fade.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -257,6 +258,102 @@ HRESULT InitEnemy(void)
 
 }
 
+HRESULT InitSelectEnemy(void)
+{
+	HRESULT hr = S_OK;
+	ID3D11Device* pDevice = GetDevice();
+	ID3D11DeviceContext* pDeviceContext = GetDeviceContext();
+
+	// 位置・回転・スケールの初期設定
+	for (int i = 0; i < ENEMY_MAX; i++)
+	{
+		g_enemy[i].pos = XMFLOAT3(0.0f, 20.0f, 100.0f);//z100
+		g_enemy[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
+		g_enemy[i].scl = XMFLOAT3(15.0f, 15.0f, 15.0f);
+		g_enemy[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+
+		//初期化
+		g_enemy[i].nPhase = 0;
+		g_enemy[i].nState = 0;		//最初は通常
+		g_enemy[i].Tipe = 0;
+
+		g_enemy[i].nHP = GetEnemy()->GetHP();
+		g_enemy[i].nEGauge = 100;
+		g_enemy[i].nShadowIdx = -1;
+
+		//頭 wani
+		g_enemyHD[i].pos = XMFLOAT3(0.0f, 0.0f, -1.0f);//z-3
+		g_enemyHD[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		g_enemyHD[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+		g_enemyHD[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		g_enemyHD[i].nPhase = 0;
+		g_enemyHD[i].nState = 1;	// puroぺらは最初から登場している
+		g_enemyHD[i].nShadowIdx = -1;
+
+		////腕-0.8f
+		g_enemyAM[i].pos = XMFLOAT3(0.0f, -0.5f, 0.0f);//-0.8,-1
+		g_enemyAM[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		g_enemyAM[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+		g_enemyAM[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		g_enemyAM[i].nPhase = 0;
+		g_enemyAM[i].nState = 1;	// puroぺらは最初から登場している
+		g_enemyAM[i].nShadowIdx = -1;
+
+		//足
+		g_enemyLG[i].pos = XMFLOAT3(0.0f, -0.5f, 1.5f);
+		g_enemyLG[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		g_enemyLG[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+		g_enemyLG[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+		g_enemyLG[i].nPhase = 0;
+		g_enemyLG[i].nState = 1;	// puroぺらは最初から登場している
+		g_enemyLG[i].nShadowIdx = -1;
+
+
+		g_enemy[i].nStopTime = 0; //最初は動ける
+
+		g_enemy[i].nShadowIdx = CreateShadow(g_enemy[i].pos, 20.0f);
+	}
+
+	bfCnt = 0;
+	g_Eaction = false;
+	g_Eaction2 = false;
+	g_Eaction3 = false;
+
+	g_nECnt1 = 0;					//
+	g_nECnt2 = 0;					//
+	g_nECnt3 = 0;
+	g_nECnt4 = 0;
+
+	// ワールドマトリックスの初期化
+	XMMATRIX mtxWorld;
+	mtxWorld = XMMatrixIdentity();
+
+	for (int i = 0; i < ENEMY_MAX; i++)
+	{
+		XMStoreFloat4x4(&g_enemy[i].mtxWorld, mtxWorld);
+		XMStoreFloat4x4(&g_enemyHD[i].mtxWorld, mtxWorld);
+		XMStoreFloat4x4(&g_enemyAM[i].mtxWorld, mtxWorld);
+		XMStoreFloat4x4(&g_enemyLG[i].mtxWorld, mtxWorld);
+
+	}
+
+	// モデルデータの読み込み
+	hr = g_model[0].Load(pDevice, pDeviceContext,
+		MODEL_ENEMY); if (FAILED(hr)) return hr;
+
+	hr = g_model[1].Load(pDevice, pDeviceContext,
+		MODEL_ENEMY1); if (FAILED(hr)) return hr;
+
+	hr = g_model[2].Load(pDevice, pDeviceContext,
+		MODEL_ENEMY2); if (FAILED(hr)) return hr;
+
+	hr = g_model[3].Load(pDevice, pDeviceContext,
+		MODEL_ENEMY3); if (FAILED(hr)) return hr;
+
+	return hr;
+
+}
+
 //=============================================================================
 // 終了処理
 //=============================================================================
@@ -402,6 +499,151 @@ void UpdateEnemy(void)
 			DamageEnemy(50);
 		}
 
+
+		XMMATRIX mtxWorld, mtxRot, mtxScl,
+			mtxTranslate;
+
+		// ワールドマトリックスの初期化
+		mtxWorld = XMMatrixIdentity();
+
+		// スケールを反映
+		mtxScl = XMMatrixScaling(g_enemy[i].scl.x, g_enemy[i].scl.y, g_enemy[i].scl.z);
+		mtxWorld = XMMatrixMultiply(mtxWorld, mtxScl);
+
+
+
+		// 回転を反映
+		mtxRot = XMMatrixRotationRollPitchYaw(XMConvertToRadians(g_enemy[i].rot.x), XMConvertToRadians(g_enemy[i].rot.y + 180), XMConvertToRadians(g_enemy[i].rot.z));
+		mtxWorld = XMMatrixMultiply(mtxWorld, mtxRot);
+
+
+		// 移動を反映
+		mtxTranslate = XMMatrixTranslation(g_enemy[i].pos.x, g_enemy[i].pos.y, g_enemy[i].pos.z);
+		mtxWorld = XMMatrixMultiply(mtxWorld, mtxTranslate);
+
+
+		// ワールドマトリックス設定
+		XMStoreFloat4x4(&g_enemy[i].mtxWorld, mtxWorld);
+
+		//影の移動
+		MoveShadow(g_enemy[i].nShadowIdx, g_enemy[i].pos);
+
+
+		//************************************************:
+		//頭
+
+		XMMATRIX mtxWorldHD;
+		// ワールドマトリックスの初期化
+		mtxWorldHD = XMMatrixIdentity();
+		// スケールを反映
+		mtxScl = XMMatrixScaling(g_enemyHD[i].scl.x, g_enemyHD[i].scl.y, g_enemyHD[i].scl.z);
+		mtxWorldHD = XMMatrixMultiply(mtxWorldHD, mtxScl);
+		// 回転を反映
+		mtxRot = XMMatrixRotationRollPitchYaw(
+			XMConvertToRadians(g_enemyHD[i].rot.x),
+			XMConvertToRadians(g_enemyHD[i].rot.y),//+180
+			XMConvertToRadians(g_enemyHD[i].rot.z)
+		);
+		mtxWorldHD = XMMatrixMultiply(mtxWorldHD, mtxRot);
+
+		// 移動を反映
+		mtxTranslate = XMMatrixTranslation(g_enemyHD[i].pos.x, g_enemyHD[i].pos.y, g_enemyHD[i].pos.z);
+
+		mtxWorldHD = XMMatrixMultiply(mtxWorldHD, mtxTranslate);
+
+		//親の行列を掛ける
+		mtxWorldHD = XMMatrixMultiply(mtxWorldHD, mtxWorld);
+
+		// ワールドマトリックス設定
+		XMStoreFloat4x4(&g_enemyHD[i].mtxWorld, mtxWorldHD);
+
+
+		//************************************************:
+		//腕
+
+		XMMATRIX mtxWorldAM;
+		// ワールドマトリックスの初期化
+		mtxWorldAM = XMMatrixIdentity();
+		// スケールを反映
+		mtxScl = XMMatrixScaling(g_enemyAM[i].scl.x, g_enemyAM[i].scl.y, g_enemyAM[i].scl.z);
+		mtxWorldAM = XMMatrixMultiply(mtxWorldAM, mtxScl);
+		// 回転を反映
+		mtxRot = XMMatrixRotationRollPitchYaw(
+			XMConvertToRadians(g_enemyAM[i].rot.x),
+			XMConvertToRadians(g_enemyAM[i].rot.y),//+180
+			XMConvertToRadians(g_enemyAM[i].rot.z)
+		);
+		mtxWorldAM = XMMatrixMultiply(mtxWorldAM, mtxRot);
+
+		// 移動を反映
+		mtxTranslate = XMMatrixTranslation(g_enemyAM[i].pos.x, g_enemyAM[i].pos.y, g_enemyAM[i].pos.z);
+
+		mtxWorldAM = XMMatrixMultiply(mtxWorldAM, mtxTranslate);
+
+		//親の行列を掛ける
+		mtxWorldAM = XMMatrixMultiply(mtxWorldAM, mtxWorld);
+
+		// ワールドマトリックス設定
+		XMStoreFloat4x4(&g_enemyAM[i].mtxWorld, mtxWorldAM);
+
+		//************************************************:
+		//足
+
+		XMMATRIX mtxWorldLG;
+		// ワールドマトリックスの初期化
+		mtxWorldLG = XMMatrixIdentity();
+		// スケールを反映
+		mtxScl = XMMatrixScaling(g_enemyLG[i].scl.x, g_enemyLG[i].scl.y, g_enemyLG[i].scl.z);
+		mtxWorldLG = XMMatrixMultiply(mtxWorldLG, mtxScl);
+		// 回転を反映
+		mtxRot = XMMatrixRotationRollPitchYaw(
+			XMConvertToRadians(g_enemyLG[i].rot.x),
+			XMConvertToRadians(g_enemyLG[i].rot.y),//+180
+			XMConvertToRadians(g_enemyLG[i].rot.z)
+		);
+		mtxWorldLG = XMMatrixMultiply(mtxWorldLG, mtxRot);
+
+		// 移動を反映
+		mtxTranslate = XMMatrixTranslation(g_enemyLG[i].pos.x, g_enemyLG[i].pos.y, g_enemyLG[i].pos.z);
+
+		mtxWorldLG = XMMatrixMultiply(mtxWorldLG, mtxTranslate);
+
+		//親の行列を掛ける
+		mtxWorldLG = XMMatrixMultiply(mtxWorldLG, mtxWorld);
+
+		// ワールドマトリックス設定
+		XMStoreFloat4x4(&g_enemyLG[i].mtxWorld, mtxWorldLG);
+	}
+
+
+}
+
+void UpdateSelectEnemy(void)
+{
+	// プレイヤーの動きを記述するならここ
+	for (int i = 0; i < ENEMY_MAX; i++)
+	{
+		//未使用
+		if (g_enemy[i].nState == 0) continue;
+
+		float hitLength;
+
+		//位置と半径を指定
+		hitLength = ECheckCollisionRay(XMVectorSet(g_enemy[i].pos.x, g_enemy[i].pos.y, g_enemy[i].pos.z, 0.0f), 10.0f);
+		if (hitLength < 9999.9f)
+		{
+			g_enemy[i].rot.y += 1.0f;
+			if (GetMouseTrigger(0))
+			{
+				//アクション入れたい
+				StartFade(SCENE_GAME);
+
+			}
+		}
+		else
+		{
+			g_enemy[i].rot = XMFLOAT3(0.0f, 90.0f, 0.0f);
+		}
 
 		XMMATRIX mtxWorld, mtxRot, mtxScl,
 			mtxTranslate;
@@ -1141,4 +1383,65 @@ void EAction11(bool af)//　気円斬　風
 			}
 		}
 	}
+}
+
+float ECheckCollisionRay(XMVECTOR pos, float fRadius)
+{
+	//ビューマトリックスとプロジェクションマトリックス
+	XMMATRIX mtxView = XMLoadFloat4x4(&GetCamera()->GetViewMatrix());
+	XMMATRIX mtxProjection = XMLoadFloat4x4(&GetCamera()->GetProjMatrix());
+
+	//マウス座標
+	POINT ptMouse = (*GetMousePosition());
+	XMFLOAT3 posM = XMFLOAT3(ptMouse.x, ptMouse.y, 0.0f);
+
+	//からニアクリップ上の座標を計算
+	XMVECTOR posNear = XMVectorSet(posM.x, posM.y, 0.0f, 0.0f);
+	posNear = XMVector3Unproject(posNear,//マウス座標
+		0.0f, 0.0f,//ビューポート用データxy
+		SCREEN_WIDTH, SCREEN_HEIGHT, //同幅高
+		0.0f, 1.0f,//同minZmaxZ
+		mtxProjection,//プロジェクションマトリックス
+		mtxView,				//ビューマトリクス
+		XMMatrixIdentity()
+	);
+	//からファークリップ上の座標を計算
+	XMVECTOR posFar = XMVectorSet(posM.x, posM.y, 1.0f, 0.0f);
+	posFar = XMVector3Unproject(posFar,//マウス座標
+		0.0f, 0.0f,//ビューポート用データxy
+		SCREEN_WIDTH, SCREEN_HEIGHT, //同幅高
+		0.0f, 1.0f,//同minZmaxZ
+		mtxProjection,//プロジェクションマトリックス
+		mtxView,				//ビューマトリクス
+		XMMatrixIdentity()
+	);
+
+	//レイを飛ばして当たり判定をとる
+	XMVECTOR ray = posFar - posNear;
+	XMFLOAT3 eye3 = GetCamera()->GetPos();
+	XMVECTOR eye = XMVectorSet(eye3.x, eye3.y, eye3.z, 0.0f);//視点
+	XMVECTOR target = pos - eye;
+	//判定座標へのベクトルとレイの内積と計算
+	XMVECTOR tempVec = XMVector3Dot(ray, target);
+	float temp = XMVectorGetX(tempVec);
+
+	//長さの二乗を取得
+	tempVec = XMVector3Dot(target, target);//x*x+y*y+z*z
+	float tempTarget = XMVectorGetX(tempVec);//値はX,Y,Zどれも同じ
+	tempVec = XMVector3Dot(ray, ray);
+	float tempRay = XMVectorGetX(tempVec);
+
+	//レイを落とした垂線の交わる点までの距離
+	float ret = temp * temp / tempRay;
+
+	//残り一辺の長さを計算
+	float length = sqrtf(tempTarget - ret);
+	if (length < fRadius)
+	{
+		//範囲内であたった
+		return sqrtf(ret);
+	}
+
+	//当たらなかったので
+	return 9999.9f; //最大値
 }

@@ -9,16 +9,19 @@
 #include "main.h"
 
 //マクロ定義
-#define ENEMY_MAX	(1)
+#define ENEMY_MAX	(10)
 
 
 //*****************************************************************************
 // プロトタイプ宣言
 //*****************************************************************************
 HRESULT InitEnemy(void);
+HRESULT InitSelectEnemy(void);
 void UninitEnemy(void);
 void UpdateEnemy(void);
+void UpdateSelectEnemy(void);
 void DrawEnemy(void);
+float ECheckCollisionRay(XMVECTOR pos, float fRadius);
 
 int SetEnemy(XMFLOAT3 pos);
 
