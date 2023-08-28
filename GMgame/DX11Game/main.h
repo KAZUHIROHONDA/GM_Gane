@@ -72,6 +72,7 @@ enum E_TYPE_SCENE		//シーンの種類
 	SCENE_SETUMEI,
 	SCENE_SELECT,
 	SCENE_CHIMERA,
+	SCENE_BASELECT,
 	//シーンを付け足すときはここに追加
 
 	MAX_SCENE			//必ず一番最後

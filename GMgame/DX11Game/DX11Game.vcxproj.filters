@@ -69,6 +69,7 @@
     <ClCompile Include="tex.cpp" />
     <ClCompile Include="Mpartsmenu.cpp" />
     <ClCompile Include="Upartsmenu.cpp" />
+    <ClCompile Include="sceneBaSelect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssimpModel.h" />
@@ -132,6 +133,7 @@
     <ClInclude Include="tex.h" />
     <ClInclude Include="Mpartsmenu.h" />
     <ClInclude Include="Upartsmenu.h" />
+    <ClInclude Include="sceneBaSelect.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX11Game.rc" />
