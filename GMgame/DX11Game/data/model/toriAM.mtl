@@ -1,7 +1,11 @@
 # Blender 3.3.1 MTL File: 'None'
 # www.blender.org
 
+<<<<<<< HEAD
 newmtl 身体.008
+=======
+newmtl 身体.003
+>>>>>>> feature/mukaide
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Kd 1.000000 0.879469 0.906858

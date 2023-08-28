@@ -20,11 +20,20 @@
 #define MODEL_PANDA2	"data/model/pandaAM.obj"
 #define MODEL_PANDA3	"data/model/pandaLG.obj"
 
-#define MODEL_TORI		"data/model/toriatama.obj"
-#define MODEL_TORI1		"data/model/torikarada.obj"
-#define MODEL_TORI2		"data/model/toriude.obj"
-#define MODEL_TORI3		"data/model/toriasi.fbx"
+#define MODEL_TORI		"data/model/toriHD.obj"
+#define MODEL_TORI1		"data/model/toriBD.obj"
+#define MODEL_TORI2		"data/model/toriAM.obj"
+#define MODEL_TORI3		"data/model/toriLG.cbj"
 
+#define MODEL_BUTA		"data/model/-0-butaHD.obj"
+#define MODEL_BUTA1		"data/model/-0-butaBD.obj"
+#define MODEL_BUTA2		"data/model/-0-butaAM.obj"
+#define MODEL_BUTA3		"data/model/-0-butaLG.obj"
+
+#define MODEL_USI		"data/model/ushi_head.obj"
+#define MODEL_USI1		"data/model/ushi_body.obj"
+#define MODEL_USI2		"data/model/ushi_maeAshi.obj"
+#define MODEL_USI3		"data/model/ushi_ushiroAshi.obj"
 
 //モデルデータ追加
 void	SetHead(std::string val);
