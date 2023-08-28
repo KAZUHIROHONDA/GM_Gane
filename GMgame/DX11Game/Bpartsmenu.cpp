@@ -17,7 +17,7 @@
 #include "sceneTitle.h"
 
 // マクロ定義
-#define	NUM_BPARTS_MENU		(4)			// ポーズメニュー数
+#define	NUM_BPARTS_MENU		(6)			// ポーズメニュー数
 #define	BPARTS_MENU_WIDTH	(200.0f)	// ポーズメニュー幅
 #define	BPARTS_MENU_HEIGHT	(200.0f)		// ポーズメニュー高さ
 #define	BPARTS_MENU_INTERVAL	(300.0f)	// ポーズメニュー間隔
@@ -31,7 +31,7 @@
 // 構造体定義
 // プロトタイプ宣言
 // グローバル変数
-static ID3D11ShaderResourceView*	g_pTextures[5] = { nullptr };	// テクスチャへのポインタ
+static ID3D11ShaderResourceView*	g_pTextures[7] = { nullptr };	// テクスチャへのポインタ
 
 static float g_fCurve = 0.0f;
 static float g_fCol = 0.0f;
@@ -39,10 +39,12 @@ static int	 nStopTime = 0;
 
 static LPCWSTR c_aFileNameBPartsMenu[NUM_BPARTS_MENU] =
 {
-	L"data/TEXTURE/kabu1.png",	// コンティニュー
-	L"data/TEXTURE/wani1.png",	// リトライ
-	L"data/TEXTURE/panda1.png",	// リトライ
-	L"data/TEXTURE/wani1.png",	// リトライ
+	L"data/TEXTURE/kabu1.png",	//カブトムシ
+	L"data/TEXTURE/wani1.png",	//ワニ
+	L"data/TEXTURE/panda1.png",	//パンダ
+	L"data/TEXTURE/wani1.png",	//とり
+	L"data/TEXTURE/buta1.png",	//豚
+	L"data/TEXTURE/usi1.png",	//牛
 };
 
 static BPARTS_MENU g_nBPartsMenu = BPARTS_MENU_KABU;	//	選択中のメニューNo
@@ -136,6 +138,8 @@ void UpdateBParts(void)
 	XMFLOAT2 pos2 = XMFLOAT2(BPARTS_MENU_POS_X + 1 * BPARTS_MENU_INTERVAL, BPARTS_MENU_POS_Y );
 	XMFLOAT2 pos3 = XMFLOAT2(BPARTS_MENU_POS_X , BPARTS_MENU_POS_Y - 1 * 250);
 	XMFLOAT2 pos4 = XMFLOAT2(BPARTS_MENU_POS_X + 1 * 250, BPARTS_MENU_POS_Y - 1 * 250);
+	XMFLOAT2 pos5 = XMFLOAT2(BPARTS_MENU_POS_X, BPARTS_MENU_POS_Y - 2 * 250);
+	XMFLOAT2 pos6 = XMFLOAT2(BPARTS_MENU_POS_X + 1 * 250, BPARTS_MENU_POS_Y - 2 * 250);
 	XMFLOAT2 radius1 = XMFLOAT2(BPARTS_MENU_WIDTH / 2, BPARTS_MENU_HEIGHT / 2);
 	XMFLOAT2 mpos2 = mousePos;
 	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
@@ -204,7 +208,7 @@ void UpdateBParts(void)
 	}
 	else if (CollisionBB(&pos4, &radius1, &mpos2, &radius2))
 	{
-		ResetBPartsMenu2();
+		ResetBPartsMenu3();
 		if (GetMouseTrigger(0))
 		{
 			SetBody(MODEL_TORI1);
@@ -220,6 +224,48 @@ void UpdateBParts(void)
 			GetPlayer()->SetHand(3, 2);
 			GetPlayer()->SetHand(4, 2);
 	
+			InitPChimera();
+		}
+	}
+	else if (CollisionBB(&pos5, &radius1, &mpos2, &radius2))
+	{
+		ResetBPartsMenu4();
+		if (GetMouseTrigger(0))
+		{
+			SetBody(MODEL_BUTA1);
+			GetPlayer()->SetName("ブタ");
+			BParts.SetHP(60);
+			BParts.SetPAat(60);
+			BParts.SetGUat(60);
+			BParts.SetTYOKIat(50);
+			//手札、0グー,1チョキ,2パー
+			GetPlayer()->SetHand(0, 2);
+			GetPlayer()->SetHand(1, 2);
+			GetPlayer()->SetHand(2, 2);
+			GetPlayer()->SetHand(3, 2);
+			GetPlayer()->SetHand(4, 2);
+
+			InitPChimera();
+		}
+	}
+	else if (CollisionBB(&pos6, &radius1, &mpos2, &radius2))
+	{
+		ResetBPartsMenu5();
+		if (GetMouseTrigger(0))
+		{
+			SetBody(MODEL_USI1);
+			GetPlayer()->SetName("ウシ");
+			BParts.SetHP(30);
+			BParts.SetPAat(30);
+			BParts.SetGUat(30);
+			BParts.SetTYOKIat(50);
+			//手札、0グー,1チョキ,2パー
+			GetPlayer()->SetHand(0, 2);
+			GetPlayer()->SetHand(1, 2);
+			GetPlayer()->SetHand(2, 2);
+			GetPlayer()->SetHand(3, 2);
+			GetPlayer()->SetHand(4, 2);
+
 			InitPChimera();
 		}
 	}
@@ -252,7 +298,7 @@ void DrawBParts(void)
 
 	//ポーズメニューの表示
 	SetPolygonSize(BPARTS_MENU_WIDTH, BPARTS_MENU_HEIGHT);
-	for (int nCntBPartsMenu = 0; nCntBPartsMenu < 2; ++nCntBPartsMenu) {
+	for (int nCntBPartsMenu = 0; nCntBPartsMenu < 3; ++nCntBPartsMenu) {
 		
 		for (int nCntBPartsMenu1 = 0; nCntBPartsMenu1 < 2; ++nCntBPartsMenu1) {
 			SetPolygonPos(BPARTS_MENU_POS_X + nCntBPartsMenu1 * BPARTS_MENU_INTERVAL, BPARTS_MENU_POS_Y - nCntBPartsMenu * 250);
@@ -305,7 +351,17 @@ void ResetBPartsMenu2(void)
 }
 void ResetBPartsMenu3(void)
 {
-	g_nBPartsMenu = BPARTS_MENU_PANDA;
+	g_nBPartsMenu = BPARTS_MENU_TORI;
+	SetBPartsMenu();
+}
+void ResetBPartsMenu4(void)
+{
+	g_nBPartsMenu = BPARTS_MENU_BUTA;
+	SetBPartsMenu();
+}
+void ResetBPartsMenu5(void)
+{
+	g_nBPartsMenu = BPARTS_MENU_USI;
 	SetBPartsMenu();
 }
 

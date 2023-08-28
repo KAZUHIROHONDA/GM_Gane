@@ -15,6 +15,8 @@ typedef enum {
 	BPARTS_MENU_WANI,			// ƒŠƒgƒ‰ƒC
 	BPARTS_MENU_PANDA,
 	BPARTS_MENU_TORI,
+	BPARTS_MENU_BUTA,
+	BPARTS_MENU_USI,
 	BPARTS_MENU_MAX
 } BPARTS_MENU;
 
@@ -30,6 +32,8 @@ void ResetBPartsMenu(void);
 void ResetBPartsMenu1(void);
 void ResetBPartsMenu2(void);
 void ResetBPartsMenu3(void);
+void ResetBPartsMenu4(void);
+void ResetBPartsMenu5(void);
 
 Player* BPartsGet();
 
