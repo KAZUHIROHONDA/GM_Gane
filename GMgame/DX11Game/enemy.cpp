@@ -21,18 +21,14 @@
 // マクロ定義
 //*****************************************************************************
 //=======
-<<<<<<< HEAD
-#define MODEL_ENEMY		"data/model/pandaBD.obj"
-#define MODEL_ENEMY1	"data/model/pandaHD.obj"
-#define MODEL_ENEMY2	"data/model/pandaAM.obj"
-#define MODEL_ENEMY3	"data/model/pandaAM.obj"
-=======
+//<<<<<<< HEAD
+
+//=======
 #define MODEL_ENEMY		"data/model/waniBD2.obj"//"data/model/butaBD.obj"
 #define MODEL_ENEMY1	 "data/model/wani1.obj" //"data/model/butaHD.obj"
 #define MODEL_ENEMY2	"data/model/waniAM.obj" //"data/model/butaAM.obj"
 #define MODEL_ENEMY3	"data/model/waniAM.obj" //"data/model/butaLG.obj"
->>>>>>> feature/matsui2
-//>>>>>>> feature/matsui2
+///>>>>>>> feature/matsui2
 
 #define VALUE_MOVE		(0.1f)		
 #define VALUE_ROTATE	(2.0f)
@@ -78,9 +74,9 @@ static int			g_nECnt1;//行動カウント1コメ
 static int			g_nECnt2;//行動カウント2コメ
 static int			g_nECnt3;//行動カウント3コメ
 static int			g_nECnt4;//行動カウント4コメ
-<<<<<<< HEAD
-static bool			g_atama = true;//false;
-=======
+
+
+
 static int			g_nECnt5;//行動カウント5コメ
 static int			g_nECnt6;//行動カウント6コメ
 static int			g_nECnt7;//行動カウント6コメ
@@ -90,7 +86,6 @@ static int			g_nECnt10;//行動カウント6コメ
 static int			g_nECnt11;//行動カウント6コメ
 static int			g_nECnt12;//行動カウント6コメ
 static bool				g_atama = true;//false;
->>>>>>> feature/matsui2
 
 static bool			g_Eaction;
 static bool			g_Eaction2;
@@ -133,9 +128,8 @@ HRESULT InitEnemy(void)
 		g_enemy[i].nEGauge = 100;
 		g_enemy[i].nShadowIdx = -1;
 
-<<<<<<< HEAD
 		
-=======
+
 		g_Eaction = false;
 		g_Eaction2 = false;
 		g_Eaction3 = false;
@@ -160,7 +154,6 @@ HRESULT InitEnemy(void)
 		g_nECnt10 = 0;
 		g_nECnt11 = 0;
 		g_nECnt12 = 0;
->>>>>>> feature/matsui2
 
 
 		//頭 wani
