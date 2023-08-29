@@ -43,9 +43,10 @@ static LPCWSTR c_aFileNameJyankenMenu[NUM_JYANKEN_MENU] =
 };
 
 static JYANKEN_MENU g_nJyankenMenu = JYANKEN_MENU_1;	//	選択中のメニューNo
-static int te[5] = {-1,-1,-1,-1,-1};
+static int te[3] = {-1,-1,-1};
 static int selte[5] = { -1,-1,-1,-1,-1 };
-static int aite[5] = { -1,-1,-1,-1,-1 };
+static int aite[3] = { -1,-1,-1 };
+static int selaite[5] = { -1,-1,-1 ,-1,-1};
 static int result[4]; //勝ち数, 負け数, あいこ数, 連勝数
 static int Sette[20] = { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};//仮の手札
 static int Setaite[20] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };//仮の手札
@@ -68,6 +69,7 @@ float  size = 100.0f;
 int nPhase = 1;
 int PAT, EAT = 0;
 int Ac = 0;
+int old = 0;
 
 //OKボタン
 #define OK_TEXTURENAME	_T("data/texture/button.png")
@@ -174,7 +176,7 @@ void UpdateJyankenStart()
 	{
 		for (int f = 0; f < 5; f++)
 		{
-			aite[f] = Setaite[rand() % 20];//相手
+			selaite[f] = Setaite[rand() % 20];//相手
 			selte[f] = Sette[rand() % 20];
 			CameraDEBUG();
 		}
@@ -185,15 +187,6 @@ void UpdateJyankenStart()
 void UpdateJyankenSet()
 {
 
-	// 上下キーで各項目間の移動
-	//if (GetKeyRepeat(VK_D) || GetKeyRepeat(VK_RIGHT)) {
-	//	g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + NUM_JYANKEN_MENU - 1) % NUM_JYANKEN_MENU);
-	//	SetJyankenMenu();
-	//}
-	//else if (GetKeyRepeat(VK_A) || GetKeyRepeat(VK_LEFT)) {
-	//	g_nJyankenMenu = (JYANKEN_MENU)((g_nJyankenMenu + 1) % NUM_JYANKEN_MENU);
-	//	SetJyankenMenu();
-	//}
 
 	switch (nPhase)
 	{
@@ -206,7 +199,6 @@ void UpdateJyankenSet()
 		break;
 	}
 
-
 	//マウス
 	POINT temp = (*GetMousePosition());
 	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
@@ -218,144 +210,8 @@ void UpdateJyankenSet()
 	XMFLOAT2 radius1 = XMFLOAT2(JYANKEN_MENU_WIDTH / 2, JYANKEN_MENU_HEIGHT / 2);
 	XMFLOAT2 mpos2 = mousePos;
 	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
-	if (CollisionBB(&pos1, &radius1, &mpos2, &radius2)&& useflag1 == true)
-	{
-		SetJyankenMenu1();
-		if (GetMouseTrigger(0))
-		{
-			te[j] = selte[0];
-			j++;
-			useflag1 = false;
-			if (useflag2 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_2;
-			}
-			else if (useflag3 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_3;
-			}
-			else if (useflag4 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_4;
-			}
-			else if (useflag5 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_5;
-			}
-			SetJyankenMenu();
-		}
-	}
-	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2) && useflag2 == true)
-	{
-		SetJyankenMenu2();
-		if (GetMouseTrigger(0))
-		{
-			te[j] = selte[1];
-			j++;
-			useflag2 = false;
-			if (useflag1 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_1;
-			}
-			else if (useflag3 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_3;
-			}
-			else if (useflag4 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_4;
-			}
-			else if (useflag5 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_5;
-			}
-			SetJyankenMenu();
-		}
-	}
-	else if (CollisionBB(&pos3, &radius1, &mpos2, &radius2) && useflag3 == true)
-	{
-		SetJyankenMenu3();
-		if (GetMouseTrigger(0))
-		{
-			te[j] = selte[2];
-			j++;
-			useflag3 = false;
-			if (useflag2 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_2;
-			}
-			else if (useflag1 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_1;
-			}
-			else if (useflag4 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_4;
-			}
-			else if (useflag5 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_5;
-			}
-			SetJyankenMenu();
-		}
-	}
-	else if (CollisionBB(&pos4, &radius1, &mpos2, &radius2) && useflag4 == true)
-	{
-		SetJyankenMenu4();
-		if (GetMouseTrigger(0))
-		{
-			te[j] = selte[3];
-			j++;
-			useflag4 = false;
-			if (useflag2 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_2;
-			}
-			else if (useflag3 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_3;
-			}
-			else if (useflag1 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_1;
-			}
-			else if (useflag5 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_5;
-			}
-			SetJyankenMenu();
-		}
-	}
-	else if (CollisionBB(&pos5, &radius1, &mpos2, &radius2) && useflag5 == true)
-	{
 
-		SetJyankenMenu5();
-		if (GetMouseTrigger(0))
-		{
-			te[j] = selte[4];
-			j++;
-			useflag5 = false;
-			if (useflag2 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_2;
-			}
-			else if (useflag3 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_3;
-			}
-			else if (useflag4 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_4;
-			}
-			else if (useflag1 != false)
-			{
-				g_nJyankenMenu = JYANKEN_MENU_1;
-			}
-			SetJyankenMenu();
-		}
-	}
-
-	if (j >= 5)
+	if (j >= 3)
 	{
 		XMFLOAT2 pos4 = XMFLOAT2(OK_POS_X, OK_POS_Y);
 		XMFLOAT2 radius3 = XMFLOAT2(OK_SIZE_X / 2, OK_SIZE_X / 2);
@@ -363,6 +219,17 @@ void UpdateJyankenSet()
 		{
 			if (GetMouseTrigger(0))
 			{
+	
+				for (int i = 0; i < 3; i++)
+				{
+					while (selte[i] == NULL)
+					{
+						old = rand() % 5;
+						aite[i] = selte[old];
+						selte[old] = NULL;
+					}
+				}
+				
 				GetPhase()->ChangePhase(JUDGEPHASE);
 				Cntadd();
 				CameraFIXED();
@@ -379,7 +246,7 @@ void UpdateJyankenSet()
 	g_fCol = cosf(g_fCurve) * 0.2f + 0.8f;
 
 	//五個になるまで選べる
-	if (j < 5)
+	if (j < 3)
 	{
 		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
 		{
@@ -508,6 +375,143 @@ void UpdateJyankenSet()
 				break;
 			}
 		}
+
+		if (CollisionBB(&pos1, &radius1, &mpos2, &radius2) && useflag1 == true)
+		{
+			SetJyankenMenu1();
+			if (GetMouseTrigger(0))
+			{
+				te[j] = selte[0];
+				j++;
+				useflag1 = false;
+				if (useflag2 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_2;
+				}
+				else if (useflag3 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_3;
+				}
+				else if (useflag4 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_4;
+				}
+				else if (useflag5 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_5;
+				}
+				SetJyankenMenu();
+			}
+		}
+		else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2) && useflag2 == true)
+		{
+			SetJyankenMenu2();
+			if (GetMouseTrigger(0))
+			{
+				te[j] = selte[1];
+				j++;
+				useflag2 = false;
+				if (useflag1 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_1;
+				}
+				else if (useflag3 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_3;
+				}
+				else if (useflag4 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_4;
+				}
+				else if (useflag5 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_5;
+				}
+				SetJyankenMenu();
+			}
+		}
+		else if (CollisionBB(&pos3, &radius1, &mpos2, &radius2) && useflag3 == true)
+		{
+			SetJyankenMenu3();
+			if (GetMouseTrigger(0))
+			{
+				te[j] = selte[2];
+				j++;
+				useflag3 = false;
+				if (useflag2 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_2;
+				}
+				else if (useflag1 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_1;
+				}
+				else if (useflag4 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_4;
+				}
+				else if (useflag5 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_5;
+				}
+				SetJyankenMenu();
+			}
+		}
+		else if (CollisionBB(&pos4, &radius1, &mpos2, &radius2) && useflag4 == true)
+		{
+			SetJyankenMenu4();
+			if (GetMouseTrigger(0))
+			{
+				te[j] = selte[3];
+				j++;
+				useflag4 = false;
+				if (useflag2 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_2;
+				}
+				else if (useflag3 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_3;
+				}
+				else if (useflag1 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_1;
+				}
+				else if (useflag5 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_5;
+				}
+				SetJyankenMenu();
+			}
+		}
+		else if (CollisionBB(&pos5, &radius1, &mpos2, &radius2) && useflag5 == true)
+		{
+
+			SetJyankenMenu5();
+			if (GetMouseTrigger(0))
+			{
+				te[j] = selte[4];
+				j++;
+				useflag5 = false;
+				if (useflag2 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_2;
+				}
+				else if (useflag3 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_3;
+				}
+				else if (useflag4 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_4;
+				}
+				else if (useflag1 != false)
+				{
+					g_nJyankenMenu = JYANKEN_MENU_1;
+				}
+				SetJyankenMenu();
+			}
+		}
 	}
 
 }
@@ -531,7 +535,7 @@ void UpdateJyankenJadge()
 		jadge = true;
 	}
 	
-	if (n > 4)
+	if (n > 2)
 	{
 		Cnt1 = 180;
 		GetPhase()->ChangePhase(BATTLEPHASE);
@@ -678,7 +682,7 @@ void DrawJyankenSet()
 	SetPolygonColor(1.0f, 1.0f, 1.0f);
 	SetPolygonSize(JYANKEN_MENU_WIDTH, JYANKEN_MENU_HEIGHT);
 
-	for (int k = 0; k < 5;k++)
+	for (int k = 0; k < 3;k++)
 	{
 		if (te[k] != -1)
 		{
@@ -690,7 +694,7 @@ void DrawJyankenSet()
 			//ポリゴンの描画処理
 			DrawPolygon(GetDeviceContext());
 		}
-		if (aite[k] != -1)
+		if (selaite[k] != -1)
 		{
 			//ポリゴン情報設定
 			SetPolygonPos(300 + 50 * k, -300);			//座標
@@ -701,8 +705,23 @@ void DrawJyankenSet()
 			DrawPolygon(GetDeviceContext());
 		}
 	}
+	for (int k = 0; k < 5; k++)
+	{
 
-	if (j >= 5)
+		if (selaite[k] != -1)
+		{
+			//ポリゴン情報設定
+			SetPolygonPos(300 + 50 * k, -300);			//座標
+			SetPolygonSize(JYANKEN_MENU_WIDTH / 2, JYANKEN_MENU_HEIGHT / 2);		//大きさ
+			SetPolygonTexture(g_pTextures[aite[k]]);		//テクスチャ
+
+			//ポリゴンの描画処理
+			DrawPolygon(GetDeviceContext());
+		}
+	}
+
+
+	if (j >= 3)
 	{
 		// タイトル描画
 	//ポリゴン情報設定
@@ -762,7 +781,7 @@ void DrawJyankenJadge()
 		}
 	}
 
-	for (int k = 0; k < 5; k++)
+	for (int k = 0; k < 3; k++)
 	{
 		if (te[k] != -1)
 		{
