@@ -81,7 +81,6 @@
     <TargetName>$(ProjectName)D</TargetName>
     <IncludePath>install_msvc2017\include\EffekseerRendererDX11;install_msvc2017\include\Effekseer;$(IncludePath)</IncludePath>
     <LibraryPath>install_msvc2017\lib;$(LibraryPath)</LibraryPath>
-    <ExecutablePath>install_msvc2017\include\EffekseerRendererDX11;install_msvc2017\include\Effekseer;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
