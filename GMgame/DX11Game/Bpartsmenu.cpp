@@ -39,6 +39,8 @@ static ID3D11ShaderResourceView*	g_pTextures[7] = { nullptr };	// テクスチャへの
 static float g_fCurve = 0.0f;
 static float g_fCol = 0.0f;
 static int	 nStopTime = 0;
+static int	 charano = 0;
+
 
 static LPCWSTR c_aFileNameBPartsMenu[NUM_BPARTS_MENU] =
 {
@@ -75,6 +77,7 @@ HRESULT InitBParts(void)
 
 	g_nBPartsMenu = BPARTS_MENU_KABU;
 	g_fCurve = 0.0f;
+	charano = 0;
 
 	return hr;
 }
@@ -138,8 +141,8 @@ void UpdateBParts(void)
 	POINT temp = (*GetMousePosition());
 	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
 	XMFLOAT2 pos1 = XMFLOAT2(BPARTS_MENU_POS_X, BPARTS_MENU_POS_Y);
-	XMFLOAT2 pos2 = XMFLOAT2(BPARTS_MENU_POS_X + 1 * BPARTS_MENU_INTERVAL, BPARTS_MENU_POS_Y );
-	XMFLOAT2 pos3 = XMFLOAT2(BPARTS_MENU_POS_X , BPARTS_MENU_POS_Y - 1 * 250);
+	XMFLOAT2 pos2 = XMFLOAT2(BPARTS_MENU_POS_X + 1 * BPARTS_MENU_INTERVAL, BPARTS_MENU_POS_Y);
+	XMFLOAT2 pos3 = XMFLOAT2(BPARTS_MENU_POS_X, BPARTS_MENU_POS_Y - 1 * 250);
 	XMFLOAT2 pos4 = XMFLOAT2(BPARTS_MENU_POS_X + 1 * 250, BPARTS_MENU_POS_Y - 1 * 250);
 	XMFLOAT2 pos5 = XMFLOAT2(BPARTS_MENU_POS_X, BPARTS_MENU_POS_Y - 2 * 250);
 	XMFLOAT2 pos6 = XMFLOAT2(BPARTS_MENU_POS_X + 1 * 250, BPARTS_MENU_POS_Y - 2 * 250);
@@ -167,77 +170,8 @@ void UpdateBParts(void)
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, -2.0f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, -0.8f, -1.0f));
 			UPartsGet()->Setpos(XMFLOAT3(0.0f, -0.8f, 0.0f));
-			switch (CharaNo())//あたま
-			{
-			case 0: {	//かぶ
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (UCharaNo())//うしろあし
-			{
-			case 0: {	//かぶ
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (MCharaNo())//まえあし
-			{
-			case 0: {	//かぶ
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-
-		    InitPChimera();
+			charano = 0;
+			InitPChimera();
 		}
 	}
 	else if (CollisionBB(&pos2, &radius1, &mpos2, &radius2))
@@ -261,75 +195,7 @@ void UpdateBParts(void)
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, -1.0f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, -0.5f, 0.0f));
 			UPartsGet()->Setpos(XMFLOAT3(0.0f, -0.5f, 1.5f));
-			switch (CharaNo())//あたま
-			{
-			case 0: {	//かぶ
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (UCharaNo())//うしろあし
-			{
-			case 0: {	//かぶ
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (MCharaNo())//まえあし
-			{
-			case 0: {	//かぶ
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
+			charano = 1;
 
 			InitPChimera();
 		}
@@ -355,76 +221,7 @@ void UpdateBParts(void)
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, -1.0f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, -0.5f, -0.7f));
 			UPartsGet()->Setpos(XMFLOAT3(0.0f, -0.5f, 0.5f));
-			switch (CharaNo())
-			{
-			case 0: {	//かぶ
-				PartsGet()->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
-				break; }
-			case 1: {//わに
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (UCharaNo())
-			{
-			case 0: {	//かぶ
-				UPartsGet()->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
-				break; }
-			case 1: {//わに
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (MCharaNo())
-			{
-			case 0: {	//かぶ
-				MPartsGet()->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
-				break; }
-			case 1: {//わに
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-	
+			charano = 2;
 			InitPChimera();
 		}
 	}
@@ -449,76 +246,7 @@ void UpdateBParts(void)
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 1.0f, -0.3f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, 0.5f));
 			UPartsGet()->Setpos(XMFLOAT3(0.0f, -1.0f, 0.0f));
-			switch (CharaNo())
-			{
-			case 0: {	//かぶ
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (UCharaNo())
-			{
-			case 0: {	//かぶ
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (MCharaNo())
-			{
-			case 0: {	//かぶ
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-	
+			charano = 3;
 			InitPChimera();
 		}
 	}
@@ -543,76 +271,7 @@ void UpdateBParts(void)
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, -1.0f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, -0.3f, -0.5f));
 			UPartsGet()->Setpos(XMFLOAT3(0.0f, -0.3f, 0.44f));
-			switch (CharaNo())
-			{
-			case 0: {	//かぶ
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (UCharaNo())
-			{
-			case 0: {	//かぶ
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (MCharaNo())
-			{
-			case 0: {	//かぶ
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-
+			charano = 4;
 			InitPChimera();
 		}
 	}
@@ -637,79 +296,11 @@ void UpdateBParts(void)
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, -1.0f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, -1.2f, 0.6f));
 			UPartsGet()->Setpos(XMFLOAT3(0.0f, -1.2f, 3.8f));
-			switch (CharaNo())
-			{
-			case 0: {	//かぶ
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (UCharaNo())
-			{
-			case 0: {	//かぶ
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-			switch (MCharaNo())
-			{
-			case 0: {	//かぶ
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 1: {//わに
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 2: {//ぱんだ
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 3: {//とり
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 4: {//ぶた
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			case 5: {//うし
-				MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-				break; }
-			default:
-				break;
-			}
-
+			charano = 5;
 			InitPChimera();
 		}
 	}
+
 
 
 	// 上下キーで各項目間の移動
@@ -811,3 +402,7 @@ Player* BPartsGet()
 	return &BParts;
 }
 
+int BCharaNo()
+{
+	return charano;
+}

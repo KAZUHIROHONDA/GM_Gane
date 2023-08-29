@@ -69,10 +69,6 @@ HRESULT InitSceneBaSelect()
 	SetEnemy(XMFLOAT3(-50, -5, -150), XMFLOAT3(0, 90, 0));
 	SetEnemy(XMFLOAT3(-50, -5, -50), XMFLOAT3(0, 90, 0));
 	SetEnemy(XMFLOAT3(-50, -5, 50), XMFLOAT3(0, 90, 0));
-	SetEnemy(XMFLOAT3(-50, -5, 150), XMFLOAT3(0, 90, 0));
-	SetEnemy(XMFLOAT3(-50, -5, 200), XMFLOAT3(0, 90, 0));
-	SetEnemy(XMFLOAT3(-50, -5, 250), XMFLOAT3(0, 90, 0));
-	SetEnemy(XMFLOAT3(-50, -5, 300), XMFLOAT3(0, 90, 0));
 
 	// ƒJƒƒ‰XV
 	GetCamera()->Init();

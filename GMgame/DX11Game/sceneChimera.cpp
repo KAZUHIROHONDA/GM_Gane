@@ -128,6 +128,450 @@ void UpdateSceneChimera()
 	GetPlayer()->SetPAat(BPartsGet()->GetPAat() + MPartsGet()->GetPAat() + UPartsGet()->GetPAat() + PartsGet()->GetPAat());
 	GetPlayer()->SetTYOKIat(BPartsGet()->GetTYOKIat() + MPartsGet()->GetTYOKIat() + UPartsGet()->GetTYOKIat() + PartsGet()->GetTYOKIat());
 
+	switch (BCharaNo())
+	{
+	case 0://‚©‚Ô
+	{
+		switch (CharaNo())//‚ ‚½‚Ü
+		{
+		case 0: {	//‚©‚Ô
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (UCharaNo())//‚¤‚µ‚ë‚ ‚µ
+		{
+		case 0: {	//‚©‚Ô
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (MCharaNo())//‚Ü‚¦‚ ‚µ
+		{
+		case 0: {	//‚©‚Ô
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	case 1://‚í‚É
+	{
+		switch (CharaNo())//‚ ‚½‚Ü
+		{
+		case 0: {	//‚©‚Ô
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (UCharaNo())//‚¤‚µ‚ë‚ ‚µ
+		{
+		case 0: {	//‚©‚Ô
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (MCharaNo())//‚Ü‚¦‚ ‚µ
+		{
+		case 0: {	//‚©‚Ô
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	case 2://‚Ï‚ñ‚¾
+	{
+		switch (CharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			PartsGet()->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
+			break; }
+		case 1: {//‚í‚É
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (UCharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			UPartsGet()->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
+			break; }
+		case 1: {//‚í‚É
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (MCharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			MPartsGet()->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
+			break; }
+		case 1: {//‚í‚É
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	case 3://‚Æ‚è
+	{
+		switch (CharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (UCharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (MCharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	case 4://‚Ô‚½
+	{
+		switch (CharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (UCharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (MCharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	case 5:
+	{
+		switch (CharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (UCharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		switch (MCharaNo())
+		{
+		case 0: {	//‚©‚Ô
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	default:
+		break;
+	}
+
 	Sflag();
 
 	if (GetMouseTrigger(1))

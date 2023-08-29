@@ -37,4 +37,4 @@ void ResetBPartsMenu5(void);
 
 Player* BPartsGet();
 
-
+int BCharaNo();

@@ -218,6 +218,10 @@ void UpdatePChimera(void)
 			g_nCameraType = CAMERA_VIEW_BIRD;
 		}
 
+		playermodelHD[i].scl = PartsGet()->Getscl();
+		playermodelAM[i].scl = MPartsGet()->Getscl();
+		playermodelLG[i].scl = UPartsGet()->Getscl();
+
 		//’…’n”»’è
 		//if (playermodel[i].pos.y <= -50.0f)
 		//{
