@@ -20,6 +20,7 @@
 #include "sound.h"
 #include "sceneChimera.h"
 #include "sceneBaSelect.h"
+#include "effect.h"
 
 
 //-------- ライブラリのリンク
@@ -418,6 +419,12 @@ HRESULT Init(HWND hWnd, BOOL bWindow)
 	if (FAILED(hr))
 		return hr;
 
+	//エフェクトの初期化
+	hr = InitEffect();
+	if (FAILED(hr))
+		return hr;
+
+
 	//fade,soundも共通処理なのでこの上
 	//共通部分ここまで
 
@@ -496,6 +503,8 @@ void Uninit(void)
 	//サウンドの終了処理
 	UninitSound();
 
+	UninitEffect();
+
 	// 深度ステンシルステート解放
 	for (int i = 0; i < _countof(g_pDSS); ++i) {
 		SAFE_RELEASE(g_pDSS[i]);
@@ -544,8 +553,15 @@ void Update(void)
 
 	UpdateFade();
 
+	UpdateEffect();
+
 	// ライト更新
 	GetLight()->Update();
+
+	if (GetKeyTrigger(VK_P))
+	{
+		SetEffect(0, XMFLOAT3(0,0,0));
+	}
 
 
 	switch (g_currentScene)
@@ -602,6 +618,9 @@ void Draw(void)
 	SetBlendState(BS_ALPHABLEND);
 
 	// 手前の2Dに描画するものはここ
+
+	DrawEffect();
+
 	//光源処理無効
 	GetLight()->SetDisable();
 	//半透明オブジェクト(3Dの中でも後ろにかく)

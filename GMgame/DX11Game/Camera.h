@@ -61,6 +61,8 @@ public:
 	DirectX::XMFLOAT4X4& GetProjMatrix() { return m_mtxProj; }
 	void UpdateMatrix();
 	DirectX::XMFLOAT3& GetAngle() { return m_vAngle; }
+	DirectX::XMFLOAT3& GetTarget() { return m_vTarget; }
+
 	void UpdateSet();
 
 	//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

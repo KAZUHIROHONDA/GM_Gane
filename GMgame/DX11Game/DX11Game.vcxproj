@@ -79,6 +79,8 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)$(ProjectName)\</OutDir>
     <TargetName>$(ProjectName)D</TargetName>
+    <IncludePath>install_msvc2017\include\EffekseerRendererDX11;install_msvc2017\include\Effekseer;$(IncludePath)</IncludePath>
+    <LibraryPath>install_msvc2017\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -117,6 +119,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>..\..\Assimp\lib\$(PlatformTarget);..\..\DirectXTex\$(PlatformTarget)\$(Configuration);C:\Program Files\Autodesk\FBX\FBX SDK\2020.1\lib\vs2017\$(PlatformTarger)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Effekseerd.lib;EffekseerRendererDX11d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -168,6 +171,7 @@
     <ClCompile Include="CSVLoader.cpp" />
     <ClCompile Include="debugproc.cpp" />
     <ClCompile Include="DirectWrite.cpp" />
+    <ClCompile Include="effect.cpp" />
     <ClCompile Include="Egauge.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemyhp.cpp" />
@@ -232,6 +236,7 @@
     <ClInclude Include="CSVLoader.h" />
     <ClInclude Include="debugproc.h" />
     <ClInclude Include="DirectWrite.h" />
+    <ClInclude Include="effect.h" />
     <ClInclude Include="Egauge.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="enemyhp.h" />
