@@ -71,10 +71,10 @@ HRESULT InitSceneTitle()
 	//デバック
 	g_enemy.Init();
 	g_enemy.SetName("わに");
-	g_player.Setmodel(1);
-	g_player.Setmodel(11);
-	g_player.Setmodel(21);
-	g_player.Setmodel(31);
+	g_enemy.Setmodel(1);
+	g_enemy.Setmodel(11);
+	g_enemy.Setmodel(21);
+	g_enemy.Setmodel(31);
 	enemy.SetHead(MODEL_wani);
 	enemy.SetBody(MODEL_wani1);
 	enemy.SetMae(MODEL_wani2);
