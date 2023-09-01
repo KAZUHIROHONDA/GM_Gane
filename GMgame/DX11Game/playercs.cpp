@@ -101,6 +101,11 @@ XMFLOAT3 Player::Getscl()
 	return scl;
 }
 
+void Player::SelModel()
+{
+	model[0] SetKABUHead();
+}
+
 void Player::Init()
 {
 	FontData* fontData = new FontData();

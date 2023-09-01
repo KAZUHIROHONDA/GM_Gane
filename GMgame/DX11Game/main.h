@@ -112,3 +112,5 @@ void SetBlendState(int nBlendState);
 void SetCullMode(int nCullMode);
 
 void StartSceneChange(E_TYPE_SCENE next);
+
+int GetMouseWheelDelta();

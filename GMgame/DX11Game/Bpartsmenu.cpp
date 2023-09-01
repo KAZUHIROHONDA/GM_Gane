@@ -154,7 +154,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu();
 		if (GetMouseTrigger(0))
 		{
-			SetBody(MODEL_KABU1);
+			GetPlayerModel()->SetBody(MODEL_KABU1);
 			GetPlayer()->SetName("カブトムシ");
 			BParts.SetHP(10);
 			BParts.SetPAat(10);
@@ -179,7 +179,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu1();
 		if (GetMouseTrigger(0))
 		{
-			SetBody(MODEL_wani1);
+			GetPlayerModel()->SetBody(MODEL_wani1);
 			GetPlayer()->SetName("ワニ");
 			BParts.SetHP(20);
 			BParts.SetPAat(20);
@@ -205,7 +205,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu2();
 		if (GetMouseTrigger(0))
 		{
-			SetBody(MODEL_PANDA1);
+			GetPlayerModel()->SetBody(MODEL_PANDA1);
 			GetPlayer()->SetName("パンダ");
 			BParts.SetHP(50);
 			BParts.SetPAat(50);
@@ -230,7 +230,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu3();
 		if (GetMouseTrigger(0))
 		{
-			SetBody(MODEL_TORI1);
+			GetPlayerModel()->SetBody(MODEL_TORI1);
 			GetPlayer()->SetName("トリ");
 			BParts.SetHP(50);
 			BParts.SetPAat(50);
@@ -255,7 +255,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu4();
 		if (GetMouseTrigger(0))
 		{
-			SetBody(MODEL_BUTA1);
+			GetPlayerModel()->SetBody(MODEL_BUTA1);
 			GetPlayer()->SetName("ブタ");
 			BParts.SetHP(60);
 			BParts.SetPAat(60);
@@ -280,7 +280,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu5();
 		if (GetMouseTrigger(0))
 		{
-			SetBody(MODEL_USI1);
+			GetPlayerModel()->SetBody(MODEL_USI1);
 			GetPlayer()->SetName("ウシ");
 			BParts.SetHP(30);
 			BParts.SetPAat(30);

@@ -68,6 +68,8 @@ E_TYPE_SCENE	g_currentScene;	//現在のシーン
 E_TYPE_SCENE	g_nextScene;	//遷移先のシーン
 
 
+int g_nMouseWheelDelta = 0;	//マウスホイール回転量
+
 //=============================================================================
 // メイン関数
 //=============================================================================
@@ -207,6 +209,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_MENUCHAR:
 		return MNC_CLOSE << 16;			// [Alt]+[Enter]時のBEEPを抑止
+	case WM_MOUSEWHEEL:
+		g_nMouseWheelDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+		break;
 	default:
 		break;
 	}
@@ -769,4 +774,11 @@ void SetCullMode(int nCullMode)
 	if (nCullMode >= 0 && nCullMode < MAX_CULLMODE) {
 		g_pDeviceContext->RSSetState(g_pRs[nCullMode]);
 	}
+}
+
+int GetMouseWheelDelta()
+{
+	int temp = g_nMouseWheelDelta;
+	g_nMouseWheelDelta = 0;	//リセット
+	return temp;
 }

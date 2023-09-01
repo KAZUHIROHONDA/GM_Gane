@@ -171,6 +171,8 @@ HRESULT InitSceneGame()
 	//文字初期化処理
 	InitMessage();
 
+	SetEnemy(XMFLOAT3(0.0f, 20.0f, 100.0f), XMFLOAT3(0.0f, 180.0f, 0.0f));
+
 	InitGameover();
 
 	return hr;
@@ -238,11 +240,6 @@ void UpdateSceneGame()
 	{
 		g_bClear = true;
 	}
-	if (g_bPause == true)
-	{	//ポーズ更新
-		UpdatePause();
-		UpdateGameover();
-	}
 	if (g_bClear == true || g_bOver == true)
 	{
 		GetCamera()->Update();
@@ -281,86 +278,95 @@ void UpdateSceneGame()
 			}
 		}
 	}
-	else if(g_bPause == false && g_bClear == false)
+	else 
 	{
-		//デバック
-		phase.Update();
-
-		//背景
-		UpdateBg();
-		//敵
-		UpdateEnemy();
-		//たま
-		UpdateBullet();
-		
-		//地面更新処理
-		UpdateField3D();
-
-
-		UpdatePlayerhp();
-		UpdateEnemyhp();
-		
-		//地面更新処理
-		UpdateWall();
-		//当たり判定
-		
-		//影
-		UpdateShadow();
-		//ステージ
-		UpdateStage();
-
-	}
-
-	//ポーズのオンオフ
-	if (GetKeyTrigger(VK_P)|| GetJoyTrigger(0,1)|| GetMouseTrigger(2))
-	{
-		//フェード中は反応しない用にする
-		E_FADE fadeState = GetFade();
-		if (fadeState == E_FADE_NONE)
-		{
-			//[フラグの切り替え]
-			//g_bPauseを"true"なら"false"に"false"なら"true"にする
-			g_bPause = !g_bPause;
-
-			//ポーズ開始時にやること
-			if (g_bPause == true)
-			{
-				ResetPauseMenu();
-			}
+		if (g_bPause == true)
+		{	//ポーズ更新
+			UpdatePause();
+			UpdateGameover();
 		}
-	}
-
-	//ポーズ中の項目決定
-	if (g_bPause == true)
-	{
-		E_FADE fadeState = GetFade();
-		if (fadeState == E_FADE_NONE)
+		else if (g_bPause == false)
 		{
-			if (GetKeyTrigger(VK_RETURN)|| GetJoyTrigger(0, 0)|| GetMouseTrigger(0))
+			//デバック
+			phase.Update();
+
+			//背景
+			UpdateBg();
+			//敵
+			UpdateEnemy();
+			//たま
+			UpdateBullet();
+
+			//地面更新処理
+			UpdateField3D();
+
+
+			UpdatePlayerhp();
+			UpdateEnemyhp();
+
+			//地面更新処理
+			UpdateWall();
+			//当たり判定
+
+			//影
+			UpdateShadow();
+			//ステージ
+			UpdateStage();
+
+		}
+
+		//ポーズのオンオフ
+		if (GetKeyTrigger(VK_P) || GetJoyTrigger(0, 1) || GetMouseTrigger(2))
+		{
+			//フェード中は反応しない用にする
+			E_FADE fadeState = GetFade();
+			if (fadeState == E_FADE_NONE)
 			{
-				//選択中のものにより分岐
-				PAUSE_MENU menu = GetPauseMenu();
-				switch (menu)
+				//[フラグの切り替え]
+				//g_bPauseを"true"なら"false"に"false"なら"true"にする
+				g_bPause = !g_bPause;
+
+				//ポーズ開始時にやること
+				if (g_bPause == true)
 				{
-					//ゲームに戻る
-				case PAUSE_MENU_CONTINUE:
-					g_bPause = !g_bPause;
-					break;
-					//リトライ
-				case PAUSE_MENU_RETRY:
-					StartFade(SCENE_GAME);
-					GetPhase()->ChangePhase(STARTPHASE);
-					break;
-					//終了(タイトルへ)
-				case PAUSE_MENU_QUIT:
-					StartFade(SCENE_TITLE);
-					GetPhase()->ChangePhase(STARTPHASE);
-					break;
+					ResetPauseMenu();
 				}
 			}
 		}
 
+		//ポーズ中の項目決定
+		if (g_bPause == true)
+		{
+			E_FADE fadeState = GetFade();
+			if (fadeState == E_FADE_NONE)
+			{
+				if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0) || GetMouseTrigger(0))
+				{
+					//選択中のものにより分岐
+					PAUSE_MENU menu = GetPauseMenu();
+					switch (menu)
+					{
+						//ゲームに戻る
+					case PAUSE_MENU_CONTINUE:
+						g_bPause = !g_bPause;
+						break;
+						//リトライ
+					case PAUSE_MENU_RETRY:
+						StartFade(SCENE_GAME);
+						GetPhase()->ChangePhase(STARTPHASE);
+						break;
+						//終了(タイトルへ)
+					case PAUSE_MENU_QUIT:
+						StartFade(SCENE_SELECT);
+						GetPhase()->ChangePhase(STARTPHASE);
+						break;
+					}
+				}
+			}
+
+		}
 	}
+	
 		
 	//文字更新処理
 	UpdateMessage();

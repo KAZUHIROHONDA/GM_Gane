@@ -36,12 +36,23 @@
 #define MODEL_USI3		"data/model/ushi_ushiroAshi.obj"
 
 //モデルデータ追加
-void	SetHead(std::string val);
-std::string	GetHead();
-void	SetBody(std::string val);
-std::string	GetBody();
-void	SetMae(std::string val);
-std::string	GetMae();
-void	SetBack(std::string val);
-std::string	GetBack();
+class Model 
+{
+private:
+	std::string modelhead = MODEL_KABU;
+	std::string modelbody = MODEL_KABU1;
+	std::string modelmae = MODEL_KABU2;
+	std::string modelusiro = MODEL_KABU3;
 
+public:
+	Model();
+	~Model();
+	void	SetHead(std::string val);
+	std::string	GetHead();
+	void	SetBody(std::string val);
+	std::string	GetBody();
+	void	SetMae(std::string val);
+	std::string	GetMae();
+	void	SetBack(std::string val);
+	std::string	GetBack();
+};

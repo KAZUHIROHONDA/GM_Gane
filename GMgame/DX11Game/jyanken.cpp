@@ -222,12 +222,21 @@ void UpdateJyankenSet()
 	
 				for (int i = 0; i < 3; i++)
 				{
-					while (selte[i] == NULL)
+					old = rand() % 5;
+
+					if (selaite[old] == -1)
 					{
-						old = rand() % 5;
-						aite[i] = selte[old];
-						selte[old] = NULL;
+						while (selaite[old] == -1)
+						{
+							old = rand() % 5;
+							aite[i] = selaite[old];
+						}
+						selaite[old] = -1;
+						continue;
 					}
+					aite[i] = selaite[old];
+					selaite[old] = -1;
+
 				}
 				
 				GetPhase()->ChangePhase(JUDGEPHASE);
@@ -611,7 +620,7 @@ void UpdateJyankenBattle()
 		}
 		for (int f = 0; f < 5; f++)
 		{
-			aite[f] = Setaite[rand() % 20];//相手
+			selaite[f] = Setaite[rand() % 20];//相手
 			selte[f] = Sette[rand() % 20];
 		}
 		win = false;
@@ -694,16 +703,7 @@ void DrawJyankenSet()
 			//ポリゴンの描画処理
 			DrawPolygon(GetDeviceContext());
 		}
-		if (selaite[k] != -1)
-		{
-			//ポリゴン情報設定
-			SetPolygonPos(300 + 50 * k, -300);			//座標
-			SetPolygonSize(JYANKEN_MENU_WIDTH/2, JYANKEN_MENU_HEIGHT/2);		//大きさ
-			SetPolygonTexture(g_pTextures[aite[k]]);		//テクスチャ
 
-			//ポリゴンの描画処理
-			DrawPolygon(GetDeviceContext());
-		}
 	}
 	for (int k = 0; k < 5; k++)
 	{
@@ -713,7 +713,7 @@ void DrawJyankenSet()
 			//ポリゴン情報設定
 			SetPolygonPos(300 + 50 * k, -300);			//座標
 			SetPolygonSize(JYANKEN_MENU_WIDTH / 2, JYANKEN_MENU_HEIGHT / 2);		//大きさ
-			SetPolygonTexture(g_pTextures[aite[k]]);		//テクスチャ
+			SetPolygonTexture(g_pTextures[selaite[k]]);		//テクスチャ
 
 			//ポリゴンの描画処理
 			DrawPolygon(GetDeviceContext());

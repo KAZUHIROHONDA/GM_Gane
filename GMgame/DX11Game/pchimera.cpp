@@ -150,16 +150,16 @@ HRESULT InitPChimera(void)
 
 	// モデルデータの読み込み
 	hr = g_model[0].Load(pDevice, pDeviceContext,
-		GetBody()); if (FAILED(hr)) return hr;
+		GetPlayerModel()->GetBody()); if (FAILED(hr)) return hr;
 
 	hr = g_model[1].Load(pDevice, pDeviceContext,
-		GetHead()); if (FAILED(hr)) return hr;
+		GetPlayerModel()->GetHead()); if (FAILED(hr)) return hr;
 
 	hr = g_model[2].Load(pDevice, pDeviceContext,
-		GetMae()); if (FAILED(hr)) return hr;
+		GetPlayerModel()->GetMae()); if (FAILED(hr)) return hr;
 
 	hr = g_model[3].Load(pDevice, pDeviceContext,
-		GetBack()); if (FAILED(hr)) return hr;
+		GetPlayerModel()->GetBack()); if (FAILED(hr)) return hr;
 	
 	g_nCameraType = CAMERA_VIEW_FIXED;
 
@@ -222,6 +222,10 @@ void UpdatePChimera(void)
 		playermodelAM[i].scl = MPartsGet()->Getscl();
 		playermodelLG[i].scl = UPartsGet()->Getscl();
 
+		//ホイール回転
+		int temp1 = GetMouseWheelDelta();
+		playermodel[i].rot.y +=  static_cast<float>(temp1)/5;
+
 		//着地判定
 		//if (playermodel[i].pos.y <= -50.0f)
 		//{
@@ -238,7 +242,7 @@ void UpdatePChimera(void)
 		hitLength = CheckCollisionRay(XMVectorSet(playermodel[i].pos.x, playermodel[i].pos.y, playermodel[i].pos.z, 0.0f), 10.0f);
 		if (hitLength < 9999.9f)
 		{
-			playermodel[i].rot.y += 1.0f;
+			//playermodel[i].rot.y += 1.0f;
 			if (GetMouseTrigger(0))
 			{
 				//アクション入れたい

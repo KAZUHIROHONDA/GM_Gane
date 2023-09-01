@@ -7,9 +7,12 @@
 
 #include "main.h"
 #include "DirectWrite.h"
+#include "modeldata.h"
 
 class Player {
 private:
+
+protected:
 	std::string partsName;	//パーツの名前
 	std::string Name;		//名前
 	int	 HP;				//体力
@@ -21,6 +24,9 @@ private:
 	XMFLOAT3 scl;			//サイズ
 
 	DirectWrite* g_directWrite;
+
+	Modeldata model[4];
+
 
 public:
 	Player();

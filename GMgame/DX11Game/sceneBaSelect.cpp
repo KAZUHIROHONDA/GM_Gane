@@ -110,6 +110,10 @@ void UpdateSceneBaSelect()
 
 	UpdateSelectEnemy();
 
+	if (GetMouseTrigger(1))
+	{
+		StartFade(SCENE_SELECT);
+	}
 
 }
 

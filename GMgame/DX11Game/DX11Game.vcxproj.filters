@@ -11,7 +11,6 @@
   <ItemGroup>
     <ClCompile Include="AssimpModel.cpp" />
     <ClCompile Include="bg.cpp" />
-    <ClCompile Include="bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CSVLoader.cpp" />
     <ClCompile Include="debugproc.cpp" />
@@ -71,12 +70,12 @@
     <ClCompile Include="Upartsmenu.cpp" />
     <ClCompile Include="sceneBaSelect.cpp" />
     <ClCompile Include="effect.cpp" />
+    <ClCompile Include="modeldata.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssimpModel.h" />
     <ClInclude Include="bg.h" />
     <ClInclude Include="box.h" />
-    <ClInclude Include="bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CSVLoader.h" />
     <ClInclude Include="debugproc.h" />
@@ -136,6 +135,7 @@
     <ClInclude Include="Upartsmenu.h" />
     <ClInclude Include="sceneBaSelect.h" />
     <ClInclude Include="effect.h" />
+    <ClInclude Include="modeldata.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX11Game.rc" />

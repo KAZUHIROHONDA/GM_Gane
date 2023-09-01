@@ -9,47 +9,50 @@
 #include "playercs.h"
 
 
-std::string modelhead =  MODEL_KABU;
-std::string modelbody = MODEL_KABU1;
-std::string modelmae = MODEL_KABU2;
-std::string modelusiro = MODEL_KABU3;
+Model::Model()
+{
+}
 
-void SetHead(std::string val)
+Model::~Model()
+{
+}
+
+void Model::SetHead(std::string val)
 {
 	modelhead = val;
 }
 
-std::string GetHead()
+std::string Model::GetHead()
 {
 	return modelhead;
 }
 
-void SetBody(std::string val)
+void Model::SetBody(std::string val)
 {
 	modelbody = val;
 }
 
-std::string GetBody()
+std::string Model::GetBody()
 {
 	return modelbody;
 }
 
-void SetMae(std::string val)
+void Model::SetMae(std::string val)
 {
 	modelmae = val;
 }
 
-std::string GetMae()
+std::string Model::GetMae()
 {
 	return modelmae;
 }
 
-void SetBack(std::string val)
+void Model::SetBack(std::string val)
 {
 	modelusiro = val;
 }
 
-std::string GetBack()
+std::string Model::GetBack()
 {
 	return modelusiro;
 }

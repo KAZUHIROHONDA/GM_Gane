@@ -122,7 +122,7 @@ HRESULT InitEnemy(void)
 
 		//初期化
 		g_enemy[i].nPhase = 0;
-		g_enemy[i].nState = 1;		//最初は通常
+		g_enemy[i].nState = 0;		//最初は通常
 		g_enemy[i].Tipe = 0;
 
 		g_enemy[i].nHP = GetEnemy()->GetHP();
@@ -243,16 +243,16 @@ HRESULT InitEnemy(void)
 
 	// モデルデータの読み込み
 	hr = g_model[0].Load(pDevice, pDeviceContext,
-		MODEL_ENEMY); if (FAILED(hr)) return hr;
+		GetEnemyModel()->GetBody()); if (FAILED(hr)) return hr;
 
 	hr = g_model[1].Load(pDevice, pDeviceContext,
-		MODEL_ENEMY1); if (FAILED(hr)) return hr;
+		GetEnemyModel()->GetHead()); if (FAILED(hr)) return hr;
 
 	hr = g_model[2].Load(pDevice, pDeviceContext,
-		MODEL_ENEMY2); if (FAILED(hr)) return hr;
+		GetEnemyModel()->GetMae()); if (FAILED(hr)) return hr;
 
 	hr = g_model[3].Load(pDevice, pDeviceContext,
-		MODEL_ENEMY3); if (FAILED(hr)) return hr;
+		GetEnemyModel()->GetBack()); if (FAILED(hr)) return hr;
 
 	return hr;
 
@@ -339,16 +339,16 @@ HRESULT InitSelectEnemy(void)
 
 	// モデルデータの読み込み
 	hr = g_model[0].Load(pDevice, pDeviceContext,
-		MODEL_ENEMY); if (FAILED(hr)) return hr;
+		GetEnemyModel()->GetBody()); if (FAILED(hr)) return hr;
 
 	hr = g_model[1].Load(pDevice, pDeviceContext,
-		MODEL_ENEMY1); if (FAILED(hr)) return hr;
+		GetEnemyModel()->GetHead()); if (FAILED(hr)) return hr;
 
 	hr = g_model[2].Load(pDevice, pDeviceContext,
-		MODEL_ENEMY2); if (FAILED(hr)) return hr;
+		GetEnemyModel()->GetMae()); if (FAILED(hr)) return hr;
 
 	hr = g_model[3].Load(pDevice, pDeviceContext,
-		MODEL_ENEMY3); if (FAILED(hr)) return hr;
+		GetEnemyModel()->GetBack()); if (FAILED(hr)) return hr;
 
 	return hr;
 
@@ -618,6 +618,7 @@ void UpdateEnemy(void)
 
 }
 
+//enemyのセレクトアップデート
 void UpdateSelectEnemy(void)
 {
 	// プレイヤーの動きを記述するならここ
@@ -635,6 +636,7 @@ void UpdateSelectEnemy(void)
 			g_enemy[i].rot.y += 1.0f;
 			if (GetMouseTrigger(0))
 			{
+
 				//アクション入れたい
 				StartFade(SCENE_GAME);
 

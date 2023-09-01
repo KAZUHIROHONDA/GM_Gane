@@ -18,6 +18,7 @@
 #include "partsmenu.h"
 #include "Upartsmenu.h"
 #include "Mpartsmenu.h"
+#include "model.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -29,7 +30,9 @@
 //*****************************************************************************
 
 Player g_player;
+Model  player;
 Player g_enemy;
+Model  enemy;
 
 //=============================================================================
 // タイトル表示の初期化処理
@@ -70,6 +73,10 @@ HRESULT InitSceneTitle()
 	g_player.SetHand(14, 2); g_player.SetHand(15, 1);
 	g_player.SetHand(16, 2); g_player.SetHand(17, 1);
 	g_player.SetHand(18, 2); g_player.SetHand(19, 1);
+	player.SetHead(MODEL_KABU);
+	player.SetBody(MODEL_KABU1);
+	player.SetMae(MODEL_KABU2);
+	player.SetBack(MODEL_KABU3);
 
 	//デバック
 	g_enemy.Init();
@@ -78,18 +85,21 @@ HRESULT InitSceneTitle()
 	g_enemy.SetPAat(15);
 	g_enemy.SetGUat(20);
 	g_enemy.SetTYOKIat(25);
-	g_enemy.SetHand(0, 1); g_enemy.SetHand(1, 1);
-	g_enemy.SetHand(2, 1); g_enemy.SetHand(3, 1);
-	g_enemy.SetHand(4, 1); g_enemy.SetHand(5, 1);
-	g_enemy.SetHand(6, 1); g_enemy.SetHand(7, 1);
-	g_enemy.SetHand(8, 1); g_enemy.SetHand(9, 1);
-	g_enemy.SetHand(10, 1);g_enemy.SetHand(11, 1);
-	g_enemy.SetHand(12, 1);g_enemy.SetHand(13, 1);
-	g_enemy.SetHand(14, 1);g_enemy.SetHand(15, 1);
-	g_enemy.SetHand(16, 1);g_enemy.SetHand(17, 1);
-	g_enemy.SetHand(18, 1);g_enemy.SetHand(19, 1);
-
-
+	g_enemy.SetHand(0, 0); g_enemy.SetHand(1, 1);
+	g_enemy.SetHand(2, 0); g_enemy.SetHand(3, 1);
+	g_enemy.SetHand(4, 0); g_enemy.SetHand(5, 1);
+	g_enemy.SetHand(6, 0); g_enemy.SetHand(7, 1);
+	g_enemy.SetHand(8, 0); g_enemy.SetHand(9, 1);
+	g_enemy.SetHand(10, 0);g_enemy.SetHand(11, 2);
+	g_enemy.SetHand(12, 1);g_enemy.SetHand(13, 2);
+	g_enemy.SetHand(14, 2);g_enemy.SetHand(15, 2);
+	g_enemy.SetHand(16, 1); g_enemy.SetHand(17, 2);
+	g_enemy.SetHand(18, 0);g_enemy.SetHand(19, 2);
+	enemy.SetHead(MODEL_wani);
+	enemy.SetBody(MODEL_wani1);
+	enemy.SetMae(MODEL_wani2);
+	enemy.SetBack(MODEL_wani3);
+	
 	//タイトル
 	InitTitle();
 
@@ -177,4 +187,14 @@ Player* GetPlayer()
 Player* GetEnemy()
 {
 	return &g_enemy;
+}
+
+Model* GetPlayerModel()
+{
+	return &player;
+}
+
+Model* GetEnemyModel()
+{
+	return &enemy;
 }

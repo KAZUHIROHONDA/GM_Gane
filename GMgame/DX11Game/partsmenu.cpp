@@ -150,7 +150,7 @@ void UpdateParts(void)
 		ResetPartsMenu();
 		if (GetMouseTrigger(0))
 		{
-			SetHead(MODEL_KABU);
+			GetPlayerModel()->SetHead(MODEL_KABU);
 			Parts.SetHP(10);
 			Parts.SetPAat(10);
 			Parts.SetGUat(10);
@@ -170,7 +170,7 @@ void UpdateParts(void)
 	{
 		if (GetMouseTrigger(0))
 		{
-			SetHead(MODEL_wani);
+			GetPlayerModel()->SetHead(MODEL_wani);
 			Parts.SetHP(15);
 			Parts.SetPAat(15);
 			Parts.SetGUat(15);
@@ -191,7 +191,7 @@ void UpdateParts(void)
 
 		if (GetMouseTrigger(0))
 		{
-			SetHead(MODEL_PANDA);
+			GetPlayerModel()->SetHead(MODEL_PANDA);
 			Parts.SetHP(50);
 			Parts.SetPAat(50);
 			Parts.SetGUat(50);
@@ -212,7 +212,7 @@ void UpdateParts(void)
 
 		if (GetMouseTrigger(0))
 		{
-			SetHead(MODEL_TORI);
+			GetPlayerModel()->SetHead(MODEL_TORI);
 			Parts.SetHP(50);
 			Parts.SetPAat(50);
 			Parts.SetGUat(50);
@@ -233,7 +233,7 @@ void UpdateParts(void)
 
 		if (GetMouseTrigger(0))
 		{
-			SetHead(MODEL_BUTA);
+			GetPlayerModel()->SetHead(MODEL_BUTA);
 			Parts.SetHP(50);
 			Parts.SetPAat(50);
 			Parts.SetGUat(50);
@@ -254,7 +254,7 @@ void UpdateParts(void)
 
 		if (GetMouseTrigger(0))
 		{
-			SetHead(MODEL_USI);
+			GetPlayerModel()->SetHead(MODEL_USI);
 			Parts.SetHP(50);
 			Parts.SetPAat(50);
 			Parts.SetGUat(50);

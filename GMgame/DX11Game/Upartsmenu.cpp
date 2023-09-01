@@ -149,7 +149,7 @@ void UpdateUParts(void)
 	{
 		if (GetMouseTrigger(0))
 		{
-			SetBack(MODEL_KABU3);
+			GetPlayerModel()->SetBack(MODEL_KABU3);
 			UParts.SetHP(10);
 			UParts.SetPAat(15);
 			UParts.SetGUat(20);
@@ -169,7 +169,7 @@ void UpdateUParts(void)
 	{
 		if (GetMouseTrigger(0))
 		{
-			SetBack(MODEL_wani3);
+			GetPlayerModel()->SetBack(MODEL_wani3);
 			UParts.SetHP(10);
 			UParts.SetPAat(15);
 			UParts.SetGUat(20);
@@ -190,7 +190,7 @@ void UpdateUParts(void)
 
 		if (GetMouseTrigger(0))
 		{
-			SetBack(MODEL_PANDA3);
+			GetPlayerModel()->SetBack(MODEL_PANDA3);
 			UParts.SetHP(50);
 			UParts.SetPAat(50);
 			UParts.SetGUat(50);
@@ -211,7 +211,7 @@ void UpdateUParts(void)
 
 		if (GetMouseTrigger(0))
 		{
-			SetBack(MODEL_TORI3);
+			GetPlayerModel()->SetBack(MODEL_TORI3);
 			UParts.SetHP(50);
 			UParts.SetPAat(50);
 			UParts.SetGUat(50);
@@ -232,7 +232,7 @@ void UpdateUParts(void)
 
 		if (GetMouseTrigger(0))
 		{
-			SetBack(MODEL_BUTA3);
+			GetPlayerModel()->SetBack(MODEL_BUTA3);
 			UParts.SetHP(50);
 			UParts.SetPAat(50);
 			UParts.SetGUat(50);
@@ -253,7 +253,7 @@ void UpdateUParts(void)
 
 		if (GetMouseTrigger(0))
 		{
-			SetBack(MODEL_USI3);
+			GetPlayerModel()->SetBack(MODEL_USI3);
 			UParts.SetHP(50);
 			UParts.SetPAat(50);
 			UParts.SetGUat(50);

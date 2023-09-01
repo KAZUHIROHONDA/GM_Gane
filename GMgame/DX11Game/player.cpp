@@ -195,16 +195,16 @@ HRESULT InitPlayer(void)
 
 	// モデルデータの読み込み
 	hr = g_model[0].Load(pDevice, pDeviceContext,
-		GetBody()); if (FAILED(hr)) return hr;
+		GetPlayerModel()->GetBody()); if (FAILED(hr)) return hr;
 
 	hr = g_model[1].Load(pDevice, pDeviceContext,
-		GetHead()); if (FAILED(hr)) return hr;
+		GetPlayerModel()->GetHead()); if (FAILED(hr)) return hr;
 
 	hr = g_model[2].Load(pDevice, pDeviceContext,
-		GetMae()); if (FAILED(hr)) return hr;
+		GetPlayerModel()->GetMae()); if (FAILED(hr)) return hr;
 
 	hr = g_model[3].Load(pDevice, pDeviceContext,
-		GetBack()); if (FAILED(hr)) return hr;
+		GetPlayerModel()->GetBack()); if (FAILED(hr)) return hr;
 	
 	g_nCameraType = E_CAMERA_VIEW_FIXED;
 	

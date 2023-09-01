@@ -8,6 +8,7 @@
 
 #include "main.h"
 #include "playercs.h"
+#include "model.h"
 
 //*****************************************************************************
 // プロトタイプ宣言
@@ -20,5 +21,6 @@ void	DrawSceneTitle();
 Player* GetPlayer();
 Player* GetEnemy();
 
-
+Model* GetPlayerModel();
+Model* GetEnemyModel();
 
