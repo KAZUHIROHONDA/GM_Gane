@@ -9,7 +9,6 @@
 #include "main.h"
 #include "input.h"
 #include "shadow.h"		//‰e‚ð‚Â‚¯‚é‚É‚Í“ü‚ê‚é
-#include "bullet.h"
 #include "gauge.h"
 #include "sound.h"
 #include "MessageManager.h"

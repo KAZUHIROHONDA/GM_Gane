@@ -80,11 +80,6 @@ HRESULT InitSceneChimera()
 
 	player.Init();
 
-	GetPlayer()->SetHP(BPartsGet()->GetHP());
-	GetPlayer()->SetGUat(BPartsGet()->GetGUat() + MPartsGet()->GetGUat() + UPartsGet()->GetGUat() + PartsGet()->GetGUat());
-	GetPlayer()->SetPAat(BPartsGet()->GetPAat() + MPartsGet()->GetPAat() + UPartsGet()->GetPAat() + PartsGet()->GetPAat());
-	GetPlayer()->SetTYOKIat(BPartsGet()->GetTYOKIat() + MPartsGet()->GetTYOKIat() + UPartsGet()->GetTYOKIat() + PartsGet()->GetTYOKIat());
-
 	return hr;
 }
 
@@ -123,11 +118,7 @@ void UpdateSceneChimera()
 
 	UpdateTex();
 
-	GetPlayer()->SetHP(BPartsGet()->GetHP());
-	GetPlayer()->SetGUat(BPartsGet()->GetGUat() + MPartsGet()->GetGUat() + UPartsGet()->GetGUat() + PartsGet()->GetGUat());
-	GetPlayer()->SetPAat(BPartsGet()->GetPAat() + MPartsGet()->GetPAat() + UPartsGet()->GetPAat() + PartsGet()->GetPAat());
-	GetPlayer()->SetTYOKIat(BPartsGet()->GetTYOKIat() + MPartsGet()->GetTYOKIat() + UPartsGet()->GetTYOKIat() + PartsGet()->GetTYOKIat());
-
+	
 	switch (BCharaNo())
 	{
 	case 0://‚©‚Ô
@@ -571,6 +562,8 @@ void UpdateSceneChimera()
 	default:
 		break;
 	}
+
+	GetPlayer()->Update();
 
 	Sflag();
 

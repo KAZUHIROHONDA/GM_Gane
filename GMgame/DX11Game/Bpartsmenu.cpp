@@ -70,10 +70,7 @@ HRESULT InitBParts(void)
 	}
 
 	GetPlayer()->SetName("カブトムシ");
-	BParts.SetHP(10);
-	BParts.SetPAat(10);
-	BParts.SetGUat(10);
-	BParts.SetTYOKIat(10);
+	GetPlayer()->Setmodel(10);
 
 	g_nBPartsMenu = BPARTS_MENU_KABU;
 	g_fCurve = 0.0f;
@@ -156,16 +153,7 @@ void UpdateBParts(void)
 		{
 			GetPlayerModel()->SetBody(MODEL_KABU1);
 			GetPlayer()->SetName("カブトムシ");
-			BParts.SetHP(10);
-			BParts.SetPAat(10);
-			BParts.SetGUat(10);
-			BParts.SetTYOKIat(10);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(0, 1);
-			GetPlayer()->SetHand(1, 1);
-			GetPlayer()->SetHand(2, 1);
-			GetPlayer()->SetHand(3, 1);
-			GetPlayer()->SetHand(4, 1);
+			GetPlayer()->Setmodel(10);
 			GetPlayer()->Setscl(XMFLOAT3(8.0f, 8.0f, 8.0f));
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, -2.0f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, -0.8f, -1.0f));
@@ -181,16 +169,7 @@ void UpdateBParts(void)
 		{
 			GetPlayerModel()->SetBody(MODEL_wani1);
 			GetPlayer()->SetName("ワニ");
-			BParts.SetHP(20);
-			BParts.SetPAat(20);
-			BParts.SetGUat(20);
-			BParts.SetTYOKIat(20);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(0, 0);
-			GetPlayer()->SetHand(1, 0);
-			GetPlayer()->SetHand(2, 0);
-			GetPlayer()->SetHand(3, 0);
-			GetPlayer()->SetHand(4, 0);
+			GetPlayer()->Setmodel(11);
 			GetPlayer()->Setscl(XMFLOAT3(15.0f, 15.0f, 15.0f));
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, -1.0f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, -0.5f, 0.0f));
@@ -207,16 +186,7 @@ void UpdateBParts(void)
 		{
 			GetPlayerModel()->SetBody(MODEL_PANDA1);
 			GetPlayer()->SetName("パンダ");
-			BParts.SetHP(50);
-			BParts.SetPAat(50);
-			BParts.SetGUat(50);
-			BParts.SetTYOKIat(50);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(0, 1);
-			GetPlayer()->SetHand(1, 1);
-			GetPlayer()->SetHand(2, 1);
-			GetPlayer()->SetHand(3, 1);
-			GetPlayer()->SetHand(4, 1);
+			GetPlayer()->Setmodel(12);
 			GetPlayer()->Setscl(XMFLOAT3(16.0f, 16.0f, 16.0f));
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, -1.0f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, -0.5f, -0.7f));
@@ -232,16 +202,7 @@ void UpdateBParts(void)
 		{
 			GetPlayerModel()->SetBody(MODEL_TORI1);
 			GetPlayer()->SetName("トリ");
-			BParts.SetHP(50);
-			BParts.SetPAat(50);
-			BParts.SetGUat(50);
-			BParts.SetTYOKIat(50);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(0, 2);
-			GetPlayer()->SetHand(1, 2);
-			GetPlayer()->SetHand(2, 2);
-			GetPlayer()->SetHand(3, 2);
-			GetPlayer()->SetHand(4, 2);
+			GetPlayer()->Setmodel(13);
 			GetPlayer()->Setscl(XMFLOAT3(7.0f, 7.0f, 7.0f));
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 1.0f, -0.3f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, 0.5f));
@@ -257,16 +218,7 @@ void UpdateBParts(void)
 		{
 			GetPlayerModel()->SetBody(MODEL_BUTA1);
 			GetPlayer()->SetName("ブタ");
-			BParts.SetHP(60);
-			BParts.SetPAat(60);
-			BParts.SetGUat(60);
-			BParts.SetTYOKIat(50);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(0, 2);
-			GetPlayer()->SetHand(1, 2);
-			GetPlayer()->SetHand(2, 2);
-			GetPlayer()->SetHand(3, 2);
-			GetPlayer()->SetHand(4, 2);
+			GetPlayer()->Setmodel(14);
 			GetPlayer()->Setscl(XMFLOAT3(16.0f, 16.0f, 16.0f));
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, -1.0f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, -0.3f, -0.5f));
@@ -282,16 +234,7 @@ void UpdateBParts(void)
 		{
 			GetPlayerModel()->SetBody(MODEL_USI1);
 			GetPlayer()->SetName("ウシ");
-			BParts.SetHP(30);
-			BParts.SetPAat(30);
-			BParts.SetGUat(30);
-			BParts.SetTYOKIat(50);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(0, 2);
-			GetPlayer()->SetHand(1, 2);
-			GetPlayer()->SetHand(2, 2);
-			GetPlayer()->SetHand(3, 2);
-			GetPlayer()->SetHand(4, 2);
+			GetPlayer()->Setmodel(15);
 			GetPlayer()->Setscl(XMFLOAT3(7.0f, 7.0f, 7.0f));
 			PartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, -1.0f));
 			MPartsGet()->Setpos(XMFLOAT3(0.0f, -1.2f, 0.6f));

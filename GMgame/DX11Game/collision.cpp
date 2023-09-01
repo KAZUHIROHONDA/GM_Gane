@@ -1,7 +1,6 @@
 // collision.cpp
 // 当たり判定実装部分
 #include "collision.h"
-#include "bullet.h"
 #include "Light.h"
 #include "enemy.h"
 #include "fade.h"
@@ -17,27 +16,8 @@
 // 当たり判定まとめ
 void Collision()
 {
-	int nCnt1, nCnt2;	//ループ用変数
 	
-	//弾と敵の当たり判定
-	for (nCnt1 = 0; nCnt1 < ENEMY_MAX; nCnt1++)
-	{
-		if (!IsEnemy(nCnt1)) continue;
-		for (nCnt2 = 0; nCnt2 < BULLET_MAX; nCnt2++)
-		{
-			if (!IsBullet(nCnt2)) continue;
-
-			XMFLOAT3 pos1 = GetEnemyPos(nCnt1);
-			float radius1 = GetEnemySize(nCnt1).x;
-			XMFLOAT3 pos2 = GetBulletPos(nCnt2);
-			float radius2 = GetBulletSize(nCnt2).x;
-			if (CollisionBS(&pos1, radius1, &pos2, radius2))
-			{
-				DestroyEnemy(nCnt1);
-			}
-		}
-	}
-
+	
 }
 
 // バウンディングボックス

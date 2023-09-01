@@ -31,9 +31,9 @@ std::string Player::GetName()
 	return  Name;
 }
 
-void Player::SetHP(int val)
+void Player::SetHP()
 {
-	HP = model[0].GetHP + model[1].GetHP + model[2].GetHP + model[3].GetHP;
+	HP = modeldata[0].GetHP() + modeldata[1].GetHP() + modeldata[2].GetHP() + modeldata[3].GetHP();
 }
 
 int Player::GetHP()
@@ -41,9 +41,9 @@ int Player::GetHP()
 	return HP;
 }
 
-void Player::SetPAat(int val)
+void Player::SetPAat()
 {
-	PAat = val;
+	PAat = modeldata[0].GetPAat() + modeldata[1].GetPAat() + modeldata[2].GetPAat() + modeldata[3].GetPAat();
 }
 
 int Player::GetPAat()
@@ -51,9 +51,9 @@ int Player::GetPAat()
 	return PAat;
 }
 
-void Player::SetGUat(int val)
+void Player::SetGUat()
 {
-	GUat = val;
+	GUat = modeldata[0].GetGUat() + modeldata[1].GetGUat() + modeldata[2].GetGUat() + modeldata[3].GetGUat();
 }
 
 int Player::GetGUat()
@@ -61,9 +61,9 @@ int Player::GetGUat()
 	return GUat;
 }
 
-void Player::SetTYOKIat(int val)
+void Player::SetTYOKIat()
 {
-	TYOKIat = val;
+	TYOKIat = modeldata[0].GetTYOKIat() + modeldata[1].GetTYOKIat() + modeldata[2].GetTYOKIat() + modeldata[3].GetTYOKIat();
 }
 
 int Player::GetTYOKIat()
@@ -71,9 +71,24 @@ int Player::GetTYOKIat()
 	return TYOKIat;
 }
 
-void Player::SetHand(int no,int val)
+void Player::SetHand()
 {
-	hand[no] = val;
+	for (int i = 0; i < 5; i++)
+	{
+		hand[i] = modeldata[0].GetHand(i);
+	}
+	for (int i = 5; i < 10; i++)
+	{
+		hand[i] = modeldata[1].GetHand(i-5);
+	}
+	for (int i = 10; i < 15; i++)
+	{
+		hand[i] = modeldata[2].GetHand(i - 10);
+	}
+	for (int i = 15; i < 20; i++)
+	{
+		hand[i] = modeldata[3].GetHand(i - 15);
+	}
 }
 
 int Player::GetHand(int no)
@@ -105,30 +120,30 @@ void Player::Setmodel(int val)
 {
 	switch (val)
 	{
-	case 0:	model[0].KABUHead; break;
-	case 1:	model[0].WANIHead; break;
-	case 2:	model[0].PANDAHead; break;
-	case 3:	model[0].TORIHead; break;
-	case 4:	model[0].BUTAHead; break;
-	case 5:	model[0].USIHead; break;
-	case 10:model[1].KABUBody; break;
-	case 11:model[1].WANIBody; break;
-	case 12:model[1].PANDABody; break;
-	case 13:model[1].TORIBody; break;
-	case 14:model[1].BUTABody; break;
-	case 15:model[1].USIBody; break;
-	case 20:model[2].KABUMae; break;
-	case 21:model[2].WANIMae; break;
-	case 22:model[2].PANDAMae; break;
-	case 23:model[2].TORIMae; break;
-	case 24:model[2].BUTAMae; break;
-	case 25:model[2].USIMae; break;
-	case 30:model[3].KABUUsiro; break;
-	case 31:model[3].WANIUsiro; break;
-	case 32:model[3].PANDAUsiro; break;
-	case 33:model[3].TORIUsiro; break;
-	case 34:model[3].BUTAUsiro; break;
-	case 35:model[3].USIUsiro; break;
+	case 0:modeldata[0].KABUHead(); break;
+	case 1:modeldata[0].WANIHead(); break;
+	case 2:modeldata[0].PANDAHead(); break;
+	case 3:modeldata[0].TORIHead(); break;
+	case 4:modeldata[0].BUTAHead(); break;
+	case 5:modeldata[0].USIHead(); break;
+	case 10:modeldata[1].KABUBody(); break;
+	case 11:modeldata[1].WANIBody(); break;
+	case 12:modeldata[1].PANDABody(); break;
+	case 13:modeldata[1].TORIBody(); break;
+	case 14:modeldata[1].BUTABody(); break;
+	case 15:modeldata[1].USIBody(); break;
+	case 20:modeldata[2].KABUMae(); break;
+	case 21:modeldata[2].WANIMae(); break;
+	case 22:modeldata[2].PANDAMae(); break;
+	case 23:modeldata[2].TORIMae(); break;
+	case 24:modeldata[2].BUTAMae(); break;
+	case 25:modeldata[2].USIMae(); break;
+	case 30:modeldata[3].KABUUsiro(); break;
+	case 31:modeldata[3].WANIUsiro(); break;
+	case 32:modeldata[3].PANDAUsiro(); break;
+	case 33:modeldata[3].TORIUsiro(); break;
+	case 34:modeldata[3].BUTAUsiro(); break;
+	case 35:modeldata[3].USIUsiro(); break;
 
 	default:
 		break;
@@ -156,7 +171,15 @@ void Player::Uninit()
 
 void Player::Update()
 {
+	SetHP();
+	
+	SetPAat();
+	
+	SetGUat();
+	
+	SetTYOKIat();
 
+	SetHand();
 }
 
 void Player::Draw(int x,int y)

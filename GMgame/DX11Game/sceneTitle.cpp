@@ -52,10 +52,10 @@ HRESULT InitSceneTitle()
 
 	g_player.Init();
 	g_player.SetName("カブトムシ");
-	g_player.SetHP(300);
-	g_player.SetPAat(60);
-	g_player.SetGUat(70);
-	g_player.SetTYOKIat(50);
+	g_player.Setmodel(0);
+	g_player.Setmodel(10);
+	g_player.Setmodel(20);
+	g_player.Setmodel(30);
 	g_player.Setscl(XMFLOAT3(8.0f, 8.0f, 8.0f));
 	PartsGet()->Setpos(XMFLOAT3(0.0f, 0.0f, -2.0f));
 	MPartsGet()->Setpos(XMFLOAT3(0.0f, -0.8f, -1.0f));
@@ -63,16 +63,6 @@ HRESULT InitSceneTitle()
 	PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
 	MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
 	UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
-	g_player.SetHand(0, 2);g_player.SetHand(1, 1);
-	g_player.SetHand(2, 2);g_player.SetHand(3, 1);
-	g_player.SetHand(4, 2);g_player.SetHand(5, 1);
-	g_player.SetHand(6, 2);g_player.SetHand(7, 1);
-	g_player.SetHand(8, 2);g_player.SetHand(9, 1); 
-	g_player.SetHand(10, 2);g_player.SetHand(11, 1);
-	g_player.SetHand(12, 2); g_player.SetHand(13, 1);
-	g_player.SetHand(14, 2); g_player.SetHand(15, 1);
-	g_player.SetHand(16, 2); g_player.SetHand(17, 1);
-	g_player.SetHand(18, 2); g_player.SetHand(19, 1);
 	player.SetHead(MODEL_KABU);
 	player.SetBody(MODEL_KABU1);
 	player.SetMae(MODEL_KABU2);
@@ -81,20 +71,10 @@ HRESULT InitSceneTitle()
 	//デバック
 	g_enemy.Init();
 	g_enemy.SetName("わに");
-	g_enemy.SetHP(50);
-	g_enemy.SetPAat(15);
-	g_enemy.SetGUat(20);
-	g_enemy.SetTYOKIat(25);
-	g_enemy.SetHand(0, 0); g_enemy.SetHand(1, 1);
-	g_enemy.SetHand(2, 0); g_enemy.SetHand(3, 1);
-	g_enemy.SetHand(4, 0); g_enemy.SetHand(5, 1);
-	g_enemy.SetHand(6, 0); g_enemy.SetHand(7, 1);
-	g_enemy.SetHand(8, 0); g_enemy.SetHand(9, 1);
-	g_enemy.SetHand(10, 0);g_enemy.SetHand(11, 2);
-	g_enemy.SetHand(12, 1);g_enemy.SetHand(13, 2);
-	g_enemy.SetHand(14, 2);g_enemy.SetHand(15, 2);
-	g_enemy.SetHand(16, 1); g_enemy.SetHand(17, 2);
-	g_enemy.SetHand(18, 0);g_enemy.SetHand(19, 2);
+	g_player.Setmodel(1);
+	g_player.Setmodel(11);
+	g_player.Setmodel(21);
+	g_player.Setmodel(31);
 	enemy.SetHead(MODEL_wani);
 	enemy.SetBody(MODEL_wani1);
 	enemy.SetMae(MODEL_wani2);

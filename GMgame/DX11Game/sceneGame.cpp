@@ -15,7 +15,6 @@
 #include "player.h"
 #include "sceneGame.h"
 #include "shadow.h"
-#include "bullet.h"
 #include "gauge.h"
 #include "Egauge.h"
 #include "wall.h"
@@ -88,12 +87,6 @@ HRESULT InitSceneGame()
 		MessageBox(hWnd, _T("じゃんけん初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
 		return hr;
 	}
-
-
-	// 弾処理初期化
-	hr = InitBullet();
-	if (FAILED(hr))
-		return hr;
 
 	// 敵処理初期化
 	hr = InitEnemy();
@@ -214,9 +207,6 @@ void UninitSceneGame()
 	//プレイヤーの終了処理
 	UninitJyanken();
 
-	//弾
-	UninitBullet();
-	
 	//影
 	UninitShadow();
 	//ポーズ
@@ -294,8 +284,6 @@ void UpdateSceneGame()
 			UpdateBg();
 			//敵
 			UpdateEnemy();
-			//たま
-			UpdateBullet();
 
 			//地面更新処理
 			UpdateField3D();
@@ -422,8 +410,6 @@ void DrawSceneGame()
 	}
 	//ビルボード弾びょうが
 	SetZWrite(false);	
-	//弾
-	DrawBullet();
 
 	DrawShadow();
 

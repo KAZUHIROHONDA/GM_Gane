@@ -23,9 +23,11 @@ protected:
 	XMFLOAT3 pos;			//位置
 	XMFLOAT3 scl;			//サイズ
 
+
+	Modeldata modeldata[4];
+
 	DirectWrite* g_directWrite;
 
-	Modeldata model[4];
 
 
 public:
@@ -35,15 +37,15 @@ public:
 	std::string	GetPName();
 	void	SetName(std::string val);
 	std::string	GetName();
-	void	SetHP(int val);
+	void	SetHP();
 	int		GetHP();
-	void	SetPAat(int val);
+	void	SetPAat();
 	int		GetPAat();
-	void	SetGUat(int val);
+	void	SetGUat();
 	int		GetGUat();
-	void	SetTYOKIat(int val);
+	void	SetTYOKIat();
 	int		GetTYOKIat();
-	void	SetHand(int no, int val);
+	void	SetHand();
 	int		GetHand(int no);
 	void Setpos(XMFLOAT3 val);
 	XMFLOAT3 Getpos();

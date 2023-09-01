@@ -9,7 +9,6 @@
 #include "main.h"
 #include "shadow.h"		//‰e‚ð‚Â‚¯‚é‚É‚Í“ü‚ê‚é
 #include "flame.h"
-#include "bullet.h"
 #include"input.h"
 #include"enemyhp.h"
 #include"fade.h"
@@ -877,8 +876,6 @@ void DamageEnemy(int damage)
 
 		g_Eaction3 = true;
 	}
-
-	GetEnemy()->SetHP(HP);
 }
 
 void DestroyEnemy(int no)

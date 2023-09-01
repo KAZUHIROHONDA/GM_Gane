@@ -66,10 +66,7 @@ HRESULT InitUParts(void)
 			&g_pTextures[nCntUPartsMenu]);			// 読み込むメモリー
 	}
 
-	UParts.SetHP(10);
-	UParts.SetPAat(15);
-	UParts.SetGUat(20);
-	UParts.SetTYOKIat(25);
+	GetPlayer()->Setmodel(30);
 
 	g_nUPartsMenu = UPARTS_MENU_KABU;
 	g_fCurve = 0.0f;
@@ -150,16 +147,7 @@ void UpdateUParts(void)
 		if (GetMouseTrigger(0))
 		{
 			GetPlayerModel()->SetBack(MODEL_KABU3);
-			UParts.SetHP(10);
-			UParts.SetPAat(15);
-			UParts.SetGUat(20);
-			UParts.SetTYOKIat(25);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(10, 1);
-			GetPlayer()->SetHand(11, 1);
-			GetPlayer()->SetHand(12, 1);
-			GetPlayer()->SetHand(13, 1);
-			GetPlayer()->SetHand(14, 1);
+			GetPlayer()->Setmodel(30);
 			charano = 0;
 
 			InitPChimera();
@@ -170,16 +158,7 @@ void UpdateUParts(void)
 		if (GetMouseTrigger(0))
 		{
 			GetPlayerModel()->SetBack(MODEL_wani3);
-			UParts.SetHP(10);
-			UParts.SetPAat(15);
-			UParts.SetGUat(20);
-			UParts.SetTYOKIat(25);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(10, 0);
-			GetPlayer()->SetHand(11, 0);
-			GetPlayer()->SetHand(12, 0);
-			GetPlayer()->SetHand(13, 0);
-			GetPlayer()->SetHand(14, 0);
+			GetPlayer()->Setmodel(31);
 			charano = 1;
 
 			InitPChimera();
@@ -191,16 +170,7 @@ void UpdateUParts(void)
 		if (GetMouseTrigger(0))
 		{
 			GetPlayerModel()->SetBack(MODEL_PANDA3);
-			UParts.SetHP(50);
-			UParts.SetPAat(50);
-			UParts.SetGUat(50);
-			UParts.SetTYOKIat(50);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(10, 1);
-			GetPlayer()->SetHand(11, 1);
-			GetPlayer()->SetHand(12, 1);
-			GetPlayer()->SetHand(13, 1);
-			GetPlayer()->SetHand(14, 1);
+			GetPlayer()->Setmodel(32);
 			charano = 2;
 
 			InitPChimera();
@@ -212,16 +182,7 @@ void UpdateUParts(void)
 		if (GetMouseTrigger(0))
 		{
 			GetPlayerModel()->SetBack(MODEL_TORI3);
-			UParts.SetHP(50);
-			UParts.SetPAat(50);
-			UParts.SetGUat(50);
-			UParts.SetTYOKIat(50);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(10, 2);
-			GetPlayer()->SetHand(11, 2);
-			GetPlayer()->SetHand(12, 2);
-			GetPlayer()->SetHand(13, 2);
-			GetPlayer()->SetHand(14, 2);
+			GetPlayer()->Setmodel(33);
 			charano = 3;
 
 			InitPChimera();
@@ -233,16 +194,7 @@ void UpdateUParts(void)
 		if (GetMouseTrigger(0))
 		{
 			GetPlayerModel()->SetBack(MODEL_BUTA3);
-			UParts.SetHP(50);
-			UParts.SetPAat(50);
-			UParts.SetGUat(50);
-			UParts.SetTYOKIat(50);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(10, 2);
-			GetPlayer()->SetHand(11, 2);
-			GetPlayer()->SetHand(12, 2);
-			GetPlayer()->SetHand(13, 2);
-			GetPlayer()->SetHand(14, 2);
+			GetPlayer()->Setmodel(34);
 			charano = 4;
 
 			InitPChimera();
@@ -254,16 +206,7 @@ void UpdateUParts(void)
 		if (GetMouseTrigger(0))
 		{
 			GetPlayerModel()->SetBack(MODEL_USI3);
-			UParts.SetHP(50);
-			UParts.SetPAat(50);
-			UParts.SetGUat(50);
-			UParts.SetTYOKIat(50);
-			//手札、0グー,1チョキ,2パー
-			GetPlayer()->SetHand(10, 2);
-			GetPlayer()->SetHand(11, 2);
-			GetPlayer()->SetHand(12, 2);
-			GetPlayer()->SetHand(13, 2);
-			GetPlayer()->SetHand(14, 2);
+			GetPlayer()->Setmodel(35);
 			charano = 5;
 
 			InitPChimera();

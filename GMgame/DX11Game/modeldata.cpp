@@ -4,7 +4,6 @@
 //
 //=============================================================================
 #include "modeldata.h"
-#include "playercs.h"
 
 
 
@@ -368,72 +367,72 @@ void Modeldata::USIUsiro()
 	hand[4] = 0;
 }
 
-void Player::SetPName(std::string  val)
+void Modeldata::SetPName(std::string  val)
 {
 	partsName = val;
 }
 
-std::string Player::GetPName()
+std::string Modeldata::GetPName()
 {
 	return  partsName;
 }
 
-void Player::SetName(std::string val)
+void Modeldata::SetName(std::string val)
 {
 	Name = val;
 }
 
-std::string Player::GetName()
+std::string Modeldata::GetName()
 {
 	return  Name;
 }
 
-void Player::SetHP(int val)
+void Modeldata::SetHP(int val)
 {
 	HP = val;
 }
 
-int Player::GetHP()
+int Modeldata::GetHP()
 {
 	return HP;
 }
 
-void Player::SetPAat(int val)
+void Modeldata::SetPAat(int val)
 {
 	PAat = val;
 }
 
-int Player::GetPAat()
+int Modeldata::GetPAat()
 {
 	return PAat;
 }
 
-void Player::SetGUat(int val)
+void Modeldata::SetGUat(int val)
 {
 	GUat = val;
 }
 
-int Player::GetGUat()
+int Modeldata::GetGUat()
 {
 	return GUat;
 }
 
-void Player::SetTYOKIat(int val)
+void Modeldata::SetTYOKIat(int val)
 {
 	TYOKIat = val;
 }
 
-int Player::GetTYOKIat()
+int Modeldata::GetTYOKIat()
 {
 	return TYOKIat;
 }
 
-void Player::SetHand(int no, int val)
+void Modeldata::SetHand(int no, int val)
 {
 	hand[no] = val;
 }
 
-int Player::GetHand(int no)
+int Modeldata::GetHand(int no)
 {
 	return hand[no];
 }
