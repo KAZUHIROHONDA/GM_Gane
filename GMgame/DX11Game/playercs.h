@@ -50,6 +50,8 @@ public:
 	void Setscl(XMFLOAT3 val);
 	XMFLOAT3 Getscl();
 
+	void    Setmodel(int val);
+
 	void    Init();
 	void	Uninit();
 	void	Update();

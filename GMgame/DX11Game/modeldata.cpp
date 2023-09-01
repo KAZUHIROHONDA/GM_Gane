@@ -367,3 +367,73 @@ void Modeldata::USIUsiro()
 	hand[3] = 0;
 	hand[4] = 0;
 }
+
+void Player::SetPName(std::string  val)
+{
+	partsName = val;
+}
+
+std::string Player::GetPName()
+{
+	return  partsName;
+}
+
+void Player::SetName(std::string val)
+{
+	Name = val;
+}
+
+std::string Player::GetName()
+{
+	return  Name;
+}
+
+void Player::SetHP(int val)
+{
+	HP = val;
+}
+
+int Player::GetHP()
+{
+	return HP;
+}
+
+void Player::SetPAat(int val)
+{
+	PAat = val;
+}
+
+int Player::GetPAat()
+{
+	return PAat;
+}
+
+void Player::SetGUat(int val)
+{
+	GUat = val;
+}
+
+int Player::GetGUat()
+{
+	return GUat;
+}
+
+void Player::SetTYOKIat(int val)
+{
+	TYOKIat = val;
+}
+
+int Player::GetTYOKIat()
+{
+	return TYOKIat;
+}
+
+void Player::SetHand(int no, int val)
+{
+	hand[no] = val;
+}
+
+int Player::GetHand(int no)
+{
+	return hand[no];
+}
