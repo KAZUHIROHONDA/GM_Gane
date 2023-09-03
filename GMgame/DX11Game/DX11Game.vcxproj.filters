@@ -71,6 +71,7 @@
     <ClCompile Include="sceneBaSelect.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="modeldata.cpp" />
+    <ClCompile Include="enemymodel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssimpModel.h" />
@@ -136,6 +137,7 @@
     <ClInclude Include="sceneBaSelect.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="modeldata.h" />
+    <ClInclude Include="enemymodel.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX11Game.rc" />

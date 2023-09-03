@@ -164,6 +164,7 @@
     <ClCompile Include="AssimpModel.cpp" />
     <ClCompile Include="bg.cpp" />
     <ClCompile Include="Bpartsmenu.cpp" />
+    <ClCompile Include="enemymodel.cpp" />
     <ClCompile Include="modeldata.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="chimeracs.cpp" />
@@ -229,6 +230,7 @@
     <ClInclude Include="bg.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="Bpartsmenu.h" />
+    <ClInclude Include="enemymodel.h" />
     <ClInclude Include="modeldata.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="chimeracs.h" />
