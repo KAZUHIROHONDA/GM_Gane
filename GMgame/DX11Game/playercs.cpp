@@ -162,6 +162,7 @@ void Player::Init()
 	PAat = 0;
 	GUat = 0;
 	TYOKIat = 0;
+
 }
 
 void Player::Uninit()
@@ -180,6 +181,7 @@ void Player::Update()
 	SetTYOKIat();
 
 	SetHand();
+
 }
 
 void Player::Draw(int x,int y)
@@ -190,6 +192,7 @@ void Player::Draw(int x,int y)
 	std::ostringstream tyo;
 	std::ostringstream pa;
 
+	
 	status = "名前:" + Name;
 	g_directWrite->DrawString(status,XMFLOAT2(x, y),D2D1_DRAW_TEXT_OPTIONS_NONE);
 	gu << GUat;
@@ -209,23 +212,67 @@ void Player::DrawChimera(int x, int y)
 	std::string status;
 	std::ostringstream oss;
 	std::ostringstream hp;
-	std::ostringstream gu;
-	std::ostringstream tyo;
-	std::ostringstream pa;
+	std::ostringstream Gu;
+	std::ostringstream Tyo;
+	std::ostringstream Pa;
+	std::ostringstream percentGu;
+	std::ostringstream percentTyoki;
+	std::ostringstream percentPa;
 
 	status = "名前:" + Name;
 	g_directWrite->DrawString(status, XMFLOAT2(x, y), D2D1_DRAW_TEXT_OPTIONS_NONE);
 	hp << HP;
-	status = "体力:" + hp.str();
+	status = "体力\n";
 	g_directWrite->DrawString(status, XMFLOAT2(x, y + 50), D2D1_DRAW_TEXT_OPTIONS_NONE);
-	gu << GUat;
-	status = "グー:" + gu.str();
-	g_directWrite->DrawString(status, XMFLOAT2(x, y + 100), D2D1_DRAW_TEXT_OPTIONS_NONE);
-	tyo << TYOKIat;
-	status = "チョキ:" + tyo.str();
-	g_directWrite->DrawString(status, XMFLOAT2(x, y + 150), D2D1_DRAW_TEXT_OPTIONS_NONE);
-	pa << PAat;
-	status = "パー:" + pa.str();
-	g_directWrite->DrawString(status, XMFLOAT2(x, y + 200), D2D1_DRAW_TEXT_OPTIONS_NONE);
 
+	status =  hp.str();
+	g_directWrite->DrawString(status, XMFLOAT2(x, y + 100), D2D1_DRAW_TEXT_OPTIONS_NONE);
+
+	status = "攻撃力";
+	g_directWrite->DrawString(status, XMFLOAT2(x + 100, y + 50), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	Gu << GUat;
+	status = "グー　:" + Gu.str();
+	g_directWrite->DrawString(status, XMFLOAT2(x + 100, y + 100), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	Tyo << TYOKIat;
+	status = "チョキ:" + Tyo.str();
+	g_directWrite->DrawString(status, XMFLOAT2(x + 100, y + 150), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	Pa << PAat;
+	status = "パー　:" + Pa.str();
+	g_directWrite->DrawString(status, XMFLOAT2(x + 100, y + 200), D2D1_DRAW_TEXT_OPTIONS_NONE);
+
+	percentGu << gu * 100 / 20;
+	percentTyoki << tyoki * 100 / 20;
+	percentPa << pa * 100 / 20;
+
+	status = "確率";
+	g_directWrite->DrawString(status, XMFLOAT2(x + 300, y + 50), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	status = "グー　:" + percentGu.str();
+	g_directWrite->DrawString(status, XMFLOAT2(x + 300, y + 100), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	status = "チョキ:" + percentTyoki.str();
+	g_directWrite->DrawString(status, XMFLOAT2(x + 300, y + 150), D2D1_DRAW_TEXT_OPTIONS_NONE);
+	status = "パー　:" + percentPa.str();
+	g_directWrite->DrawString(status, XMFLOAT2(x + 300, y + 200), D2D1_DRAW_TEXT_OPTIONS_NONE);
+}
+
+void Player::Percent()
+{
+	gu = 0;
+	tyoki = 0;
+	pa = 0;
+
+	for (int i = 0; i < 20; i++)
+	{
+		if (hand[i] == 0)
+		{
+			gu++;
+		}
+		else if (hand[i] == 1)
+		{
+			tyoki++;
+		}
+		else if (hand[i] == 2)
+		{
+			pa++;
+		}
+	}
 }

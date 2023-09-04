@@ -80,6 +80,8 @@ HRESULT InitSceneChimera()
 
 	player.Init();
 
+	GetPlayer()->Percent();
+
 	return hr;
 }
 

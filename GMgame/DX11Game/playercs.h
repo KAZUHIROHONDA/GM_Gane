@@ -11,6 +11,9 @@
 
 class Player {
 private:
+	int gu = 0;
+	int tyoki = 0;
+	int pa = 0;
 
 protected:
 	std::string partsName;	//パーツの名前
@@ -59,4 +62,5 @@ public:
 	void	Update();
 	void	Draw(int x,int y);
 	void	DrawChimera(int x, int y);
+	void	Percent();
 };

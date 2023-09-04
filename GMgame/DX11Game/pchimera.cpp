@@ -78,7 +78,7 @@ HRESULT InitPChimera(void)
 	// 位置・回転・スケールの初期設定
 	for (int i = 0; i < PCHIMERA_MAX; i++)
 	{
-		playermodel[i].pos = XMFLOAT3(0.0f, 0.0f, -60.0f);
+		playermodel[i].pos = XMFLOAT3(0.0f, -10.0f, -60.0f);
 		playermodel[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
 		playermodel[i].scl = GetPlayer()->Getscl();
 		playermodel[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -161,6 +161,8 @@ HRESULT InitPChimera(void)
 	hr = g_model[3].Load(pDevice, pDeviceContext,
 		GetPlayerModel()->GetBack()); if (FAILED(hr)) return hr;
 	
+	GetPlayer()->Percent();
+
 	g_nCameraType = CAMERA_VIEW_FIXED;
 
 	sflag = true;
@@ -223,8 +225,8 @@ void UpdatePChimera(void)
 		playermodelLG[i].scl = UPartsGet()->Getscl();
 
 		//ホイール回転
-		int temp1 = GetMouseWheelDelta();
-		playermodel[i].rot.y +=  static_cast<float>(temp1)/5;
+		//int temp1 = GetMouseWheelDelta();
+		//playermodel[i].rot.y +=  static_cast<float>(temp1)/5;
 
 		//着地判定
 		//if (playermodel[i].pos.y <= -50.0f)

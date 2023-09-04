@@ -146,5 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\directx.ico" />
+    <Image Include="res\kabu.ico" />
+    <Image Include="res\kabu1.ico" />
   </ItemGroup>
 </Project>
