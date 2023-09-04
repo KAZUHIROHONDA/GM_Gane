@@ -174,7 +174,3 @@ Model* GetPlayerModel()
 	return &player;
 }
 
-Model* GetEnemyModel()
-{
-	return &enemy;
-}

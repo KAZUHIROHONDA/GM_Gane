@@ -22,5 +22,5 @@ Player* GetPlayer();
 Player* GetEnemy();
 
 Model* GetPlayerModel();
-Model* GetEnemyModel();
+
 

@@ -7,6 +7,9 @@
 #include "model.h"
 #include "main.h"
 #include "playercs.h"
+#include "MessageManager.h"
+#include <string>
+#include <sstream>
 
 
 Model::Model()

@@ -16,6 +16,8 @@
 #include "pchimera.h"
 #include "Light.h"
 #include "enemy.h"
+#include "enemyselect.h"
+#include "enemymodel.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -58,17 +60,19 @@ HRESULT InitSceneBaSelect()
 		return hr;
 	}
 
+	Enemychimera();
+
 	//敵の初期化処理
-	hr = InitSelectEnemy();
+	hr = InitSelectEnemyselect();
 	if (FAILED(hr))
 	{
 		MessageBox(hWnd, _T("プレイヤー初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
 		return hr;
 	}
 	
-	SetEnemy(XMFLOAT3(-50, -5, -150), XMFLOAT3(0, 90, 0));
-	SetEnemy(XMFLOAT3(-50, -5, -50), XMFLOAT3(0, 90, 0));
-	SetEnemy(XMFLOAT3(-50, -5, 50), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(-50, -5, -150), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(-50, -5, -50), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(-50, -5, 50), XMFLOAT3(0, 90, 0));
 
 	// カメラ更新
 	GetCamera()->Init();
@@ -89,7 +93,7 @@ void UninitSceneBaSelect()
 
 	UninitPChimera();
 
-	UninitEnemy();
+	UninitEnemyselect();
 }
 
 //=============================================================================
@@ -108,7 +112,7 @@ void UpdateSceneBaSelect()
 
 	UpdatePChimera();
 
-	UpdateSelectEnemy();
+	UpdateSelectEnemyselect();
 
 	if (GetMouseTrigger(1))
 	{
@@ -137,7 +141,7 @@ void DrawSceneBaSelect()
 
 	//プレイヤー
 	DrawPChimera();
-	DrawEnemy();
+	DrawEnemyselect();
 
 
 }

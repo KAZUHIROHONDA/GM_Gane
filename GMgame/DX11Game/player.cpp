@@ -297,7 +297,7 @@ void UpdatePlayer(void)
 			}
 			
 		//ƒQ[ƒW‚Ì“®‚«‚Ìˆ—
-			if (g_player[i].nGauge>= (GetPlayer()->GetHP() * 100 / g_player[i].nHP))
+			if (g_player[i].nGauge>= (g_player[i].nHP * 100 / GetPlayer()->GetHP()))
 			{
 				g_player[i].nGauge--;
 			}
@@ -517,7 +517,7 @@ void UpdateStart(void)
 
 			
 		//ƒQ[ƒW‚Ì“®‚«‚Ìˆ—
-		if (g_player[i].nGauge >= (GetPlayer()->GetHP()* 100 /g_player[i].nHP))
+		if (g_player[i].nGauge >= (g_player[i].nHP * 100 / GetPlayer()->GetHP() ))
 		{
 			g_player[i].nGauge--;
 		}
@@ -868,7 +868,7 @@ int GetPlayerHp(int no)
 {
 	if (no < 0 || no >= PLAYER_MAX)	return(0);
 
-	return GetPlayer()->GetHP();
+	return g_player[no].nHP;
 
 
 }
@@ -876,12 +876,11 @@ int GetPlayerHp(int no)
 void DamagePlayer(int damage)
 {
 	
-	int HP = GetPlayer()->GetHP();
 
-	HP -= damage;
-	if (HP <= 0)
+	g_player[0].nHP -= damage;
+	if (g_player[0].nHP <= 0)
 	{
-		HP = 0;
+		g_player[0].nHP = 0;
 
 		g_action3 = true;
 	}

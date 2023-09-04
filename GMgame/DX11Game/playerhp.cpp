@@ -141,7 +141,7 @@ void UpdatePlayerhp()
 		// 出ていないスコアは何もしない
 		if (g_playerhp[i].bUse == false) continue;
 
-		g_playerhp[i].nPlayerhp = GetPlayer()->GetHP();
+		g_playerhp[i].nPlayerhp = GetPlayerHp(0);
 
 	}
 }

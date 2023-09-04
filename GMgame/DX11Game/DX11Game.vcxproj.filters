@@ -72,6 +72,7 @@
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="modeldata.cpp" />
     <ClCompile Include="enemymodel.cpp" />
+    <ClCompile Include="enemyselect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssimpModel.h" />
@@ -138,6 +139,7 @@
     <ClInclude Include="effect.h" />
     <ClInclude Include="modeldata.h" />
     <ClInclude Include="enemymodel.h" />
+    <ClInclude Include="enemyselect.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX11Game.rc" />

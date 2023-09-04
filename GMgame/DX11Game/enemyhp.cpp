@@ -142,7 +142,7 @@ void UpdateEnemyhp()
 		// 出ていないスコアは何もしない
 		if (g_enemyhp[i].bUse == false) continue;
 
-		g_enemyhp[i].nEnemyhp = GetEnemy()->GetHP();
+		g_enemyhp[i].nEnemyhp = GetEnemyHp(0);
 
 	}
 }

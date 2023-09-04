@@ -16,6 +16,8 @@
 #include "sceneTitle.h"
 #include "sceneGame.h"
 #include "fade.h"
+#include "enemymodel.h"
+#include "enemyselect.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -242,116 +244,21 @@ HRESULT InitEnemy(void)
 
 	// モデルデータの読み込み
 	hr = g_model[0].Load(pDevice, pDeviceContext,
-		GetEnemyModel()->GetBody()); if (FAILED(hr)) return hr;
+		GetEnemychimera(Enemyno())->GetBody()); if (FAILED(hr)) return hr;
 
 	hr = g_model[1].Load(pDevice, pDeviceContext,
-		GetEnemyModel()->GetHead()); if (FAILED(hr)) return hr;
+		GetEnemychimera(Enemyno())->GetHead()); if (FAILED(hr)) return hr;
 
 	hr = g_model[2].Load(pDevice, pDeviceContext,
-		GetEnemyModel()->GetMae()); if (FAILED(hr)) return hr;
+		GetEnemychimera(Enemyno())->GetMae()); if (FAILED(hr)) return hr;
 
 	hr = g_model[3].Load(pDevice, pDeviceContext,
-		GetEnemyModel()->GetBack()); if (FAILED(hr)) return hr;
+		GetEnemychimera(Enemyno())->GetBack()); if (FAILED(hr)) return hr;
 
 	return hr;
 
 }
 
-HRESULT InitSelectEnemy(void)
-{
-	HRESULT hr = S_OK;
-	ID3D11Device* pDevice = GetDevice();
-	ID3D11DeviceContext* pDeviceContext = GetDeviceContext();
-
-	// 位置・回転・スケールの初期設定
-	for (int i = 0; i < ENEMY_MAX; i++)
-	{
-		g_enemy[i].pos = XMFLOAT3(0.0f, 20.0f, 100.0f);//z100
-		g_enemy[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
-		g_enemy[i].scl = XMFLOAT3(15.0f, 15.0f, 15.0f);
-		g_enemy[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
-
-		//初期化
-		g_enemy[i].nPhase = 0;
-		g_enemy[i].nState = 0;		//最初は通常
-		g_enemy[i].Tipe = 0;
-
-		g_enemy[i].nHP = GetEnemy()->GetHP();
-		g_enemy[i].nEGauge = 100;
-		g_enemy[i].nShadowIdx = -1;
-
-		//頭 wani
-		g_enemyHD[i].pos = XMFLOAT3(0.0f, 0.0f, -1.0f);//z-3
-		g_enemyHD[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		g_enemyHD[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
-		g_enemyHD[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		g_enemyHD[i].nPhase = 0;
-		g_enemyHD[i].nState = 1;	// puroぺらは最初から登場している
-		g_enemyHD[i].nShadowIdx = -1;
-
-		////腕-0.8f
-		g_enemyAM[i].pos = XMFLOAT3(0.0f, -0.5f, 0.0f);//-0.8,-1
-		g_enemyAM[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		g_enemyAM[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
-		g_enemyAM[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		g_enemyAM[i].nPhase = 0;
-		g_enemyAM[i].nState = 1;	// puroぺらは最初から登場している
-		g_enemyAM[i].nShadowIdx = -1;
-
-		//足
-		g_enemyLG[i].pos = XMFLOAT3(0.0f, -0.5f, 1.5f);
-		g_enemyLG[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		g_enemyLG[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
-		g_enemyLG[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
-		g_enemyLG[i].nPhase = 0;
-		g_enemyLG[i].nState = 1;	// puroぺらは最初から登場している
-		g_enemyLG[i].nShadowIdx = -1;
-
-
-		g_enemy[i].nStopTime = 0; //最初は動ける
-
-		g_enemy[i].nShadowIdx = CreateShadow(g_enemy[i].pos, 20.0f);
-	}
-
-	bfCnt = 0;
-	g_Eaction = false;
-	g_Eaction2 = false;
-	g_Eaction3 = false;
-
-	g_nECnt1 = 0;					//
-	g_nECnt2 = 0;					//
-	g_nECnt3 = 0;
-	g_nECnt4 = 0;
-
-	// ワールドマトリックスの初期化
-	XMMATRIX mtxWorld;
-	mtxWorld = XMMatrixIdentity();
-
-	for (int i = 0; i < ENEMY_MAX; i++)
-	{
-		XMStoreFloat4x4(&g_enemy[i].mtxWorld, mtxWorld);
-		XMStoreFloat4x4(&g_enemyHD[i].mtxWorld, mtxWorld);
-		XMStoreFloat4x4(&g_enemyAM[i].mtxWorld, mtxWorld);
-		XMStoreFloat4x4(&g_enemyLG[i].mtxWorld, mtxWorld);
-
-	}
-
-	// モデルデータの読み込み
-	hr = g_model[0].Load(pDevice, pDeviceContext,
-		GetEnemyModel()->GetBody()); if (FAILED(hr)) return hr;
-
-	hr = g_model[1].Load(pDevice, pDeviceContext,
-		GetEnemyModel()->GetHead()); if (FAILED(hr)) return hr;
-
-	hr = g_model[2].Load(pDevice, pDeviceContext,
-		GetEnemyModel()->GetMae()); if (FAILED(hr)) return hr;
-
-	hr = g_model[3].Load(pDevice, pDeviceContext,
-		GetEnemyModel()->GetBack()); if (FAILED(hr)) return hr;
-
-	return hr;
-
-}
 
 //=============================================================================
 // 終了処理
@@ -488,7 +395,7 @@ void UpdateEnemy(void)
 
 
 		//ゲージの動きの処理
-		if (g_enemy[i].nEGauge >= (GetEnemy()->GetHP() * 100 / g_enemy[i].nHP))
+		if (g_enemy[i].nEGauge >= (g_enemy[i].nHP  * 100 / GetEnemy()->GetHP()))
 		{
 			g_enemy[i].nEGauge--;
 		}
@@ -867,12 +774,11 @@ int GetEnemyHp(int no)
 void DamageEnemy(int damage)
 {
 
-	int HP = GetEnemy()->GetHP();
 
-	HP -= damage;
-	if (HP <= 0)
+	g_enemy[0].nHP -= damage;
+	if (g_enemy[0].nHP <= 0)
 	{
-		HP = 0;
+		g_enemy[0].nHP = 0;
 
 		g_Eaction3 = true;
 	}

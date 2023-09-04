@@ -1,6 +1,9 @@
 #pragma once
 
 #include "main.h"
+#include "MessageManager.h"
+#include <string>
+#include <sstream>
 
 //ƒ}ƒNƒ’è‹`
 #define MODEL_MAX	(1)

@@ -9,74 +9,64 @@
 
 void Modeldata::KABUHead()
 {
-	HP = 10;
-    partsName = 10;
-    Name;					
+	HP = 100;				
 	PAat = 10;		
 	GUat = 10;		
 	TYOKIat = 10;	
 	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
-	hand[3] = 0;
-	hand[4] = 0;
+	hand[1] = 2;
+	hand[2] = 2;
+	hand[3] = 1;
+	hand[4] = 1;
 }
 
 void Modeldata::WANIHead()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
+	HP = 130;
+	PAat = 5;
 	GUat = 10;
-	TYOKIat = 10;
+	TYOKIat = 30;
 	hand[0] = 0;
 	hand[1] = 0;
-	hand[2] = 0;
-	hand[3] = 0;
-	hand[4] = 0;
+	hand[2] = 1;
+	hand[3] = 1;
+	hand[4] = 2;
 }
 
 void Modeldata::PANDAHead()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
-	TYOKIat = 10;
+	HP = 50;
+	PAat = 5;
+	GUat = 30;
+	TYOKIat = 5;
 	hand[0] = 0;
 	hand[1] = 0;
 	hand[2] = 0;
-	hand[3] = 0;
-	hand[4] = 0;
+	hand[3] = 2;
+	hand[4] = 2;
 }
 
 void Modeldata::TORIHead()
 {
 	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
-	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
-	hand[3] = 0;
-	hand[4] = 0;
+	PAat = 50;
+	GUat = 5;
+	TYOKIat = 5;
+	hand[0] = 2;
+	hand[1] = 2;
+	hand[2] = 2;
+	hand[3] = 2;
+	hand[4] = 2;
 }
 
 void Modeldata::BUTAHead()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
+	HP = 150;
+	PAat = 30;
+	GUat = 30;
 	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
+	hand[0] = 1;
+	hand[1] = 1;
 	hand[2] = 0;
 	hand[3] = 0;
 	hand[4] = 0;
@@ -84,149 +74,129 @@ void Modeldata::BUTAHead()
 
 void Modeldata::USIHead()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
-	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
+	HP = 200;
+	PAat = 25;
+	GUat = 25;
+	TYOKIat = 25;
+	hand[0] = 1;
+	hand[1] = 1;
 	hand[2] = 0;
 	hand[3] = 0;
-	hand[4] = 0;
+	hand[4] = 2;
 }
 
 void Modeldata::KABUBody()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
+	HP = 250;
 	PAat = 10;
-	GUat = 10;
+	GUat = 30;
 	TYOKIat = 10;
 	hand[0] = 0;
 	hand[1] = 0;
 	hand[2] = 0;
-	hand[3] = 0;
-	hand[4] = 0;
+	hand[3] = 1;
+	hand[4] = 2;
 }
 
 void Modeldata::WANIBody()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
-	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
+	HP = 100;
+	PAat = 50;
+	GUat = 50;
+	TYOKIat = 50;
+	hand[0] = 2;
+	hand[1] = 2;
+	hand[2] = 1;
 	hand[3] = 0;
 	hand[4] = 0;
 }
 
 void Modeldata::PANDABody()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
-	TYOKIat = 10;
+	HP = 100;
+	PAat = 5;
+	GUat = 60;
+	TYOKIat = 5;
 	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
-	hand[3] = 0;
-	hand[4] = 0;
+	hand[1] = 1;
+	hand[2] = 1;
+	hand[3] = 1;
+	hand[4] = 2;
 }
 
 void Modeldata::TORIBody()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
-	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
+	HP = 50;
+	PAat = 30;
+	GUat = 0;
+	TYOKIat = 0;
+	hand[0] = 2;
+	hand[1] = 2;
+	hand[2] = 1;
 	hand[3] = 0;
 	hand[4] = 0;
 }
 
 void Modeldata::BUTABody()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
-	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
-	hand[3] = 0;
+	HP = 100;
+	PAat = 20;
+	GUat = 25;
+	TYOKIat = 20;
+	hand[0] = 1;
+	hand[1] = 2;
+	hand[2] = 2;
+	hand[3] = 1;
 	hand[4] = 0;
 }
 
 void Modeldata::USIBody()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
+	HP = 300;
 	PAat = 10;
-	GUat = 10;
+	GUat = 50;
 	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
-	hand[3] = 0;
+	hand[0] = 2;
+	hand[1] = 2;
+	hand[2] = 1;
+	hand[3] = 1;
 	hand[4] = 0;
 }
 
 void Modeldata::KABUMae()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
-	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
-	hand[3] = 0;
+	HP = 100;
+	PAat = 20;
+	GUat = 20;
+	TYOKIat = 20;
+	hand[0] = 1;
+	hand[1] = 2;
+	hand[2] = 1;
+	hand[3] = 2;
 	hand[4] = 0;
 }
 
 void Modeldata::WANIMae()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
+	HP = 150;
+	PAat = 20;
+	GUat = 25;
 	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
-	hand[3] = 0;
+	hand[0] = 1;
+	hand[1] = 2;
+	hand[2] = 1;
+	hand[3] = 2;
 	hand[4] = 0;
 }
 
 void Modeldata::PANDAMae()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
-	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
+	HP = 200;
+	PAat = 15;
+	GUat = 15;
+	TYOKIat = 15;
+	hand[0] = 1;
+	hand[1] = 1;
 	hand[2] = 0;
 	hand[3] = 0;
 	hand[4] = 0;
@@ -235,44 +205,38 @@ void Modeldata::PANDAMae()
 void Modeldata::TORIMae()
 {
 	HP = 10;
-	partsName = 10;
-	Name;
 	PAat = 10;
 	GUat = 10;
 	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
+	hand[0] = 1;
+	hand[1] = 2;
 	hand[2] = 0;
-	hand[3] = 0;
+	hand[3] = 2;
 	hand[4] = 0;
 }
 
 void Modeldata::BUTAMae()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
-	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
+	HP = 100;
+	PAat = 30;
+	GUat = 30;
+	TYOKIat = 20;
+	hand[0] = 2;
+	hand[1] = 2;
 	hand[2] = 0;
-	hand[3] = 0;
+	hand[3] = 1;
 	hand[4] = 0;
 }
 
 void Modeldata::USIMae()
 {
-	HP = 10;
-	partsName = 10;
-	Name;
-	PAat = 10;
-	GUat = 10;
-	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
+	HP = 120;
+	PAat = 20;
+	GUat = 15;
+	TYOKIat = 15;
+	hand[0] = 2;
+	hand[1] = 1;
+	hand[2] = 1;
 	hand[3] = 0;
 	hand[4] = 0;
 }
@@ -280,30 +244,26 @@ void Modeldata::USIMae()
 void Modeldata::KABUUsiro()
 {
 	HP = 10;
-	partsName = 10;
-	Name;
 	PAat = 10;
 	GUat = 10;
 	TYOKIat = 10;
 	hand[0] = 0;
 	hand[1] = 0;
-	hand[2] = 0;
-	hand[3] = 0;
-	hand[4] = 0;
+	hand[2] = 1;
+	hand[3] = 1;
+	hand[4] = 2;
 }
 
 void Modeldata::WANIUsiro()
 {
 	HP = 10;
-	partsName = 10;
-	Name;
 	PAat = 10;
 	GUat = 10;
 	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
-	hand[3] = 0;
+	hand[0] = 1;
+	hand[1] = 2;
+	hand[2] = 2;
+	hand[3] = 1;
 	hand[4] = 0;
 }
 
@@ -315,9 +275,9 @@ void Modeldata::PANDAUsiro()
 	PAat = 10;
 	GUat = 10;
 	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
+	hand[0] = 1;
+	hand[1] = 2;
+	hand[2] = 2;
 	hand[3] = 0;
 	hand[4] = 0;
 }
@@ -330,9 +290,9 @@ void Modeldata::TORIUsiro()
 	PAat = 10;
 	GUat = 10;
 	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
+	hand[0] = 2;
+	hand[1] = 2;
+	hand[2] = 1;
 	hand[3] = 0;
 	hand[4] = 0;
 }
@@ -345,9 +305,9 @@ void Modeldata::BUTAUsiro()
 	PAat = 10;
 	GUat = 10;
 	TYOKIat = 10;
-	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
+	hand[0] = 1;
+	hand[1] = 1;
+	hand[2] = 2;
 	hand[3] = 0;
 	hand[4] = 0;
 }
@@ -361,10 +321,10 @@ void Modeldata::USIUsiro()
 	GUat = 10;
 	TYOKIat = 10;
 	hand[0] = 0;
-	hand[1] = 0;
-	hand[2] = 0;
-	hand[3] = 0;
-	hand[4] = 0;
+	hand[1] = 2;
+	hand[2] = 1;
+	hand[3] = 2;
+	hand[4] = 2;
 }
 
 void Modeldata::SetPName(std::string  val)
