@@ -69,6 +69,7 @@ E_TYPE_SCENE	g_nextScene;	//遷移先のシーン
 
 
 int g_nMouseWheelDelta = 0;	//マウスホイール回転量
+int temp = 0;
 
 //=============================================================================
 // メイン関数
@@ -543,6 +544,7 @@ void Uninit(void)
 //=============================================================================
 void Update(void)
 {
+
 	// 入力処理更新
 	UpdateInput();	// 必ずUpdate関数の先頭で実行.
 
@@ -582,7 +584,7 @@ void Update(void)
 	default:break;
 	}
 
-
+	g_nMouseWheelDelta = 0;	//リセット
 }
 
 //=============================================================================
@@ -779,6 +781,5 @@ void SetCullMode(int nCullMode)
 int GetMouseWheelDelta()
 {
 	int temp = g_nMouseWheelDelta;
-	g_nMouseWheelDelta = 0;	//リセット
 	return temp;
 }

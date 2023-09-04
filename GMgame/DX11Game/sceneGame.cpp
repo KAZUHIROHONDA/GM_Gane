@@ -248,6 +248,7 @@ void UpdateSceneGame()
 				{
 				case SELECT_MENU_CONTINUE:
 					StartFade(SCENE_GAME);
+					GetPhase()->ChangePhase(STARTPHASE);
 					//PlaySound(SOUND_LABEL_SE_DECIDE);
 					//sCnt++;
 					//SetStageNo(sCnt);
@@ -256,6 +257,7 @@ void UpdateSceneGame()
 					//リトライ
 				case SELECT_MENU_RETRY:
 					StartFade(SCENE_SELECT);
+					GetPhase()->ChangePhase(STARTPHASE);
 					//PlaySound(SOUND_LABEL_SE_DECIDE);
 					break;
 					//終了(タイトルへ)

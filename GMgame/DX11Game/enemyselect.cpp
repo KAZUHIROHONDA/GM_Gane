@@ -38,7 +38,7 @@
 #define ENEMY_EGAUGE_POS_Y	(300.0f)
 
 
-#define MODELMAX	(20)
+#define MODELMAX	(40)
 
 //構造体定義
 typedef struct _tEnemyselect
@@ -207,6 +207,72 @@ HRESULT InitSelectEnemyselect(void)
 	hr = g_model[19].Load(pDevice, pDeviceContext,
 		GetEnemychimera(4)->GetBack()); if (FAILED(hr)) return hr;
 
+	// モデルデータの読み込み4
+	hr = g_model[20].Load(pDevice, pDeviceContext,
+		GetEnemychimera(5)->GetBody()); if (FAILED(hr)) return hr;
+
+	hr = g_model[21].Load(pDevice, pDeviceContext,
+		GetEnemychimera(5)->GetHead()); if (FAILED(hr)) return hr;
+
+	hr = g_model[22].Load(pDevice, pDeviceContext,
+		GetEnemychimera(5)->GetMae()); if (FAILED(hr)) return hr;
+
+	hr = g_model[23].Load(pDevice, pDeviceContext,
+		GetEnemychimera(5)->GetBack()); if (FAILED(hr)) return hr;
+
+	// モデルデータの読み込み5
+	hr = g_model[24].Load(pDevice, pDeviceContext,
+		GetEnemychimera(6)->GetBody()); if (FAILED(hr)) return hr;
+
+	hr = g_model[25].Load(pDevice, pDeviceContext,
+		GetEnemychimera(6)->GetHead()); if (FAILED(hr)) return hr;
+
+	hr = g_model[26].Load(pDevice, pDeviceContext,
+		GetEnemychimera(6)->GetMae()); if (FAILED(hr)) return hr;
+
+	hr = g_model[27].Load(pDevice, pDeviceContext,
+		GetEnemychimera(6)->GetBack()); if (FAILED(hr)) return hr;
+
+	// モデルデータの読み込み6
+	hr = g_model[28].Load(pDevice, pDeviceContext,
+		GetEnemychimera(7)->GetBody()); if (FAILED(hr)) return hr;
+
+	hr = g_model[29].Load(pDevice, pDeviceContext,
+		GetEnemychimera(7)->GetHead()); if (FAILED(hr)) return hr;
+
+	hr = g_model[30].Load(pDevice, pDeviceContext,
+		GetEnemychimera(7)->GetMae()); if (FAILED(hr)) return hr;
+
+	hr = g_model[31].Load(pDevice, pDeviceContext,
+		GetEnemychimera(7)->GetBack()); if (FAILED(hr)) return hr;
+
+	// モデルデータの読み込み7
+	hr = g_model[32].Load(pDevice, pDeviceContext,
+		GetEnemychimera(8)->GetBody()); if (FAILED(hr)) return hr;
+
+	hr = g_model[33].Load(pDevice, pDeviceContext,
+		GetEnemychimera(8)->GetHead()); if (FAILED(hr)) return hr;
+
+	hr = g_model[34].Load(pDevice, pDeviceContext,
+		GetEnemychimera(8)->GetMae()); if (FAILED(hr)) return hr;
+
+	hr = g_model[35].Load(pDevice, pDeviceContext,
+		GetEnemychimera(8)->GetBack()); if (FAILED(hr)) return hr;
+
+	// モデルデータの読み込み8
+	hr = g_model[36].Load(pDevice, pDeviceContext,
+		GetEnemychimera(9)->GetBody()); if (FAILED(hr)) return hr;
+
+	hr = g_model[37].Load(pDevice, pDeviceContext,
+		GetEnemychimera(9)->GetHead()); if (FAILED(hr)) return hr;
+
+	hr = g_model[38].Load(pDevice, pDeviceContext,
+		GetEnemychimera(9)->GetMae()); if (FAILED(hr)) return hr;
+
+	hr = g_model[39].Load(pDevice, pDeviceContext,
+		GetEnemychimera(9)->GetBack()); if (FAILED(hr)) return hr;
+
+
 	return hr;
 
 }
@@ -244,19 +310,29 @@ void UpdateSelectEnemyselect(void)
 		//未使用
 		if (g_enemyselect[i].nState == 0) continue;
 
-		float hitLength[3];
 
-		for (int i = 0; i < 3; i++)
+		//ホイール回転
+		int temp2 = GetMouseWheelDelta();
+		wchar_t str[256];
+		wsprintf(str,L"%d", temp2);
+		OutputDebugString(str);
+        g_enemyselect[i].pos.z += static_cast<float>(temp2) / 5;
+		
+
+		float hitLength[10];
+
+		for (int i = 0; i < 10; i++)
 		{//位置と半径を指定
-			hitLength[i] = ECheckCollisionRay1(XMVectorSet(g_enemyselect[i].pos.x, g_enemyselect[i].pos.y, g_enemyselect[i].pos.z, 0.0f), 10.0f);
+			hitLength[i] = ECheckCollisionRay1(XMVectorSet(g_enemyselect[i].pos.x, g_enemyselect[i].pos.y, g_enemyselect[i].pos.z, 0.0f), 20.0f);
 			if (hitLength[i] < 9999.9f)
 			{
-				g_enemyselect[i].rot.y += 1.0f;
+				g_enemyselect[i].rot.y += 0.1f;
+				SelectEnemy(i);
+				GetEnemy()->Percent();
 				if (GetMouseTrigger(0))
 				{
 					//敵の選択
 					enemyno = i;
-					SelectEnemy(i);
 					StartFade(SCENE_GAME);
 				}
 			}
@@ -267,7 +343,6 @@ void UpdateSelectEnemyselect(void)
 		}
 
 
-	
 
 		XMMATRIX mtxWorld, mtxRot, mtxScl,
 			mtxTranslate;
@@ -384,7 +459,6 @@ void UpdateSelectEnemyselect(void)
 		XMStoreFloat4x4(&g_enemyselectLG[i].mtxWorld, mtxWorldLG);
 	}
 
-
 }
 
 //=============================================================================
@@ -406,6 +480,8 @@ void DrawEnemyselect(void)
 		g_model[3 + i * 4].Draw(pDeviceContext, g_enemyselectLG[i].mtxWorld);
 
 	}
+
+	GetEnemy()->DrawChimera(500, 0);
 }
 
 //生存確認
@@ -470,6 +546,69 @@ void SelectEnemy(int val)
 		GetEnemy()->Setmodel(22);
 		GetEnemy()->Setmodel(32);
 		GetEnemy()->SetName("パンダ");
+		break;
+	}
+	case 3:
+	{
+		GetEnemy()->Setmodel(3);
+		GetEnemy()->Setmodel(13);
+		GetEnemy()->Setmodel(23);
+		GetEnemy()->Setmodel(33);
+		GetEnemy()->SetName("トリ");
+		break;
+	}
+	case 4:
+	{
+		GetEnemy()->Setmodel(4);
+		GetEnemy()->Setmodel(14);
+		GetEnemy()->Setmodel(24);
+		GetEnemy()->Setmodel(34);
+		GetEnemy()->SetName("ぶた");
+		break;
+	}
+	case 5:
+	{
+		GetEnemy()->Setmodel(2);
+		GetEnemy()->Setmodel(12);
+		GetEnemy()->Setmodel(22);
+		GetEnemy()->Setmodel(32);
+		GetEnemy()->SetName("ウシ");
+		break;
+	}
+	case 6:
+	{
+		GetEnemy()->Setmodel(2);
+		GetEnemy()->Setmodel(12);
+		GetEnemy()->Setmodel(22);
+		GetEnemy()->Setmodel(32);
+		GetEnemy()->SetName("キメラ１");
+		break;
+	}
+	case 7:
+	{
+		GetEnemy()->Setmodel(2);
+		GetEnemy()->Setmodel(12);
+		GetEnemy()->Setmodel(22);
+		GetEnemy()->Setmodel(32);
+		GetEnemy()->SetName("キメラ２");
+		break;
+	}
+	case 8:
+	{
+		GetEnemy()->Setmodel(2);
+		GetEnemy()->Setmodel(12);
+		GetEnemy()->Setmodel(22);
+		GetEnemy()->Setmodel(32);
+		GetEnemy()->SetName("キメラ３");
+		break;
+	}
+	case 9:
+	{
+		GetEnemy()->Setmodel(2);
+		GetEnemy()->Setmodel(12);
+		GetEnemy()->Setmodel(22);
+		GetEnemy()->Setmodel(32);
+		GetEnemy()->SetName("キメラ４");
 		break;
 	}
 

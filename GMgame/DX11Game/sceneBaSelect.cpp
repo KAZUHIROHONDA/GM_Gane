@@ -18,6 +18,7 @@
 #include "enemy.h"
 #include "enemyselect.h"
 #include "enemymodel.h"
+#include "sceneTitle.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -73,9 +74,18 @@ HRESULT InitSceneBaSelect()
 	SetEnemyselect(XMFLOAT3(-50, -5, -150), XMFLOAT3(0, 90, 0));
 	SetEnemyselect(XMFLOAT3(-50, -5, -50), XMFLOAT3(0, 90, 0));
 	SetEnemyselect(XMFLOAT3(-50, -5, 50), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(-50, -5, 150), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(-50, -5, 250), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(-50, -5, 350), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(-50, -5, 450), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(-50, -5, 550), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(-50, -5, 650), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(-50, -5, 750), XMFLOAT3(0, 90, 0));
 
 	// カメラ更新
 	GetCamera()->Init();
+
+	GetEnemy()->Init();
 
 	return hr;
 }
@@ -94,6 +104,8 @@ void UninitSceneBaSelect()
 	UninitPChimera();
 
 	UninitEnemyselect();
+
+	GetEnemy()->Uninit();
 }
 
 //=============================================================================
@@ -113,6 +125,8 @@ void UpdateSceneBaSelect()
 	UpdatePChimera();
 
 	UpdateSelectEnemyselect();
+
+	GetEnemy()->Update();
 
 	if (GetMouseTrigger(1))
 	{
@@ -142,6 +156,5 @@ void DrawSceneBaSelect()
 	//プレイヤー
 	DrawPChimera();
 	DrawEnemyselect();
-
 
 }
