@@ -32,6 +32,7 @@
 #include "sceneTitle.h"
 #include "select.h"
 #include "gameover.h"
+#include "effect.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -389,6 +390,8 @@ void DrawSceneGame()
 	DrawWall();
 	//光源処理有効
 	GetLight()->SetEnable();
+
+	DrawEffect();
 
 	// Zバッファ無効
 	SetZBuffer(false);

@@ -567,7 +567,7 @@ void Update(void)
 
 	if (GetKeyTrigger(VK_P))
 	{
-		SetEffect(0, XMFLOAT3(0,30,0));
+		SetEffect(1, XMFLOAT3(0,0,0));
 	}
 
 
@@ -598,9 +598,9 @@ void Draw(void)
 	g_pDeviceContext->ClearDepthStencilView(g_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 	// Zバッファ有効
-	//SetZBuffer(true);
+	SetZBuffer(true);
 
-
+	
 	// 奥の2Dに描画するものはここ
 
 	// 3D空間中に描画するものはここ
@@ -618,15 +618,15 @@ void Draw(void)
 	case(SCENE_BASELECT):DrawSceneBaSelect(); break;
 	default:break;
 	}
-
+	
 
 	// Zバッファ無効
 	SetZBuffer(false);
 	SetBlendState(BS_ALPHABLEND);
 
 	// 手前の2Dに描画するものはここ
-
-	DrawEffect();
+	
+	
 
 	//光源処理無効
 	GetLight()->SetDisable();
