@@ -565,7 +565,7 @@ void Update(void)
 
 	if (GetKeyTrigger(VK_P))
 	{
-		SetEffect(0, XMFLOAT3(0,0,0));
+		SetEffect(0, XMFLOAT3(0,30,0));
 	}
 
 
@@ -602,7 +602,7 @@ void Draw(void)
 	// ‰œ‚Ì2D‚É•`‰æ‚·‚é‚à‚Ì‚Í‚±‚±
 
 	// 3D‹óŠÔ’†‚É•`‰æ‚·‚é‚à‚Ì‚Í‚±‚±
-
+	
 	
 	switch (g_currentScene)
 	{

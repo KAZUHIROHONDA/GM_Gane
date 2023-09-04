@@ -304,7 +304,7 @@ void UpdateSceneGame()
 		}
 
 		//ポーズのオンオフ
-		if (GetKeyTrigger(VK_P) || GetJoyTrigger(0, 1) || GetMouseTrigger(2))
+		if ( GetJoyTrigger(0, 1) || GetMouseTrigger(2))
 		{
 			//フェード中は反応しない用にする
 			E_FADE fadeState = GetFade();

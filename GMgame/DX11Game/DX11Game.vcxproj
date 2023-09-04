@@ -118,7 +118,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>..\..\Assimp\lib\$(PlatformTarget);..\..\DirectXTex\$(PlatformTarget)\$(Configuration);C:\Program Files\Autodesk\FBX\FBX SDK\2020.1\lib\vs2017\$(PlatformTarger)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\Assimp\lib\$(PlatformTarget);..\..\DirectXTex\$(PlatformTarget)\$(Configuration);C:\Program Files\Autodesk\FBX\FBX SDK\2020.1\lib\vs2017\$(PlatformTarger)\$(Configuration);C:\Users\matsu\Desktop\Resouce2\GMgame\DX11Game\install_msvc2017</AdditionalLibraryDirectories>
       <AdditionalDependencies>Effekseerd.lib;EffekseerRendererDX11d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

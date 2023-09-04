@@ -11,6 +11,8 @@
 #include "collision.h"
 #include "sceneTitle.h"
 
+#include"effect.h"
+
 #define gu 1-1
 #define tyoki 2-1
 #define pa 3-1
@@ -560,11 +562,13 @@ void UpdateJyankenBattle()
 	//Ÿ‚Á‚½‚Æ‚«
 	if (result[0] > result[1])
 	{
-		Ac = rand() % 2;
+		//Ac = rand() % 2
+		Ac = 0;
+		int EfeCnt = 0;
 		switch (Ac)
 		{
 		case 0: {Action(); break; }
-		case 1: {Action2(); break; }	
+		case 1: {Action2(); break; }
 		default:
 			break;
 		}
@@ -573,10 +577,13 @@ void UpdateJyankenBattle()
 	//•‰‚¯‚½Žž
 	if (result[0] < result[1])
 	{
-		Ac = rand() % 2;
+		//Ac = rand() % 2;
+		Ac = 0;
+		int EfeCnt = 0;
 		switch (Ac)
 		{
-		case 0: {EAction();; break; }
+		case 0: {EAction(); EfeCnt++; if (EfeCnt <= 0) { SetEffect(0, GetPlayerPos(0)); } break; }
+
 		case 1: {EAction2(); break; }
 		default:
 			break;

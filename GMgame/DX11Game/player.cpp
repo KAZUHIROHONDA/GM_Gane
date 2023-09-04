@@ -20,7 +20,7 @@
 #include "partsmenu.h"
 #include "Upartsmenu.h"
 #include "Mpartsmenu.h"
-
+#include"effect.h"
 //*****************************************************************************
 // É}ÉNÉçíËã`
 //*****************************************************************************
@@ -287,6 +287,9 @@ void UpdatePlayer(void)
 				DamagePlayer(50);
 			}
 			
+			
+
+
 			if (GetKeyPress(VK_Z))
 			{
 				//g_player[i].rot.y+=5;
@@ -934,6 +937,8 @@ void Action(bool af)
 				g_player[i].pos.y--;
 
 				g_player[i].rot.x = -45;
+
+				
 			}
 			//g_player[i].vel.y += 10.0f;
 

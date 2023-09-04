@@ -129,19 +129,19 @@ void UpdateSceneChimera()
 			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
 			break; }
 		case 1: {//‚í‚É
-			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			PartsGet()->Setscl(XMFLOAT3(1.8f, 1.8f, 1.8f));
 			break; }
 		case 2: {//‚Ï‚ñ‚¾
-			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			PartsGet()->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
 			break; }
 		case 3: {//‚Æ‚è
-			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			PartsGet()->Setscl(XMFLOAT3(1.2f, 1.2f, 1.2f));
 			break; }
 		case 4: {//‚Ô‚½
-			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			PartsGet()->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
 			break; }
 		case 5: {//‚¤‚µ
-			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			PartsGet()->Setscl(XMFLOAT3(0.8f, 0.8f, 0.8f));
 			break; }
 		default:
 			break;
@@ -152,19 +152,19 @@ void UpdateSceneChimera()
 			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
 			break; }
 		case 1: {//‚í‚É
-			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			UPartsGet()->Setscl(XMFLOAT3(1.1f, 1.1f, 1.1f));
 			break; }
 		case 2: {//‚Ï‚ñ‚¾
-			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			UPartsGet()->Setscl(XMFLOAT3(2.2f, 2.2f, 2.2f));
 			break; }
 		case 3: {//‚Æ‚è
-			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			UPartsGet()->Setscl(XMFLOAT3(3.0f, 3.0f, 3.0f));
 			break; }
 		case 4: {//‚Ô‚½
-			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			UPartsGet()->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
 			break; }
 		case 5: {//‚¤‚µ
-			UPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			UPartsGet()->Setscl(XMFLOAT3(0.6f, 0.6f, 0.6f));
 			break; }
 		default:
 			break;
@@ -175,19 +175,19 @@ void UpdateSceneChimera()
 			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
 			break; }
 		case 1: {//‚í‚É
-			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			MPartsGet()->Setscl(XMFLOAT3(1.1f, 1.1f, 1.1f));
 			break; }
 		case 2: {//‚Ï‚ñ‚¾
-			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			MPartsGet()->Setscl(XMFLOAT3(2.2f, 2.2f, 2.2f));
 			break; }
 		case 3: {//‚Æ‚è
-			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			MPartsGet()->Setscl(XMFLOAT3(3.0f, 3.0f, 3.0f));
 			break; }
 		case 4: {//‚Ô‚½
-			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			MPartsGet()->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
 			break; }
 		case 5: {//‚¤‚µ
-			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			MPartsGet()->Setscl(XMFLOAT3(0.6f, 0.6f, 0.6f));
 			break; }
 		default:
 			break;
@@ -199,22 +199,22 @@ void UpdateSceneChimera()
 		switch (CharaNo())//‚ ‚½‚Ü
 		{
 		case 0: {	//‚©‚Ô
-			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			PartsGet()->Setscl(XMFLOAT3(0.8f, 0.8f, 0.8f));
 			break; }
 		case 1: {//‚í‚É
 			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
 			break; }
 		case 2: {//‚Ï‚ñ‚¾
-			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			PartsGet()->Setscl(XMFLOAT3(1.6f, 1.6f, 1.6f));
 			break; }
 		case 3: {//‚Æ‚è
 			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
 			break; }
 		case 4: {//‚Ô‚½
-			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			PartsGet()->Setscl(XMFLOAT3(1.6f, 1.6f, 1.6f));
 			break; }
 		case 5: {//‚¤‚µ
-			PartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			PartsGet()->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
 			break; }
 		default:
 			break;
@@ -251,16 +251,16 @@ void UpdateSceneChimera()
 			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
 			break; }
 		case 2: {//‚Ï‚ñ‚¾
-			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			MPartsGet()->Setscl(XMFLOAT3(1.6f, 1.6f, 1.6f));
 			break; }
 		case 3: {//‚Æ‚è
 			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
 			break; }
 		case 4: {//‚Ô‚½
-			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			MPartsGet()->Setscl(XMFLOAT3(1.6f, 1.6f, 1.6f));
 			break; }
 		case 5: {//‚¤‚µ
-			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			MPartsGet()->Setscl(XMFLOAT3(0.4f, 0.4f, 0.4f));
 			break; }
 		default:
 			break;
@@ -486,7 +486,7 @@ void UpdateSceneChimera()
 		}
 		break;
 	}
-	case 5:
+	case 5://‚¤‚µ
 	{
 		switch (CharaNo())
 		{
@@ -563,15 +563,13 @@ void UpdateSceneChimera()
 		break;
 	}
 
-	GetPlayer()->Update();
-
 	Sflag();
 
 	if (GetMouseTrigger(1))
 	{
 		StartFade(SCENE_SELECT);
 	}
-	
+
 }
 
 //=============================================================================

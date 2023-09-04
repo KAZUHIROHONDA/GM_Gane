@@ -12,9 +12,11 @@
 
 // マクロ
 #define	EFFECT_MAX		(E_EFFECT_MAX)			// エフェクトの最大数
-#define	EFFECT_TYPE_0	(u"data/effect/Laser01.efkefc") // サンプルのレーザービーム
-#define	EFFECT_TYPE_1	(u"data/effect/hokori.efkefc")  // 謎のホコリ
-#define	EFFECT_TYPE_2	(u"data/effect/area.efkefc")    // ヒールエリア
+#define	EFFECT_TYPE_0	(u"data/effect/biiim.efkefc") // 本丸コピ自作ビーム
+#define	EFFECT_TYPE_1	(u"data/effect/Aura01.efkefc")  // 竜巻
+#define	EFFECT_TYPE_2	(u"data/effect/Laser03.efkefc")    // ヒールエリア
+#define	EFFECT_TYPE_3	(u"data/effect/biiim.efkefc")    // ヒールエリア
+
 
 
 // グローバル変数
@@ -51,6 +53,7 @@ HRESULT InitEffect( void )
 	g_effect[0] = Effekseer::Effect::Create(g_efkManager, EFFECT_TYPE_0);// 読み込むエフェクトのパスを引数の2つ目に
 	g_effect[1] = Effekseer::Effect::Create(g_efkManager, EFFECT_TYPE_1);
 	g_effect[2] = Effekseer::Effect::Create(g_efkManager, EFFECT_TYPE_2);
+	g_effect[3] = Effekseer::Effect::Create(g_efkManager, EFFECT_TYPE_3);
 
 	
 	return hr;
@@ -61,6 +64,7 @@ void UninitEffect( void )
 	g_effect[0].Reset();
 	g_effect[1].Reset();
 	g_effect[2].Reset();
+	g_effect[3].Reset();
 	g_efkRenderer.Reset();
 	g_efkManager.Reset();
 }
