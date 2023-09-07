@@ -248,7 +248,7 @@ void UpdateSceneGame()
 				switch (menu)
 				{
 				case SELECT_MENU_CONTINUE:
-					StartFade(SCENE_GAME);
+					StartFade(SCENE_BASELECT);
 					GetPhase()->ChangePhase(STARTPHASE);
 					//PlaySound(SOUND_LABEL_SE_DECIDE);
 					//sCnt++;

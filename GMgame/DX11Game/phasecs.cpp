@@ -4,6 +4,7 @@
 #include "sceneGame.h"
 #include "AssimpModel.h"
 #include "VS.h"
+#include "enemy.h"
 
 
 Phase::Phase()
@@ -75,7 +76,10 @@ void Phase::BattleDraw()
 
 void Phase::Init()
 {
+	nowPhase = STARTPHASE;
 	InitVS();
+	InitPlayer();
+	InitEnemy();
 }
 
 void Phase::Uninit()
