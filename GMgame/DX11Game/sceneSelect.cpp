@@ -15,6 +15,7 @@
 #include "Camera.h"
 #include "pchimera.h"
 #include "Light.h"
+#include "selecttitle.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -57,6 +58,8 @@ HRESULT InitSceneSelect()
 		return hr;
 	}
 
+	InitSelTitle();
+
 	// カメラ更新
 	GetCamera()->Init();
 
@@ -73,6 +76,8 @@ void UninitSceneSelect()
 
 	//セレクトの終了処理
 	UninitSelectStage();
+
+	UninitSelTitle();
 
 	UninitPChimera();
 }
@@ -92,6 +97,8 @@ void UpdateSceneSelect()
 	GetCamera()->Update();
 
 	UpdatePChimera();
+
+	UpdateSelTitle();
 
 	//ポーズ中の項目決定
 
@@ -136,6 +143,8 @@ void DrawSceneSelect()
 	DrawBg1();
 
 	DrawSelectStage();
+
+	DrawSelTitle();
 
 	// Zバッファ有効
 	SetZBuffer(true);
