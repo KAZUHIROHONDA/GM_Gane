@@ -24,7 +24,7 @@
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define MODEL_PLAYER		"data/model/kabuBody.obj"
+#define MODEL_PLAYER		"data/model/kabuBody.obj" 
 #define MODEL_PLAYER1		"data/model/kabu2.obj"
 #define MODEL_PLAYER2		"data/model/kabuAM.obj"
 #define MODEL_PLAYER3		"data/model/kabuLG.obj"
@@ -84,6 +84,8 @@ static int			g_nCnt3;//行動カウント3コメ
 static int			g_nCnt4;//行動カウント4コメ
 static int			g_nCnt5;//行動カウント4コメ
 static int			g_nCnt11;//行動カウント4コメ
+static int			g_nCnt13;//行動カウント4コメ
+
 
 static int			g_nCntF;//
 
@@ -93,6 +95,7 @@ static bool			g_action2;
 static bool			g_action3;
 static bool			g_action4;
 static bool			g_action10;
+static bool			g_action12;
 
 static bool				g_atama = true;//false;
 
@@ -138,12 +141,14 @@ HRESULT InitPlayer(void)
 		g_nCnt5 = 0;
 		g_nCntF = 0;
 		g_nCnt11 = 0;
+		g_nCnt13 = 0;
 
 		g_action = false;
 		g_action2 = false;
 		g_action3 = false;
 		g_action4 = false;
 		g_action10 = false;
+		g_action12 = false;
 
 		g_player[i].nHP = GetPlayer()->GetHP();
 		g_player[i].nGauge = 100;
@@ -280,7 +285,11 @@ void UpdatePlayer(void)
 			}
 			Action10(g_action10);
 
-
+			if (GetKeyTrigger(VK_L))
+			{
+				g_action12 = true;
+			}
+			Action12(g_action12);
 		}
 			if (GetKeyTrigger(VK_H))
 			{
@@ -1172,6 +1181,23 @@ void Action10(bool af)//竜巻　ダメージ
 			}
 		}
 
+	}
+}
+
+
+void Action12(bool af)//勝利アニメーション
+{
+	if (af)
+	{
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_player[i].pos.y += 10.0f;
+			g_player[i].vel.y += -0.98f;
+			if (g_player[i].pos.y <= 15.0f)
+			{
+				g_player[i].pos.y = 15.0f;
+			}
+		}
 	}
 }
 void DestroyPlayer(int no)

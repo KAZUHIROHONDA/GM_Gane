@@ -391,7 +391,7 @@ void DrawSceneGame()
 	//光源処理有効
 	GetLight()->SetEnable();
 
-	DrawEffect();
+	
 
 	// Zバッファ無効
 	SetZBuffer(false);
