@@ -162,6 +162,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssimpModel.cpp" />
+    <ClCompile Include="backtex.cpp" />
     <ClCompile Include="bg.cpp" />
     <ClCompile Include="Bpartsmenu.cpp" />
     <ClCompile Include="enemymodel.cpp" />
@@ -213,6 +214,7 @@
     <ClCompile Include="select 2.cpp" />
     <ClCompile Include="select.cpp" />
     <ClCompile Include="selectstage.cpp" />
+    <ClCompile Include="selecttitle.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="shadow.cpp" />
     <ClCompile Include="sound.cpp" />
@@ -228,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssimpModel.h" />
+    <ClInclude Include="backtex.h" />
     <ClInclude Include="bg.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="Bpartsmenu.h" />
@@ -281,6 +284,7 @@
     <ClInclude Include="select 2.h" />
     <ClInclude Include="select.h" />
     <ClInclude Include="selectstage.h" />
+    <ClInclude Include="selecttitle.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="shadow.h" />
     <ClInclude Include="sound.h" />

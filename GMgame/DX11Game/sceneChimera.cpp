@@ -23,6 +23,7 @@
 #include "Mpartsmenu.h"
 #include "partsmenu.h"
 #include "Upartsmenu.h"
+#include "backtex.h"
 
 
 
@@ -73,6 +74,8 @@ HRESULT InitSceneChimera()
 
 	InitTex();
 
+	InitBackTex();
+
 	Sflag();
 
 	// カメラ更新
@@ -99,6 +102,8 @@ void UninitSceneChimera()
 
 	UninitTex();
 
+	UninitBackTex();
+
 	player.Uninit();
 }
 
@@ -120,6 +125,7 @@ void UpdateSceneChimera()
 
 	UpdateTex();
 
+	UpdateBackTex();
 	
 	switch (BCharaNo())
 	{
@@ -616,6 +622,8 @@ void DrawSceneChimera()
 
 	//光源処理有効
 	GetLight()->SetEnable();
+
+	DrawBackTex();
 
 	DrawTab();
 

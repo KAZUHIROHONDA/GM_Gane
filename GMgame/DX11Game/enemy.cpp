@@ -101,6 +101,7 @@ static bool			g_Eaction9;
 static bool			g_Eaction10;
 static bool			g_Eaction11;
 
+static int			g_nCntF;//
 
 int					bfCnt;
 
@@ -157,6 +158,7 @@ HRESULT InitEnemy(void)
 		g_nECnt11 = 0;
 		g_nECnt12 = 0;
 
+		g_nCntF = 0;
 
 		//“ª wani
 		g_enemyHD[i].pos = XMFLOAT3(0.0f, 0.0f, -1.0f);//z-3
@@ -788,13 +790,16 @@ void DestroyEnemy(int no)
 {
 	if (no < 0 || no >= ENEMY_MAX)	return;
 
-	g_enemy[no].nState = 0;
-
 	//‰e‚ÌŠJ•ú
 	ReleaseShadow(g_enemy[no].nShadowIdx);
 	g_enemy[no].nShadowIdx = -1;
 
-	Clearflag();
+
+	g_nCntF++;
+	if (g_nCntF >= 250)
+	{
+		Clearflag();
+	}
 
 }
 void DrawEnemyEGauge()
@@ -942,9 +947,10 @@ void EAction3(bool af)//Ž€–S
 				g_enemyLG[i].rot.z -= 2.0f;
 				g_enemyLG[i].rot.y -= 2.0f;
 			}
+			if (g_nECnt4 >= 200)
+				DestroyEnemy(i);
 		}
-		if (g_nECnt4 >= 200)
-			DestroyEnemy(0);
+
 
 	}
 }

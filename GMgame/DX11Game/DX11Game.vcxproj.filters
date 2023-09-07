@@ -73,6 +73,8 @@
     <ClCompile Include="modeldata.cpp" />
     <ClCompile Include="enemymodel.cpp" />
     <ClCompile Include="enemyselect.cpp" />
+    <ClCompile Include="selecttitle.cpp" />
+    <ClCompile Include="backtex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssimpModel.h" />
@@ -140,6 +142,8 @@
     <ClInclude Include="modeldata.h" />
     <ClInclude Include="enemymodel.h" />
     <ClInclude Include="enemyselect.h" />
+    <ClInclude Include="selecttitle.h" />
+    <ClInclude Include="backtex.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX11Game.rc" />

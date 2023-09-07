@@ -84,7 +84,7 @@ HRESULT InitSelectEnemyselect(void)
 	// 位置・回転・スケールの初期設定
 	for (int i = 0; i < ENEMYSEL_MAX; i++)
 	{
-		g_enemyselect[i].pos = XMFLOAT3(0.0f, 20.0f, 100.0f);//z100
+		g_enemyselect[i].pos = XMFLOAT3(0.0f, 0.0f, 0.0f);//z100
 		g_enemyselect[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
 		g_enemyselect[i].scl = XMFLOAT3(15.0f, 15.0f, 15.0f);
 		g_enemyselect[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);

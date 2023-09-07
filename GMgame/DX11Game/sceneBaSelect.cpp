@@ -19,6 +19,8 @@
 #include "enemyselect.h"
 #include "enemymodel.h"
 #include "sceneTitle.h"
+#include "selecttitle.h"
+#include "backtex.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -46,6 +48,8 @@ HRESULT InitSceneBaSelect()
 		return hr;
 	}
 
+	InitSelTitle();
+
 	hr = InitSelectStage();
 	if (FAILED(hr))
 	{
@@ -63,6 +67,8 @@ HRESULT InitSceneBaSelect()
 
 	Enemychimera();
 
+	InitBackTex();
+
 	//敵の初期化処理
 	hr = InitSelectEnemyselect();
 	if (FAILED(hr))
@@ -71,16 +77,16 @@ HRESULT InitSceneBaSelect()
 		return hr;
 	}
 	
-	SetEnemyselect(XMFLOAT3(-50, -5, -150), XMFLOAT3(0, 90, 0));
-	SetEnemyselect(XMFLOAT3(-50, -5, -50), XMFLOAT3(0, 90, 0));
-	SetEnemyselect(XMFLOAT3(-50, -5, 50), XMFLOAT3(0, 90, 0));
-	SetEnemyselect(XMFLOAT3(-50, -5, 150), XMFLOAT3(0, 90, 0));
-	SetEnemyselect(XMFLOAT3(-50, -5, 250), XMFLOAT3(0, 90, 0));
-	SetEnemyselect(XMFLOAT3(-50, -5, 350), XMFLOAT3(0, 90, 0));
-	SetEnemyselect(XMFLOAT3(-50, -5, 450), XMFLOAT3(0, 90, 0));
-	SetEnemyselect(XMFLOAT3(-50, -5, 550), XMFLOAT3(0, 90, 0));
-	SetEnemyselect(XMFLOAT3(-50, -5, 650), XMFLOAT3(0, 90, 0));
-	SetEnemyselect(XMFLOAT3(-50, -5, 750), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(0, -15, -150), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(0, -15, -50), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(0, -15, 50), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(0, -15, 150), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(0, -15, 250), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(0, -15, 350), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(0, -15, 450), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(0, -15, 550), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(0, -15, 650), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(0, -15, 750), XMFLOAT3(0, 90, 0));
 
 	// カメラ更新
 	GetCamera()->Init();
@@ -97,6 +103,10 @@ void UninitSceneBaSelect()
 {
 	//背景の終了処理
 	UninitBg();
+
+	UninitSelTitle();
+
+	UninitBackTex();
 
 	//セレクトの終了処理
 	UninitSelectStage();
@@ -124,6 +134,10 @@ void UpdateSceneBaSelect()
 
 	UpdatePChimera();
 
+	UpdateSelTitle();
+
+	UpdateBackTex();
+
 	UpdateSelectEnemyselect();
 
 	GetEnemy()->Update();
@@ -149,7 +163,8 @@ void DrawSceneBaSelect()
 
 	//背景
 	DrawBg1();
-
+	DrawSelTitle1();
+	DrawBackTex1();
 	// Zバッファ有効
 	SetZBuffer(true);
 
