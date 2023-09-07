@@ -76,9 +76,6 @@ static int			g_nECnt1;//行動カウント1コメ
 static int			g_nECnt2;//行動カウント2コメ
 static int			g_nECnt3;//行動カウント3コメ
 static int			g_nECnt4;//行動カウント4コメ
-
-
-
 static int			g_nECnt5;//行動カウント5コメ
 static int			g_nECnt6;//行動カウント6コメ
 static int			g_nECnt7;//行動カウント6コメ
@@ -87,6 +84,9 @@ static int			g_nECnt9;//行動カウント6コメ
 static int			g_nECnt10;//行動カウント6コメ
 static int			g_nECnt11;//行動カウント6コメ
 static int			g_nECnt12;//行動カウント6コメ
+static int			g_nECnt13;//行動カウント6コメ
+static int			g_nECnt14;//行動カウント6コメ
+
 static bool				g_atama = true;//false;
 
 static bool			g_Eaction;
@@ -100,6 +100,9 @@ static bool			g_Eaction8;
 static bool			g_Eaction9;
 static bool			g_Eaction10;
 static bool			g_Eaction11;
+static bool			g_Eaction12;
+static bool			g_Eaction13;
+static bool			g_Eaction14;
 
 static int			g_nCntF;//
 
@@ -144,6 +147,9 @@ HRESULT InitEnemy(void)
 		g_Eaction9 = false;
 		g_Eaction10 = false;
 		g_Eaction11 = false;
+		g_Eaction12 = false;
+		g_Eaction13 = false;
+		g_Eaction14 = false;
 
 		g_nECnt1 = 0;					//
 		g_nECnt2 = 0;					//
@@ -157,6 +163,8 @@ HRESULT InitEnemy(void)
 		g_nECnt10 = 0;
 		g_nECnt11 = 0;
 		g_nECnt12 = 0;
+		g_nECnt13 = 0;
+		g_nECnt14 = 0;
 
 		g_nCntF = 0;
 
@@ -222,14 +230,14 @@ HRESULT InitEnemy(void)
 	}
 	
 	bfCnt = 0;
-	g_Eaction = false;
-	g_Eaction2 = false;
-	g_Eaction3 = false;
+	//g_Eaction = false;
+	//g_Eaction2 = false;
+	//g_Eaction3 = false;
 
-	g_nECnt1 = 0;					//
-	g_nECnt2 = 0;					//
-	g_nECnt3 = 0;
-	g_nECnt4 = 0;
+	//g_nECnt1 = 0;					//
+	//g_nECnt2 = 0;					//
+	//g_nECnt3 = 0;
+	//g_nECnt4 = 0;
 
 	// ワールドマトリックスの初期化
 	XMMATRIX mtxWorld;
@@ -302,7 +310,7 @@ void UpdateEnemy(void)
 		}
 		if (g_enemy[i].nStopTime == 0)
 		{
-			if (GetKeyTrigger(VK_8))
+			/*if (GetKeyTrigger(VK_8))
 			{
 				g_Eaction = true;
 			}
@@ -368,7 +376,7 @@ void UpdateEnemy(void)
 			{
 				g_Eaction11 = true;
 			}
-			EAction11(g_Eaction11);
+			EAction11(g_Eaction11);*/
 
 		}
 		
@@ -845,6 +853,8 @@ void ResetEPos(int no)
 	g_nECnt10 = 0;
 	g_nECnt11 = 0;
 	g_nECnt12 = 0;
+	g_nECnt13 = 0;
+	g_nECnt14 = 0;
 
 	g_Eaction = false;
 	g_Eaction2 = false;
@@ -857,6 +867,9 @@ void ResetEPos(int no)
 	g_Eaction9 = false;
 	g_Eaction10 = false;
 	g_Eaction11 = false;
+	g_Eaction12 = false;
+	g_Eaction13 = false;
+	g_Eaction14 = false;
 }
 
 void EAction(bool af)//落下ドリル
@@ -1294,6 +1307,116 @@ void EAction11(bool af)//　気円斬　風
 			}
 		}
 	}
+}
+
+void EAction12(bool af)//勝利アニメーション
+{
+	if (af)
+	{
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_enemy[i].pos.y += 10.0f;
+			g_enemy[i].vel.y += -0.98f;
+			if (g_enemy[i].pos.y <= 15.0f)
+			{
+				g_enemy[i].pos.y = 15.0f;
+			}
+		}
+	}
+}
+
+
+void EAction13(bool af)//竜巻　ダメージ
+{
+	if (af)
+	{
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+			g_nECnt13++;
+			if (g_nECnt11 >= 390 && g_nECnt13 <= 600)
+			{
+				g_enemy[i].pos.y += 0.7f;
+				g_enemy[i].rot.y--;
+				g_enemy[i].rot.x--;
+				g_enemy[i].rot.z++;
+			}
+			if (g_nECnt13 >= 601 && g_nECnt13 <= 800)
+			{
+				g_enemy[i].pos.y -= 0.73f;
+			}
+			if (g_nECnt13 >= 801)
+			{
+				ResetEPos(i);
+			}
+		}
+
+	}
+}
+
+
+void EAction14(bool af) //打ち上げドリル攻撃
+{
+	if (af)
+	{
+		for (int i = 0; i < ENEMY_MAX; i++)
+		{
+
+			g_nECnt14++;
+
+			if (g_nECnt14 >= 1 && g_nECnt14 <= 349)
+			{
+
+				if (g_nECnt14 <= 12 && g_nECnt14 >= 10)
+				{
+					g_enemy[i].pos.z -= 50;
+				}
+				if (g_nECnt14 <= 24 && g_nECnt14 >= 16)
+				{
+					g_enemyHD[i].rot.x = 35.0f;
+				}
+				if (g_nECnt14 <= 54 && g_nECnt14 >= 25)//上り
+				{
+					g_enemyHD[i].rot.x = 0.0f;
+					g_enemy[i].rot.y = 0.0f;
+					g_enemy[i].rot.x -= 18.0f;
+					g_enemy[i].pos.z += 4;
+					g_enemy[i].pos.y += 1;
+				}
+				if (g_nECnt14 <= 84 && g_nECnt14 >= 55)//下り
+				{
+					//g_player[i].rot.y = 0.0f;
+					g_enemy[i].rot.x -= 18.0f;
+					g_enemy[i].pos.z += 4;
+					g_enemy[i].pos.y -= 1;
+				}
+				if (g_nECnt14 <= 100 && g_nECnt14 >= 90)
+				{
+					g_enemyHD[i].rot.z += 100.0f;
+				}
+				if (g_nECnt14 <= 199 && g_nECnt14 >= 101)
+				{
+					g_enemyHD[i].rot.z += 200.0f;
+					g_enemy[i].rot.z -= 100.0f;
+				}
+				if (g_nECnt14 <= 340 && g_nECnt14 >= 200)
+				{
+					g_enemyHD[i].rot.z += 200.0f;
+					g_enemy[i].rot.z -= 100.0f;
+					g_enemy[i].pos.z -= 20;
+
+				}
+
+			}
+			if (g_nECnt14 >= 380)
+			{
+				ResetEPos(i);
+			}
+
+		}
+
+	}
+
+
 }
 
 float ECheckCollisionRay(XMVECTOR pos, float fRadius)

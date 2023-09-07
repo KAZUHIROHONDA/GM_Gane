@@ -51,3 +51,6 @@ void EAction8(bool af);
 void EAction9(bool af);
 void EAction10(bool af);
 void EAction11(bool af);
+void EAction12(bool af);
+void EAction13(bool af);
+void EAction14(bool af);

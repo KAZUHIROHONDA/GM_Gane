@@ -1158,6 +1158,7 @@ void Action4(bool af) //打ち上げドリル攻撃
 	
 }
 
+
 void Action10(bool af)//竜巻　ダメージ
 {
 	if (af)
