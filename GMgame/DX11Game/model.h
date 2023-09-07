@@ -34,7 +34,7 @@
 #define MODEL_BUTA3		"data/model/butaLG.obj"
 
 #define MODEL_USI		"data/model/ushi_head.obj"
-#define MODEL_USI1		"data/model/ushi_body.obj"
+#define MODEL_USI1		"data/model/ushi_body2.obj"
 #define MODEL_USI2		"data/model/ushi_maeAshi.obj"
 #define MODEL_USI3		"data/model/ushi_ushiroAshi.obj"
 

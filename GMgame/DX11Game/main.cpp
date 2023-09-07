@@ -597,8 +597,10 @@ void Draw(void)
 	g_pDeviceContext->ClearRenderTargetView(g_pRenderTargetView, ClearColor);
 	g_pDeviceContext->ClearDepthStencilView(g_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
+	DrawEffect();
+
 	// Zバッファ有効
-	SetZBuffer(true);
+	//SetZBuffer(true);
 
 	
 	// 奥の2Dに描画するものはここ
