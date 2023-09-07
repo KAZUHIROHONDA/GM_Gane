@@ -151,6 +151,14 @@ HRESULT InitJyanken()
 	g_nJyankenMenu = JYANKEN_MENU_1;
 	g_fCurve = 0.0f;
 
+	z = 0;
+	i = 0;
+
+	PAT = 0;
+	EAT = 0;
+	Ac = 0;
+	old = 0;
+
 	for (int i = 0; i < 20; i++)
 	{
 		Sette[i] = GetPlayer()->GetHand(i);
@@ -188,7 +196,6 @@ void UpdateJyankenStart()
 
 void UpdateJyankenSet()
 {
-
 
 	switch (nPhase)
 	{

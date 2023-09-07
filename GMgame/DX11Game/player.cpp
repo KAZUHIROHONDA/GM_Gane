@@ -206,6 +206,7 @@ HRESULT InitPlayer(void)
 		GetPlayerModel()->GetBack()); if (FAILED(hr)) return hr;
 	
 	g_nCameraType = E_CAMERA_VIEW_FIXED;
+
 	
 	return hr;
 }

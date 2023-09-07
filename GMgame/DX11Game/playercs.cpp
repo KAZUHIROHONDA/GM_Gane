@@ -126,6 +126,8 @@ void Player::Setmodel(int val)
 	case 3:modeldata[0].TORIHead(); break;
 	case 4:modeldata[0].BUTAHead(); break;
 	case 5:modeldata[0].USIHead(); break;
+	//case 6:modeldata[0].KUWAHead(); break;
+	//case 7:modeldata[0].GOKIHead(); break;
 	case 10:modeldata[1].KABUBody(); break;
 	case 11:modeldata[1].WANIBody(); break;
 	case 12:modeldata[1].PANDABody(); break;

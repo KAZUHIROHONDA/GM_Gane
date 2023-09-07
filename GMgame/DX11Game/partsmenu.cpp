@@ -18,7 +18,7 @@
 #include "sceneTitle.h"
 
 // マクロ定義
-#define	NUM_PARTS_MENU		(6)			// ポーズメニュー数
+#define	NUM_PARTS_MENU		(8)			// ポーズメニュー数
 #define	PARTS_MENU_WIDTH	(200.0f)	// ポーズメニュー幅
 #define	PARTS_MENU_HEIGHT	(200.0f)		// ポーズメニュー高さ
 #define	PARTS_MENU_INTERVAL	(300.0f)	// ポーズメニュー間隔
@@ -29,24 +29,28 @@
 #define	PLATE_POS_X			(0.0f)		// プレートの位置(X座標)
 #define	PLATE_POS_Y			(0.0f)		// プレートの位置(Y座標)
 
+
 // 構造体定義
 // プロトタイプ宣言
 // グローバル変数
-static ID3D11ShaderResourceView*	g_pTextures[7] = { nullptr };	// テクスチャへのポインタ
+static ID3D11ShaderResourceView*	g_pTextures[9] = { nullptr };	// テクスチャへのポインタ
 
 static float g_fCurve = 0.0f;
 static float g_fCol = 0.0f;
 static int	 nStopTime = 0;
 static int	 charano = 0;
+static int	 mousescroll = 0;
 
 static LPCWSTR c_aFileNamePartsMenu[NUM_PARTS_MENU] =
 {
-	L"data/TEXTURE/kabu.png",	// コンティニュー
-	L"data/TEXTURE/wani.png",	// リトライ
-	L"data/TEXTURE/panda.png",	// リトライ
-	L"data/TEXTURE/wani.png",	// リトライ
-	L"data/TEXTURE/buta.png",	// リトライ
-	L"data/TEXTURE/usi.png",	// リトライ
+	L"data/TEXTURE/kabu.png",	
+	L"data/TEXTURE/wani.png",	
+	L"data/TEXTURE/panda.png",	
+	L"data/TEXTURE/tori.png",	
+	L"data/TEXTURE/buta.png",	
+	L"data/TEXTURE/usi.png",	
+	L"data/TEXTURE/kuwa.png",
+	L"data/TEXTURE/goki.png",
 };
 
 static PARTS_MENU g_nPartsMenu = PARTS_MENU_KABU;	//	選択中のメニューNo
@@ -71,6 +75,7 @@ HRESULT InitParts(void)
 	g_nPartsMenu = PARTS_MENU_KABU;
 	g_fCurve = 0.0f;
 	charano = 0;
+	mousescroll = 0;
 
 	return hr;
 }
@@ -130,15 +135,32 @@ void UpdateParts(void)
 		}
 	}
 
+	//ホイール回転
+	int temp2 = GetMouseWheelDelta();
+	wchar_t str[256];
+	wsprintf(str, L"%d", temp2);
+	OutputDebugString(str);
+	if (temp2 > 0 && mousescroll <= 250)
+	{
+		mousescroll += 250;
+	}
+	else if (temp2 < 0 && mousescroll >= -250)
+	{
+		mousescroll -= 250;
+	}
+
+
 	//マウス
 	POINT temp = (*GetMousePosition());
 	XMFLOAT2 mousePos = XMFLOAT2(temp.x - SCREEN_CENTER_X, -(temp.y - SCREEN_CENTER_Y));
-	XMFLOAT2 pos1 = XMFLOAT2(PARTS_MENU_POS_X, PARTS_MENU_POS_Y);
-	XMFLOAT2 pos2 = XMFLOAT2(PARTS_MENU_POS_X + 1 * PARTS_MENU_INTERVAL, PARTS_MENU_POS_Y );
-	XMFLOAT2 pos3 = XMFLOAT2(PARTS_MENU_POS_X, PARTS_MENU_POS_Y - 1 * 250);
-	XMFLOAT2 pos4 = XMFLOAT2(PARTS_MENU_POS_X + 1 * 250, PARTS_MENU_POS_Y - 1 * 250);
-	XMFLOAT2 pos5 = XMFLOAT2(PARTS_MENU_POS_X, PARTS_MENU_POS_Y - 2 * 250);
-	XMFLOAT2 pos6 = XMFLOAT2(PARTS_MENU_POS_X + 1 * 250, PARTS_MENU_POS_Y - 2 * 250);
+	XMFLOAT2 pos1 = XMFLOAT2(PARTS_MENU_POS_X, PARTS_MENU_POS_Y + mousescroll);
+	XMFLOAT2 pos2 = XMFLOAT2(PARTS_MENU_POS_X + 1 * PARTS_MENU_INTERVAL, PARTS_MENU_POS_Y + mousescroll);
+	XMFLOAT2 pos3 = XMFLOAT2(PARTS_MENU_POS_X, PARTS_MENU_POS_Y - 1 * 250 + mousescroll);
+	XMFLOAT2 pos4 = XMFLOAT2(PARTS_MENU_POS_X + 1 * PARTS_MENU_INTERVAL, PARTS_MENU_POS_Y - 1 * 250 + mousescroll);
+	XMFLOAT2 pos5 = XMFLOAT2(PARTS_MENU_POS_X, PARTS_MENU_POS_Y - 2 * 250 + mousescroll);
+	XMFLOAT2 pos6 = XMFLOAT2(PARTS_MENU_POS_X + 1 * PARTS_MENU_INTERVAL, PARTS_MENU_POS_Y - 2 * 250 + mousescroll);
+	XMFLOAT2 pos7 = XMFLOAT2(PARTS_MENU_POS_X, PARTS_MENU_POS_Y - 3 * 250 + mousescroll);
+	XMFLOAT2 pos8 = XMFLOAT2(PARTS_MENU_POS_X + 1 * PARTS_MENU_INTERVAL, PARTS_MENU_POS_Y - 3 * 250 + mousescroll);
 	XMFLOAT2 radius1 = XMFLOAT2(PARTS_MENU_WIDTH / 2, PARTS_MENU_HEIGHT / 2);
 	XMFLOAT2 mpos2 = mousePos;
 	XMFLOAT2 radius2 = XMFLOAT2(0.1, 0.1);
@@ -213,6 +235,32 @@ void UpdateParts(void)
 			InitPChimera();
 		}
 	}
+	else if (CollisionBB(&pos7, &radius1, &mpos2, &radius2))
+	{
+
+		if (GetMouseTrigger(0))
+		{
+			GetPlayerModel()->SetHead(MODEL_KUWA);
+			GetPlayer()->Setmodel(6);
+			charano = 5;//6
+
+			InitPChimera();
+		}
+	}
+	else if (CollisionBB(&pos8, &radius1, &mpos2, &radius2))
+	{
+
+		if (GetMouseTrigger(0))
+		{
+			GetPlayerModel()->SetHead(MODEL_GOKI);
+			GetPlayer()->Setmodel(7);
+			charano = 5;//7
+
+			InitPChimera();
+		}
+	}
+
+
 
 
 	// 上下キーで各項目間の移動
@@ -240,12 +288,12 @@ void DrawParts(void)
 
 	int nCnt = 0;
 
-	//ポーズメニューの表示
+	//表示
 	SetPolygonSize(PARTS_MENU_WIDTH, PARTS_MENU_HEIGHT);
-	for (int nCntBPartsMenu = 0; nCntBPartsMenu < 3; ++nCntBPartsMenu) {
+	for (int nCntBPartsMenu = 0; nCntBPartsMenu < 4; ++nCntBPartsMenu) {
 		
 		for (int nCntBPartsMenu1 = 0; nCntBPartsMenu1 < 2; ++nCntBPartsMenu1) {
-			SetPolygonPos(PARTS_MENU_POS_X + nCntBPartsMenu1 * PARTS_MENU_INTERVAL, PARTS_MENU_POS_Y - nCntBPartsMenu * 250);
+			SetPolygonPos(PARTS_MENU_POS_X + nCntBPartsMenu1 * PARTS_MENU_INTERVAL, PARTS_MENU_POS_Y - nCntBPartsMenu * 250 + mousescroll);
 
 			// テクスチャの設定
 			SetPolygonTexture(g_pTextures[nCnt]);

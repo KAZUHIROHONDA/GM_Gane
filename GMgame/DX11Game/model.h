@@ -38,6 +38,10 @@
 #define MODEL_USI2		"data/model/ushi_maeAshi.obj"
 #define MODEL_USI3		"data/model/ushi_ushiroAshi.obj"
 
+#define MODEL_KUWA		"data/model/kuwa_head.obj"
+
+#define MODEL_GOKI		"data/model/goki_head.obj"
+
 //モデルデータ追加
 class Model 
 {
