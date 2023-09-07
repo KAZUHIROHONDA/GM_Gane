@@ -189,7 +189,7 @@ void UpdateSceneChimera()
 			MPartsGet()->Setscl(XMFLOAT3(2.2f, 2.2f, 2.2f));
 			break; }
 		case 3: {//‚Æ‚è
-			MPartsGet()->Setscl(XMFLOAT3(3.0f, 3.0f, 3.0f));
+			MPartsGet()->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
 			break; }
 		case 4: {//‚Ô‚½
 			MPartsGet()->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
