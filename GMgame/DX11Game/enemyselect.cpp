@@ -286,9 +286,7 @@ void UninitEnemyselect(void)
 	for (int i = 0; i < ENEMYSEL_MAX; i++)
 	{
 		ReleaseShadow(g_enemyselect[i].nShadowIdx);
-
 	}
-
 
 
 	// ƒ‚ƒfƒ‹‚Ì‰ð•ú

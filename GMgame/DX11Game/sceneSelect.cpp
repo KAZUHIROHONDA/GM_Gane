@@ -73,13 +73,14 @@ void UninitSceneSelect()
 {
 	//背景の終了処理
 	UninitBg();
-
+	
 	//セレクトの終了処理
 	UninitSelectStage();
-
+	
 	UninitSelTitle();
-
+	
 	UninitPChimera();
+
 }
 
 //=============================================================================

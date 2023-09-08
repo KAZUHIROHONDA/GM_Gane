@@ -11,7 +11,6 @@
 #include "collision.h"
 #include "sceneTitle.h"
 
-#include"effect.h"
 
 #define gu 1-1
 #define tyoki 2-1

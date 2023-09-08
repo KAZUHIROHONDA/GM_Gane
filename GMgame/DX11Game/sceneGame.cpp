@@ -32,7 +32,6 @@
 #include "sceneTitle.h"
 #include "select.h"
 #include "gameover.h"
-#include "effect.h"
 #include "sound.h"
 
 //*****************************************************************************
