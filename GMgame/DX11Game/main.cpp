@@ -20,7 +20,10 @@
 #include "sound.h"
 #include "sceneChimera.h"
 #include "sceneBaSelect.h"
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/matsui3
 
 //-------- ライブラリのリンク
 #pragma comment(lib, "winmm")
@@ -424,6 +427,10 @@ HRESULT Init(HWND hWnd, BOOL bWindow)
 	if (FAILED(hr))
 		return hr;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature/matsui3
 
 	//fade,soundも共通処理なのでこの上
 	//共通部分ここまで
@@ -556,10 +563,22 @@ void Update(void)
 	// ライト更新
 	GetLight()->Update();
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> feature/matsui3
 	
 	// ライト更新
 	GetLight()->Update();
 
+<<<<<<< HEAD
+=======
+	
+
+
+
+>>>>>>> feature/matsui3
 	switch (g_currentScene)
 	{
 	case(SCENE_TITLE):UpdateSceneTitle(); break;

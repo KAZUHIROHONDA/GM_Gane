@@ -49,15 +49,22 @@ SOUNDPARAM g_aParam[SOUND_LABEL_MAX] =
 	{L"data/SE/parts5.wav", 0 }, // パーツ選択音
 	{L"data/SE/parts6.wav", 0 }, // パーツ選択音
 	{L"data/SE/start.wav", 0 },
-	{L"data/SE/selectS.wav", 0 },
+	{L"data/SE/ke.wav", 0 },
 	{L"data/SE/pose.wav", 0 },
 	{L"data/BGM/title.wav", -1},//タイトル
 	{L"data/BGM/select.wav", -1}, //セレクト
 	{L"data/BGM/chimera.wav", -1},//キメラ合成
 	{L"data/BGM/win.wav", -1},//勝利
 	{L"data/BGM/lose.wav", -1},//負け
+	{L"data/SE/set.wav", 0 },
+	{L"data/SE/go.wav", 0 },
 	{L"data/SE/select.wav", 0 },	   // キャンセル
 	{L"data/SE/punch31.wav", 0 },
+	{L"data/SE/senpuu1.wav", 0 },
+	{L"data/SE/senpuu2.wav", 0 },
+	{L"data/SE/korogaru.wav", 0 },
+	{L"data/SE/bunkai.wav", 0 },
+	{L"data/SE/taiatari.wav", 0 },
 };
 
 //=============================================================================

@@ -1024,6 +1024,7 @@ void Action2(bool af)
 			{
 				if (g_nCnt3 / 2 % 2 == 0)
 				{
+					PlaySound(SOUND_LABEL_SE_PUNCH);
 					g_playerHD[i].pos.z -= 3;
 					g_playerHD[i].pos.x = (rand() % 201 - 100) / 30.0f;
 					g_playerHD[i].pos.y = (rand() % 201 - 100) / 30.0f;
@@ -1136,16 +1137,19 @@ void Action5(bool af) //•ª‰ðUŒ‚@ÅŒãBD‚Í‘å”š”­
 
 			if (g_nCnt6 >= 65 && g_nCnt6 <= 75)
 			{
+				PlaySound(SOUND_LABEL_SE_BUN);
 				g_playerHD[i].pos.z -= 7.0f;
 				g_playerHD[i].pos.y -= 2.0f;
 			}
 			if (g_nCnt6 >= 85 && g_nCnt6 <= 95)
 			{
+				PlaySound(SOUND_LABEL_SE_BUN);
 				g_playerAM[i].pos.z -= 7.0f;
 				g_playerAM[i].pos.y -= 2.0f;
 			}
 			if (g_nCnt6 >= 105 && g_nCnt6 <= 115)
 			{
+				PlaySound(SOUND_LABEL_SE_BUN);
 				g_playerLG[i].pos.z -= 7.0f;
 				g_playerLG[i].pos.y -= 2.0f;
 			}
@@ -1198,6 +1202,7 @@ void Action6(bool af)//“ñ‰ñŸ—˜ “]‚ª‚èUŒ‚
 			g_nCnt7++;
 			if (g_nCnt7 >= 0 && g_nCnt7 <= 100)
 			{
+				PlaySound(SOUND_LABEL_SE_TAI);
 				g_player[i].pos.z += 3.0f;
 				g_player[i].rot.x -= 50.0f;
 			}
@@ -1298,6 +1303,7 @@ void Action9(bool af)//@1‰ñŸ—˜‘Ì“–‚½‚èUŒ‚
 			}
 			if (g_nCnt10 >= 71 && g_nCnt10 <= 80)
 			{
+				PlaySound(SOUND_LABEL_SE_TAI);
 				g_player[i].pos.z = 95.0f;
 			}
 			if (g_nCnt10 >= 81 && g_nCnt10 <= 82)
@@ -1324,29 +1330,33 @@ void Action10(bool af)//@—³Šªù•—‹r@•—
 				g_player[i].pos.y += 5.0f;
 				g_player[i].rot.x -= 8.0f;
 			}
-
+			PlaySound(SOUND_LABEL_SE_SENPUU1);
 			if (g_nCnt11 >= 51 && g_nCnt11 <= 103)
 			{
 				g_player[i].pos.y -= 5.0f;
 				g_player[i].rot.x -= 8.0f;
 			}
+			PlaySound(SOUND_LABEL_SE_SENPUU2);
 			if (g_nCnt11 >= 110 && g_nCnt11 <= 200)
 			{
 				g_player[i].rot.x = -90.0f;
 				g_player[i].rot.y += 50;
 			}
+			PlaySound(SOUND_LABEL_SE_SENPUU1);
 			if (g_nCnt11 >= 200 && g_nCnt11 <= 240)
 			{
 				g_player[i].pos.z++;
 				g_player[i].pos.x--;
 				g_player[i].rot.y += 50;
 			}
+			PlaySound(SOUND_LABEL_SE_SENPUU2);
 			if (g_nCnt11 >= 240 && g_nCnt11 <= 330)
 			{
 				g_player[i].pos.z++;
 				g_player[i].pos.x++;
 				g_player[i].rot.y += 50;
 			}
+			PlaySound(SOUND_LABEL_SE_SENPUU1);
 			if (g_nCnt11 >= 330 && g_nCnt11 <= 380)
 			{
 				g_player[i].pos.z++;
