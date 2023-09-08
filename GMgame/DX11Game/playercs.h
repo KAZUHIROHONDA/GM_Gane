@@ -63,4 +63,6 @@ public:
 	void	Draw(int x,int y);
 	void	DrawChimera(int x, int y);
 	void	Percent();
+	void	Scale(Player* model, Player* Umodel, Player* Mmodel, int Bno, int No, int UNo, int MNo);
+	
 };

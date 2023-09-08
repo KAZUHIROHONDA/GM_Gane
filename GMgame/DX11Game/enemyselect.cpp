@@ -86,7 +86,7 @@ HRESULT InitSelectEnemyselect(void)
 	{
 		g_enemyselect[i].pos = XMFLOAT3(0.0f, 0.0f, 0.0f);//z100
 		g_enemyselect[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
-		g_enemyselect[i].scl = XMFLOAT3(15.0f, 15.0f, 15.0f);
+		g_enemyselect[i].scl = EnemyScal(i * 4);
 		g_enemyselect[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 
 		//èâä˙âª
@@ -97,7 +97,7 @@ HRESULT InitSelectEnemyselect(void)
 		g_enemyselect[i].nShadowIdx = -1;
 
 		//ì™ wani
-		g_enemyselectHD[i].pos = XMFLOAT3(0.0f, 0.0f, -1.0f);//z-3
+		g_enemyselectHD[i].pos = EnemyScal(1 + i * 4);//z-3
 		g_enemyselectHD[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyselectHD[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_enemyselectHD[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -106,7 +106,7 @@ HRESULT InitSelectEnemyselect(void)
 		g_enemyselectHD[i].nShadowIdx = -1;
 
 		////òr-0.8f
-		g_enemyselectAM[i].pos = XMFLOAT3(0.0f, -0.5f, 0.0f);//-0.8,-1
+		g_enemyselectAM[i].pos = EnemyScal(2 + i * 4);//-0.8,-1
 		g_enemyselectAM[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyselectAM[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_enemyselectAM[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -115,7 +115,7 @@ HRESULT InitSelectEnemyselect(void)
 		g_enemyselectAM[i].nShadowIdx = -1;
 
 		//ë´
-		g_enemyselectLG[i].pos = XMFLOAT3(0.0f, -0.5f, 1.5f);
+		g_enemyselectLG[i].pos = EnemyScal(3 + i * 4);
 		g_enemyselectLG[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyselectLG[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_enemyselectLG[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -318,6 +318,7 @@ void UpdateSelectEnemyselect(void)
 		OutputDebugString(str);
         g_enemyselect[i].pos.z += static_cast<float>(temp2) / 5;
 		
+
 
 		float hitLength[10];
 

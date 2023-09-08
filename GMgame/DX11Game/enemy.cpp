@@ -120,9 +120,9 @@ HRESULT InitEnemy(void)
 	// 位置・回転・スケールの初期設定
 	for (int i = 0; i < ENEMY_MAX; i++)
 	{
-		g_enemy[i].pos = XMFLOAT3(0.0f, 20.0f,100.0f);//z100
+		g_enemy[i].pos = XMFLOAT3(0.0f, 25.0f,100.0f);//z100
 		g_enemy[i].rot = XMFLOAT3(0.0f, 180.0f, 0.0f);
-		g_enemy[i].scl = XMFLOAT3(15.0f, 15.0f, 15.0f);
+		g_enemy[i].scl = EnemyScal(Enemyno()*4);
 		g_enemy[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 
 		//初期化
@@ -169,7 +169,7 @@ HRESULT InitEnemy(void)
 		g_nCntF = 0;
 
 		//頭 wani
-		g_enemyHD[i].pos = XMFLOAT3(0.0f, 0.0f, -1.0f);//z-3
+		g_enemyHD[i].pos = EnemyScal(1 + Enemyno() * 4);//z-3
 		g_enemyHD[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyHD[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_enemyHD[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -187,7 +187,7 @@ HRESULT InitEnemy(void)
 		//g_enemyHD[i].nShadowIdx = -1;
 
 		////腕-0.8f
-		g_enemyAM[i].pos = XMFLOAT3(0.0f, -0.5f, 0.0f);//-0.8,-1
+		g_enemyAM[i].pos = EnemyScal(2 + Enemyno() * 4);//-0.8,-1
 		g_enemyAM[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyAM[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_enemyAM[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -205,7 +205,7 @@ HRESULT InitEnemy(void)
 		//g_enemyAM[i].nShadowIdx = -1;
 
 		//足
-		g_enemyLG[i].pos = XMFLOAT3(0.0f, -0.5f, 1.5f);
+		g_enemyLG[i].pos = EnemyScal(3 + Enemyno() * 4);
 		g_enemyLG[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		g_enemyLG[i].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 		g_enemyLG[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
