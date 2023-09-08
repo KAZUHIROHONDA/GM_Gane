@@ -571,7 +571,6 @@ void UpdateJyankenBattle()
 	{
 		//Ac = rand() % 2
 		Ac = 0;
-		int EfeCnt = 0;
 		switch (Ac)
 		{
 		case 0: {Action(); break; }
@@ -586,11 +585,9 @@ void UpdateJyankenBattle()
 	{
 		//Ac = rand() % 2;
 		Ac = 0;
-		int EfeCnt = 0;
 		switch (Ac)
 		{
-		case 0: {EAction(); EfeCnt++; if (EfeCnt <= 0) { SetEffect(0, GetPlayerPos(0)); } break; }
-
+		case 0: {EAction(); break; }
 		case 1: {EAction2(); break; }
 		default:
 			break;

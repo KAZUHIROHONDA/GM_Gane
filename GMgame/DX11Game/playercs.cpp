@@ -2,6 +2,10 @@
 #include "MessageManager.h"
 #include <string>
 #include <sstream>
+#include "Bpartsmenu.h"
+#include "Mpartsmenu.h"
+#include "partsmenu.h"
+#include "Upartsmenu.h"
 
 Player::Player()
 {
@@ -276,5 +280,452 @@ void Player::Percent()
 		{
 			pa++;
 		}
+	}
+}
+
+void Player::Scale( Player* model, Player* Umodel, Player* Mmodel,int Bno,int No,int UNo,int MNo)
+{
+	switch (Bno)
+	{
+	case 0://‚©‚Ô
+	{
+		switch (No)//‚ ‚½‚Ü
+		{
+		case 0: {	//‚©‚Ô
+			model->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			model->Setscl(XMFLOAT3(1.8f, 1.8f, 1.8f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			model->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
+			break; }
+		case 3: {//‚Æ‚è
+			model->Setscl(XMFLOAT3(1.2f, 1.2f, 1.2f));
+			break; }
+		case 4: {//‚Ô‚½
+			model->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
+			break; }
+		case 5: {//‚¤‚µ
+			model->Setscl(XMFLOAT3(0.8f, 0.8f, 0.8f));
+			break; }
+		default:
+			break;
+		}
+		switch (UNo)//‚¤‚µ‚ë‚ ‚µ
+		{
+		case 0: {	//‚©‚Ô
+			Umodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			Umodel->Setscl(XMFLOAT3(1.1f, 1.1f, 1.1f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Umodel->Setscl(XMFLOAT3(2.2f, 2.2f, 2.2f));
+			break; }
+		case 3: {//‚Æ‚è
+			Umodel->Setscl(XMFLOAT3(3.0f, 3.0f, 3.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			Umodel->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
+			break; }
+		case 5: {//‚¤‚µ
+			Umodel->Setscl(XMFLOAT3(0.6f, 0.6f, 0.6f));
+			break; }
+		default:
+			break;
+		}
+		switch (MNo)//‚Ü‚¦‚ ‚µ
+		{
+		case 0: {	//‚©‚Ô
+			Mmodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			Mmodel->Setscl(XMFLOAT3(1.1f, 1.1f, 1.1f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Mmodel->Setscl(XMFLOAT3(2.2f, 2.2f, 2.2f));
+			break; }
+		case 3: {//‚Æ‚è
+			Mmodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			Mmodel->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
+			break; }
+		case 5: {//‚¤‚µ
+			Mmodel->Setscl(XMFLOAT3(0.6f, 0.6f, 0.6f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	case 1://‚í‚É
+	{
+		switch (No)//‚ ‚½‚Ü
+		{
+		case 0: {	//‚©‚Ô
+			model->Setscl(XMFLOAT3(0.8f, 0.8f, 0.8f));
+			break; }
+		case 1: {//‚í‚É
+			model->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			model->Setscl(XMFLOAT3(1.6f, 1.6f, 1.6f));
+			break; }
+		case 3: {//‚Æ‚è
+			model->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			model->Setscl(XMFLOAT3(1.6f, 1.6f, 1.6f));
+			break; }
+		case 5: {//‚¤‚µ
+			model->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
+			break; }
+		default:
+			break;
+		}
+		switch (UNo)//‚¤‚µ‚ë‚ ‚µ
+		{
+		case 0: {	//‚©‚Ô
+			Umodel->Setscl(XMFLOAT3(0.8f, 0.8f, 0.8f));
+			break; }
+		case 1: {//‚í‚É
+			Umodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Umodel->Setscl(XMFLOAT3(1.6f, 1.6f, 1.6f));
+			break; }
+		case 3: {//‚Æ‚è
+			Umodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			Umodel->Setscl(XMFLOAT3(1.6f, 1.6f, 1.6f));
+			break; }
+		case 5: {//‚¤‚µ
+			Umodel->Setscl(XMFLOAT3(0.4f, 0.4f, 0.4f));
+			break; }
+		default:
+			break;
+		}
+		switch (MNo)//‚Ü‚¦‚ ‚µ
+		{
+		case 0: {	//‚©‚Ô
+			Mmodel->Setscl(XMFLOAT3(0.8f, 0.8f, 0.8f));
+			break; }
+		case 1: {//‚í‚É
+			Mmodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Mmodel->Setscl(XMFLOAT3(1.6f, 1.6f, 1.6f));
+			break; }
+		case 3: {//‚Æ‚è
+			Mmodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			Mmodel->Setscl(XMFLOAT3(1.6f, 1.6f, 1.6f));
+			break; }
+		case 5: {//‚¤‚µ
+			Mmodel->Setscl(XMFLOAT3(0.4f, 0.4f, 0.4f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	case 2://‚Ï‚ñ‚¾
+	{
+		switch (No)
+		{
+		case 0: {	//‚©‚Ô
+			model->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
+			break; }
+		case 1: {//‚í‚É
+			model->Setscl(XMFLOAT3(0.8f, 0.8f, 0.8f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			model->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			model->Setscl(XMFLOAT3(0.6f, 0.6f, 0.6f));
+			break; }
+		case 4: {//‚Ô‚½
+			model->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			model->Setscl(XMFLOAT3(0.3f, 0.3f, 0.3f));
+			break; }
+		default:
+			break;
+		}
+		switch (UNo)
+		{
+		case 0: {	//‚©‚Ô
+			Umodel->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
+			break; }
+		case 1: {//‚í‚É
+			Umodel->Setscl(XMFLOAT3(0.8f, 0.8f, 0.8f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Umodel->Setscl(XMFLOAT3(1.1f, 1.1f, 1.1f));
+			break; }
+		case 3: {//‚Æ‚è
+			Umodel->Setscl(XMFLOAT3(0.8f, 0.8f, 0.8f));
+			break; }
+		case 4: {//‚Ô‚½
+			Umodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			Umodel->Setscl(XMFLOAT3(0.3f, 0.3f, 0.3f));
+			break; }
+		default:
+			break;
+		}
+		switch (MNo)
+		{
+		case 0: {	//‚©‚Ô
+			Mmodel->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
+			break; }
+		case 1: {//‚í‚É
+			Mmodel->Setscl(XMFLOAT3(0.8f, 0.8f, 0.8f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Mmodel->Setscl(XMFLOAT3(1.1f, 1.1f, 1.1f));
+			break; }
+		case 3: {//‚Æ‚è
+			Mmodel->Setscl(XMFLOAT3(0.6f, 0.6f, 0.6f));
+			break; }
+		case 4: {//‚Ô‚½
+			Mmodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			Mmodel->Setscl(XMFLOAT3(0.3f, 0.3f, 0.3f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	case 3://‚Æ‚è
+	{
+		switch (No)
+		{
+		case 0: {	//‚©‚Ô
+			model->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			model->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			model->Setscl(XMFLOAT3(1.5f, 1.5f, 1.5f));
+			break; }
+		case 3: {//‚Æ‚è
+			model->Setscl(XMFLOAT3(1.1f, 1.1f, 1.1f));
+			break; }
+		case 4: {//‚Ô‚½
+			model->Setscl(XMFLOAT3(1.5f, 1.5f, 1.5f));
+			break; }
+		case 5: {//‚¤‚µ
+			model->Setscl(XMFLOAT3(0.7f, 0.7f, 0.7f));
+			break; }
+		default:
+			break;
+		}
+		switch (UNo)
+		{
+		case 0: {	//‚©‚Ô
+			Umodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			Umodel->Setscl(XMFLOAT3(1.5f, 1.5f, 1.5f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Umodel->Setscl(XMFLOAT3(1.8f, 1.8f, 1.8f));
+			break; }
+		case 3: {//‚Æ‚è
+			Umodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			Umodel->Setscl(XMFLOAT3(1.8f, 1.8f, 1.8f));
+			break; }
+		case 5: {//‚¤‚µ
+			Umodel->Setscl(XMFLOAT3(0.6f, 0.6f, 0.6f));
+			break; }
+		default:
+			break;
+		}
+		switch (MNo)
+		{
+		case 0: {	//‚©‚Ô
+			Mmodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			Mmodel->Setscl(XMFLOAT3(1.5f, 1.5f, 1.5f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Mmodel->Setscl(XMFLOAT3(1.8f, 1.8f, 1.8f));
+			break; }
+		case 3: {//‚Æ‚è
+			Mmodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½
+			Mmodel->Setscl(XMFLOAT3(1.8f, 1.8f, 1.8f));
+			break; }
+		case 5: {//‚¤‚µ
+			Mmodel->Setscl(XMFLOAT3(0.6f, 0.6f, 0.6f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	case 4://‚Ô‚½
+	{
+		switch (No)
+		{
+		case 0: {	//‚©‚Ô
+			model->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
+			break; }
+		case 1: {//‚í‚É
+			model->Setscl(XMFLOAT3(0.7f, 0.7f, 0.7f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			model->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			model->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
+			break; }
+		case 4: {//‚Ô‚½
+			model->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			model->Setscl(XMFLOAT3(0.3f, 0.3f, 0.3f));
+			break; }
+		default:
+			break;
+		}
+		switch (UNo)
+		{
+		case 0: {	//‚©‚Ô
+			Umodel->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
+			break; }
+		case 1: {//‚í‚É
+			Umodel->Setscl(XMFLOAT3(0.7f, 0.7f, 0.7f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Umodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			Umodel->Setscl(XMFLOAT3(0.7f, 0.7f, 0.7f));
+			break; }
+		case 4: {//‚Ô‚½
+			Umodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			Umodel->Setscl(XMFLOAT3(0.3f, 0.3f, 0.3f));
+			break; }
+		default:
+			break;
+		}
+		switch (MNo)
+		{
+		case 0: {	//‚©‚Ô
+			Mmodel->Setscl(XMFLOAT3(0.5f, 0.5f, 0.5f));
+			break; }
+		case 1: {//‚í‚É
+			Mmodel->Setscl(XMFLOAT3(0.7f, 0.7f, 0.7f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Mmodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 3: {//‚Æ‚è
+			Mmodel->Setscl(XMFLOAT3(0.7f, 0.7f, 0.7f));
+			break; }
+		case 4: {//‚Ô‚½
+			Mmodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 5: {//‚¤‚µ
+			Mmodel->Setscl(XMFLOAT3(0.3f, 0.3f, 0.3f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	case 5://‚¤‚µ
+	{
+		switch (No)
+		{
+		case 0: {	//‚©‚Ô
+			model->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			model->Setscl(XMFLOAT3(1.5f, 1.5f, 1.5f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			model->Setscl(XMFLOAT3(1.7f, 1.7f, 1.7f));
+			break; }
+		case 3: {//‚Æ‚è
+			model->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 4: {//‚Ô‚½6
+			model->Setscl(XMFLOAT3(1.6f, 1.6f, 1.6f));
+			break; }
+		case 5: {//‚¤‚µ
+			model->Setscl(XMFLOAT3(0.7f, 0.7f, 0.7f));
+			break; }
+		default:
+			break;
+		}
+		switch (UNo)
+		{
+		case 0: {	//‚©‚Ô
+			Umodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			Umodel->Setscl(XMFLOAT3(1.5f, 1.5f, 1.5f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Umodel->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
+			break; }
+		case 3: {//‚Æ‚è
+			Umodel->Setscl(XMFLOAT3(1.3f, 1.3f, 1.3f));
+			break; }
+		case 4: {//‚Ô‚½
+			Umodel->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
+			break; }
+		case 5: {//‚¤‚µ
+			Umodel->Setscl(XMFLOAT3(0.6f, 0.6f, 0.6f));
+			break; }
+		default:
+			break;
+		}
+		switch (MNo)
+		{
+		case 0: {	//‚©‚Ô
+			Mmodel->Setscl(XMFLOAT3(1.0f, 1.0f, 1.0f));
+			break; }
+		case 1: {//‚í‚É
+			Mmodel->Setscl(XMFLOAT3(1.5f, 1.5f, 1.5f));
+			break; }
+		case 2: {//‚Ï‚ñ‚¾
+			Mmodel->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
+			break; }
+		case 3: {//‚Æ‚è
+			Mmodel->Setscl(XMFLOAT3(1.3f, 1.3f, 1.3f));
+			break; }
+		case 4: {//‚Ô‚½
+			Mmodel->Setscl(XMFLOAT3(2.5f, 2.5f, 2.5f));
+			break; }
+		case 5: {//‚¤‚µ
+			Mmodel->Setscl(XMFLOAT3(0.6f, 0.6f, 0.6f));
+			break; }
+		default:
+			break;
+		}
+		break;
+	}
+	default:
+		break;
 	}
 }
