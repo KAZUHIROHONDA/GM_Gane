@@ -89,7 +89,7 @@ HRESULT InitSceneBaSelect()
 	SetEnemyselect(XMFLOAT3(0, -15, 750), XMFLOAT3(0, 90, 0));
 
 
-	PlaySound(SOUND_LABEL_BGM_4);
+	PlaySound(SOUND_LABEL_BGM_2);
 
 	// ƒJƒƒ‰XV
 	GetCamera()->Init();

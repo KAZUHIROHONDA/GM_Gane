@@ -10,6 +10,7 @@
 #include "sceneGame.h"
 #include "collision.h"
 #include "sceneTitle.h"
+#include"sound.h"
 
 
 #define gu 1-1
@@ -227,6 +228,7 @@ void UpdateJyankenSet()
 		{
 			if (GetMouseTrigger(0))
 			{
+				PlaySound(SOUND_LABEL_SE_GO);
 	
 				for (int i = 0; i < 3; i++)
 				{
@@ -267,6 +269,7 @@ void UpdateJyankenSet()
 	{
 		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0))
 		{
+			PlaySound(SOUND_LABEL_SE_SET);
 			//‘I‘ð’†‚Ì‚à‚Ì‚É‚æ‚è•ªŠò
 			JYANKEN_MENU menu = GetJyankenMenu();
 			switch (menu)
@@ -398,6 +401,7 @@ void UpdateJyankenSet()
 			SetJyankenMenu1();
 			if (GetMouseTrigger(0))
 			{
+				PlaySound(SOUND_LABEL_SE_SET);
 				te[j] = selte[0];
 				j++;
 				useflag1 = false;
@@ -425,6 +429,7 @@ void UpdateJyankenSet()
 			SetJyankenMenu2();
 			if (GetMouseTrigger(0))
 			{
+				PlaySound(SOUND_LABEL_SE_SET);
 				te[j] = selte[1];
 				j++;
 				useflag2 = false;
@@ -452,6 +457,7 @@ void UpdateJyankenSet()
 			SetJyankenMenu3();
 			if (GetMouseTrigger(0))
 			{
+				PlaySound(SOUND_LABEL_SE_SET);
 				te[j] = selte[2];
 				j++;
 				useflag3 = false;
@@ -479,6 +485,7 @@ void UpdateJyankenSet()
 			SetJyankenMenu4();
 			if (GetMouseTrigger(0))
 			{
+				PlaySound(SOUND_LABEL_SE_SET);
 				te[j] = selte[3];
 				j++;
 				useflag4 = false;
@@ -507,6 +514,7 @@ void UpdateJyankenSet()
 			SetJyankenMenu5();
 			if (GetMouseTrigger(0))
 			{
+				PlaySound(SOUND_LABEL_SE_SET);
 				te[j] = selte[4];
 				j++;
 				useflag5 = false;

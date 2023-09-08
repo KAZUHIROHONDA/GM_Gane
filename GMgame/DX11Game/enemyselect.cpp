@@ -15,6 +15,7 @@
 #include "sceneTitle.h"
 #include "sceneGame.h"
 #include "enemymodel.h"
+#include "sound.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -330,6 +331,7 @@ void UpdateSelectEnemyselect(void)
 				GetEnemy()->Percent();
 				if (GetMouseTrigger(0))
 				{
+					PlaySound(SOUND_LABEL_SE_SELECTS);
 					//敵の選択
 					enemyno = i;
 					StartFade(SCENE_GAME);

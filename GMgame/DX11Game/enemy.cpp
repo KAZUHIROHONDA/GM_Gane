@@ -18,6 +18,7 @@
 #include "fade.h"
 #include "enemymodel.h"
 #include "enemyselect.h"
+#include"sound.h"
 
 //*****************************************************************************
 // ƒ}ƒNƒ’è‹`
@@ -640,6 +641,7 @@ void EAction2(bool af)//•S—ôŒ
 			{
 				if (g_nECnt3 / 2 % 2 == 0)
 				{
+					PlaySound(SOUND_LABEL_SE_PUNCH);
 					g_enemyHD[i].pos.z -= 3;
 					g_enemyHD[i].pos.x = (rand() % 201 - 100) / 30.0f;
 					g_enemyHD[i].pos.y = (rand() % 201 - 100) / 30.0f;
@@ -750,16 +752,19 @@ void EAction5(bool af) //•ª‰ðUŒ‚@ÅŒãBD‚Í‘å”š”­
 
 			if (g_nECnt6 >= 65 && g_nECnt6 <= 75)
 			{
+				PlaySound(SOUND_LABEL_SE_BUN);
 				g_enemyHD[i].pos.z -= 7.0f;
 				g_enemyHD[i].pos.y -= 2.0f;
 			}
 			if (g_nECnt6 >= 85 && g_nECnt6 <= 95)
 			{
+				PlaySound(SOUND_LABEL_SE_BUN);
 				g_enemyAM[i].pos.z -= 7.0f;
 				g_enemyAM[i].pos.y -= 2.0f;
 			}
 			if (g_nECnt6 >= 105 && g_nECnt6 <= 115)
 			{
+				PlaySound(SOUND_LABEL_SE_BUN);
 				g_enemyLG[i].pos.z -= 7.0f;
 				g_enemyLG[i].pos.y -= 2.0f;
 			}
@@ -812,6 +817,7 @@ void EAction6(bool af)//“ñ‰ñŸ—˜ “]‚ª‚èUŒ‚
 			g_nECnt7++;
 			if (g_nECnt7 >= 0 && g_nECnt7 <= 100)
 			{
+				PlaySound(SOUND_LABEL_SE_KORO);
 				g_enemy[i].pos.z -= 3.0f;
 				g_enemy[i].rot.x -= 50.0f;
 			}
@@ -912,6 +918,7 @@ void EAction9(bool af)//@1‰ñŸ—˜‘Ì“–‚½‚èUŒ‚
 			}
 			if (g_nECnt10 >= 71 && g_nECnt10 <= 80)
 			{
+				PlaySound(SOUND_LABEL_SE_TAI);
 				g_enemy[i].pos.z = -95.0f;
 			}
 			if (g_nECnt10 >= 81 && g_nECnt10 <= 82)
@@ -938,29 +945,33 @@ void EAction10(bool af)//@—³Šªù•—‹r@•—
 				g_enemy[i].pos.y += 5.0f;
 				g_enemy[i].rot.x -= 8.0f;
 			}
-
+			PlaySound(SOUND_LABEL_SE_SENPUU1);
 			if (g_nECnt11 >= 51 && g_nECnt11 <= 103)
 			{
 				g_enemy[i].pos.y -= 5.0f;
 				g_enemy[i].rot.x -= 8.0f;
 			}
+			PlaySound(SOUND_LABEL_SE_SENPUU2);
 			if (g_nECnt11 >= 110 && g_nECnt11 <= 200)
 			{
 				g_enemy[i].rot.x = -90.0f;
 				g_enemy[i].rot.y += 50;
 			}
+			PlaySound(SOUND_LABEL_SE_SENPUU1);
 			if (g_nECnt11 >= 200 && g_nECnt11 <= 240)
 			{
 				g_enemy[i].pos.z--;
 				g_enemy[i].pos.x--;
 				g_enemy[i].rot.y += 50;
 			}
+			PlaySound(SOUND_LABEL_SE_SENPUU2);
 			if (g_nECnt11 >= 240 && g_nECnt11 <= 330)
 			{
 				g_enemy[i].pos.z--;
 				g_enemy[i].pos.x++;
 				g_enemy[i].rot.y += 50;
 			}
+			PlaySound(SOUND_LABEL_SE_SENPUU1);
 			if (g_nECnt11 >= 330 && g_nECnt11 <= 380)
 			{
 				g_enemy[i].pos.z--;
