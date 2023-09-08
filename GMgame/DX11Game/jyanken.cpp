@@ -78,7 +78,7 @@ int old = 0;
 #define HATENA_TEXTURENAME	_T("data/texture/1mdpi.png")
 		
 #define OK_POS_X	(300)					//初期位置X
-#define OK_POS_Y	(-250)					//初期位置Y
+#define OK_POS_Y	(-150)					//初期位置Y
 #define OK_SIZE_X	(100)		//横幅
 #define OK_SIZE_Y	(100)		//縦幅
 
@@ -850,8 +850,8 @@ void DrawJyankenSet()
 	{
 		// タイトル描画
 	//ポリゴン情報設定
-		SetPolygonPos(g_Position.x, g_Position.y);			//座標
-		SetPolygonSize(OK_SIZE_X, OK_SIZE_Y);		//大きさ
+		SetPolygonPos(OK_POS_X, OK_POS_Y);			//座標
+		SetPolygonSize(OK_SIZE_X+ size*2, OK_SIZE_Y + size*2);		//大きさ
 		SetPolygonAngle(g_Angle.y);				//角度
 		SetPolygonAlpha(g_Alpha);				//α値(透明度)
 
