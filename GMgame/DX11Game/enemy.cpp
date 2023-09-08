@@ -108,6 +108,8 @@ static int			g_nCntF;//
 
 int					bfCnt;
 
+static bool			endflag;
+
 //=============================================================================
 // 初期化処理
 //=============================================================================
@@ -150,6 +152,8 @@ HRESULT InitEnemy(void)
 		g_Eaction12 = false;
 		g_Eaction13 = false;
 		g_Eaction14 = false;
+
+		endflag = false;
 
 		g_nECnt1 = 0;					//
 		g_nECnt2 = 0;					//
@@ -301,6 +305,8 @@ void UpdateEnemy(void)
 	{
 		//未使用
 		if (g_enemy[i].nState == 0) continue;
+
+		endflag = false;
 
 
 		//操作不能時間
@@ -698,6 +704,8 @@ void ResetEPos(int no)
 	g_enemyLG[no].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 	g_enemyLG[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 
+	endflag = true;
+
 	g_nECnt1 = 0;
 	g_nECnt2 = 0;
 	g_nECnt3 = 0;
@@ -759,10 +767,7 @@ void EAction(bool af)//落下ドリル
 		}
 	}
 }
-void EAction()
-{
-	g_Eaction = true;
-}
+
 
 void EAction2(bool af)//百裂拳
 {
@@ -790,10 +795,7 @@ void EAction2(bool af)//百裂拳
 		}
 	}
 }
-void EAction2()
-{
-	g_Eaction2 = true;
-}
+
 
 void EAction3(bool af)//死亡
 {
@@ -1190,7 +1192,7 @@ void EAction13(bool af)//竜巻　ダメージ
 		for (int i = 0; i < ENEMY_MAX; i++)
 		{
 			g_nECnt13++;
-			if (g_nECnt11 >= 390 && g_nECnt13 <= 600)
+			if (g_nECnt13 >= 390 && g_nECnt13 <= 600)
 			{
 				g_enemy[i].pos.y += 0.7f;
 				g_enemy[i].rot.y--;
@@ -1335,4 +1337,14 @@ float ECheckCollisionRay(XMVECTOR pos, float fRadius)
 
 	//当たらなかったので
 	return 9999.9f; //最大値
+}
+
+bool GetEendflag()
+{
+	return endflag;
+}
+
+void SetEendflag()
+{
+	endflag = true;
 }

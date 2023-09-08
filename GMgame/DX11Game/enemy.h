@@ -54,3 +54,5 @@ void EAction11(bool af);
 void EAction12(bool af);
 void EAction13(bool af);
 void EAction14(bool af);
+bool GetEendflag();
+void SetEendflag();

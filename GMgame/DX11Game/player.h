@@ -61,7 +61,9 @@ void Action12(bool af);
 void Action13(bool af);
 void Action14(bool af);
 
+bool Getendflag();
 
 
 void CameraFIXED();
 void CameraDEBUG();
+void Setendflag();
