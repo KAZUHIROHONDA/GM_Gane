@@ -8,7 +8,7 @@
 
 #include "model.h"
 
-Model enemychimera[10];
+Model enemychimera[11];
 XMFLOAT3 enemy[44];
 
 

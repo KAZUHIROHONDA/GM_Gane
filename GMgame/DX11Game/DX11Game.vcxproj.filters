@@ -69,7 +69,6 @@
     <ClCompile Include="Mpartsmenu.cpp" />
     <ClCompile Include="Upartsmenu.cpp" />
     <ClCompile Include="sceneBaSelect.cpp" />
-    <ClCompile Include="effect.cpp" />
     <ClCompile Include="modeldata.cpp" />
     <ClCompile Include="enemymodel.cpp" />
     <ClCompile Include="enemyselect.cpp" />
@@ -138,7 +137,6 @@
     <ClInclude Include="Mpartsmenu.h" />
     <ClInclude Include="Upartsmenu.h" />
     <ClInclude Include="sceneBaSelect.h" />
-    <ClInclude Include="effect.h" />
     <ClInclude Include="modeldata.h" />
     <ClInclude Include="enemymodel.h" />
     <ClInclude Include="enemyselect.h" />

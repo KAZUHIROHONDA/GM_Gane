@@ -174,7 +174,6 @@
     <ClCompile Include="CSVLoader.cpp" />
     <ClCompile Include="debugproc.cpp" />
     <ClCompile Include="DirectWrite.cpp" />
-    <ClCompile Include="effect.cpp" />
     <ClCompile Include="Egauge.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemyhp.cpp" />
@@ -243,7 +242,6 @@
     <ClInclude Include="CSVLoader.h" />
     <ClInclude Include="debugproc.h" />
     <ClInclude Include="DirectWrite.h" />
-    <ClInclude Include="effect.h" />
     <ClInclude Include="Egauge.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="enemyhp.h" />
