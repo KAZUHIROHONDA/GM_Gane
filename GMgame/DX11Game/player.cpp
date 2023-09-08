@@ -1535,12 +1535,7 @@ void DestroyPlayer(int no)
 	ReleaseShadow(g_player[no].nShadowIdx);
 	g_player[no].nShadowIdx = -1;
 
-	g_nCntF++;
-	if (g_nCntF>=250)
-	{
-		Overflag();
-	}
-	
+	Overflag();	
 }
 
 void CameraDEBUG()

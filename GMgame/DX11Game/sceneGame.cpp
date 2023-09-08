@@ -47,7 +47,7 @@ static bool g_bClear = false;
 static bool g_bOver = false;
 int			eCnt;			//“G‚ð“|‚µ‚½
 int			sTime;			//s“®•s”\ŽžŠÔƒJƒEƒ“ƒg
-
+static bool sound = false;
 
 Phase  phase;
 
@@ -65,6 +65,8 @@ HRESULT InitSceneGame()
 
 	eCnt = 0;
 	sTime = 0;
+
+	sound = true;
 
 	//”wŒi‚Ì‰Šú‰»ˆ—
 	InitBg();
@@ -230,8 +232,29 @@ void UninitSceneGame()
 //=============================================================================
 void UpdateSceneGame()
 {
+
 	if (g_bClear == true || g_bOver == true)
 	{
+		if (g_bClear == true && g_bOver != false)
+		{
+			if (sound == true)
+			{
+				StopSound();
+				PlaySound(SOUND_LABEL_BGM_5);
+				sound = false;
+			}
+		}
+		else
+		{
+			if (sound == true)
+			{
+				StopSound();
+				PlaySound(SOUND_LABEL_BGM_4);
+				sound = false;
+
+			}
+		}
+
 		GetCamera()->Update();
 		UpdateClear();
 		

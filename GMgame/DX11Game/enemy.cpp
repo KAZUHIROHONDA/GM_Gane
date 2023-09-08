@@ -528,11 +528,8 @@ void DestroyEnemy(int no)
 	g_enemy[no].nShadowIdx = -1;
 
 
-	g_nCntF++;
-	if (g_nCntF >= 250)
-	{
-		Clearflag();
-	}
+	Clearflag();
+
 
 }
 void DrawEnemyEGauge()
