@@ -122,12 +122,12 @@ void UpdateSelectStage( void )
 	// è„â∫ÉLÅ[Ç≈äeçÄñ⁄ä‘ÇÃà⁄ìÆ
 	if (GetKeyRepeat(VK_A) || GetKeyRepeat(VK_LEFT)) {
 		g_nSelectMenu = (SELECT_STAGE)((g_nSelectMenu + NUM_SELECT_STAGE - 1)% NUM_SELECT_STAGE);
-		PlaySound(SOUND_LABEL_SE_SELECT);
+		
 		SetSelectStageMenu();
 	}
 	else if (GetKeyRepeat(VK_D) || GetKeyRepeat(VK_RIGHT)) {
 		g_nSelectMenu = (SELECT_STAGE)((g_nSelectMenu + 1) % NUM_SELECT_STAGE);
-		PlaySound(SOUND_LABEL_SE_SELECT);
+		
 		SetSelectStageMenu();
 	}
 

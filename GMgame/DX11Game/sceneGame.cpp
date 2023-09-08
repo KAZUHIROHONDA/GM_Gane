@@ -33,6 +33,7 @@
 #include "select.h"
 #include "gameover.h"
 #include "effect.h"
+#include "sound.h"
 
 //*****************************************************************************
 // マクロ定義
@@ -248,6 +249,7 @@ void UpdateSceneGame()
 				switch (menu)
 				{
 				case SELECT_MENU_CONTINUE:
+
 					StartFade(SCENE_BASELECT);
 					GetPhase()->ChangePhase(STARTPHASE);
 					//PlaySound(SOUND_LABEL_SE_DECIDE);
@@ -309,6 +311,7 @@ void UpdateSceneGame()
 		//ポーズのオンオフ
 		if ( GetJoyTrigger(0, 1) || GetMouseTrigger(2)|| GetKeyTrigger(VK_P))
 		{
+			PlaySound(SOUND_LABEL_SE_POSE);
 			//フェード中は反応しない用にする
 			E_FADE fadeState = GetFade();
 			if (fadeState == E_FADE_NONE)

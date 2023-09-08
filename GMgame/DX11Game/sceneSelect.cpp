@@ -16,7 +16,7 @@
 #include "pchimera.h"
 #include "Light.h"
 #include "selecttitle.h"
-
+#include"sound.h"
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
@@ -107,6 +107,7 @@ void UpdateSceneSelect()
 	{
 		if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0)||GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_SELECTS);
 			//選択中のものにより分岐
 			SELECT_STAGE menu = GetSelectStageMenu();
 			switch (menu)

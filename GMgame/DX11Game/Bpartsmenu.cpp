@@ -151,6 +151,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu();
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS1);
 			GetPlayerModel()->SetBody(MODEL_KABU1);
 			GetPlayer()->SetName("カブトムシ");
 			GetPlayer()->Setmodel(10);
@@ -167,6 +168,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu1();
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS2);
 			GetPlayerModel()->SetBody(MODEL_wani1);
 			GetPlayer()->SetName("ワニ");
 			GetPlayer()->Setmodel(11);
@@ -184,6 +186,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu2();
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS3);
 			GetPlayerModel()->SetBody(MODEL_PANDA1);
 			GetPlayer()->SetName("パンダ");
 			GetPlayer()->Setmodel(12);
@@ -200,6 +203,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu3();
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS4);
 			GetPlayerModel()->SetBody(MODEL_TORI1);
 			GetPlayer()->SetName("トリ");
 			GetPlayer()->Setmodel(13);
@@ -216,6 +220,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu4();
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS5);
 			GetPlayerModel()->SetBody(MODEL_BUTA1);
 			GetPlayer()->SetName("ブタ");
 			GetPlayer()->Setmodel(14);
@@ -232,6 +237,7 @@ void UpdateBParts(void)
 		ResetBPartsMenu5();
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS6);
 			GetPlayerModel()->SetBody(MODEL_USI1);
 			GetPlayer()->SetName("ウシ");
 			GetPlayer()->Setmodel(15);

@@ -146,6 +146,7 @@ void UpdateUParts(void)
 	{
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS1);
 			GetPlayerModel()->SetBack(MODEL_KABU3);
 			GetPlayer()->Setmodel(30);
 			charano = 0;
@@ -157,6 +158,7 @@ void UpdateUParts(void)
 	{
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS2);
 			GetPlayerModel()->SetBack(MODEL_wani3);
 			GetPlayer()->Setmodel(31);
 			charano = 1;
@@ -169,6 +171,7 @@ void UpdateUParts(void)
 
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS3);
 			GetPlayerModel()->SetBack(MODEL_PANDA3);
 			GetPlayer()->Setmodel(32);
 			charano = 2;
@@ -181,6 +184,7 @@ void UpdateUParts(void)
 
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS4);
 			GetPlayerModel()->SetBack(MODEL_TORI3);
 			GetPlayer()->Setmodel(33);
 			charano = 3;
@@ -193,6 +197,7 @@ void UpdateUParts(void)
 
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS5);
 			GetPlayerModel()->SetBack(MODEL_BUTA3);
 			GetPlayer()->Setmodel(34);
 			charano = 4;
@@ -205,6 +210,7 @@ void UpdateUParts(void)
 
 		if (GetMouseTrigger(0))
 		{
+			PlaySound(SOUND_LABEL_SE_PARTS6);
 			GetPlayerModel()->SetBack(MODEL_USI3);
 			GetPlayer()->Setmodel(35);
 			charano = 5;
