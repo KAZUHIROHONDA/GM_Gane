@@ -38,7 +38,7 @@
 #define ENEMY_EGAUGE_POS_Y	(300.0f)
 
 
-#define MODELMAX	(40)
+#define MODELMAX	(44)
 
 //構造体定義
 typedef struct _tEnemyselect
@@ -272,6 +272,19 @@ HRESULT InitSelectEnemyselect(void)
 	hr = g_model[39].Load(pDevice, pDeviceContext,
 		GetEnemychimera(9)->GetBack()); if (FAILED(hr)) return hr;
 
+	// モデルデータの読み込み8
+	hr = g_model[40].Load(pDevice, pDeviceContext,
+		GetEnemychimera(10)->GetBody()); if (FAILED(hr)) return hr;
+
+	hr = g_model[41].Load(pDevice, pDeviceContext,
+		GetEnemychimera(10)->GetHead()); if (FAILED(hr)) return hr;
+
+	hr = g_model[42].Load(pDevice, pDeviceContext,
+		GetEnemychimera(10)->GetMae()); if (FAILED(hr)) return hr;
+
+	hr = g_model[43].Load(pDevice, pDeviceContext,
+		GetEnemychimera(10)->GetBack()); if (FAILED(hr)) return hr;
+
 
 	return hr;
 
@@ -318,9 +331,9 @@ void UpdateSelectEnemyselect(void)
 		
 
 
-		float hitLength[10];
+		float hitLength[11];
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 11; i++)
 		{//位置と半径を指定
 			hitLength[i] = ECheckCollisionRay1(XMVectorSet(g_enemyselect[i].pos.x, g_enemyselect[i].pos.y, g_enemyselect[i].pos.z, 0.0f), 20.0f);
 			if (hitLength[i] < 9999.9f)
@@ -567,47 +580,56 @@ void SelectEnemy(int val)
 	}
 	case 5:
 	{
-		GetEnemy()->Setmodel(2);
-		GetEnemy()->Setmodel(12);
-		GetEnemy()->Setmodel(22);
-		GetEnemy()->Setmodel(32);
+		GetEnemy()->Setmodel(5);
+		GetEnemy()->Setmodel(15);
+		GetEnemy()->Setmodel(25);
+		GetEnemy()->Setmodel(35);
 		GetEnemy()->SetName("ウシ");
 		break;
 	}
 	case 6:
 	{
-		GetEnemy()->Setmodel(2);
+		GetEnemy()->Setmodel(0);
 		GetEnemy()->Setmodel(12);
-		GetEnemy()->Setmodel(22);
-		GetEnemy()->Setmodel(32);
+		GetEnemy()->Setmodel(25);
+		GetEnemy()->Setmodel(33);
 		GetEnemy()->SetName("キメラ１");
 		break;
 	}
 	case 7:
 	{
-		GetEnemy()->Setmodel(2);
-		GetEnemy()->Setmodel(12);
-		GetEnemy()->Setmodel(22);
-		GetEnemy()->Setmodel(32);
+		GetEnemy()->Setmodel(3);
+		GetEnemy()->Setmodel(10);
+		GetEnemy()->Setmodel(25);
+		GetEnemy()->Setmodel(34);
 		GetEnemy()->SetName("キメラ２");
 		break;
 	}
 	case 8:
 	{
-		GetEnemy()->Setmodel(2);
-		GetEnemy()->Setmodel(12);
-		GetEnemy()->Setmodel(22);
-		GetEnemy()->Setmodel(32);
+		GetEnemy()->Setmodel(4);
+		GetEnemy()->Setmodel(11);
+		GetEnemy()->Setmodel(23);
+		GetEnemy()->Setmodel(30);
 		GetEnemy()->SetName("キメラ３");
 		break;
 	}
 	case 9:
 	{
-		GetEnemy()->Setmodel(2);
-		GetEnemy()->Setmodel(12);
-		GetEnemy()->Setmodel(22);
+		GetEnemy()->Setmodel(0);
+		GetEnemy()->Setmodel(10);
+		GetEnemy()->Setmodel(20);
 		GetEnemy()->Setmodel(32);
-		GetEnemy()->SetName("キメラ４");
+		GetEnemy()->SetName("ゴキブリ");
+		break;
+	}
+	case 10:
+	{
+		GetEnemy()->Setmodel(0);
+		GetEnemy()->Setmodel(10);
+		GetEnemy()->Setmodel(22);
+		GetEnemy()->Setmodel(30);
+		GetEnemy()->SetName("クワガタ");
 		break;
 	}
 

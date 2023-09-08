@@ -87,6 +87,7 @@ HRESULT InitSceneBaSelect()
 	SetEnemyselect(XMFLOAT3(0, -15, 550), XMFLOAT3(0, 90, 0));
 	SetEnemyselect(XMFLOAT3(0, -15, 650), XMFLOAT3(0, 90, 0));
 	SetEnemyselect(XMFLOAT3(0, -15, 750), XMFLOAT3(0, 90, 0));
+	SetEnemyselect(XMFLOAT3(0, -15, 850), XMFLOAT3(0, 90, 0));
 
 
 	PlaySound(SOUND_LABEL_BGM_4);

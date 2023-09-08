@@ -20,10 +20,6 @@
 #include "sound.h"
 #include "sceneChimera.h"
 #include "sceneBaSelect.h"
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/matsui3
 
 
 //-------- ライブラリのリンク
@@ -428,10 +424,6 @@ HRESULT Init(HWND hWnd, BOOL bWindow)
 	if (FAILED(hr))
 		return hr;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/matsui3
 
 	//fade,soundも共通処理なのでこの上
 	//共通部分ここまで
@@ -511,10 +503,6 @@ void Uninit(void)
 	//サウンドの終了処理
 	UninitSound();
 
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/matsui3
 
 	// 深度ステンシルステート解放
 	for (int i = 0; i < _countof(g_pDSS); ++i) {
@@ -568,21 +556,9 @@ void Update(void)
 	// ライト更新
 	GetLight()->Update();
 
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/matsui3
-
 	
 	// ライト更新
 	GetLight()->Update();
-
-<<<<<<< HEAD
-=======
-	
-
-
->>>>>>> feature/matsui3
 
 	switch (g_currentScene)
 	{

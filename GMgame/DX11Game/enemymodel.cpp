@@ -84,27 +84,27 @@ void Enemychimera()
 	enemy[26]=(XMFLOAT3(0.0f, -0.8f, -1.0f));
 	enemy[27]=(XMFLOAT3(0.0f, -0.8f, 0.0f));
 
-	enemychimera[7].SetHead(MODEL_KABU);
-	enemychimera[7].SetBody(MODEL_TORI1);
+	enemychimera[7].SetHead(MODEL_TORI);
+	enemychimera[7].SetBody(MODEL_KABU1);
 	enemychimera[7].SetMae(MODEL_USI2);
-	enemychimera[7].SetBack(MODEL_KABU3);
+	enemychimera[7].SetBack(MODEL_BUTA3);
 
-	enemy[28]=(XMFLOAT3(8.0f, 8.0f, 8.0f));
-	enemy[29]=(XMFLOAT3(0.0f, 0.0f, -2.0f));
-	enemy[30]=(XMFLOAT3(0.0f, -0.8f, -1.0f));
-	enemy[31]=(XMFLOAT3(0.0f, -0.8f, 0.0f));
+	enemy[28] = (XMFLOAT3(8.0f, 8.0f, 8.0f));
+	enemy[29] = (XMFLOAT3(0.0f, 0.0f, -2.0f));
+	enemy[30] = (XMFLOAT3(0.0f, -0.8f, -1.0f));
+	enemy[31] = (XMFLOAT3(0.0f, -0.8f, 0.0f));
 
-	enemychimera[8].SetHead(MODEL_KABU);
-	enemychimera[8].SetBody(MODEL_KABU1);
-	enemychimera[8].SetMae(MODEL_KABU2);
+	enemychimera[8].SetHead(MODEL_BUTA);
+	enemychimera[8].SetBody(MODEL_wani1);
+	enemychimera[8].SetMae(MODEL_TORI2);
 	enemychimera[8].SetBack(MODEL_KABU3);
 
-	enemy[32]=(XMFLOAT3(8.0f, 8.0f, 8.0f));
-	enemy[33]=(XMFLOAT3(0.0f, 0.0f, -2.0f));
-	enemy[34]=(XMFLOAT3(0.0f, -0.8f, -1.0f));
-	enemy[35]=(XMFLOAT3(0.0f, -0.8f, 0.0f));
+	enemy[32] = (XMFLOAT3(15.0f, 15.0f, 15.0f));
+	enemy[33] = (XMFLOAT3(0.0f, 0.0f, -1.0f));
+	enemy[34] = (XMFLOAT3(0.0f, -0.5f, 0.0f));
+	enemy[45] = (XMFLOAT3(0.0f, -0.5f, 1.5f));
 
-	enemychimera[9].SetHead(MODEL_KABU);
+	enemychimera[9].SetHead(MODEL_GOKI);
 	enemychimera[9].SetBody(MODEL_KABU1);
 	enemychimera[9].SetMae(MODEL_KABU2);
 	enemychimera[9].SetBack(MODEL_KABU3);
@@ -114,7 +114,7 @@ void Enemychimera()
 	enemy[38]=(XMFLOAT3(0.0f, -0.8f, -1.0f));
 	enemy[39]=(XMFLOAT3(0.0f, -0.8f, 0.0f));
 
-	enemychimera[10].SetHead(MODEL_KABU);
+	enemychimera[10].SetHead(MODEL_KUWA);
 	enemychimera[10].SetBody(MODEL_KABU1);
 	enemychimera[10].SetMae(MODEL_KABU2);
 	enemychimera[10].SetBack(MODEL_KABU3);
