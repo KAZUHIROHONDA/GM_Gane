@@ -21,7 +21,7 @@
 #include "sceneTitle.h"
 #include "selecttitle.h"
 #include "backtex.h"
-
+#include"sound.h"
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
@@ -88,6 +88,9 @@ HRESULT InitSceneBaSelect()
 	SetEnemyselect(XMFLOAT3(0, -15, 650), XMFLOAT3(0, 90, 0));
 	SetEnemyselect(XMFLOAT3(0, -15, 750), XMFLOAT3(0, 90, 0));
 
+
+	PlaySound(SOUND_LABEL_BGM_4);
+
 	// カメラ更新
 	GetCamera()->Init();
 
@@ -114,6 +117,8 @@ void UninitSceneBaSelect()
 	UninitPChimera();
 
 	UninitEnemyselect();
+	
+	StopSound();
 
 	GetEnemy()->Uninit();
 }

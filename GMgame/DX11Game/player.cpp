@@ -117,12 +117,12 @@ static bool			endflag;
 static bool				g_atama = true;//false;
 
 
-const tMessage testMessage[4] = {
+/*onst tMessage testMessage[4] = {
 	{L"",MESSAGE_TYPE::E_TYPE_TIMER,60 },
 	{L"1ñáñ⁄",MESSAGE_TYPE::E_TYPE_ENTER,(long long int)&testMessage[2]},
 	{L"2ñáñ⁄",MESSAGE_TYPE::E_TYPE_ENTER,NULL},
 	{L"2ñáñ⁄",MESSAGE_TYPE::E_TYPE_NORMAL,}
-};
+};*/
 
 
 //=============================================================================
@@ -367,10 +367,10 @@ void UpdatePlayer(void)
 			g_player[i].vel.z *= 0.9f;
 		}
 
-		if (GetKeyTrigger(VK_O))
+		/*if (GetKeyTrigger(VK_O))
 		{
 			SetMessage((tMessage*)&testMessage[3]);
-		}
+		}*/
 
 		XMMATRIX mtxWorld, mtxRot, mtxScl,
 			mtxTranslate;
@@ -1136,17 +1136,17 @@ void Action5(bool af) //ï™âçUåÇÅ@ç≈å„BDÇÕëÂîöî≠
 
 			if (g_nCnt6 >= 65 && g_nCnt6 <= 75)
 			{
-				g_playerHD[i].pos.z += 7.0f;
+				g_playerHD[i].pos.z -= 7.0f;
 				g_playerHD[i].pos.y -= 2.0f;
 			}
 			if (g_nCnt6 >= 85 && g_nCnt6 <= 95)
 			{
-				g_playerAM[i].pos.z += 7.0f;
+				g_playerAM[i].pos.z -= 7.0f;
 				g_playerAM[i].pos.y -= 2.0f;
 			}
 			if (g_nCnt6 >= 105 && g_nCnt6 <= 115)
 			{
-				g_playerLG[i].pos.z += 7.0f;
+				g_playerLG[i].pos.z -= 7.0f;
 				g_playerLG[i].pos.y -= 2.0f;
 			}
 
@@ -1199,7 +1199,7 @@ void Action6(bool af)//ìÒâÒèüóò ì]Ç™ÇËçUåÇ
 			if (g_nCnt7 >= 0 && g_nCnt7 <= 100)
 			{
 				g_player[i].pos.z += 3.0f;
-				g_player[i].rot.x += 50.0f;
+				g_player[i].rot.x -= 50.0f;
 			}
 
 			if (g_nCnt7 >= 200)
@@ -1225,7 +1225,7 @@ void Action7(bool af)//ìÒâÒèüóòå„ÇÎë´èRÇËçUåÇ
 
 			if (g_nCnt8 >= 50 && g_nCnt8 <= 60)
 			{
-				g_player[i].rot.y = 0.0f;
+				g_player[i].rot.y = 180.0f;
 			}
 
 			if (g_nCnt8 >= 70 && g_nCnt8 <= 80)
@@ -1236,7 +1236,7 @@ void Action7(bool af)//ìÒâÒèüóòå„ÇÎë´èRÇËçUåÇ
 
 			if (g_nCnt8 >= 83 && g_nCnt8 <= 90)
 			{
-				g_playerLG[i].pos.z--;
+				g_playerLG[i].pos.z++;
 			}
 
 			if (g_nCnt8 >= 200)
@@ -1294,7 +1294,7 @@ void Action9(bool af)//Å@1âÒèüóòëÃìñÇΩÇËçUåÇ
 			if (g_nCnt10 >= 51 && g_nCnt10 <= 70)
 			{
 				g_player[i].pos.z -= 1.0f;
-				g_player[i].rot.y = 135.0f;
+				g_player[i].rot.y = 45.0f;
 			}
 			if (g_nCnt10 >= 71 && g_nCnt10 <= 80)
 			{
@@ -1396,7 +1396,7 @@ void Action11(bool af)//Å@ãCâ~éaÅ@ïó
 			{
 				g_player[i].rot.y -= 100;
 				g_player[i].pos.z += 0.8f;
-				g_player[i].pos.x--;
+				g_player[i].pos.x++;
 				g_player[i].pos.y -= 0.7f;
 			}
 			if (g_nCnt12 >= 280 && g_nCnt12 <= 500)
@@ -1475,9 +1475,9 @@ void Action14(bool af) //ë≈Çøè„Ç∞ÉhÉäÉãçUåÇ
 
 				if (g_nCnt14 <= 12 && g_nCnt14 >= 10)
 				{
-					g_player[i].pos.z -= 50;
+					g_player[i].pos.z += 50;
 				}
-				if (g_nCnt14 <= 24 && g_nCnt14 >= 16)
+				if (g_nCnt14 <= 24 && g_nCnt14 >= 14)
 				{
 					g_playerHD[i].rot.x = 35.0f;
 				}
@@ -1486,14 +1486,14 @@ void Action14(bool af) //ë≈Çøè„Ç∞ÉhÉäÉãçUåÇ
 					g_playerHD[i].rot.x = 0.0f;
 					g_player[i].rot.y = 0.0f;
 					g_player[i].rot.x -= 18.0f;
-					g_player[i].pos.z += 4;
+					g_player[i].pos.z -= 4;
 					g_player[i].pos.y += 1;
 				}
 				if (g_nCnt14 <= 84 && g_nCnt14 >= 55)//â∫ÇË
 				{
 					//g_player[i].rot.y = 0.0f;
 					g_player[i].rot.x -= 18.0f;
-					g_player[i].pos.z += 4;
+					g_player[i].pos.z -= 4;
 					g_player[i].pos.y -= 1;
 				}
 				if (g_nCnt14 <= 100 && g_nCnt14 >= 90)
@@ -1509,7 +1509,7 @@ void Action14(bool af) //ë≈Çøè„Ç∞ÉhÉäÉãçUåÇ
 				{
 					g_playerHD[i].rot.z += 200.0f;
 					g_player[i].rot.z -= 100.0f;
-					g_player[i].pos.z -= 20;
+					g_player[i].pos.z += 20;
 
 				}
 
