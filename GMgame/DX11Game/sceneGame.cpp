@@ -156,7 +156,7 @@ HRESULT InitSceneGame()
 	}
 	g_bPause = false;
 	g_bClear = false;
-
+	g_bOver = false;
 	//SetEnemy(XMFLOAT3(0.0f, 70.0f, 200.0f),0);
 
 	//ステージの初期化
@@ -227,16 +227,16 @@ void UninitSceneGame()
 //=============================================================================
 void UpdateSceneGame()
 {
-	if (GetKeyTrigger(VK_RETURN))
-	{
-		g_bClear = true;
-	}
 	if (g_bClear == true || g_bOver == true)
 	{
 		GetCamera()->Update();
 		UpdateClear();
 
 		UpdateSelect();
+   
+		UpdatePlayer();
+
+		UpdateEnemy();
 
 		E_FADE fadeState = GetFade();
 		if (fadeState == E_FADE_NONE)
@@ -460,4 +460,13 @@ void Overflag()
 {
 	g_bClear = true;
 	g_bOver = true;
+}
+
+bool Clear()
+{
+	return g_bClear;
+}
+bool Over()
+{
+	return g_bOver;
 }

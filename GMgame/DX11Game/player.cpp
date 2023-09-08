@@ -291,6 +291,14 @@ void UpdatePlayer(void)
 			
 		}
 			
+		if (Clear() == true||Over() == true)
+		{
+			g_nCameraType = E_CAMERA_VIEW_FPS;
+			if(Clear() == true&& Over() != true)
+			Action12(true);
+		}
+
+
 
 			if (GetKeyPress(VK_Z))
 			{
@@ -306,6 +314,17 @@ void UpdatePlayer(void)
 			{
 				g_player[i].nGauge--;
 			}
+
+			if (GetKeyTrigger(VK_V))
+			{
+				DamagePlayer(200);
+			}
+
+			if (g_action3 == true)
+			{
+				Action3(g_action3);
+			}
+
 
 		//‘¬“x‚ðÀ•W‚É‰ÁŽZ
 		g_player[i].pos.x += g_player[i].vel.x;
@@ -492,8 +511,8 @@ void UpdatePlayer(void)
 		GetCamera()->SetPos(g_player[0].pos.x - SinDeg(g_player[0].rot.y)*40.0f, g_player[0].pos.y + 20.0f, g_player[0].pos.z - CosDeg(g_player[0].rot.y)*40.0f);
 		break;						
 	case E_CAMERA_VIEW_FPS:
-		GetCamera()->SetTarget(g_player[0].pos.x + SinDeg(g_player[0].rot.y)*100.0f, g_player[0].pos.y + 10.0f, g_player[0].pos.z + CosDeg(g_player[0].rot.y)*100.0f);
-		GetCamera()->SetPos(g_player[0].pos.x + SinDeg(g_player[0].rot.y)*10.0f, g_player[0].pos.y + 20.0f, g_player[0].pos.z + CosDeg(g_player[0].rot.y)*10.0f);
+		GetCamera()->SetTarget(0.0f, 70.0f, 0.0f);
+		GetCamera()->SetPos(0.0f, 100.0f, 100.0f);
 		break;
 	case E_CAMERA_VIEW_DIAGONAL:
 		GetCamera()->SetTarget(0.0f, 0.0f, 0.0f);
@@ -540,6 +559,8 @@ void UpdateStart(void)
 			g_player[i].vel.x *= 0.9f;
 			g_player[i].vel.z *= 0.9f;
 		}
+
+
 
 		XMMATRIX mtxWorld, mtxRot, mtxScl,
 			mtxTranslate;
@@ -879,8 +900,7 @@ int GetPlayerHp(int no)
 }
 
 void DamagePlayer(int damage)
-{
-	
+{	
 
 	g_player[0].nHP -= damage;
 	if (g_player[0].nHP <= 0)

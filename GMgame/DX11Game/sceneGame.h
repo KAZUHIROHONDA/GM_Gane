@@ -22,4 +22,5 @@ void Clearflag();
 void Overflag();
 
 Phase* GetPhase();
-
+bool Clear();
+bool Over();
