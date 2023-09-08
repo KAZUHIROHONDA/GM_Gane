@@ -159,6 +159,8 @@ HRESULT InitSceneGame()
 	g_bOver = false;
 	//SetEnemy(XMFLOAT3(0.0f, 70.0f, 200.0f),0);
 
+	PlaySound(SOUND_LABEL_BGM002);
+
 	//ステージの初期化
 	InitStage();
 
@@ -216,6 +218,7 @@ void UninitSceneGame()
 	UninitSelect();
 
 	UninitGameover();
+	StopSound();
 
 	//デバック用
 
@@ -231,7 +234,7 @@ void UpdateSceneGame()
 	{
 		GetCamera()->Update();
 		UpdateClear();
-
+		
 		UpdateSelect();
    
 		UpdatePlayer();

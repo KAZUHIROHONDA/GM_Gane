@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  enemymodel.cpp
   enemyselect.cpp
 c:\users\user\desktop\hal\2年\gm\gmgame\dx11game\enemyselect.cpp(628): warning C4244: '引数': 'LONG' から 'float' への変換です。データが失われる可能性があります。
@@ -9,3 +10,6 @@ c:\users\user\desktop\hal\2年\gm\gmgame\dx11game\enemyselect.cpp(628): warning 
     7 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   DX11Game.vcxproj -> C:\Users\user\Desktop\HAL\2年\GM\GMgame\DX11Game\DX11Game.exe
+=======
+﻿  DX11Game.vcxproj -> C:\Users\matsu\Desktop\Resouce2\GMgame\DX11Game\DX11Game.exe
+>>>>>>> feature/matsui3

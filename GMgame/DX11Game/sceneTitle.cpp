@@ -86,6 +86,8 @@ HRESULT InitSceneTitle()
 
 	InitEnter();
 
+	PlaySound(SOUND_LABEL_BGM_1);
+
 	//ステージの初期化
 	SetStageNo(0);
 
@@ -108,6 +110,7 @@ void UninitSceneTitle()
 
 	g_player.Uninit();
 	g_enemy.Uninit();
+	StopSound();
 
 }
 

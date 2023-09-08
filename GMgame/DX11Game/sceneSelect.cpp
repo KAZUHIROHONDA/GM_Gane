@@ -60,6 +60,8 @@ HRESULT InitSceneSelect()
 
 	InitSelTitle();
 
+	PlaySound(SOUND_LABEL_BGM_4);
+
 	// ƒJƒƒ‰XV
 	GetCamera()->Init();
 
@@ -80,7 +82,11 @@ void UninitSceneSelect()
 	UninitSelTitle();
 	
 	UninitPChimera();
+<<<<<<< HEAD
 
+=======
+	StopSound();
+>>>>>>> feature/matsui3
 }
 
 //=============================================================================

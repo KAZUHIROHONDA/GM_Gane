@@ -24,6 +24,8 @@
 #include "partsmenu.h"
 #include "Upartsmenu.h"
 #include "backtex.h"
+#include"sound.h"
+
 
 
 
@@ -78,6 +80,8 @@ HRESULT InitSceneChimera()
 
 	Sflag();
 
+	PlaySound(SOUND_LABEL_BGM_3);
+
 	// ƒJƒƒ‰XV
 	GetCamera()->Init();
 
@@ -103,6 +107,7 @@ void UninitSceneChimera()
 	UninitTex();
 
 	UninitBackTex();
+	StopSound();
 
 	player.Uninit();
 }

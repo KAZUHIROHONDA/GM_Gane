@@ -527,7 +527,7 @@ void DestroyEnemy(int no)
 
 
 	g_nCntF++;
-	if (g_nCntF >= 350)
+	if (g_nCntF >= 250)
 	{
 		Clearflag();
 	}
@@ -665,7 +665,7 @@ void EAction3(bool af)//Ž€–S
 		{
 			g_nECnt4++;
 			g_enemy[i].rot.z = 180;
-			if (g_nECnt4 >= 20 && g_nECnt4 <= 600)
+			if (g_nECnt4 >= 20 && g_nECnt4 <= 200)
 			{
 				g_enemyHD[i].pos.z += 0.05f;
 				g_enemyHD[i].rot.z -= 2.0f;
@@ -679,7 +679,7 @@ void EAction3(bool af)//Ž€–S
 				g_enemyLG[i].rot.z -= 2.0f;
 				g_enemyLG[i].rot.y -= 2.0f;
 			}
-			if (g_nECnt4 >= 600)
+			if (g_nECnt4 >= 200)
 				DestroyEnemy(i);
 		}
 

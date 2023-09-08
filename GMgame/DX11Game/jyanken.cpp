@@ -555,8 +555,7 @@ void UpdateJyankenJadge()
 	if (n > 2)
 	{
 		Cnt1 = 1000;
-		//Ac = rand() % 13 +1;
-		Ac = 0;
+		Ac = rand() % 9;
 		GetPhase()->ChangePhase(BATTLEPHASE);
 	}
 
@@ -574,16 +573,14 @@ void UpdateJyankenBattle()
 		{
 		case 0: {Action(true); break; }
 		case 1: {Action2(true); break; }
-		case 2:{Action4(true);	break;}
-		case 3:{Action5(true);	break;}
-		case 4:{Action6(true);	break;}
-		case 5:{Action7(true);	break;}
-		case 6:{Action8(true);	break;}
-		case 7:{Action9(true);	break;}
-		case 8:{Action10(true); EAction13(true);	break;}
-		case 9:{Action11(true);	break;}
-		case 10:{Action12(true);break;}
-		case 11:{Action14(true);break;}
+		case 2:{Action5(true);	break;}
+		case 3:{Action6(true);	break;}
+		case 4:{Action7(true);	break;}
+		case 5:{Action8(true);	break;}
+		case 6:{Action9(true);	break;}
+		case 7:{Action10(true); EAction13(true);	break;}
+		case 8:{Action11(true);	break;}
+		case 9:{Action14(true); EAction4(true);	break; }
 		default:
 			break;
 		}
@@ -644,16 +641,14 @@ void UpdateJyankenBattle()
 		{
 		case 0: {EAction(true); break; }
 		case 1: {EAction2(true); break; }
-		case 2: {EAction4(true);	break; }
-		case 3: {EAction5(true);	break; }
-		case 4: {EAction6(true);	break; }
-		case 5: {EAction7(true);	break; }
-		case 6: {EAction8(true);	break; }
-		case 7: {EAction9(true);	break; }
-		case 8: {EAction10(true); Action13(true);	break; }
-		case 9: {EAction11(true);	break; }
-		case 10:{EAction12(true); break; }
-		case 11:{EAction14(true); break; }
+		case 2: {EAction5(true);	break; }
+		case 3: {EAction6(true);	break; }
+		case 4: {EAction7(true);	break; }
+		case 5: {EAction8(true);	break; }
+		case 6: {EAction9(true);	break; }
+		case 7: {EAction10(true); Action13(true);	break; }
+		case 8: {EAction11(true);	break; }
+		case 9:{EAction14(true); EAction4(true); break; }
 		default:
 			break;
 		}

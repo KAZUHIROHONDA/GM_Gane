@@ -15,6 +15,7 @@
 #include "gameover.h"
 #include "select 2.h"
 #include "player.h"
+#include "sound.h"
 
 
 //*****************************************************************************
@@ -73,7 +74,7 @@ HRESULT InitSceneGameover()
 		MessageBox(hWnd, _T("serect初期化処理エラー"), _T("エラー"), MB_OK | MB_ICONSTOP);
 		return hr;
 	}
-
+	PlaySound(SOUND_LABEL_BGM_5);
 
 	return hr;
 }
@@ -92,6 +93,7 @@ void UninitSceneGameover()
 	//背景の終了処理
 	UninitSelect2();
 
+	StopSound();
 }
 
 //=============================================================================
