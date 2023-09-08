@@ -83,8 +83,15 @@ static int			g_nCnt2;//行動カウント2コメ
 static int			g_nCnt3;//行動カウント3コメ
 static int			g_nCnt4;//行動カウント4コメ
 static int			g_nCnt5;//行動カウント4コメ
+static int			g_nCnt6;//行動カウント4コメ
+static int			g_nCnt7;//行動カウント4コメ
+static int			g_nCnt8;//行動カウント4コメ
+static int			g_nCnt9;//行動カウント4コメ
+static int			g_nCnt10;//行動カウント4コメ
 static int			g_nCnt11;//行動カウント4コメ
+static int			g_nCnt12;//行動カウント4コメ
 static int			g_nCnt13;//行動カウント4コメ
+static int			g_nCnt14;//行動カウント4コメ
 
 
 static int			g_nCntF;//
@@ -94,8 +101,18 @@ static bool			g_action;
 static bool			g_action2;
 static bool			g_action3;
 static bool			g_action4;
+static bool			g_action5;
+static bool			g_action6;
+static bool			g_action7;
+static bool			g_action8;
+static bool			g_action9;
 static bool			g_action10;
+static bool			g_action11;
 static bool			g_action12;
+static bool			g_action13;
+static bool			g_action14;
+
+
 
 static bool				g_atama = true;//false;
 
@@ -139,16 +156,32 @@ HRESULT InitPlayer(void)
 		g_nCnt3 = 0;					//
 		g_nCnt4 = 0;
 		g_nCnt5 = 0;
-		g_nCntF = 0;
+		g_nCnt5 = 0; 
+		g_nCnt6 = 0; 
+		g_nCnt7 = 0; 
+		g_nCnt8 = 0; 
+		g_nCnt9 = 0; 
+		g_nCnt10 = 0;
 		g_nCnt11 = 0;
+		g_nCnt12 = 0;
 		g_nCnt13 = 0;
+		g_nCnt14 = 0;
 
+		g_nCntF = 0;
 		g_action = false;
 		g_action2 = false;
 		g_action3 = false;
 		g_action4 = false;
+		g_action5 = false;
+		g_action6 = false;
+		g_action7 = false;
+		g_action8 = false;
+		g_action9 = false;
 		g_action10 = false;
+		g_action11 = false;
 		g_action12 = false;
+		g_action13 = false;
+		g_action14 = false;
 
 		g_player[i].nHP = GetPlayer()->GetHP();
 		g_player[i].nGauge = 100;
@@ -255,50 +288,9 @@ void UpdatePlayer(void)
 		}
 		if (g_player[i].nStopTime == 0)
 		{
-			if(GetKeyTrigger(VK_8))
-			{
-				g_action = true;
-			}
-			Action(g_action);
-
-			if(GetKeyTrigger(VK_6))
-			{
-				PlaySound(SOUND_LABEL_SE_PUNCH);
-				g_action2 = true;
-			}
-			Action2(g_action2);
-
-			if(GetKeyTrigger(VK_7))
-			{
-				g_action3 = true;
-			}
-			Action3(g_action3);
-
-			if (GetKeyTrigger(VK_9))
-			{
-				g_action4 = true;
-			}
-			Action4(g_action4);
-
-			if (GetKeyTrigger(VK_5))
-			{
-				g_action10 = true;
-			}
-			Action10(g_action10);
-
-			if (GetKeyTrigger(VK_L))
-			{
-				g_action12 = true;
-			}
-			Action12(g_action12);
+			
 		}
-			if (GetKeyTrigger(VK_H))
-			{
-				DamagePlayer(50);
-			}
 			
-			
-
 
 			if (GetKeyPress(VK_Z))
 			{
@@ -909,22 +901,50 @@ void ResetPos(int no)
 	g_player[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	g_player[no].scl = XMFLOAT3(8.0f, 8.0f, 8.0f);
 	g_player[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+
 	g_playerHD[no].pos = XMFLOAT3(0.0f, 0.0f, -2.0f);
 	g_playerHD[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	g_playerHD[no].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 	g_playerHD[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+
+	g_playerAM[no].pos = MPartsGet()->Getpos();
+	g_playerAM[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	g_playerAM[no].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+	g_playerAM[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
+
+	g_playerLG[no].pos = UPartsGet()->Getpos();
+	g_playerLG[no].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	g_playerLG[no].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
+	g_playerLG[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 
 	g_nCnt1=0;
 	g_nCnt2=0;
 	g_nCnt3 = 0;
 	g_nCnt4 = 0;
 	g_nCnt5 = 0;
+	g_nCnt6 = 0;
+	g_nCnt7 = 0;
+	g_nCnt8 = 0;
+	g_nCnt9 = 0;
+	g_nCnt10 = 0;
 	g_nCnt11 = 0;
+	g_nCnt12 = 0;
+	g_nCnt13 = 0;
+	g_nCnt14 = 0;
 	g_action = false;
 	g_action2 = false;
 	g_action3 = false;
 	g_action4 = false;
+	g_action5 = false;
+	g_action6 = false;
+	g_action7 = false;
+	g_action8 = false;
+	g_action9 = false;
 	g_action10 = false;
+	g_action11 = false;
+	g_action12 = false;
+	g_action13 = false;
+	g_action14 = false;
 }
 
 void Action(bool af)
@@ -1025,166 +1045,351 @@ void Action3(bool af)
 
 	}
 }
-//void Action4(bool af) 
-//{
-//	if (af)
-//	{
-//		for (int i = 0; i < PLAYER_MAX; i++)
-//		{
-//			g_nCnt5++;
-//			if (g_nCnt5 >= 1 && g_nCnt5 <= 2)
-//			{
-//				g_player[i].pos.z += 70;
-//			}
-//			if (g_nCnt5 >= 6 && g_nCnt5 <= 10)
-//			{
-//				g_player[i].rot.x = 70;
-//			}
-//			if (g_nCnt5 >= 15 && g_nCnt5 <= 20)
-//			{
-//				g_player[i].pos.y = 50;
-//				g_player[i].rot.x = 0;
-//				g_player[i].pos.z = 20;
-//				g_player[i].pos.x = 80;
-//								
-//
-//			}
-//			if (g_nCnt5 >= 21 && g_nCnt5 <= 90)
-//			{
-//				XMFLOAT3 pPos = GetEnemyPos(0);
-//				// 毎フレームプレイヤーを認識して追いかける
-//				//g_player[i].targetPos = pPos;
-//				// 移動量の計算
-//				XMFLOAT3 temp;	// 向き
-//				temp.x = pPos.x - g_player[i].pos.x;
-//				temp.y = pPos.y - g_player[i].pos.y;
-//				temp.z = pPos.z - g_player[i].pos.z;
-//				float len = sqrtf(temp.x*temp.x + temp.z*temp.z);
-//				if ( g_nCnt5 >= 21 && g_nCnt5 <= 90  )
-//				{	
-//					temp.x /= len;
-//					temp.z /= len;	// 長さが１の向きだけの情報になる
-//
-//					temp.x *= VALUE_MOVE*4;
-//					temp.z *= VALUE_MOVE*4;
-//					g_player[i].vel = XMFLOAT3(temp.x, 0.0f, temp.z);
-//					g_player[i].rot.y = XMConvertToDegrees(
-//						atan2f(temp.x, temp.z));// モデルの向き
-//
-//					/*g_player[i].pos.z = rand();
-//					g_player[i].pos.x = rand();*/
-//					
-//				}
-//				
-//			}
-//			
-//
-//			else {	// 一定距離以内は停止
-//				g_player[i].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
-//			}
-//
-//			if (g_nCnt5 >= 200)
-//			{
-//				ResetPos(i);
-//			}
-//		}
-//
-//	}
-//		
-//}
 
-void Action4(bool af) //打ち上げドリル攻撃
+void Action4(bool af) //打ち上がるモーション
+{
+	if (af)
+	{
+
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_nCnt5++;
+
+			if (g_nCnt5 >= 16 && g_nCnt5 <= 109)
+			{
+				g_player[i].pos.y++;
+				g_player[i].rot.x++;
+			}
+			if (g_nCnt5 >= 110 && g_nCnt5 <= 200)
+			{
+				g_player[i].pos.y--;
+				g_player[i].rot.x++;
+			}
+			if (g_nCnt5 >= 220 && g_nCnt5 <= 379)
+			{
+				g_player[i].pos.z--;
+				g_player[i].rot.x++;
+				g_player[i].rot.y++;
+				g_player[i].rot.z++;
+			}
+
+			if (g_nCnt5 >= 380)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+void Action5(bool af) //分解攻撃　最後BDは大爆発
+{
+	if (af)
+	{
+
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_nCnt6++;
+
+			if (g_nCnt6 >= 0 && g_nCnt6 <= 50)
+			{
+				g_playerHD[i].pos.y += 0.1f;
+				g_playerHD[i].rot.x += 20.0f;
+				g_playerHD[i].rot.y -= 20.0f;
+				g_playerHD[i].rot.z += 20.0f;
+
+				g_playerAM[i].pos.y += 0.1f;
+				g_playerAM[i].rot.x += 20.0f;
+				g_playerAM[i].rot.y += 20.0f;
+				g_playerAM[i].rot.z -= 20.0f;
+
+				g_playerLG[i].pos.y += 0.1f;
+				g_playerLG[i].rot.x -= 20.0f;
+				g_playerLG[i].rot.y += 20.0f;
+				g_playerLG[i].rot.z += 20.0f;
+			}
+
+			if (g_nCnt6 >= 65 && g_nCnt6 <= 75)
+			{
+				g_playerHD[i].pos.z += 7.0f;
+				g_playerHD[i].pos.y -= 2.0f;
+			}
+			if (g_nCnt6 >= 85 && g_nCnt6 <= 95)
+			{
+				g_playerAM[i].pos.z += 7.0f;
+				g_playerAM[i].pos.y -= 2.0f;
+			}
+			if (g_nCnt6 >= 105 && g_nCnt6 <= 115)
+			{
+				g_playerLG[i].pos.z += 7.0f;
+				g_playerLG[i].pos.y -= 2.0f;
+			}
+
+			if (g_nCnt6 >= 130 && g_nCnt6 <= 165)
+			{
+				g_player[i].pos.z += 1.5f;
+				g_player[i].pos.y += 1.5f;
+				g_player[i].rot.x -= 7.0f;
+			}
+			if (g_nCnt6 >= 165 && g_nCnt6 <= 170)
+			{
+				g_player[i].pos.z += 1.5f;
+				g_player[i].rot.x -= 7.0f;
+
+			}
+			if (g_nCnt6 >= 170 && g_nCnt6 <= 205)
+			{
+				g_player[i].pos.z += 1.5f;
+				g_player[i].pos.y -= 1.5f;
+				g_player[i].rot.x -= 7.0f;
+			}
+			if (g_nCnt6 >= 235 && g_nCnt6 <= 400)
+			{
+				if (g_nCnt6 / 2 % 2 == 0)
+				{
+					g_player[i].pos.x = 1.0f;
+				}
+				else g_player[i].pos.x = -1.0f;
+			}
+			//爆発
+
+
+			if (g_nCnt6 >= 500)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+
+void Action6(bool af)//二回勝利 転がり攻撃
+{
+	if (af)
+	{
+
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_nCnt7++;
+			if (g_nCnt7 >= 0 && g_nCnt7 <= 100)
+			{
+				g_player[i].pos.z += 3.0f;
+				g_player[i].rot.x += 50.0f;
+			}
+
+			if (g_nCnt7 >= 200)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+void Action7(bool af)//二回勝利後ろ足蹴り攻撃
+{
+	if (af)
+	{
+
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_nCnt8++;
+			if (g_nCnt8 >= 0 && g_nCnt8 <= 50)
+			{
+				g_player[i].pos.z = 20.0f;
+			}
+
+			if (g_nCnt8 >= 50 && g_nCnt8 <= 60)
+			{
+				g_player[i].rot.y = 0.0f;
+			}
+
+			if (g_nCnt8 >= 70 && g_nCnt8 <= 80)
+			{
+				g_playerLG[i].rot.x = -90.0f;
+				g_player[i].rot.x = -3.0f;
+			}
+
+			if (g_nCnt8 >= 83 && g_nCnt8 <= 90)
+			{
+				g_playerLG[i].pos.z--;
+			}
+
+			if (g_nCnt8 >= 200)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+void Action8(bool af)//二回勝利 ボディプレス
+{
+	if (af)
+	{
+
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_nCnt9++;
+			if (g_nCnt9 >= 0 && g_nCnt9 <= 50)
+			{
+				g_player[i].pos.y += 3.0f;
+				g_player[i].pos.z += 4.0f;
+				g_player[i].rot.x -= 7.0f;
+			}
+			if (g_nCnt9 >= 51 && g_nCnt9 <= 60)
+			{
+				g_player[i].rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
+			}
+
+			if (g_nCnt9 >= 60 && g_nCnt9 <= 88)
+			{
+				g_player[i].pos.y -= 5.0f;
+			}
+
+			if (g_nCnt9 >= 200)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+
+void Action9(bool af)//　1回勝利体当たり攻撃
 {
 	if (af)
 	{
 		for (int i = 0; i < PLAYER_MAX; i++)
 		{
-			
-			g_nCnt5++;
-			
-			if (g_nCnt5 >= 1 && g_nCnt5 <= 349)
+			g_nCnt10++;
+			if (g_nCnt10 >= 0 && g_nCnt10 <= 50)
 			{
-				
-				if (g_nCnt5 <= 12 && g_nCnt5 >= 10)
-				{
-					g_player[i].pos.z += 50;
-				}
-				if (g_nCnt5 <= 24 && g_nCnt5 >= 16)
-				{
-					g_playerHD[i].rot.x = 35.0f;
-				}
-				if (g_nCnt5 <= 54 && g_nCnt5 >= 25)//上り
-				{
-					g_playerHD[i].rot.x = 0.0f;
-					g_player[i].rot.y = 0.0f;
-					g_player[i].rot.x -= 18.0f;
-					g_player[i].pos.z -= 4;
-					g_player[i].pos.y += 1;
-				}
-				if (g_nCnt5 <=84  && g_nCnt5 >= 55)//下り
-				{
-					//g_player[i].rot.y = 0.0f;
-					g_player[i].rot.x -= 18.0f;
-					g_player[i].pos.z -= 4;
-					g_player[i].pos.y -= 1;
-				}
-				if (g_nCnt5 <= 100 && g_nCnt5 >= 90)
-				{
-					g_playerHD[i].rot.z += 100.0f;
-				}
-				if (g_nCnt5 <= 199 && g_nCnt5 >= 101)
-				{
-					g_playerHD[i].rot.z += 200.0f;
-					g_player[i].rot.z -= 100.0f;
-				}
-				if (g_nCnt5 <= 340 && g_nCnt5 >= 200)
-				{
-					g_playerHD[i].rot.z += 200.0f;
-					g_player[i].rot.z -= 100.0f;
-					g_player[i].pos.z += 20;
-					
-				}
-				
+				g_player[i].pos.z = 40.0f;
 			}
-			if (g_nCnt5 >= 380)
+			if (g_nCnt10 >= 51 && g_nCnt10 <= 70)
 			{
-				ResetPos(i);
+				g_player[i].pos.z -= 1.0f;
+				g_player[i].rot.y = 135.0f;
 			}
-			
+			if (g_nCnt10 >= 71 && g_nCnt10 <= 80)
+			{
+				g_player[i].pos.z = 95.0f;
+			}
+			if (g_nCnt10 >= 81 && g_nCnt10 <= 82)
+			{
+				g_player[i].pos.z -= 25.0f;
+			}
+			if (g_nCnt10 >= 200)
+			{
+				ResetEPos(i);
+			}
 		}
-		
 	}
-	
-	
 }
 
-
-void Action10(bool af)//竜巻　ダメージ
+void Action10(bool af)//　竜巻旋風脚　風
 {
 	if (af)
 	{
 		for (int i = 0; i < PLAYER_MAX; i++)
 		{
 			g_nCnt11++;
-			if (g_nCnt11 >= 390 && g_nCnt11 <= 600)
+			if (g_nCnt11 >= 0 && g_nCnt11 <= 50)
 			{
-				g_player[i].pos.y += 0.7f;
-				g_player[i].rot.y--;
-				g_player[i].rot.x--;
-				g_player[i].rot.z++;
+				g_player[i].pos.y += 5.0f;
+				g_player[i].rot.x -= 8.0f;
 			}
-			if (g_nCnt11 >= 601 && g_nCnt11 <= 800)
-			{
-				g_player[i].pos.y -= 0.73f;
-			}
-			if(g_nCnt11 >= 801)
-			{
-				ResetPos(i);
-			}
-		}
 
+			if (g_nCnt11 >= 51 && g_nCnt11 <= 103)
+			{
+				g_player[i].pos.y -= 5.0f;
+				g_player[i].rot.x -= 8.0f;
+			}
+			if (g_nCnt11 >= 110 && g_nCnt11 <= 200)
+			{
+				g_player[i].rot.x = -90.0f;
+				g_player[i].rot.y += 50;
+			}
+			if (g_nCnt11 >= 200 && g_nCnt11 <= 240)
+			{
+				g_player[i].pos.z++;
+				g_player[i].pos.x--;
+				g_player[i].rot.y += 50;
+			}
+			if (g_nCnt11 >= 240 && g_nCnt11 <= 330)
+			{
+				g_player[i].pos.z++;
+				g_player[i].pos.x++;
+				g_player[i].rot.y += 50;
+			}
+			if (g_nCnt11 >= 330 && g_nCnt11 <= 380)
+			{
+				g_player[i].pos.z++;
+				g_player[i].pos.x--;
+				g_player[i].rot.y += 50;
+			}
+			if (g_nCnt11 >= 380 && g_nCnt11 <= 600)
+			{
+				g_player[i].pos.y += 0.5f;
+				g_player[i].rot.y += 50;
+			}
+
+
+			if (g_nCnt11 >= 600)
+			{
+				ResetEPos(i);
+			}
+
+		}
 	}
 }
+void Action11(bool af)//　気円斬　風
+{
+	if (af)
+	{
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_nCnt12++;
+			if (g_nCnt12 >= 0 && g_nCnt12 <= 50)
+			{
+				g_player[i].rot.y -= 100;
+			}
+			if (g_nCnt12 >= 50 && g_nCnt12 <= 70)
+			{
+				g_player[i].rot.y -= 100;
+				g_player[i].pos.y += 0.4f;
+
+			}
+			if (g_nCnt12 >= 70 && g_nCnt12 <= 200)
+			{
+				g_player[i].rot.y -= 100;
+				g_player[i].pos.z += 0.8f;
+				g_player[i].pos.x--;
+				g_player[i].pos.y += 0.4f;
+			}
+			if (g_nCnt12 >= 200 && g_nCnt12 <= 280)
+			{
+				g_player[i].rot.y -= 100;
+				g_player[i].pos.z += 0.8f;
+				g_player[i].pos.x--;
+				g_player[i].pos.y -= 0.7f;
+			}
+			if (g_nCnt12 >= 280 && g_nCnt12 <= 500)
+			{
+				g_player[i].rot.y -= 100;
+			}
+
+
+			if (g_nCnt12 >= 600)
+			{
+				ResetEPos(i);
+			}
+		}
+	}
+}
+
+
+
+
 
 
 void Action12(bool af)//勝利アニメーション
@@ -1201,6 +1406,98 @@ void Action12(bool af)//勝利アニメーション
 			}
 		}
 	}
+}
+
+void Action13(bool af)//竜巻　ダメージ
+{
+	if (af)
+	{
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+			g_nCnt13++;
+			if (g_nCnt13 >= 390 && g_nCnt13 <= 600)
+			{
+				g_player[i].pos.y += 0.7f;
+				g_player[i].rot.y--;
+				g_player[i].rot.x--;
+				g_player[i].rot.z--;
+			}
+			if (g_nCnt13 >= 601 && g_nCnt13 <= 800)
+			{
+				g_player[i].pos.y -= 0.73f;
+			}
+			if (g_nCnt13 >= 801)
+			{
+				ResetPos(i);
+			}
+		}
+
+	}
+}
+
+void Action14(bool af) //打ち上げドリル攻撃
+{
+	if (af)
+	{
+		for (int i = 0; i < PLAYER_MAX; i++)
+		{
+
+			g_nCnt14++;
+
+			if (g_nCnt14 >= 1 && g_nCnt14 <= 349)
+			{
+
+				if (g_nCnt14 <= 12 && g_nCnt14 >= 10)
+				{
+					g_player[i].pos.z -= 50;
+				}
+				if (g_nCnt14 <= 24 && g_nCnt14 >= 16)
+				{
+					g_playerHD[i].rot.x = 35.0f;
+				}
+				if (g_nCnt14 <= 54 && g_nCnt14 >= 25)//上り
+				{
+					g_playerHD[i].rot.x = 0.0f;
+					g_player[i].rot.y = 0.0f;
+					g_player[i].rot.x -= 18.0f;
+					g_player[i].pos.z += 4;
+					g_player[i].pos.y += 1;
+				}
+				if (g_nCnt14 <= 84 && g_nCnt14 >= 55)//下り
+				{
+					//g_player[i].rot.y = 0.0f;
+					g_player[i].rot.x -= 18.0f;
+					g_player[i].pos.z += 4;
+					g_player[i].pos.y -= 1;
+				}
+				if (g_nCnt14 <= 100 && g_nCnt14 >= 90)
+				{
+					g_playerHD[i].rot.z += 100.0f;
+				}
+				if (g_nCnt14 <= 199 && g_nCnt14 >= 101)
+				{
+					g_playerHD[i].rot.z += 200.0f;
+					g_player[i].rot.z -= 100.0f;
+				}
+				if (g_nCnt14 <= 340 && g_nCnt14 >= 200)
+				{
+					g_playerHD[i].rot.z += 200.0f;
+					g_player[i].rot.z -= 100.0f;
+					g_player[i].pos.z -= 20;
+
+				}
+
+			}
+			if (g_nCnt14 >= 380)
+			{
+				ResetPos(i);
+			}
+
+		}
+
+	}
+
+
 }
 void DestroyPlayer(int no)
 {
