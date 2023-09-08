@@ -20,10 +20,7 @@
 #include "sound.h"
 #include "sceneChimera.h"
 #include "sceneBaSelect.h"
-<<<<<<< HEAD
-=======
 
->>>>>>> feature/matsui3
 
 
 //-------- ライブラリのリンク
@@ -428,10 +425,7 @@ HRESULT Init(HWND hWnd, BOOL bWindow)
 	if (FAILED(hr))
 		return hr;
 
-<<<<<<< HEAD
-=======
-	
->>>>>>> feature/matsui3
+
 
 	//fade,soundも共通処理なのでこの上
 	//共通部分ここまで
@@ -511,10 +505,7 @@ void Uninit(void)
 	//サウンドの終了処理
 	UninitSound();
 
-<<<<<<< HEAD
-=======
-	
->>>>>>> feature/matsui3
+
 
 	// 深度ステンシルステート解放
 	for (int i = 0; i < _countof(g_pDSS); ++i) {
@@ -564,11 +555,11 @@ void Update(void)
 	UpdatePolygon();
 
 	UpdateFade();
-<<<<<<< HEAD
+
 	// ライト更新
 	GetLight()->Update();
 
-=======
+
 
 	
 	// ライト更新
@@ -576,7 +567,7 @@ void Update(void)
 
 	
 
->>>>>>> feature/matsui3
+
 
 	switch (g_currentScene)
 	{
@@ -604,11 +595,6 @@ void Draw(void)
 	g_pDeviceContext->ClearRenderTargetView(g_pRenderTargetView, ClearColor);
 	g_pDeviceContext->ClearDepthStencilView(g_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> feature/matsui3
 
 	// Zバッファ有効
 	//SetZBuffer(true);
