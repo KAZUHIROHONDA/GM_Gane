@@ -557,7 +557,7 @@ void UpdateJyankenJadge()
 	{
 		Cnt1 = 1000;
 		//Ac = rand() % 13 +1;
-		Ac = 8;
+		Ac = 0;
 		GetPhase()->ChangePhase(BATTLEPHASE);
 	}
 
