@@ -9,7 +9,7 @@
 #include "main.h"
 
 //É}ÉNÉçíËã`
-#define ENEMY_MAX	(10)
+#define ENEMY_MAX	(1)
 
 
 //*****************************************************************************
@@ -39,9 +39,7 @@ void DrawEnemyEGauge();
 void ResetEPos(int no);
 
 void EAction(bool af);
-void EAction();
 void EAction2(bool af);
-void EAction2();
 void EAction3(bool af);
 void EAction4(bool af);
 void EAction5(bool af);
