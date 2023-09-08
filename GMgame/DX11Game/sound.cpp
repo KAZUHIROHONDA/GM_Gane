@@ -51,6 +51,9 @@ SOUNDPARAM g_aParam[SOUND_LABEL_MAX] =
 	{L"data/SE/start.wav", 0 },
 	{L"data/SE/selectS.wav", 0 },
 	{L"data/SE/pose.wav", 0 },
+	{L"data/BGM/title.wav", -1},//タイトル
+	{L"data/BGM/select.wav", -1}, //セレクト
+	{L"data/BGM/chimera.wav", -1},//キメラ合成
 	{L"data/SE/select.wav", 0 },	   // キャンセル
 	{L"data/SE/punch31.wav", 0 },
 };
