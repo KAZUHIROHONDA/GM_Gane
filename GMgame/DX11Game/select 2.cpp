@@ -134,11 +134,11 @@ void UpdateSelect2( void )
 	// è„â∫ÉLÅ[Ç≈äeçÄñ⁄ä‘ÇÃà⁄ìÆ
 	if (GetKeyRepeat( VK_W ) || GetKeyRepeat( VK_UP )) {
 		g_nSelect2Menu = (SELECT2_MENU)((g_nSelect2Menu + NUM_SELECT2_MENU - 1) % NUM_SELECT2_MENU);
-		PlaySound(SOUND_LABEL_SE_SELECT);
+		
 		SetSelect2Menu();
 	} else if (GetKeyRepeat( VK_S ) || GetKeyRepeat( VK_DOWN )) {
 		g_nSelect2Menu = (SELECT2_MENU)((g_nSelect2Menu + 1) % NUM_SELECT2_MENU);
-		PlaySound(SOUND_LABEL_SE_SELECT);
+		
 		SetSelect2Menu();
 	}
 

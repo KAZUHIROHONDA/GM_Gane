@@ -142,11 +142,11 @@ void UpdateSelect( void )
 	// è„â∫ÉLÅ[Ç≈äeçÄñ⁄ä‘ÇÃà⁄ìÆ
 	if (GetKeyRepeat( VK_W ) || GetKeyRepeat( VK_UP )) {
 		g_nSelectMenu = (SELECT_MENU)((g_nSelectMenu + NUM_SELECT_MENU - 1) % NUM_SELECT_MENU);
-		PlaySound(SOUND_LABEL_SE_SELECT);
+		
 		SetSelectMenu();
 	} else if (GetKeyRepeat( VK_S ) || GetKeyRepeat( VK_DOWN )) {
 		g_nSelectMenu = (SELECT_MENU)((g_nSelectMenu + 1) % NUM_SELECT_MENU);
-		PlaySound(SOUND_LABEL_SE_SELECT);
+		
 		SetSelectMenu();
 	}
 

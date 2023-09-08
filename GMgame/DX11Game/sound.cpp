@@ -42,10 +42,15 @@ SOUNDPARAM g_aParam[SOUND_LABEL_MAX] =
 	{L"data/BGM/ukiukilalala.wav", -1}, // BGM0( -1はループ再生,0は一回だけ再生)
 	{L"data/BGM/natsuyasuminotanken.wav", -1}, // BGM1
 	{L"data/BGM/RPG_Battle_03.wav", -1},
-	{L"data/SE/shot000.wav", 0 }, // 弾発射音
-	{L"data/SE/Balloon-Pop.wav", 0 }, // 爆発音
-	{L"data/SE/select.wav", 0 },	   // 決定音
-	{L"data/SE/select000.wav", 0 },	   // 選択音
+	{L"data/SE/parts1.wav", 0 }, // パーツ選択音１
+	{L"data/SE/parts2.wav", 0 }, // パーツ選択音
+	{L"data/SE/parts3.wav", 0 }, // パーツ選択音
+	{L"data/SE/parts4.wav", 0 }, // パーツ選択音
+	{L"data/SE/parts5.wav", 0 }, // パーツ選択音
+	{L"data/SE/parts6.wav", 0 }, // パーツ選択音
+	{L"data/SE/start.wav", 0 },
+	{L"data/SE/selectS.wav", 0 },
+	{L"data/SE/pose.wav", 0 },
 	{L"data/SE/select.wav", 0 },	   // キャンセル
 	{L"data/SE/punch31.wav", 0 },
 };

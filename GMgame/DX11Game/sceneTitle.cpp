@@ -19,6 +19,7 @@
 #include "Upartsmenu.h"
 #include "Mpartsmenu.h"
 #include "model.h"
+#include"sound.h"
 
 //*****************************************************************************
 // É}ÉNÉçíËã`
@@ -129,7 +130,7 @@ void UpdateSceneTitle()
 
 	if (GetKeyTrigger(VK_RETURN) || GetJoyTrigger(0, 0)|| GetMouseTrigger(0))
 	{
-
+		PlaySound(SOUND_LABEL_SE_START);
 		StartFade(SCENE_SELECT);
 	}
 

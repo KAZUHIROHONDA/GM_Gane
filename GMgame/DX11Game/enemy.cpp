@@ -1190,7 +1190,7 @@ void EAction13(bool af)//竜巻　ダメージ
 		for (int i = 0; i < ENEMY_MAX; i++)
 		{
 			g_nECnt13++;
-			if (g_nECnt11 >= 390 && g_nECnt13 <= 600)
+			if (g_nECnt13 >= 390 && g_nECnt13 <= 600)
 			{
 				g_enemy[i].pos.y += 0.7f;
 				g_enemy[i].rot.y--;
