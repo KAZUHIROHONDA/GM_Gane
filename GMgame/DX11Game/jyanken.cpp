@@ -190,7 +190,7 @@ void UpdateJyankenStart()
 			selte[f] = Sette[rand() % 20];
 			CameraDEBUG();
 		}
-		GetPhase()->ChangePhase(BATTLEPHASE);
+		GetPhase()->ChangePhase(SETPHASE);
 	}
 }
 
@@ -555,7 +555,9 @@ void UpdateJyankenJadge()
 	
 	if (n > 2)
 	{
-		Cnt1 = 180;
+		Cnt1 = 1000;
+		//Ac = rand() % 13 +1;
+		Ac = 8;
 		GetPhase()->ChangePhase(BATTLEPHASE);
 	}
 
@@ -569,44 +571,154 @@ void UpdateJyankenBattle()
 	//Ÿ‚Á‚½‚Æ‚«
 	if (result[0] > result[1])
 	{
-		//Ac = rand() % 2
-		Ac = 0;
 		switch (Ac)
 		{
-		case 0: {Action(); break; }
-		case 1: {Action2(); break; }
+		case 0: {Action(true); break; }
+		case 1: {Action2(true); break; }
+		case 2:{Action4(true);	break;}
+		case 3:{Action5(true);	break;}
+		case 4:{Action6(true);	break;}
+		case 5:{Action7(true);	break;}
+		case 6:{Action8(true);	break;}
+		case 7:{Action9(true);	break;}
+		case 8:{Action10(true); EAction13(true);	break;}
+		case 9:{Action11(true);	break;}
+		case 10:{Action12(true);break;}
+		case 11:{Action14(true);break;}
 		default:
 			break;
+		}
+
+		if (Getendflag() == true)
+		{
+			ResetPos(0);
+			ResetEPos(0);
+			if (result[0] > result[1])
+			{
+
+				DamageEnemy(PAT);
+				//if (result[0] >= 0)
+				//	DamageEnemy(50 * result[0]);
+			}
+			if (result[0] < result[1])
+			{
+
+				DamagePlayer(EAT);
+				//if (result[1] >= 0)
+				//	DamagePlayer(50 * result[1]);
+			}
+			j = 0;
+			n = 0;
+			f = 0;
+
+			useflag1 = true;
+			useflag2 = true;
+			useflag3 = true;
+			useflag4 = true;
+			useflag5 = true;
+
+			for (int r = 0; r < 4; r++)
+			{
+				result[r] = 0;
+			}
+			for (int p = 0; p < 5; p++)
+			{
+				te[p] = -1;
+			}
+			for (int f = 0; f < 5; f++)
+			{
+				selaite[f] = Setaite[rand() % 20];//‘ŠŽè
+				selte[f] = Sette[rand() % 20];
+			}
+			win = false;
+			lose = false;
+			PAT = 0;
+			EAT = 0;
+			GetPhase()->ChangePhase(SETPHASE);
 		}
 
 	}
 	//•‰‚¯‚½Žž
 	if (result[0] < result[1])
 	{
-		//Ac = rand() % 2;
-		Ac = 0;
 		switch (Ac)
 		{
-		case 0: {EAction(); break; }
-		case 1: {EAction2(); break; }
+		case 0: {EAction(true); break; }
+		case 1: {EAction2(true); break; }
+		case 2: {EAction4(true);	break; }
+		case 3: {EAction5(true);	break; }
+		case 4: {EAction6(true);	break; }
+		case 5: {EAction7(true);	break; }
+		case 6: {EAction8(true);	break; }
+		case 7: {EAction9(true);	break; }
+		case 8: {EAction10(true); Action13(true);	break; }
+		case 9: {EAction11(true);	break; }
+		case 10:{EAction12(true); break; }
+		case 11:{EAction14(true); break; }
 		default:
 			break;
 		}
+		if (GetEendflag() == true)
+		{
+			ResetPos(0);
+			ResetEPos(0);
+			if (result[0] > result[1])
+			{
 
+				DamageEnemy(PAT);
+				//if (result[0] >= 0)
+				//	DamageEnemy(50 * result[0]);
+			}
+			if (result[0] < result[1])
+			{
+
+				DamagePlayer(EAT);
+				//if (result[1] >= 0)
+				//	DamagePlayer(50 * result[1]);
+			}
+			j = 0;
+			n = 0;
+			f = 0;
+
+			useflag1 = true;
+			useflag2 = true;
+			useflag3 = true;
+			useflag4 = true;
+			useflag5 = true;
+
+			for (int r = 0; r < 4; r++)
+			{
+				result[r] = 0;
+			}
+			for (int p = 0; p < 5; p++)
+			{
+				te[p] = -1;
+			}
+			for (int f = 0; f < 5; f++)
+			{
+				selaite[f] = Setaite[rand() % 20];//‘ŠŽè
+				selte[f] = Sette[rand() % 20];
+			}
+			win = false;
+			lose = false;
+			PAT = 0;
+			EAT = 0;
+			GetPhase()->ChangePhase(SETPHASE);
+		}
 	}
 
-	if (Cnt1 < 0)
+	if (result[0] == result[1])
 	{
 		if (result[0] > result[1])
 		{
-			
+
 			DamageEnemy(PAT);
 			//if (result[0] >= 0)
 			//	DamageEnemy(50 * result[0]);
 		}
 		if (result[0] < result[1])
 		{
-			
+
 			DamagePlayer(EAT);
 			//if (result[1] >= 0)
 			//	DamagePlayer(50 * result[1]);
@@ -615,11 +727,11 @@ void UpdateJyankenBattle()
 		n = 0;
 		f = 0;
 
-		 useflag1 = true;
-		 useflag2 = true;
-		 useflag3 = true;
-		 useflag4 = true;
-		 useflag5 = true;
+		useflag1 = true;
+		useflag2 = true;
+		useflag3 = true;
+		useflag4 = true;
+		useflag5 = true;
 
 		for (int r = 0; r < 4; r++)
 		{
@@ -640,6 +752,8 @@ void UpdateJyankenBattle()
 		EAT = 0;
 		GetPhase()->ChangePhase(SETPHASE);
 	}
+
+	
 	
 }
 

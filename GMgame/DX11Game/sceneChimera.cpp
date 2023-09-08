@@ -127,7 +127,6 @@ void UpdateSceneChimera()
 
 	UpdateBackTex();
 	
-	GetPlayer()->Scale(PartsGet(), UPartsGet(), MPartsGet(), BCharaNo(), CharaNo(), UCharaNo(), MCharaNo());
 
 	Sflag();
 

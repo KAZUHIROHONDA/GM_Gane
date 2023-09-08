@@ -15,6 +15,7 @@
 #include "partsmenu.h"
 #include "Upartsmenu.h"
 #include "Mpartsmenu.h"
+#include "Bpartsmenu.h"
 
 //*****************************************************************************
 // ƒ}ƒNƒ’è‹`
@@ -162,6 +163,8 @@ HRESULT InitPChimera(void)
 		GetPlayerModel()->GetBack()); if (FAILED(hr)) return hr;
 	
 	GetPlayer()->Percent();
+
+	GetPlayer()->Scale(PartsGet(), UPartsGet(), MPartsGet(), BCharaNo(), CharaNo(), UCharaNo(), MCharaNo());
 
 	g_nCameraType = CAMERA_VIEW_FIXED;
 

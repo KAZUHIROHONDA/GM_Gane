@@ -111,7 +111,7 @@ static bool			g_action11;
 static bool			g_action12;
 static bool			g_action13;
 static bool			g_action14;
-
+static bool			endflag;
 
 
 static bool				g_atama = true;//false;
@@ -166,6 +166,8 @@ HRESULT InitPlayer(void)
 		g_nCnt12 = 0;
 		g_nCnt13 = 0;
 		g_nCnt14 = 0;
+
+		endflag = false;
 
 		g_nCntF = 0;
 		g_action = false;
@@ -280,6 +282,8 @@ void UpdatePlayer(void)
 		//–¢Žg—p
 		if (g_player[i].nState == 0) continue;
 
+
+		endflag = false;
 
 		//‘€ì•s”\ŽžŠÔ
 		if (g_player[i].nStopTime > 0)
@@ -937,6 +941,8 @@ void ResetPos(int no)
 	g_playerLG[no].scl = XMFLOAT3(1.0f, 1.0f, 1.0f);
 	g_playerLG[no].vel = XMFLOAT3(0.0f, 0.0f, 0.0f);
 
+	endflag = true;
+
 	g_nCnt1=0;
 	g_nCnt2=0;
 	g_nCnt3 = 0;
@@ -1095,7 +1101,7 @@ void Action4(bool af) //‘Å‚¿ã‚ª‚éƒ‚[ƒVƒ‡ƒ“
 
 			if (g_nCnt5 >= 380)
 			{
-				ResetEPos(i);
+				ResetPos(i);
 			}
 		}
 	}
@@ -1175,7 +1181,7 @@ void Action5(bool af) //•ª‰ðUŒ‚@ÅŒãBD‚Í‘å”š”­
 
 			if (g_nCnt6 >= 500)
 			{
-				ResetEPos(i);
+				ResetPos(i);
 			}
 		}
 	}
@@ -1198,7 +1204,7 @@ void Action6(bool af)//“ñ‰ñŸ—˜ “]‚ª‚èUŒ‚
 
 			if (g_nCnt7 >= 200)
 			{
-				ResetEPos(i);
+				ResetPos(i);
 			}
 		}
 	}
@@ -1235,7 +1241,7 @@ void Action7(bool af)//“ñ‰ñŸ—˜Œã‚ë‘«R‚èUŒ‚
 
 			if (g_nCnt8 >= 200)
 			{
-				ResetEPos(i);
+				ResetPos(i);
 			}
 		}
 	}
@@ -1267,7 +1273,7 @@ void Action8(bool af)//“ñ‰ñŸ—˜ ƒ{ƒfƒBƒvƒŒƒX
 
 			if (g_nCnt9 >= 200)
 			{
-				ResetEPos(i);
+				ResetPos(i);
 			}
 		}
 	}
@@ -1300,7 +1306,7 @@ void Action9(bool af)//@1‰ñŸ—˜‘Ì“–‚½‚èUŒ‚
 			}
 			if (g_nCnt10 >= 200)
 			{
-				ResetEPos(i);
+				ResetPos(i);
 			}
 		}
 	}
@@ -1356,7 +1362,7 @@ void Action10(bool af)//@—³Šªù•—‹r@•—
 
 			if (g_nCnt11 >= 600)
 			{
-				ResetEPos(i);
+				ResetPos(i);
 			}
 
 		}
@@ -1401,7 +1407,7 @@ void Action11(bool af)//@‹C‰~Ža@•—
 
 			if (g_nCnt12 >= 600)
 			{
-				ResetEPos(i);
+				ResetPos(i);
 			}
 		}
 	}
@@ -1544,4 +1550,13 @@ void CameraDEBUG()
 void CameraFIXED()
 {
 	g_nCameraType = E_CAMERA_VIEW_FIXED;
+}
+
+bool Getendflag()
+{
+	return endflag;
+}
+void Setendflag()
+{
+	endflag = true;
 }
