@@ -82,11 +82,8 @@ void UninitSceneSelect()
 	UninitSelTitle();
 	
 	UninitPChimera();
-<<<<<<< HEAD
 
-=======
 	StopSound();
->>>>>>> feature/matsui3
 }
 
 //=============================================================================

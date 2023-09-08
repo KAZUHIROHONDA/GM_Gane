@@ -132,6 +132,7 @@ void UpdateSceneChimera()
 
 	UpdateBackTex();
 	
+	GetPlayer()->Update();
 
 	Sflag();
 

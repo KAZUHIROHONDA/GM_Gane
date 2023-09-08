@@ -297,6 +297,10 @@ void UpdateEnemy(void)
 				DamageEnemy(200);
 			}
 
+			if (g_Eaction3 == true)
+			{
+				EAction3(g_Eaction3);
+			}
 
 			XMMATRIX mtxWorld, mtxRot, mtxScl,
 				mtxTranslate;
@@ -506,8 +510,6 @@ int GetEnemyHp(int no)
 
 void DamageEnemy(int damage)
 {
-
-
 	g_enemy[0].nHP -= damage;
 	if (g_enemy[0].nHP <= 0)
 	{
