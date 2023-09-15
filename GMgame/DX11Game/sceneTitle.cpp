@@ -13,7 +13,6 @@
 #include "Title.h"
 #include "enter.h"
 #include "stage.h"
-#include "sceneClear.h"
 #include "Bpartsmenu.h"
 #include "partsmenu.h"
 #include "Upartsmenu.h"
@@ -108,8 +107,7 @@ void UninitSceneTitle()
 
 	UninitEnter();
 
-	g_player.Uninit();
-	g_enemy.Uninit();
+
 	StopSound();
 
 }

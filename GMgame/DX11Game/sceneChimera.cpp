@@ -109,6 +109,8 @@ void UninitSceneChimera()
 	UninitBackTex();
 	StopSound();
 
+	GetPlayer()->Uninit();
+
 	player.Uninit();
 }
 

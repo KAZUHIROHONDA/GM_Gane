@@ -308,6 +308,8 @@ void UninitEnemyselect(void)
 	{
 		g_model[i].Release();
 	}
+
+	GetEnemy()->Uninit();
 }
 
 //=============================================================================

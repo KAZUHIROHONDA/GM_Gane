@@ -173,7 +173,7 @@ void Player::Init()
 
 void Player::Uninit()
 {
-
+	g_directWrite->Release();
 }
 
 void Player::Update()

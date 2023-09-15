@@ -37,9 +37,7 @@
     <ClCompile Include="playercs.cpp" />
     <ClCompile Include="playerhp.cpp" />
     <ClCompile Include="polygon.cpp" />
-    <ClCompile Include="sceneClear.cpp" />
     <ClCompile Include="sceneGame.cpp" />
-    <ClCompile Include="sceneGameover.cpp" />
     <ClCompile Include="sceneSelect.cpp" />
     <ClCompile Include="sceneSetumei.cpp" />
     <ClCompile Include="sceneTitle.cpp" />
@@ -106,9 +104,7 @@
     <ClInclude Include="playerhp.h" />
     <ClInclude Include="polygon.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="sceneClear.h" />
     <ClInclude Include="sceneGame.h" />
-    <ClInclude Include="sceneGameover.h" />
     <ClInclude Include="sceneSelect.h" />
     <ClInclude Include="sceneSetumei.h" />
     <ClInclude Include="sceneTitle.h" />

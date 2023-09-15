@@ -13,8 +13,6 @@
 #include "sceneGame.h"
 #include "sceneTitle.h"
 #include "fade.h"
-#include "sceneGameover.h"
-#include "sceneClear.h"
 #include "sceneSetumei.h"
 #include "sceneSelect.h"
 #include "sound.h"
@@ -437,8 +435,6 @@ HRESULT Init(HWND hWnd, BOOL bWindow)
 	{
 	case(SCENE_TITLE):InitSceneTitle(); break;
 	case(SCENE_GAME):InitSceneGame(); break;
-	case(SCENE_GAMEOVER):InitSceneGameover(); break;
-	case(SCENE_CLEAR):InitSceneClear(); break;
 	case(SCENE_SETUMEI):InitSceneSetumei(); break;
 	case(SCENE_SELECT):InitSceneSelect(); break;
 	case(SCENE_CHIMERA):InitSceneChimera(); break;
@@ -471,8 +467,6 @@ void Uninit(void)
 	{
 	case(SCENE_TITLE):UninitSceneTitle(); break;
 	case(SCENE_GAME):UninitSceneGame(); break;
-	case(SCENE_GAMEOVER):UninitSceneGameover(); break;
-	case(SCENE_CLEAR):UninitSceneClear(); break;
 	case(SCENE_SETUMEI):UninitSceneSetumei(); break;
 	case(SCENE_SELECT):UninitSceneSelect(); break;
 	case(SCENE_CHIMERA):UninitSceneChimera(); break;
@@ -564,8 +558,6 @@ void Update(void)
 	{
 	case(SCENE_TITLE):UpdateSceneTitle(); break;
 	case(SCENE_GAME):UpdateSceneGame(); break;
-	case(SCENE_GAMEOVER):UpdateSceneGameover(); break;
-	case(SCENE_CLEAR):UpdateSceneClear(); break;
 	case(SCENE_SETUMEI):UpdateSceneSetumei(); break;
 	case(SCENE_SELECT):UpdateSceneSelect(); break;
 	case(SCENE_CHIMERA):UpdateSceneChimera(); break;
@@ -600,8 +592,6 @@ void Draw(void)
 	{
 	case(SCENE_TITLE):DrawSceneTitle(); break;
 	case(SCENE_GAME):DrawSceneGame(); break;
-	case(SCENE_GAMEOVER):DrawSceneGameover(); break;
-	case(SCENE_CLEAR):DrawSceneClear(); break;
 	case(SCENE_SETUMEI):DrawSceneSetumei(); break;
 	case(SCENE_SELECT):DrawSceneSelect(); break;
 	case(SCENE_CHIMERA):DrawSceneChimera(); break;
@@ -689,10 +679,6 @@ void StartSceneChange(E_TYPE_SCENE next)
 		break;
 	case SCENE_GAME:UninitSceneGame();
 		break;
-	case SCENE_GAMEOVER:UninitSceneGameover();
-		break;
-	case SCENE_CLEAR:UninitSceneClear();
-		break;
 	case SCENE_SETUMEI:UninitSceneSetumei();
 		break;
 	case SCENE_SELECT:UninitSceneSelect();
@@ -712,10 +698,6 @@ void StartSceneChange(E_TYPE_SCENE next)
 	case SCENE_TITLE:InitSceneTitle();
 		break;
 	case SCENE_GAME:InitSceneGame();
-		break;
-	case SCENE_GAMEOVER:InitSceneGameover();
-		break;
-	case SCENE_CLEAR:InitSceneClear();
 		break;
 	case SCENE_SETUMEI:InitSceneSetumei();
 		break;

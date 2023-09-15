@@ -204,9 +204,7 @@
     <ClCompile Include="polygon.cpp" />
     <ClCompile Include="sceneBaSelect.cpp" />
     <ClCompile Include="sceneChimera.cpp" />
-    <ClCompile Include="sceneClear.cpp" />
     <ClCompile Include="sceneGame.cpp" />
-    <ClCompile Include="sceneGameover.cpp" />
     <ClCompile Include="sceneSelect.cpp" />
     <ClCompile Include="sceneSetumei.cpp" />
     <ClCompile Include="sceneTitle.cpp" />
@@ -273,9 +271,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="sceneBaSelect.h" />
     <ClInclude Include="sceneChimera.h" />
-    <ClInclude Include="sceneClear.h" />
     <ClInclude Include="sceneGame.h" />
-    <ClInclude Include="sceneGameover.h" />
     <ClInclude Include="sceneSelect.h" />
     <ClInclude Include="sceneSetumei.h" />
     <ClInclude Include="sceneTitle.h" />

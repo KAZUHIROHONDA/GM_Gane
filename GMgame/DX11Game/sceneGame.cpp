@@ -222,6 +222,9 @@ void UninitSceneGame()
 	UninitGameover();
 	StopSound();
 
+	GetPlayer()->Uninit();
+	GetEnemy()->Uninit();
+
 	//デバック用
 
 	phase.Uninit();
@@ -460,6 +463,7 @@ void DrawSceneGame()
 	{
 		GetPlayer()->Draw(50, 100);
 		GetEnemy()->Draw(1100, 100);
+
 		phase.Draw();
 
 		DrawPlayerhp();
