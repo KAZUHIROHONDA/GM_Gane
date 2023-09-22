@@ -50,6 +50,14 @@ HRESULT InitSceneTitle()
 		return hr;
 	}
 
+	//タイトル
+	InitTitle();
+
+	InitEnter();
+
+	PlaySound(SOUND_LABEL_BGM_1);
+
+
 	g_player.Init();
 	g_player.SetName("カブトムシ");
 	g_player.Setmodel(0);
@@ -79,13 +87,7 @@ HRESULT InitSceneTitle()
 	enemy.SetBody(MODEL_wani1);
 	enemy.SetMae(MODEL_wani2);
 	enemy.SetBack(MODEL_wani3);
-	
-	//タイトル
-	InitTitle();
 
-	InitEnter();
-
-	PlaySound(SOUND_LABEL_BGM_1);
 
 	//ステージの初期化
 	SetStageNo(0);
